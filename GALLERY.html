@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AETHER Brand Assets Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background: #000;
+            color: #0f0;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #001100 0%, #003300 100%);
+            border: 2px solid #0f0;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+        
+        h1 {
+            color: #00ff00;
+            text-shadow: 0 0 10px #0f0;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #00dd00;
+            font-size: 1.2em;
+        }
+        
+        .controls {
+            background: #0a0a0a;
+            border: 1px solid #0f0;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            background: #001100;
+            color: #0f0;
+            border: 2px solid #0f0;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #0f0;
+            color: #000;
+            box-shadow: 0 0 15px #0f0;
+        }
+        
+        .btn.active {
+            background: #0f0;
+            color: #000;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+        
+        .asset-card {
+            background: #0a0a0a;
+            border: 2px solid #0f0;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+        
+        .asset-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(0, 255, 0, 0.4);
+        }
+        
+        .asset-image {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            background: #000;
+            border: 1px solid #0f0;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .asset-title {
+            color: #00ff00;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            word-break: break-word;
+        }
+        
+        .asset-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #0f0;
+        }
+        
+        .info-item {
+            padding: 8px;
+            background: #001100;
+            border-left: 3px solid #0f0;
+        }
+        
+        .info-label {
+            color: #00dd00;
+            font-size: 0.9em;
+        }
+        
+        .info-value {
+            color: #0f0;
+            font-weight: bold;
+        }
+        
+        .format-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: #001100;
+            border: 1px solid #0f0;
+            border-radius: 3px;
+            margin-right: 5px;
+            font-size: 0.85em;
+        }
+        
+        .download-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .download-btn {
+            flex: 1;
+            padding: 8px;
+            background: #001100;
+            color: #0f0;
+            border: 1px solid #0f0;
+            text-decoration: none;
+            text-align: center;
+            font-size: 0.9em;
+            transition: all 0.2s;
+        }
+        
+        .download-btn:hover {
+            background: #0f0;
+            color: #000;
+        }
+        
+        .stats-bar {
+            background: #0a0a0a;
+            border: 2px solid #0f0;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            color: #00ff00;
+            text-shadow: 0 0 10px #0f0;
+        }
+        
+        .stat-label {
+            color: #00dd00;
+            margin-top: 5px;
+        }
+        
+        .filter-active {
+            color: #00ffff;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>⚡ AETHER BRAND ASSETS ⚡</h1>
+        <div class="subtitle">OPTIMIZED WEB-READY GALLERY</div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stat">
+            <div class="stat-number" id="totalAssets">16</div>
+            <div class="stat-label">Total Assets</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">48</div>
+            <div class="stat-label">Total Files</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">2.4MB</div>
+            <div class="stat-label">Total Size (WebP)</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">97.8%</div>
+            <div class="stat-label">Space Saved</div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn active" onclick="filterAssets('all')">ALL ASSETS</button>
+        <button class="btn" onclick="filterAssets('logo')">LOGOS</button>
+        <button class="btn" onclick="filterAssets('work')">WORK</button>
+        <button class="btn" onclick="filterAssets('founder')">FOUNDER</button>
+        <button class="btn" onclick="filterAssets('services')">SERVICES</button>
+        <button class="btn" onclick="toggleFormat('webp')">VIEW WEBP</button>
+        <button class="btn" onclick="toggleFormat('png')">VIEW PNG</button>
+    </div>
+
+    <div class="gallery" id="gallery">
+        <!-- Assets will be dynamically loaded -->
+    </div>
+
+    <script>
+        const assets = [
+            { name: "BRAND-FounderHeadshot", category: "founder", webp_size: 65, png_size: 560, thumb_size: 21 },
+            { name: "BRANDAsset-KILLMOVEPARADISEPROJECT2", category: "work", webp_size: 81, png_size: 560, thumb_size: 22 },
+            { name: "BRANDAsset-RetroComputer", category: "logo", webp_size: 28, png_size: 580, thumb_size: 8 },
+            { name: "BRANDAsset-Services1", category: "services", webp_size: 95, png_size: 780, thumb_size: 27 },
+            { name: "BRANDAsset-Services2", category: "services", webp_size: 98, png_size: 770, thumb_size: 28 },
+            { name: "BRANDAsset-mixedprojectcollage", category: "work", webp_size: 140, png_size: 1090, thumb_size: 40 },
+            { name: "BRANDAsset-mixedprojectcollage2", category: "work", webp_size: 160, png_size: 960, thumb_size: 40 },
+            { name: "BRANDAsset-talesoflucidialogo", category: "logo", webp_size: 120, png_size: 960, thumb_size: 30 },
+            { name: "BRANDLOGOPEGGY", category: "logo", webp_size: 200, png_size: 1250, thumb_size: 50 },
+            { name: "BRANDworkENCHANT1", category: "work", webp_size: 250, png_size: 1720, thumb_size: 60 },
+            { name: "BRANDworkENCHANT2", category: "work", webp_size: 190, png_size: 1430, thumb_size: 50 },
+            { name: "BRANDworkENCHANT3", category: "work", webp_size: 240, png_size: 1730, thumb_size: 60 },
+            { name: "BRANDworkENCHANT5", category: "work", webp_size: 190, png_size: 1400, thumb_size: 50 },
+            { name: "BRANDworkENCHANT6", category: "work", webp_size: 230, png_size: 1470, thumb_size: 50 },
+            { name: "BRANDworkENCHANT7", category: "work", webp_size: 240, png_size: 1540, thumb_size: 60 },
+            { name: "vangeliscofounderpic", category: "founder", webp_size: 70, png_size: 430, thumb_size: 20 }
+        ];
+
+        let currentFormat = 'webp';
+        let currentFilter = 'all';
+
+        function renderGallery() {
+            const gallery = document.getElementById('gallery');
+            gallery.innerHTML = '';
+
+            let filteredAssets = assets;
+            if (currentFilter !== 'all') {
+                filteredAssets = assets.filter(asset => asset.category === currentFilter);
+            }
+
+            filteredAssets.forEach(asset => {
+                const card = createAssetCard(asset);
+                gallery.appendChild(card);
+            });
+
+            document.getElementById('totalAssets').textContent = filteredAssets.length;
+        }
+
+        function createAssetCard(asset) {
+            const card = document.createElement('div');
+            card.className = 'asset-card';
+            
+            const imageExt = currentFormat;
+            const imagePath = `${asset.name}.${imageExt}`;
+            
+            card.innerHTML = `
+                <picture>
+                    <source srcset="${asset.name}.webp" type="image/webp">
+                    <img src="${asset.name}.png" 
+                         alt="${asset.name}" 
+                         class="asset-image"
+                         loading="lazy">
+                </picture>
+                
+                <div class="asset-title">${asset.name}</div>
+                
+                <div>
+                    <span class="format-badge">WebP: ${asset.webp_size}KB</span>
+                    <span class="format-badge">PNG: ${asset.png_size}KB</span>
+                    <span class="format-badge">Thumb: ${asset.thumb_size}KB</span>
+                </div>
+                
+                <div class="asset-info">
+                    <div class="info-item">
+                        <div class="info-label">Category</div>
+                        <div class="info-value">${asset.category.toUpperCase()}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Format</div>
+                        <div class="info-value">${currentFormat.toUpperCase()}</div>
+                    </div>
+                </div>
+                
+                <div class="download-links">
+                    <a href="${asset.name}.webp" download class="download-btn">⬇ WebP</a>
+                    <a href="${asset.name}_thumb.webp" download class="download-btn">⬇ Thumb</a>
+                    <a href="${asset.name}.png" download class="download-btn">⬇ PNG</a>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        function filterAssets(category) {
+            currentFilter = category;
+            
+            // Update button states
+            document.querySelectorAll('.controls .btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            renderGallery();
+        }
+
+        function toggleFormat(format) {
+            currentFormat = format;
+            renderGallery();
+        }
+
+        // Initial render
+        renderGallery();
+    </script>
+</body>
+</html>
