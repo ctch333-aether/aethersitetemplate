@@ -1,0 +1,1849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AETHER | Complete Procurement Database — Final Draft v3.0</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: 'MS Sans Serif';
+            src: local('MS Sans Serif'), local('Microsoft Sans Serif'), local('sans-serif');
+        }
+
+        :root {
+            --aether-purple: #667eea;
+            --aether-purple-dark: #764ba2;
+            --aether-blue: #4a90e2;
+            --aether-pink: #f093fb;
+            --aether-teal: #3CBBB1;
+            --aether-gold: #C4A052;
+            --aether-copper: #B87333;
+            --aether-platinum: #E5E4E2;
+            --aether-ice-blue: #99D9EA;
+            --aether-sapphire: #0F52BA;
+            --aether-ruby: #E0115F;
+            --aether-emerald: #50C878;
+            --aether-aquamarine: #7FFFD4;
+            --aether-alexandrite: #9966CC;
+            --aether-lapis: #26619C;
+            --white: #ffffff;
+            --black: #2c3e50;
+            --win95-gray: #c0c0c0;
+            --win95-dark: #808080;
+        }
+
+        body {
+            font-family: 'MS Sans Serif', 'Microsoft Sans Serif', sans-serif;
+            font-size: 12px;
+            background: #008080;
+            color: #000;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            cursor: default;
+            line-height: 1.55;
+        }
+
+        /* Kinetic Sky Background */
+        .sky-glass-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            background: 
+                radial-gradient(ellipse at 25% 25%, rgba(135, 206, 250, 0.6) 0%, transparent 50%),
+                radial-gradient(ellipse at 75% 75%, rgba(255, 182, 193, 0.5) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(230, 190, 255, 0.4) 0%, transparent 70%),
+                radial-gradient(ellipse at 10% 90%, rgba(102, 126, 234, 0.5) 0%, transparent 60%),
+                radial-gradient(ellipse at 90% 10%, rgba(240, 147, 251, 0.45) 0%, transparent 55%),
+                linear-gradient(180deg,
+                    rgba(135, 206, 250, 0.5) 0%,
+                    rgba(255, 255, 255, 0.35) 25%,
+                    rgba(173, 216, 230, 0.4) 45%,
+                    rgba(255, 182, 193, 0.35) 65%,
+                    rgba(147, 112, 219, 0.45) 85%,
+                    rgba(102, 126, 234, 0.5) 100%
+                );
+            animation: skyFlow 25s ease infinite;
+        }
+
+        @keyframes skyFlow {
+            0%, 100% { filter: hue-rotate(0deg) brightness(1) contrast(1.1) saturate(1.1); }
+            25% { filter: hue-rotate(15deg) brightness(1.05) contrast(1) saturate(1.15); }
+            50% { filter: hue-rotate(-10deg) brightness(0.98) contrast(1.15) saturate(1.05); }
+            75% { filter: hue-rotate(20deg) brightness(1.02) contrast(1.05) saturate(1.1); }
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 25px 18px 80px;
+        }
+
+        /* Header Section */
+        .header-section {
+            text-align: center;
+            margin-bottom: 35px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.75);
+            border-radius: 12px;
+            backdrop-filter: blur(15px);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header-title {
+            font-size: 34px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+        }
+
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--aether-gold);
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .header-tagline {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.85);
+            font-style: italic;
+            margin-bottom: 18px;
+        }
+
+        /* Color Palette Display */
+        .color-palette {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .color-swatch {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.5);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .doc-meta {
+            display: inline-flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .meta-badge {
+            padding: 6px 14px;
+            background: rgba(102, 126, 234, 0.25);
+            border: 1px solid var(--aether-purple);
+            font-size: 10px;
+            color: white;
+            letter-spacing: 1px;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 25px;
+            justify-content: center;
+        }
+
+        .nav-tab {
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            padding: 5px 10px;
+            font-size: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-tab:hover {
+            background: #d4d4d4;
+        }
+
+        .nav-tab.active {
+            background: var(--aether-purple);
+            color: white;
+            border-color: #000000 #ffffff #ffffff #000000;
+        }
+
+        /* Section Windows */
+        .section-window {
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.4);
+            margin-bottom: 20px;
+        }
+
+        .window-header {
+            background: linear-gradient(135deg, 
+                var(--aether-purple) 0%, 
+                var(--aether-blue) 50%, 
+                var(--aether-purple-dark) 100%);
+            color: white;
+            padding: 4px 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 11px;
+        }
+
+        .window-title {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .window-icon {
+            font-size: 12px;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 2px;
+        }
+
+        .window-button {
+            width: 14px;
+            height: 12px;
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            font-weight: bold;
+        }
+
+        .window-content {
+            padding: 15px;
+            background: #c0c0c0;
+        }
+
+        .window-content h1 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #000080;
+            border-bottom: 2px solid #000080;
+            padding-bottom: 5px;
+        }
+
+        .window-content h2 {
+            font-size: 13px;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            color: var(--aether-purple-dark);
+            padding-left: 8px;
+            border-left: 3px solid var(--aether-purple);
+        }
+
+        .window-content h3 {
+            font-size: 11px;
+            margin-top: 12px;
+            margin-bottom: 6px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .window-content p {
+            margin-bottom: 8px;
+            line-height: 1.6;
+            text-align: justify;
+            font-size: 11px;
+        }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 10px;
+            background: white;
+            border: 2px solid #808080;
+        }
+
+        .data-table th {
+            background: linear-gradient(180deg, #e0e0e0 0%, #c0c0c0 100%);
+            border: 1px solid #808080;
+            padding: 6px 8px;
+            text-align: left;
+            font-weight: bold;
+            color: #000080;
+            font-size: 9px;
+        }
+
+        .data-table td {
+            border: 1px solid #a0a0a0;
+            padding: 5px 8px;
+            vertical-align: top;
+        }
+
+        .data-table tr:nth-child(even) {
+            background: #f5f5f5;
+        }
+
+        .data-table tr:hover {
+            background: #e8f0fe;
+        }
+
+        .data-table .category-row {
+            background: linear-gradient(135deg, var(--aether-purple) 0%, var(--aether-blue) 100%);
+            color: white;
+            font-weight: bold;
+            font-size: 9px;
+            letter-spacing: 1px;
+        }
+
+        .data-table .category-row td {
+            border-color: var(--aether-purple-dark);
+            padding: 5px 8px;
+        }
+
+        /* Status Badges */
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            font-size: 8px;
+            font-weight: bold;
+            border-radius: 2px;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-primary { background: var(--aether-purple); color: white; }
+        .badge-custom { background: var(--aether-gold); color: #000; }
+        .badge-rental { background: #9370DB; color: white; }
+        .badge-eval { background: #808080; color: white; }
+        .badge-active { background: var(--aether-teal); color: white; }
+        .badge-strategic { background: #000080; color: white; }
+        .badge-bcorp { background: #2E7D32; color: white; }
+        .badge-partner { background: #E91E63; color: white; }
+        .badge-water { background: #00BCD4; color: white; }
+        .badge-edu { background: #FF9800; color: white; }
+        .badge-hire { background: #9C27B0; color: white; }
+        .badge-core { background: var(--aether-ruby); color: white; }
+        .badge-couture { background: #000; color: var(--aether-gold); }
+        .badge-beauty { background: #FFB6C1; color: #333; }
+        .badge-vc { background: #1a1a2e; color: #4ade80; }
+
+        /* Takeaway Box */
+        .takeaway-box {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe6f0 100%);
+            border: 3px solid;
+            border-color: #ffffff var(--aether-purple) var(--aether-purple) #ffffff;
+            padding: 12px;
+            margin: 15px 0;
+            box-shadow: 3px 3px 8px rgba(102, 126, 234, 0.2);
+            position: relative;
+            font-size: 11px;
+        }
+
+        .takeaway-box::before {
+            content: attr(data-label);
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: var(--aether-purple);
+            color: white;
+            padding: 2px 8px;
+            font-size: 8px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 8px;
+            margin: 12px 0;
+        }
+
+        .metric-card {
+            background: #ffffff;
+            border: 2px solid var(--aether-blue);
+            padding: 10px 8px;
+            text-align: center;
+        }
+
+        .metric-card .number {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--aether-purple);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .metric-card .label {
+            font-size: 8px;
+            color: #555;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* City Grid */
+        .city-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 6px;
+            margin: 12px 0;
+        }
+
+        .city-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(240, 147, 251, 0.1) 100%);
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .city-card .region {
+            font-size: 7px;
+            color: var(--aether-purple);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+        .city-card .city-name {
+            font-size: 10px;
+            font-weight: bold;
+            color: #000080;
+        }
+
+        .city-card.hq {
+            background: linear-gradient(135deg, var(--aether-gold) 0%, #e6b800 100%);
+            border-color: #ffffff #806600 #806600 #ffffff;
+        }
+
+        .city-card.hq .region {
+            color: #333;
+        }
+
+        /* Talent/Partner Grid */
+        .talent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 6px;
+            margin: 10px 0;
+        }
+
+        .talent-card {
+            background: white;
+            border: 1px solid #a0a0a0;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .talent-card .name {
+            font-size: 10px;
+            font-weight: bold;
+            color: #000080;
+            margin-bottom: 2px;
+        }
+
+        .talent-card .role {
+            font-size: 8px;
+            color: #666;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 6px;
+            margin: 10px 0;
+        }
+
+        .product-item {
+            background: white;
+            border: 1px solid #a0a0a0;
+            padding: 6px;
+            font-size: 9px;
+        }
+
+        .product-item h5 {
+            font-size: 9px;
+            color: var(--aether-purple-dark);
+            margin-bottom: 2px;
+        }
+
+        .product-item p {
+            font-size: 8px;
+            color: #666;
+            margin: 0;
+        }
+
+        /* Section Divider */
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--aether-purple) 20%, var(--aether-purple) 80%, transparent 100%);
+            margin: 20px 0;
+        }
+
+        /* Fleet Summary Cards */
+        .fleet-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .fleet-card {
+            background: linear-gradient(135deg, var(--aether-purple) 0%, var(--aether-purple-dark) 100%);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            padding: 15px 12px;
+            text-align: center;
+            color: white;
+        }
+
+        .fleet-card h4 {
+            font-size: 9px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            opacity: 0.9;
+        }
+
+        .fleet-card .count {
+            font-size: 30px;
+            font-weight: bold;
+            display: block;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .fleet-card .desc {
+            font-size: 9px;
+            opacity: 0.85;
+            margin-top: 6px;
+        }
+
+        /* Compact list */
+        .compact-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 4px;
+            margin: 8px 0;
+            font-size: 10px;
+        }
+
+        .compact-list span {
+            padding: 3px 6px;
+            background: #f5f5f5;
+            border-left: 2px solid var(--aether-purple);
+        }
+
+        /* Taskbar */
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 36px;
+            background: #c0c0c0;
+            border-top: 2px solid #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            padding: 3px;
+            z-index: 1000;
+        }
+
+        .start-button {
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            padding: 3px 8px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+        }
+
+        .start-button:active {
+            border-color: #000000 #ffffff #ffffff #000000;
+        }
+
+        .taskbar-clock {
+            margin-left: auto;
+            padding: 3px 10px;
+            border: 1px solid;
+            border-color: #808080 #ffffff #ffffff #808080;
+            font-size: 10px;
+            background: #c0c0c0;
+        }
+
+        /* Print Styles */
+        @media print {
+            .sky-glass-layer { display: none; }
+            .taskbar { display: none; }
+            body { background: white; font-size: 9px; }
+            .section-window { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-title { font-size: 20px; letter-spacing: 2px; }
+            .nav-tabs { gap: 3px; }
+            .nav-tab { padding: 4px 6px; font-size: 9px; }
+            .talent-grid { grid-template-columns: repeat(2, 1fr); }
+            .fleet-summary { grid-template-columns: 1fr 1fr; }
+            .city-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Kinetic Sky Background -->
+    <div class="sky-glass-layer"></div>
+
+    <div class="main-container">
+        
+        <!-- Header -->
+        <div class="header-section">
+            <div class="header-title">AETHER PROCUREMENT DATABASE</div>
+            <div class="header-subtitle">Global Operations • Strategic Partners • Creative Talent</div>
+            <div class="header-tagline">Democratizing Transformative Entertainment Through Responsible Operations</div>
+            
+            <!-- Alchemist Brand Color Palette -->
+            <div class="color-palette">
+                <div class="color-swatch" style="background: linear-gradient(135deg, #FFD700, #C4A052);" title="Gold"></div>
+                <div class="color-swatch" style="background: linear-gradient(135deg, #B87333, #CD7F32);" title="Copper"></div>
+                <div class="color-swatch" style="background: linear-gradient(135deg, #E5E4E2, #C0C0C0);" title="Platinum"></div>
+                <div class="color-swatch" style="background: linear-gradient(135deg, #99D9EA, #E5E4E2, #FFB6C1);" title="Ice Blue Platinum Pink"></div>
+                <div class="color-swatch" style="background: linear-gradient(135deg, #0F52BA, #1E3A8A);" title="Sapphire"></div>
+                <div class="color-swatch" style="background: linear-gradient(135deg, #B9F2FF, #E0FFFF);" title="Diamonds"></div>
+                <div class="color-swatch" style="background: linear-gradient(135deg, #E0115F, #9B111E);" title="Rubies"></div>
+                <div class="color-swatch" style="background: linear-gradient(135deg, #50C878, #00CED1);" title="Iridescent Emerald"></div>
+                <div class="color-swatch" style="background: linear-gradient(135deg, #7FFFD4, #40E0D0);" title="Aquamarine"></div>
+                <div class="color-swatch" style="background: linear-gradient(135deg, #8B0000, #4B0082);" title="Painite"></div>
+                <div class="color-swatch" style="background: linear-gradient(135deg, #26619C, #1E3A5F);" title="Lapis Lazuli"></div>
+                <div class="color-swatch" style="background: linear-gradient(135deg, #9966CC, #50C878, #E0115F);" title="Alexandrite"></div>
+                <div class="color-swatch" style="background: linear-gradient(135deg, #F0EAD6, #9966CC, #4169E1, #FFD700);" title="Iridescent Pearl"></div>
+            </div>
+            
+            <div class="doc-meta">
+                <span class="meta-badge">VERSION 3.0 — DECEMBER 2025</span>
+                <span class="meta-badge">18-CITY GLOBAL CIRCUIT</span>
+                <span class="meta-badge">B CORP CERTIFIED</span>
+                <span class="meta-badge">DECLARE COMPLIANT</span>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-tabs">
+            <div class="nav-tab active">📋 Overview</div>
+            <div class="nav-tab">🌍 Circuit</div>
+            <div class="nav-tab">🎨 Creatives</div>
+            <div class="nav-tab">👗 Couture</div>
+            <div class="nav-tab">✨ Beauty</div>
+            <div class="nav-tab">🚛 Fleet</div>
+            <div class="nav-tab">🤝 Partners</div>
+            <div class="nav-tab">⚡ Tech Stack</div>
+            <div class="nav-tab">💡 Lighting</div>
+            <div class="nav-tab">🔧 Fabrication</div>
+            <div class="nav-tab">🍽️ F&B</div>
+            <div class="nav-tab">💰 Investment</div>
+            <div class="nav-tab">🏨 Hospitality</div>
+        </div>
+
+        <!-- Section 1: Executive Overview -->
+        <div class="section-window" id="overview">
+            <div class="window-header">
+                <div class="window-title">
+                    <span class="window-icon">📋</span>
+                    procurement_overview.exe
+                </div>
+                <div class="window-controls">
+                    <div class="window-button">_</div>
+                    <div class="window-button">□</div>
+                    <div class="window-button">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <h1>Executive Summary</h1>
+                
+                <p>AETHER's procurement architecture represents a fundamental reimagining of entertainment industry supply chain management, engineered to support an 18-city global touring circuit spanning North America, Asia-Pacific, Europe, and Latin America. As a B Corp certified company committed to Declare transparency, every procurement decision reflects our values of experiential equity, environmental responsibility, and human-centered operations. This database encompasses creative talent rosters, couture partnerships, beauty brands for our Metamorphosis Spa experiences, proprietary technology stacks, fabrication partners, and investment relationships.</p>
+
+                <div class="fleet-summary">
+                    <div class="fleet-card">
+                        <h4>Global Circuit</h4>
+                        <span class="count">18</span>
+                        <div class="desc">cities across 4 continents</div>
+                    </div>
+                    <div class="fleet-card">
+                        <h4>Core Creatives</h4>
+                        <span class="count">20+</span>
+                        <div class="desc">directors, composers, designers</div>
+                    </div>
+                    <div class="fleet-card">
+                        <h4>Couture Houses</h4>
+                        <span class="count">14</span>
+                        <div class="desc">haute couture partners</div>
+                    </div>
+                    <div class="fleet-card">
+                        <h4>Beauty Brands</h4>
+                        <span class="count">50+</span>
+                        <div class="desc">spa & wellness partners</div>
+                    </div>
+                    <div class="fleet-card">
+                        <h4>Strategic Partners</h4>
+                        <span class="count">100+</span>
+                        <div class="desc">vendors & collaborators</div>
+                    </div>
+                    <div class="fleet-card">
+                        <h4>VC Partners</h4>
+                        <span class="count">15+</span>
+                        <div class="desc">investment relationships</div>
+                    </div>
+                </div>
+
+                <div class="takeaway-box" data-label="ALCHEMIST BRAND PALETTE">
+                    <strong>Primary Metals:</strong> Gold • Copper • Platinum<br>
+                    <strong>Precious Stones:</strong> Ice Blue Platinum (pinkish pulling Sapphire) • Diamonds • Rubies • Bluish Iridescent Emerald • Aquamarine • Painite • Lapis Lazuli • Alexandrite • Iridescent Pearl (purple/blue/golden)
+                </div>
+
+                <div class="takeaway-box" data-label="PROMO VIDEO CONCEPT">
+                    Visual identity: Flashing static between clips creates channel-flipping aesthetic — rapid cuts showcasing diverse work samples, venue deployments, and immersive moments. Static transitions evoke analog television tuning, reinforcing phygital bridge between digital and physical worlds.
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Global Circuit -->
+        <div class="section-window" id="circuit">
+            <div class="window-header">
+                <div class="window-title">
+                    <span class="window-icon">🌍</span>
+                    global_circuit.exe
+                </div>
+                <div class="window-controls">
+                    <div class="window-button">_</div>
+                    <div class="window-button">□</div>
+                    <div class="window-button">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <h1>18-City Global Touring Circuit</h1>
+
+                <h2>North America</h2>
+                <div class="city-grid">
+                    <div class="city-card hq">
+                        <div class="region">★ Headquarters</div>
+                        <div class="city-name">SEDONA</div>
+                    </div>
+                    <div class="city-card">
+                        <div class="region">California</div>
+                        <div class="city-name">SAN FRANCISCO</div>
+                    </div>
+                    <div class="city-card">
+                        <div class="region">California</div>
+                        <div class="city-name">ORANGE COUNTY</div>
+                    </div>
+                    <div class="city-card">
+                        <div class="region">California</div>
+                        <div class="city-name">PALM SPRINGS / INDIO</div>
+                    </div>
+                    <div class="city-card">
+                        <div class="region">Nevada</div>
+                        <div class="city-name">LAS VEGAS</div>
+                    </div>
+                    <div class="city-card">
+                        <div class="region">Washington</div>
+                        <div class="city-name">SEATTLE</div>
+                    </div>
+                    <div class="city-card">
+                        <div class="region">Illinois</div>
+                        <div class="city-name">CHICAGO</div>
+                    </div>
+                    <div class="city-card">
+                        <div class="region">Georgia</div>
+                        <div class="city-name">ATLANTA</div>
+                    </div>
+                    <div class="city-card">
+                        <div class="region">Texas</div>
+                        <div class="city-name">DALLAS</div>
+                    </div>
+                    <div class="city-card">
+                        <div class="region">Louisiana</div>
+                        <div class="city-name">NEW ORLEANS</div>
+                    </div>
+                    <div class="city-card">
+                        <div class="region">British Columbia</div>
+                        <div class="city-name">VANCOUVER</div>
+                    </div>
+                    <div class="city-card">
+                        <div class="region">Quebec</div>
+                        <div class="city-name">MONTREAL</div>
+                    </div>
+                </div>
+
+                <h2>Asia-Pacific</h2>
+                <div class="city-grid">
+                    <div class="city-card">
+                        <div class="region">China — Hainan</div>
+                        <div class="city-name">SANYA</div>
+                    </div>
+                    <div class="city-card">
+                        <div class="region">China</div>
+                        <div class="city-name">SHANGHAI</div>
+                    </div>
+                    <div class="city-card">
+                        <div class="region">Japan</div>
+                        <div class="city-name">TOKYO</div>
+                    </div>
+                </div>
+
+                <h2>Europe & Latin America</h2>
+                <div class="city-grid">
+                    <div class="city-card">
+                        <div class="region">France</div>
+                        <div class="city-name">PARIS</div>
+                    </div>
+                    <div class="city-card">
+                        <div class="region">Mexico</div>
+                        <div class="city-name">TULUM</div>
+                    </div>
+                    <div class="city-card">
+                        <div class="region">Brazil</div>
+                        <div class="city-name">RIO DE JANEIRO</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Core Creatives -->
+        <div class="section-window" id="creatives">
+            <div class="window-header">
+                <div class="window-title">
+                    <span class="window-icon">🎨</span>
+                    core_creatives.exe
+                </div>
+                <div class="window-controls">
+                    <div class="window-button">_</div>
+                    <div class="window-button">□</div>
+                    <div class="window-button">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <h1>Creative Talent Registry</h1>
+
+                <h2>Core Creatives — Active Relationships</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Discipline</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Nicole Brooks</strong></td><td>Director / Writer</td><td><span class="badge badge-core">Core</span></td></tr>
+                        <tr><td><strong>Kym Moore</strong></td><td>Director / Choreographer</td><td><span class="badge badge-core">Core</span></td></tr>
+                        <tr><td><strong>Liesel Tommie</strong></td><td>Director</td><td><span class="badge badge-core">Core</span></td></tr>
+                        <tr><td><strong>Camille Brown</strong></td><td>Choreographer</td><td><span class="badge badge-core">Core</span></td></tr>
+                        <tr><td><strong>Taneka Stotts</strong></td><td>Writer</td><td><span class="badge badge-core">Core</span></td></tr>
+                        <tr><td><strong>Phoenix Lynn</strong></td><td>Creative Director</td><td><span class="badge badge-core">Core</span></td></tr>
+                        <tr><td><strong>Michael Strysinski</strong></td><td>Designer</td><td><span class="badge badge-core">Core</span></td></tr>
+                        <tr><td><strong>Toby Marlow & Lucy Moss</strong></td><td>Composers (SIX)</td><td><span class="badge badge-core">Core</span></td></tr>
+                        <tr><td><strong>Chaka Khan</strong></td><td>Music Legend</td><td><span class="badge badge-strategic">Strategic</span></td></tr>
+                        <tr><td><strong>DAFT PUNK</strong></td><td>Electronic Music Icons</td><td><span class="badge badge-strategic">Strategic</span></td></tr>
+                        <tr><td><strong>Michael Giacchino</strong></td><td>Composer (Oscar Winner)</td><td><span class="badge badge-strategic">Strategic</span></td></tr>
+                        <tr><td><strong>Chucky Klapow</strong></td><td>Choreographer</td><td><span class="badge badge-core">Core</span></td></tr>
+                        <tr><td><strong>Deborah Colker</strong></td><td>Choreographer</td><td><span class="badge badge-core">Core</span></td></tr>
+                        <tr><td><strong>Gina Chang</strong></td><td>Creative</td><td><span class="badge badge-core">Core</span></td></tr>
+                        <tr><td><strong>Carlos J Soto</strong></td><td>Designer</td><td><span class="badge badge-core">Core</span></td></tr>
+                        <tr><td><strong>Cameron Anderson</strong></td><td>Creative</td><td><span class="badge badge-core">Core</span></td></tr>
+                        <tr><td><strong>Mirena Rada</strong></td><td>Creative</td><td><span class="badge badge-core">Core</span></td></tr>
+                        <tr><td><strong>Pierre</strong></td><td>Creative</td><td><span class="badge badge-core">Core</span></td></tr>
+                        <tr><td><strong>Derrick McLane</strong></td><td>Scenic Designer</td><td><span class="badge badge-core">Core</span></td></tr>
+                        <tr><td><strong>George Tsypin</strong></td><td>Scenic Designer</td><td><span class="badge badge-core">Core</span></td></tr>
+                        <tr><td><strong>Stephen Dinehart</strong></td><td>Interactive Narrative</td><td><span class="badge badge-core">Core</span></td></tr>
+                    </tbody>
+                </table>
+
+                <h2>Priority Hires — To Recruit</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Specialty</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Joe Rohde</strong></td><td>Imagineering Legend</td><td><span class="badge badge-hire">Priority Hire</span></td></tr>
+                        <tr><td><strong>Genell Zuciya</strong></td><td>WDI Experience</td><td><span class="badge badge-hire">Priority Hire</span></td></tr>
+                        <tr><td><strong>Asa Kalama</strong></td><td>Experience Design</td><td><span class="badge badge-hire">Priority Hire</span></td></tr>
+                        <tr><td><strong>Sinan Ulcay</strong></td><td>Experience Design</td><td><span class="badge badge-hire">Priority Hire</span></td></tr>
+                        <tr><td><strong>Vanessa Immnick</strong></td><td>Creative</td><td><span class="badge badge-hire">Priority Hire</span></td></tr>
+                        <tr><td><strong>Toby Yatso</strong></td><td>Creative</td><td><span class="badge badge-hire">Priority Hire</span></td></tr>
+                        <tr><td><strong>Cameron Hughes</strong></td><td>Innovative Costumes</td><td><span class="badge badge-hire">Priority Hire</span></td></tr>
+                        <tr><td><strong>Trevor Powell</strong></td><td>Costumes (via Shemar)</td><td><span class="badge badge-hire">Priority Hire</span></td></tr>
+                        <tr><td><strong>Bellal Hesham</strong></td><td>Wigs</td><td><span class="badge badge-hire">Priority Hire</span></td></tr>
+                        <tr><td><strong>Taylor Moten</strong></td><td>Costumes</td><td><span class="badge badge-hire">Priority Hire</span></td></tr>
+                        <tr><td><strong>Rachel Finzen</strong></td><td>Costuming (Travis Halsey Mentee)</td><td><span class="badge badge-hire">Priority Hire</span></td></tr>
+                    </tbody>
+                </table>
+
+                <h2>New Build Talent</h2>
+                <div class="talent-grid">
+                    <div class="talent-card">
+                        <div class="name">Javier Coronilla</div>
+                        <div class="role">Emerging Creative</div>
+                    </div>
+                    <div class="talent-card">
+                        <div class="name">Kaemen the Creator</div>
+                        <div class="role">Digital Creative</div>
+                    </div>
+                    <div class="talent-card">
+                        <div class="name">Jose Velasquez</div>
+                        <div class="role">Creative Development</div>
+                    </div>
+                </div>
+
+                <h2>Curated Staff Pipeline</h2>
+                <div class="compact-list">
+                    <span>Kyra Trent (ASU)</span>
+                    <span>Chanel Bragg</span>
+                    <span>Genell (WDI)</span>
+                    <span>Asa Kalama</span>
+                    <span>Sinan Ulcay</span>
+                    <span>Pam Lifford</span>
+                </div>
+
+                <h2>Film/TV Director Relationships</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Director</th>
+                            <th>Notable Works</th>
+                            <th>Alignment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Misha Green</strong></td><td>Lovecraft Country</td><td>Tales of Lucidia narrative</td></tr>
+                        <tr><td><strong>Nia DaCosta</strong></td><td>The Marvels, Candyman</td><td>Visual spectacle</td></tr>
+                        <tr><td><strong>Chloé Zhao</strong></td><td>Eternals, Nomadland</td><td>Immersive worlds</td></tr>
+                        <tr><td><strong>Yorgos Lanthimos</strong></td><td>Poor Things, The Favourite</td><td>Surreal environments</td></tr>
+                        <tr><td><strong>Alfonso Cuarón</strong></td><td>Gravity, Roma</td><td>Technical innovation</td></tr>
+                        <tr><td><strong>Zack Snyder</strong></td><td>300, Justice League</td><td>Visual scale</td></tr>
+                        <tr><td><strong>Ryan Coogler</strong></td><td>Black Panther</td><td>Cultural storytelling</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>Studio Partnerships</h2>
+                <div class="compact-list">
+                    <span>Legendary Entertainment</span>
+                    <span>Bad Robot</span>
+                    <span>pgLang</span>
+                    <span>Proximity Media</span>
+                    <span>Revolución</span>
+                </div>
+
+                <h2>Wig & Hair Studios</h2>
+                <div class="compact-list">
+                    <span>Studio Pickens Wig Atelier</span>
+                    <span>Dylan's Wig Closet</span>
+                    <span>Dave Edwards Wigs Montreal</span>
+                    <span>TWG Wig Studio</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Couture Designers -->
+        <div class="section-window" id="couture">
+            <div class="window-header">
+                <div class="window-title">
+                    <span class="window-icon">👗</span>
+                    couture_designers.exe
+                </div>
+                <div class="window-controls">
+                    <div class="window-button">_</div>
+                    <div class="window-button">□</div>
+                    <div class="window-button">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <h1>Couture Designer Partnerships</h1>
+
+                <p>Haute couture partnerships enable Tales of Lucidia character costumes and experiential wardrobe at the highest level of craft and artistry.</p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>House</th>
+                            <th>Signature</th>
+                            <th>Application</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Mugler</strong></td><td>Architectural, theatrical</td><td>Warrior Princess armor, dramatic silhouettes</td></tr>
+                        <tr><td><strong>Heaven Gaia</strong></td><td>Chinese couture</td><td>Eastern aesthetic, cultural fusion</td></tr>
+                        <tr><td><strong>Balmain</strong></td><td>Military, structured</td><td>Power costumes, regal attire</td></tr>
+                        <tr><td><strong>Ashi Studio</strong></td><td>Ethereal, dramatic</td><td>Magical beings, ethereal characters</td></tr>
+                        <tr><td><strong>Maison Margiela Artisanal</strong></td><td>Deconstructed, avant-garde</td><td>Surreal characters, villains</td></tr>
+                        <tr><td><strong>Rahul Mishra</strong></td><td>Indian craft, sustainability</td><td>Cultural characters, embroidery</td></tr>
+                        <tr><td><strong>Iris Van Herpen</strong></td><td>3D-printed, futuristic</td><td>Supernatural beings, technology-infused</td></tr>
+                        <tr><td><strong>Germanier Couture</strong></td><td>Upcycled, colorful</td><td>Sustainability narrative, vibrant characters</td></tr>
+                        <tr><td><strong>Guo Pei</strong></td><td>Chinese imperial</td><td>Royalty, ceremonial costumes</td></tr>
+                        <tr><td><strong>Schiaparelli</strong></td><td>Surrealist, gold</td><td>Iconic character pieces</td></tr>
+                        <tr><td><strong>Robert Wun</strong></td><td>Dark romanticism</td><td>Dramatic villains, emotional characters</td></tr>
+                        <tr><td><strong>The Blondes</strong></td><td>Glamour, sparkle</td><td>Performance costumes</td></tr>
+                        <tr><td><strong>Stephane Rolland</strong></td><td>Sculptural, fluid</td><td>Movement costumes</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>Atelier Partners</h2>
+                <div class="compact-list">
+                    <span>Atelier Montex (Chanel)</span>
+                    <span>Saint Chaffrey</span>
+                    <span>Atelier Devineau</span>
+                    <span>ARCH Textiles</span>
+                    <span>Britex Fabrics SF</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Metamorphosis Spa & Beauty -->
+        <div class="section-window" id="beauty">
+            <div class="window-header">
+                <div class="window-title">
+                    <span class="window-icon">✨</span>
+                    metamorphosis_spa.exe
+                </div>
+                <div class="window-controls">
+                    <div class="window-button">_</div>
+                    <div class="window-button">□</div>
+                    <div class="window-button">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <h1>Metamorphosis Spa Partner Brands</h1>
+
+                <h2>Skincare & Wellness</h2>
+                <div class="product-grid">
+                    <div class="product-item"><h5>Freaks of Nature</h5><p>Clean skincare</p></div>
+                    <div class="product-item"><h5>SubtleBodies</h5><p>Holistic wellness</p></div>
+                    <div class="product-item"><h5>Herbar</h5><p>Plant-based skincare</p></div>
+                    <div class="product-item"><h5>Birds & Bloakes</h5><p>Gender-neutral</p></div>
+                    <div class="product-item"><h5>Manasi7</h5><p>Natural beauty</p></div>
+                    <div class="product-item"><h5>AYOND</h5><p>Sustainable skincare</p></div>
+                    <div class="product-item"><h5>Mimétique</h5><p>French skincare</p></div>
+                    <div class="product-item"><h5>Victoria Beckham Beauty</h5><p>Luxury skincare</p></div>
+                    <div class="product-item"><h5>Scorpion & Toad</h5><p>Artisanal beauty</p></div>
+                    <div class="product-item"><h5>DEHIYA</h5><p>Moroccan beauty</p></div>
+                    <div class="product-item"><h5>Gentlerist</h5><p>Sensitive skin</p></div>
+                    <div class="product-item"><h5>Dr. Metacine</h5><p>Clinical skincare</p></div>
+                    <div class="product-item"><h5>Raaw Alchemy</h5><p>Raw ingredients</p></div>
+                    <div class="product-item"><h5>sitre</h5><p>Clean beauty</p></div>
+                    <div class="product-item"><h5>natureofthings</h5><p>Botanical wellness</p></div>
+                    <div class="product-item"><h5>Reome</h5><p>Luxury skincare</p></div>
+                    <div class="product-item"><h5>Protocol</h5><p>Results-driven</p></div>
+                    <div class="product-item"><h5>Sure Solaris</h5><p>Sun care</p></div>
+                    <div class="product-item"><h5>Bulk Homme</h5><p>Men's skincare</p></div>
+                    <div class="product-item"><h5>Prequel</h5><p>Barrier care</p></div>
+                </div>
+
+                <h2>Honey & Manuka</h2>
+                <div class="compact-list">
+                    <span>Mahalo</span>
+                    <span>Activist Manuka</span>
+                    <span>First Honey</span>
+                </div>
+
+                <h2>Hair Care</h2>
+                <div class="product-grid">
+                    <div class="product-item"><h5>CÉCRED</h5><p>Beyoncé's hair care</p></div>
+                    <div class="product-item"><h5>Bread</h5><p>Hair care for texture</p></div>
+                    <div class="product-item"><h5>CAIR</h5><p>Clean hair care</p></div>
+                    <div class="product-item"><h5>REVERIE</h5><p>Luxury hair care</p></div>
+                    <div class="product-item"><h5>Biography</h5><p>Personalized hair</p></div>
+                    <div class="product-item"><h5>Act+Acre</h5><p>Scalp health</p></div>
+                    <div class="product-item"><h5>isima</h5><p>Hair wellness</p></div>
+                    <div class="product-item"><h5>Arete</h5><p>Hair color</p></div>
+                    <div class="product-item"><h5>Sennok</h5><p>Hair care</p></div>
+                </div>
+
+                <h2>Makeup — Artist-Grade</h2>
+                <div class="product-grid">
+                    <div class="product-item"><h5>Pat McGrath Labs</h5><p>Legendary artistry</p></div>
+                    <div class="product-item"><h5>Westman Atelier</h5><p>Clean luxury makeup</p></div>
+                    <div class="product-item"><h5>Face Atelier</h5><p>Professional makeup</p></div>
+                    <div class="product-item"><h5>Rituel de Fille</h5><p>Artisanal color</p></div>
+                    <div class="product-item"><h5>Florasis</h5><p>Chinese beauty</p></div>
+                </div>
+
+                <h2>Emerging & Specialty Brands</h2>
+                <div class="compact-list">
+                    <span>Embryoo</span>
+                    <span>Ultranova</span>
+                    <span>FOUND</span>
+                    <span>Tigra Tigra</span>
+                    <span>House of Errors</span>
+                    <span>Karina Bond</span>
+                    <span>Ultra Nova Brand (Wiccan Cosplay)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6: Fleet Operations -->
+        <div class="section-window" id="fleet">
+            <div class="window-header">
+                <div class="window-title">
+                    <span class="window-icon">🚛</span>
+                    fleet_operations.exe
+                </div>
+                <div class="window-controls">
+                    <div class="window-button">_</div>
+                    <div class="window-button">□</div>
+                    <div class="window-button">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <h1>Fleet Operations</h1>
+
+                <h2>Primary Vehicle Partners</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Partner</th>
+                            <th>Platform</th>
+                            <th>Application</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>AC Future</strong></td>
+                            <td>Custom ops trailers, AC Futures Infinity House</td>
+                            <td>Base camp, production facilities</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Volta Trucks</strong></td>
+                            <td>Zero-emission heavy-duty electric</td>
+                            <td>Creative asset transport</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>Sustainable Power Partners</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Partner</th>
+                            <th>Technology</th>
+                            <th>Application</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Honda Hydrogen</strong></td><td>Fuel Cell Platform</td><td>Clean mobile power</td></tr>
+                        <tr><td><strong>CHYLYNN</strong></td><td>Hydro Fuel Cells</td><td>Backup power systems</td></tr>
+                        <tr><td><strong>INSTA GRID LINK GO</strong></td><td>Mobile battery systems</td><td>Rapid deployment power</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>Mobile Storage & Travel</h2>
+                <div class="compact-list">
+                    <span>Monos (Mobile Storage/Travel)</span>
+                    <span>Cadence (Touring Kits)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7: Technology Stack -->
+        <div class="section-window" id="techstack">
+            <div class="window-header">
+                <div class="window-title">
+                    <span class="window-icon">⚡</span>
+                    techno_alchemy_stack.exe
+                </div>
+                <div class="window-controls">
+                    <div class="window-button">_</div>
+                    <div class="window-button">□</div>
+                    <div class="window-button">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <h1>Techno-Alchemy Stack</h1>
+
+                <div class="takeaway-box" data-label="EMPLOYEE TECH PACKAGE — $33K/EMPLOYEE">
+                    Financed with Apple to allow constant updates as technology progresses. Each team member receives full creative technology suite.
+                </div>
+
+                <h2>Alchemist Personal Tech Package</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Device</th>
+                            <th>Qty</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>iPhone Pro Max</td><td>1</td><td>Primary mobile device</td></tr>
+                        <tr><td>OpenPhone Platform</td><td>1</td><td>Communication platform</td></tr>
+                        <tr><td>LitePhone (pgLang)</td><td>1</td><td>Focused communication</td></tr>
+                        <tr><td>Pro XDR Monitors</td><td>3</td><td>Creative workstations</td></tr>
+                        <tr><td>Mac Mini/Studio</td><td>1</td><td>Primary compute</td></tr>
+                        <tr><td>iPad Pro + Magic Keyboard + Pro Pencil</td><td>1</td><td>Mobile creative</td></tr>
+                        <tr><td>Apple Vision Air</td><td>1</td><td>Spatial computing</td></tr>
+                        <tr><td>AirPods Max</td><td>1</td><td>Audio monitoring</td></tr>
+                        <tr><td>AirTags</td><td>9</td><td>Asset tracking</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>ToT — Proprietary In-House Software</h2>
+                <div class="product-grid">
+                    <div class="product-item"><h5>Procreate</h5><p>Digital illustration</p></div>
+                    <div class="product-item"><h5>VizCom</h5><p>AI sketch-to-render</p></div>
+                    <div class="product-item"><h5>Spline</h5><p>3D web design</p></div>
+                    <div class="product-item"><h5>nTop</h5><p>Generative design</p></div>
+                    <div class="product-item"><h5>TouchDesigner</h5><p>Real-time visual</p></div>
+                    <div class="product-item"><h5>Metal 4 + Apple Dev</h5><p>Graphics/development</p></div>
+                    <div class="product-item"><h5>Koniku Bio Sensors</h5><p>Bio-electric sensing</p></div>
+                    <div class="product-item"><h5>PASQAL Compute</h5><p>Quantum computing</p></div>
+                </div>
+
+                <h2>Aether Hardware — 1st Batch</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Function</th>
+                            <th>Unit Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Aether Codex</strong></td><td>Brain — central processing</td><td>$21,000</td></tr>
+                        <tr><td><strong>Aether Unity Dongle</strong></td><td>Turns devices smart + battery power</td><td>$360</td></tr>
+                        <tr><td><strong>Aether Control Modules</strong></td><td>Knobs/Joysticks/Buttons</td><td>$4,500</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>Hardware Partners</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Partner</th>
+                            <th>Specialty</th>
+                            <th>Partnership Synergy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Apple</strong> <a href="https://apple.com" target="_blank">↗</a></td><td>Consumer hardware, Vision Pro</td><td>Strategic tech partner, spatial computing platform</td></tr>
+                        <tr><td><strong>FTSLED</strong> <a href="https://ftsled.com" target="_blank">↗</a></td><td>LED solutions</td><td>Custom LED implementations for immersive environments</td></tr>
+                        <tr><td><strong>Obsidian Controls</strong> <a href="https://obsidiancontrol.com" target="_blank">↗</a></td><td>Lighting control</td><td>ONYX platform integration, show control</td></tr>
+                        <tr><td><strong>Brain Orbital</strong></td><td>Electronics design</td><td>Custom hardware development, IoT integration</td></tr>
+                        <tr><td><strong>Intech Creative</strong></td><td>Technical production</td><td>Hardware integration, technical solutions</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>IoT & Connectivity</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Platform</th>
+                            <th>Function</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Popcorn</strong> (popcorn.space)</td><td>IoT device orchestration, L.I.L.L.I.A.N. integration</td></tr>
+                        <tr><td><strong>OnPopcorn + LitePhone pgLang</strong></td><td>Phone service platform</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Section 8: Lighting & AV -->
+        <div class="section-window" id="lighting">
+            <div class="window-header">
+                <div class="window-title">
+                    <span class="window-icon">💡</span>
+                    lighting_av.exe
+                </div>
+                <div class="window-controls">
+                    <div class="window-button">_</div>
+                    <div class="window-button">□</div>
+                    <div class="window-button">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <h1>Lighting & AV Systems</h1>
+
+                <h2>ROBE Lighting Package</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Fixture</th>
+                            <th>Qty</th>
+                            <th>Unit Cost</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>iProMotion™</strong></td><td>9</td><td>$10,000</td><td>$90,000</td></tr>
+                        <tr><td><strong>iSpiiderX®</strong></td><td>6</td><td>$12,000</td><td>$72,000</td></tr>
+                        <tr><td><strong>iTetra2™</strong></td><td>—</td><td>$6,500</td><td>—</td></tr>
+                        <tr><td><strong>FOOTSIE2™</strong></td><td>9</td><td>$3,000</td><td>$27,000</td></tr>
+                        <tr><td><strong>Tarrantula™</strong></td><td>6</td><td>$13,000</td><td>$78,000</td></tr>
+                        <tr><td><strong>iPointe65®</strong></td><td>6</td><td>$9,000</td><td>$54,000</td></tr>
+                        <tr><td><strong>miniPointe</strong></td><td>—</td><td>—</td><td>—</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>ProLights Package</h2>
+                <div class="compact-list">
+                    <span>Smart BatWash</span>
+                    <span>Smart BatPlusG2</span>
+                    <span>Smart Modula</span>
+                    <span>Smart Disk</span>
+                    <span>ProBAT Line</span>
+                </div>
+
+                <h2>ETC Package</h2>
+                <div class="compact-list">
+                    <span>NEO</span>
+                    <span>SolaraPix</span>
+                    <span>Talen</span>
+                </div>
+
+                <h2>Christie Projection</h2>
+                <div class="compact-list">
+                    <span>M 4K+25 RGB</span>
+                    <span>Sapphire 40k</span>
+                    <span>Griffyn 4K50-RGB</span>
+                    <span>Eclipse</span>
+                </div>
+
+                <h2>Immersive Sound Ecosystem</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Partner</th>
+                            <th>Specialty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>THX</strong></td><td>Theatrical sound certification</td></tr>
+                        <tr><td><strong>Genelec</strong></td><td>Reference monitoring</td></tr>
+                        <tr><td><strong>Bang & Olufsen</strong></td><td>Premium consumer audio</td></tr>
+
+                        <tr><td><strong>Echoic Audio</strong></td><td>Spatial audio systems</td></tr>
+                        <tr><td><strong>AIVOX Litiz</strong></td><td>Professional audio</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>Motion Control — Wahlberg Motion</h2>
+                <div class="compact-list">
+                    <span>Winch 50 Double + Power/Cat5</span>
+                    <span>Triple Winch</span>
+                    <span>DMX Giga Rotator</span>
+                    <span>DMX Rotator with Power Outlet</span>
+                    <span>Track Profile External Power</span>
+                    <span>Rotracktor</span>
+                    <span>Remote Controlled Platform (Off-road)</span>
+                </div>
+
+                <h2>Special Effects</h2>
+                <div class="compact-list">
+                    <span>Showven (Full Line)</span>
+                    <span>ShowTex</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 9: Fabrication Partners -->
+        <div class="section-window" id="fabrication">
+            <div class="window-header">
+                <div class="window-title">
+                    <span class="window-icon">🔧</span>
+                    fabrication_partners.exe
+                </div>
+                <div class="window-controls">
+                    <div class="window-button">_</div>
+                    <div class="window-button">□</div>
+                    <div class="window-button">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <h1>Fabrication & Manufacturing Partners</h1>
+
+                <h2>Final Fabrication Partners</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Partner</th>
+                            <th>Specialty</th>
+                            <th>Partnership Synergy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Ironhead Studios</strong> <a href="https://ironheadstudio.com" target="_blank">↗</a></td><td>Creature effects, costume fabrication</td><td>Tales of Lucidia character costumes, premium prop fabrication</td></tr>
+                        <tr><td><strong>Saint Chaffrey</strong></td><td>French craftsmanship</td><td>European sustainable partner, artisanal fabrication expertise</td></tr>
+                        <tr><td><strong>Plastic Studios</strong> <a href="https://plasticstudios.com" target="_blank">↗</a></td><td>Creative production</td><td>Digital-to-physical production pipeline</td></tr>
+                        <tr><td><strong>Atelier Devineau</strong></td><td>French artisanal fabrication</td><td>Heritage craftsmanship, luxury finishing</td></tr>
+                        <tr><td><strong>Scène Éthique</strong> <a href="https://scene-ethique.fr" target="_blank">↗</a></td><td>Sustainable scenic</td><td>B Corp aligned sustainable scenic production</td></tr>
+                        <tr><td><strong>0h11</strong></td><td>Creative fabrication</td><td>Avant-garde fabrication, experimental structures</td></tr>
+                        <tr><td><strong>UAP (United Art Projects)</strong> <a href="https://uap.studio" target="_blank">↗</a></td><td>Large-scale art fabrication</td><td>Portal Pop-Up installations, monumental art pieces</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>Manufacturing Equipment Partners</h2>
+                <p><em>Working with partners to make customized high-capacity versions of existing and new products.</em></p>
+                <div class="compact-list">
+                    <span>X-Tool (Fab Tech)</span>
+                    <span>Stratasys</span>
+                    <span>FujiFilm</span>
+                    <span>PFAFF</span>
+                    <span>Siasun</span>
+                    <span>Vention</span>
+                    <span>Presto Max Fabric Printer</span>
+                    <span>Boston Dynamics</span>
+                    <span>ShowTex</span>
+                    <span>Wahlberg Motion</span>
+                    <span>PAL Robotics</span>
+                    <span>Maker srl</span>
+                </div>
+
+                <h2>Materials Science</h2>
+                <div class="compact-list">
+                    <span>Kerakoll</span>
+                    <span>GOODCYCLE (Material Science)</span>
+                    <span>Keel Labs</span>
+                    <span>Cambridge Materials</span>
+                    <span>ITALPREZIOSI (Fine Metals)</span>
+                    <span>Cycora</span>
+                </div>
+
+                <h2>Consumer Products & Merchandise</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Partner</th>
+                            <th>Specialty</th>
+                            <th>Partnership Synergy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>iicombined</strong> <a href="https://iicombined.com" target="_blank">↗</a></td><td>Brand strategy, consumer products</td><td>Brand development, creative campaigns, market positioning</td></tr>
+                        <tr><td><strong>Bogoods</strong></td><td>Merchandise manufacturing</td><td>Product development, Asian manufacturing, flexible production capacity</td></tr>
+                        <tr><td><strong>Bon Bon Toys</strong></td><td>Toy design, collectibles</td><td>Tales of Lucidia toy line, Asian manufacturing partnerships</td></tr>
+                        <tr><td><strong>Italian Artisan</strong></td><td>Artisan craftsmanship</td><td>Premium handcrafted collectibles, European luxury positioning</td></tr>
+                        <tr><td><strong>LAMPA Italy</strong> <a href="https://lampa.it" target="_blank">↗</a></td><td>Italian lighting & design</td><td>Custom decorative lighting, Italian craftsmanship</td></tr>
+                        <tr><td><strong>Bridepalla</strong></td><td>Sustainable merchandise</td><td>Eco-friendly event merchandise, sustainable materials</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>Décor & Custom Elements</h2>
+                <div class="compact-list">
+                    <span>Lalucegioielleria (Custom Decorations)</span>
+                    <span>Casa Lola</span>
+                    <span>ANDRIANNA SHAMARIS</span>
+                    <span>Studio Nordhaven</span>
+                    <span>Adorno</span>
+                    <span>FOROM</span>
+                    <span>Gustaf Westman</span>
+                    <span>Artemest</span>
+                </div>
+
+                <h2>Environmental Systems</h2>
+                <div class="compact-list">
+                    <span>Spout Air to Water Generator</span>
+                    <span>PlantaForm Smart Garden</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 10: Food & Beverage -->
+        <div class="section-window" id="fnb">
+            <div class="window-header">
+                <div class="window-title">
+                    <span class="window-icon">🍽️</span>
+                    food_beverage.exe
+                </div>
+                <div class="window-controls">
+                    <div class="window-button">_</div>
+                    <div class="window-button">□</div>
+                    <div class="window-button">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <h1>Food & Beverage Partners</h1>
+
+                <h2>Premium F&B Partners</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Partner</th>
+                            <th>Category</th>
+                            <th>Application</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Erewhon</strong></td><td>Premium grocery/prepared</td><td>Cast/crew catering, VIP hospitality</td></tr>
+                        <tr><td><strong>Super Producteur</strong></td><td>French production</td><td>European F&B sourcing</td></tr>
+                        <tr><td><strong>Amorino Gelato</strong></td><td>Premium gelato</td><td>Guest experience</td></tr>
+                        <tr><td><strong>Coco Asante</strong></td><td>Chocolate</td><td>Premium confections</td></tr>
+                        <tr><td><strong>AlterFood France</strong></td><td>Alternative foods</td><td>Plant-based options</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>Wine & Spirits</h2>
+                <div class="compact-list">
+                    <span>The Wine Noir</span>
+                    <span>Haus Alcohol</span>
+                    <span>Piper-Heidsieck</span>
+                    <span>Ethic Drinks</span>
+                    <span>Oé</span>
+                    <span>Fornostria</span>
+                </div>
+
+                <h2>Specialty Food Partners</h2>
+                <div class="compact-list">
+                    <span>Algae Cooking Club</span>
+                    <span>Brava (Industrial glass versions)</span>
+                    <span>Moley Robotics (Kitchen)</span>
+                    <span>omie</span>
+                    <span>Roast Theory</span>
+                    <span>Menghai Wenyuan Tea Industry</span>
+                    <span>N&B Srl (Organic Farming)</span>
+                </div>
+
+                <h2>Packaging</h2>
+                <div class="compact-list">
+                    <span>Giowise Packaging</span>
+                </div>
+
+                <h2>Premium Water Brands</h2>
+                <div class="compact-list">
+                    <span>Menehune</span>
+                    <span>Hawaiian Springs</span>
+                    <span>Sedona Water</span>
+                    <span>Antipodes</span>
+                    <span>VOSS</span>
+                    <span>BERG</span>
+                </div>
+
+                <h2>Retail Partners</h2>
+                <div class="compact-list">
+                    <span>Erewhon</span>
+                    <span>Costco</span>
+                    <span>GoPuff</span>
+                    <span>Instacart</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 11: Investment Partners -->
+        <div class="section-window" id="investment">
+            <div class="window-header">
+                <div class="window-title">
+                    <span class="window-icon">💰</span>
+                    investment_partners.exe
+                </div>
+                <div class="window-controls">
+                    <div class="window-button">_</div>
+                    <div class="window-button">□</div>
+                    <div class="window-button">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <h1>Investment & VC Partners</h1>
+
+                <h2>Financial Infrastructure</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Institution</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Amalgamated Bank</strong></td><td>Primary Commercial Banking</td></tr>
+                        <tr><td><strong>OneUnited Bank</strong></td><td>Secondary / Community Investment</td></tr>
+                        <tr><td><strong>AetherPay</strong></td><td>Proprietary Payment (better Aliviere)</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>VC & Investment Partners</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Partner</th>
+                            <th>Focus</th>
+                            <th>Region</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Blisce/</strong></td><td>Consumer, impact</td><td>US/Europe</td></tr>
+                        <tr><td><strong>Octopus Group</strong></td><td>Growth capital</td><td>UK</td></tr>
+                        <tr><td><strong>Revaia VC</strong></td><td>Growth equity</td><td>France</td></tr>
+                        <tr><td><strong>Rally Assets</strong></td><td>Impact investing</td><td>Canada</td></tr>
+                        <tr><td><strong>Ivesta Family Office</strong></td><td>Family office</td><td>—</td></tr>
+                        <tr><td><strong>EUTOPIA</strong></td><td>European ventures</td><td>Europe</td></tr>
+                        <tr><td><strong>Sycomore AM</strong></td><td>Sustainable finance</td><td>France</td></tr>
+                        <tr><td><strong>Origami Groupe</strong></td><td>Strategic investment</td><td>France</td></tr>
+                        <tr><td><strong>Founders Future VC</strong></td><td>Early stage</td><td>France</td></tr>
+                        <tr><td><strong>Breega VC</strong></td><td>Series A-B</td><td>Europe</td></tr>
+                        <tr><td><strong>15 Partners VC</strong></td><td>Growth capital</td><td>—</td></tr>
+                        <tr><td><strong>Meridiam VC</strong></td><td>Infrastructure</td><td>Global</td></tr>
+                        <tr><td><strong>Cambridge University</strong></td><td>Academic venture</td><td>UK</td></tr>
+                        <tr><td><strong>Mayo Health</strong></td><td>Health ventures</td><td>US</td></tr>
+                        <tr><td><strong>Truffl</strong></td><td>VC Capital</td><td>—</td></tr>
+                        <tr><td><strong>The Equity Studio</strong></td><td>Impact VC</td><td>—</td></tr>
+                        <tr><td><strong>125 Ventures</strong></td><td>Black VC Partner</td><td>US</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>Research Partners</h2>
+                <div class="compact-list">
+                    <span>Vytrus Labs</span>
+                    <span>BLOOM GEM (China Biotech)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 12: Hospitality & HR -->
+        <div class="section-window" id="hospitality">
+            <div class="window-header">
+                <div class="window-title">
+                    <span class="window-icon">🏨</span>
+                    hospitality_hr.exe
+                </div>
+                <div class="window-controls">
+                    <div class="window-button">_</div>
+                    <div class="window-button">□</div>
+                    <div class="window-button">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <h1>Hospitality & HR Partners</h1>
+
+                <h2>Hospitality Partners</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Partner</th>
+                            <th>Category</th>
+                            <th>Application</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Aman</strong></td><td>Ultra-luxury resorts</td><td>VIP accommodations, retreat experiences</td></tr>
+                        <tr><td><strong>Regent IHG</strong></td><td>Luxury hospitality</td><td>Premium guest accommodations</td></tr>
+                        <tr><td><strong>Wynn Resorts</strong></td><td>Integrated resorts</td><td>Las Vegas circuit, entertainment venues</td></tr>
+                        <tr><td><strong>BASE China</strong></td><td>Furnished apartments</td><td>Extended cast/crew residencies</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>Travel Partners</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Partner</th>
+                            <th>Service</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>StarLux Airlines</strong></td><td>Premium carrier — Asia-Pacific routing</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>HR & Talent Partners</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Partner</th>
+                            <th>Service</th>
+                            <th>Partnership Synergy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Futureberry</strong> <a href="https://futureberry.com" target="_blank">↗</a></td><td>Innovation consulting</td><td>Strategic foresight, innovation workshops</td></tr>
+                        <tr><td><strong>HireRight</strong> <a href="https://hireright.com" target="_blank">↗</a></td><td>Background verification</td><td>Compliance, global screening services</td></tr>
+                        <tr><td><strong>Nelly Rodi</strong> <a href="https://nellyrodi.com" target="_blank">↗</a></td><td>Trend forecasting</td><td>2-3 year trend forecasting, cultural insights</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>Phygital Ops Contractors</h2>
+                <div class="compact-list">
+                    <span>Higher Ring</span>
+                    <span>NVK</span>
+                </div>
+
+                <h2>Education Partners</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Partner</th>
+                            <th>Focus</th>
+                            <th>Partnership Synergy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Saint Heron</strong> <a href="https://saintheron.com" target="_blank">↗</a></td><td>Creative education, cultural programming</td><td>Arts education, cultural leadership development</td></tr>
+                        <tr><td><strong>SuperHi</strong> <a href="https://superhi.com" target="_blank">↗</a></td><td>STEAM Education, creative coding</td><td>Digital skills training, creative technology courses</td></tr>
+                        <tr><td><strong>MIT Media Lab</strong> <a href="https://media.mit.edu" target="_blank">↗</a></td><td>Technology research</td><td>R&D collaboration, emerging tech research</td></tr>
+                        <tr><td><strong>Cambridge</strong> <a href="https://cambridge.org" target="_blank">↗</a></td><td>Academic partnerships</td><td>Obsidian Knowledge curriculum integration</td></tr>
+                        <tr><td><strong>Ishikawa Lab</strong> <a href="https://www.k2.t.u-tokyo.ac.jp" target="_blank">↗</a></td><td>High-speed vision, robotics</td><td>Advanced robotics research, real-time systems</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>Sustainability Certification</h2>
+                <div class="compact-list">
+                    <span>ILFI (Living Future Institute)</span>
+                    <span>B Corp Certification</span>
+                    <span>Declare Labels</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 13: Design & Creative Studios -->
+        <div class="section-window" id="studios">
+            <div class="window-header">
+                <div class="window-title">
+                    <span class="window-icon">🎨</span>
+                    creative_studios.exe
+                </div>
+                <div class="window-controls">
+                    <div class="window-button">_</div>
+                    <div class="window-button">□</div>
+                    <div class="window-button">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <h1>Design & Creative Studios</h1>
+
+                <h2>Strategic Creative Partners</h2>
+                <div class="compact-list">
+                    <span>Ironhead Studios</span>
+                    <span>Adre Development</span>
+                    <span>0h11</span>
+                    <span>Adulte Adulte</span>
+                    <span>Farm League</span>
+                    <span>NDA Paris</span>
+                    <span>Capsule Studios</span>
+                    <span>Illogic Studios</span>
+                    <span>Onesal</span>
+                    <span>Limelight HK</span>
+                </div>
+
+                <h2>Entertainment Partners</h2>
+                <div class="compact-list">
+                    <span>Lune Rouge</span>
+                    <span>Fantawild</span>
+                    <span>Ennismore</span>
+                    <span>iicombined (South Korea)</span>
+                    <span>teamLab</span>
+                </div>
+
+                <h2>Architecture & Development</h2>
+                <div class="compact-list">
+                    <span>MAD Architecture</span>
+                    <span>XL Muse China</span>
+                    <span>Patriarche</span>
+                    <span>Studio Paolo Ferrari</span>
+                    <span>Uchronia</span>
+                    <span>Chandos</span>
+                </div>
+
+                <h2>Licensing & Consumer</h2>
+                <div class="compact-list">
+                    <span>ArtiStory (Brand Licensing)</span>
+                    <span>Italdesign (Design Firm)</span>
+                    <span>Spline FR</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Window -->
+        <div class="section-window">
+            <div class="window-header">
+                <div class="window-title">
+                    <span class="window-icon">📄</span>
+                    document_info.txt
+                </div>
+                <div class="window-controls">
+                    <div class="window-button">_</div>
+                    <div class="window-button">□</div>
+                    <div class="window-button">×</div>
+                </div>
+            </div>
+            <div class="window-content" style="text-align: center; padding: 20px;">
+                <h1 style="border: none; text-align: center; font-size: 22px;">AETHER</h1>
+                <p style="text-align: center; font-style: italic; color: #666; margin-bottom: 12px;">Phygital Experience Platform — Democratizing Transformative Entertainment</p>
+                
+                <!-- Mini Color Palette -->
+                <div class="color-palette" style="margin: 10px 0;">
+                    <div class="color-swatch" style="width: 20px; height: 20px; background: linear-gradient(135deg, #FFD700, #C4A052);"></div>
+                    <div class="color-swatch" style="width: 20px; height: 20px; background: linear-gradient(135deg, #B87333, #CD7F32);"></div>
+                    <div class="color-swatch" style="width: 20px; height: 20px; background: linear-gradient(135deg, #E5E4E2, #C0C0C0);"></div>
+                </div>
+                
+                <div class="section-divider"></div>
+                <p style="text-align: center; font-size: 9px; color: #888;">
+                    Document Version 3.1 — December 2025 — UPDATED<br>
+                    18-City Global Circuit • B Corp Certified • Declare Compliant<br>
+                    <em>v3.1 Updates: Removed Holoplot, Weta Consumer Products, rhum HR, HARPER+SCOTT, Funko; Added iicombined; Enhanced supplier info with websites & synergies</em><br>
+                    For internal planning and procurement reference
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <div class="start-button">
+            <span>⚗️</span>
+            <span>Start</span>
+        </div>
+        <div class="taskbar-clock" id="clock">12:00 PM</div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const displayHours = hours % 12 || 12;
+            document.getElementById('clock').textContent = `${displayHours}:${minutes} ${ampm}`;
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

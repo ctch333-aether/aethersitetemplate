@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alchemist Atelier - Phygital Experience OS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'MS Sans Serif', Tahoma, sans-serif;
+            background: #008080;
+            color: #000;
+            font-size: 11px;
+            cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAASCAYAAABvqT8MAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2BlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OThFNzZBRjYzRkFBMTFFNjgzNkM5NzI2MjFGMDlBOEMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OThFNzZBRjczRkFBMTFFNjgzNkM5NzI2MjFGMDlBOEMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5OEU3NkFGNDNGQUExMUU2ODM2Qzk3MjYyMUYwOUE4QyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5OEU3NkFGNTNGQUExMUU2ODM2Qzk3MjYyMUYwOUE4QyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgAAAAEAAWJLR0QAiAUdSAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB+AECRYwMzE0Nx0AAAAidEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVAgb24gYSBNYWOHqHdDAAAAjElEQVQoz42TwQnCMBRAXyotHSATSCfQTuANb3oCJ3A3D55EQTdQJ9BuYDeQbuAruEFCqIT8y3t5H/6HhE9CHBkRGBFwhMA6BmbEUSjxaKTEYVHiqChxXJS4VB7vf23VTYmbEo9KPBaOKzWGRYkTz3HxQGNGCEzwJUb0bMAGW7LwJUYMMOizJQtfYkRPBzt4VdBiMjQAAAAASUVORK5CYII='), auto;
+            overflow: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Desktop */
+        .desktop {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.03) 2px,
+                    rgba(0, 0, 0, 0.03) 4px
+                );
+        }
+
+        /* Windows */
+        .window {
+            position: absolute;
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #dfdfdf #000 #000 #dfdfdf;
+            box-shadow: 1px 1px 0 #000;
+        }
+
+        .window-header {
+            background: linear-gradient(to right, #000080, #0000ff);
+            color: white;
+            padding: 2px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            cursor: move;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 2px;
+        }
+
+        .window-button {
+            width: 16px;
+            height: 14px;
+            background: #c0c0c0;
+            border: 1px solid;
+            border-color: #dfdfdf #000 #000 #dfdfdf;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 10px;
+            font-family: monospace;
+        }
+
+        .window-button:active {
+            border-color: #000 #dfdfdf #dfdfdf #000;
+        }
+
+        .window-content {
+            background: #c0c0c0;
+            padding: 8px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        /* Desktop Icons */
+        .desktop-icon {
+            position: absolute;
+            width: 64px;
+            text-align: center;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .desktop-icon:hover {
+            background: rgba(0, 0, 128, 0.3);
+        }
+
+        .desktop-icon-image {
+            width: 32px;
+            height: 32px;
+            margin: 0 auto 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .desktop-icon-label {
+            color: white;
+            text-shadow: 1px 1px 0 #000;
+            font-size: 11px;
+            line-height: 1.2;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 0;
+            background: #c0c0c0;
+        }
+
+        .tab {
+            padding: 6px 16px;
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #dfdfdf #000 #000 #dfdfdf;
+            border-bottom: none;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            margin-right: 2px;
+        }
+
+        .tab.active {
+            background: white;
+            z-index: 2;
+            border-bottom: 2px solid white;
+        }
+
+        .tab:hover:not(.active) {
+            background: #e0e0e0;
+        }
+
+        .tab-content {
+            display: none;
+            background: white;
+            border: 2px inset #c0c0c0;
+            padding: 16px;
+            margin-top: -2px;
+            min-height: 300px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Service Cards */
+        .service-card {
+            background: #f0f0f0;
+            border: 1px solid #808080;
+            padding: 12px;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            background: #e0e0e0;
+            border: 2px solid #000080;
+            padding: 11px;
+        }
+
+        .service-card h3 {
+            color: #000080;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .service-card p {
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+        /* Special Boxes */
+        .info-box {
+            background: #f0f0f0;
+            border: 2px inset #808080;
+            padding: 12px;
+            margin: 12px 0;
+        }
+
+        .quote-box {
+            background: #000080;
+            color: white;
+            padding: 12px;
+            margin: 16px 0;
+            font-style: italic;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 28px;
+            background: #c0c0c0;
+            border-top: 2px solid #dfdfdf;
+            display: flex;
+            align-items: center;
+            padding: 0 4px;
+            z-index: 1000;
+        }
+
+        .start-button {
+            padding: 4px 12px;
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #dfdfdf #000 #000 #dfdfdf;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .start-button:active {
+            border-color: #000 #dfdfdf #dfdfdf #000;
+        }
+
+        /* Start Menu */
+        .start-menu {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #dfdfdf #000 #000 #dfdfdf;
+            width: 200px;
+            display: none;
+            z-index: 999;
+        }
+
+        .start-menu.show {
+            display: block;
+        }
+
+        .menu-item {
+            padding: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .menu-item:hover {
+            background: #000080;
+            color: white;
+        }
+
+        /* Scrollbar styling */
+        .window-content::-webkit-scrollbar {
+            width: 16px;
+        }
+
+        .window-content::-webkit-scrollbar-track {
+            background: #c0c0c0;
+        }
+
+        .window-content::-webkit-scrollbar-thumb {
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #dfdfdf #000 #000 #dfdfdf;
+        }
+
+        /* Loading screen */
+        .boot-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #000;
+            color: #c0c0c0;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            transition: opacity 0.5s;
+        }
+
+        .boot-text {
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Magic cursor trail */
+        .magic-trail {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, #ff00ff, transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            animation: sparkle 1s ease-out forwards;
+        }
+
+        @keyframes sparkle {
+            to {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+
+        /* Expertise list */
+        .expertise-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .expertise-list li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .expertise-list li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #800080;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .window {
+                width: 90% !important;
+                left: 5% !important;
+                top: 10px !important;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab {
+                font-size: 10px;
+                padding: 4px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Boot Screen -->
+    <div id="bootScreen" class="boot-screen">
+        <div class="boot-text" style="animation-delay: 0s">Alchemist OS - Phygital Experience Engine</div>
+        <div class="boot-text" style="animation-delay: 0.5s">Loading Reality Tapestry...</div>
+        <div class="boot-text" style="animation-delay: 1s">Initializing B2B Collaboratory...</div>
+        <div class="boot-text" style="animation-delay: 1.5s">Activating B2C Hospitality Protocols...</div>
+        <div class="boot-text" style="animation-delay: 2s">Calibrating Wonder Parameters...</div>
+        <div class="boot-text" style="animation-delay: 2.5s">Welcome to the Phygital Era...</div>
+    </div>
+
+    <!-- Desktop -->
+    <div class="desktop" id="desktop">
+        <!-- Desktop Icons -->
+        <div class="desktop-icon" style="top: 20px; left: 20px;" onclick="openWindow('main')">
+            <div class="desktop-icon-image">🌟</div>
+            <div class="desktop-icon-label">Alchemist Atelier</div>
+        </div>
+        
+        <div class="desktop-icon" style="top: 20px; left: 100px;" onclick="openWindow('main'); setTimeout(() => switchTab('b2b'), 100)">
+            <div class="desktop-icon-image">⚗️</div>
+            <div class="desktop-icon-label">B2B Collaboratory</div>
+        </div>
+        
+        <div class="desktop-icon" style="top: 20px; left: 180px;" onclick="openWindow('main'); setTimeout(() => switchTab('b2c'), 100)">
+            <div class="desktop-icon-image">🏰</div>
+            <div class="desktop-icon-label">B2C Hospitality</div>
+        </div>
+        
+        <div class="desktop-icon" style="top: 100px; left: 20px;" onclick="openWindow('contact')">
+            <div class="desktop-icon-image">📧</div>
+            <div class="desktop-icon-label">Begin Transformation</div>
+        </div>
+        
+        <div class="desktop-icon" style="top: 100px; left: 100px;" onclick="openWindow('main'); setTimeout(() => switchTab('glossary'), 100)">
+            <div class="desktop-icon-image">📚</div>
+            <div class="desktop-icon-label">Procurement Glossary</div>
+        </div>
+
+        <!-- Main Window -->
+        <div id="window-main" class="window" style="display: none; width: 750px; top: 80px; left: 100px;">
+            <div class="window-header" onmousedown="startDrag(event, 'window-main')">
+                <span>Alchemist Atelier - Phygital Experience Platform</span>
+                <div class="window-controls">
+                    <button class="window-button" onclick="minimizeWindow('main')">_</button>
+                    <button class="window-button" onclick="maximizeWindow('main')">□</button>
+                    <button class="window-button" onclick="closeWindow('main')">×</button>
+                </div>
+            </div>
+            <div class="window-content" style="padding: 0;">
+                <div class="tabs">
+                    <div class="tab active" onclick="switchTab('mission')">Mission</div>
+                    <div class="tab" onclick="switchTab('b2b')">B2B Phygital Collaboratory</div>
+                    <div class="tab" onclick="switchTab('b2c')">B2C Phygital Experiential Hospitality</div>
+                    <div class="tab" onclick="switchTab('glossary')">📚 Procurement Glossary</div>
+                </div>
+                
+                <!-- Mission Tab -->
+                <div id="tab-mission" class="tab-content active">
+                    <h2 style="color: #000080; margin-bottom: 16px; text-align: center;">Weaving Reality's New Tapestry</h2>
+                    
+                    <p style="margin-bottom: 12px; line-height: 1.6;">For centuries, human experiences remained confined to physical realms—bound by location, resources, and access. The digital revolution created powerful new virtual dimensions, yet these often existed as parallel but disconnected experiential tracks.</p>
+                    
+                    <div class="quote-box">
+                        Today, we stand at the threshold of a revolutionary paradigm: <strong>the phygital era</strong>—where physical and digital dimensions interweave seamlessly, creating transformative experiences greater than the sum of their parts.
+                    </div>
+                    
+                    <div class="info-box">
+                        <h3 style="color: #800080; margin-bottom: 12px;">The Alchemist's Journey</h3>
+                        <p style="line-height: 1.6;">Growing up in the shadow of Disneyland's enchanted kingdom, my creative awakening began with Linda Gary's mesmerizing narration of Fantasmic! That same child, once spellbound by immersive storytelling, now shapes the future of experiential entertainment.</p>
+                    </div>
+                    
+                    <p style="margin-top: 16px; font-weight: bold; color: #000080;">Alchemist Atelier specializes in crafting Phygital Experiential ecosystems that dissolve boundaries between worlds. We blend Deeptech, Experiential Brands and Equitable Commerce.</p>
+                    
+                    <h3 style="color: #800080; margin: 20px 0 12px;">The Phygital Phuture Manifesto</h3>
+                    
+                    <div class="service-card">
+                        <h3>🌍 Story Realities</h3>
+                        <p>Comprehensive narrative environments that adapt dynamically to guests and venues</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>⚡ Technological Alchemy</h3>
+                        <p>Transforming emerging technologies into vehicles for wonder and connection</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>💎 Equitable Commerce</h3>
+                        <p>Creating business models that balance profitability with accessibility</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>🌀 Cross-Dimensional Storytelling</h3>
+                        <p>Narratives that migrate fluidly between physical and digital realms</p>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 24px;">
+                        <p style="font-size: 16px; color: #800080; font-weight: bold; letter-spacing: 2px;">
+                            PHYGITAL EXPERIENTIAL ALCHEMY FOR ALL
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- B2B Tab -->
+                <div id="tab-b2b" class="tab-content">
+                    <h2 style="color: #000080; margin-bottom: 16px; text-align: center;">B2B Phygital Collaboratory</h2>
+                    
+                    <div class="info-box">
+                        <p style="text-align: center; font-style: italic;">Where Brands and Organizations Transform Through Experiential Innovation</p>
+                    </div>
+                    
+                    <h3 style="color: #800080; margin-bottom: 12px;">The Alchemical Process</h3>
+                    
+                    <p style="margin-bottom: 16px;">Each Alchemist Atelier experience begins with a foundational question: <strong>"What transformation do we seek to catalyze?"</strong> From there, we craft immersive journeys that engage multiple senses, challenge perceptions, and leave lasting impressions.</p>
+                    
+                    <h3 style="color: #800080; margin: 20px 0 12px;">Our B2B Expertise Encompasses:</h3>
+                    
+                    <ul class="expertise-list">
+                        <li>Creative Production & Direction</li>
+                        <li>Narrative Architecture</li>
+                        <li>Experience Design & Spatial Storytelling</li>
+                        <li>Brand Strategy & Identity Development</li>
+                        <li>Emerging Technology Integration</li>
+                        <li>Theatrical & Scenic Design</li>
+                        <li>Illusion & Special Effects Engineering</li>
+                    </ul>
+                    
+                    <h3 style="color: #800080; margin: 20px 0 12px;">Collaborative Applications</h3>
+                    
+                    <div class="service-card">
+                        <h3>🏢 Corporate Transformation</h3>
+                        <p>Transform office spaces into narrative environments. Create brand experiences that employees and clients never forget. Integrate phygital elements that make every interaction meaningful.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>🛍️ Retail Evolution</h3>
+                        <p>Dissolve the boundaries between online and offline commerce. Create shopping experiences that feel like adventures. Turn every transaction into a transformative moment.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>🎭 Cultural Institutions</h3>
+                        <p>Museums that respond to visitors. Galleries that tell evolving stories. Educational spaces that make learning an adventure. Culture becomes accessible through experiential alchemy.</p>
+                    </div>
+                    
+                    <div class="quote-box">
+                        <p>"Transformative Experiences Await"</p>
+                        <p style="margin-top: 8px;">Alchemist Atelier doesn't just create experiences—we forge moments of wonder where the boundaries between reality and imagination Amalgamate.</p>
+                    </div>
+                </div>
+                
+                <!-- B2C Tab -->
+                <div id="tab-b2c" class="tab-content">
+                    <h2 style="color: #000080; margin-bottom: 16px; text-align: center;">B2C Phygital Experiential Hospitality</h2>
+                    
+                    <div class="quote-box">
+                        <p>Story Driven. Curated. Eclectic & Artisanal Zen. Experiential Alchemy.</p>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h3 style="color: #800080; margin-bottom: 8px;">Artisanal Experiential Hospitality Consultant</h3>
+                        <p style="line-height: 1.6;">Focusing on Experiential Hospitality Experiences that transcend traditional luxury. My background in live entertainment has refined my ability to orchestrate these elements—guiding visionary concepts from inception to realization while balancing creative ambition with practical execution.</p>
+                    </div>
+                    
+                    <h3 style="color: #800080; margin: 20px 0 12px;">Hospitality Transformation Services</h3>
+                    
+                    <div class="service-card">
+                        <h3>🏰 Narrative Hotels & Resorts</h3>
+                        <p>Properties that tell evolving stories. Guests become characters in unfolding narratives. Every stay writes a new chapter. Rooms that remember and respond. Dining experiences that transport.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>🗺️ Transformative Travel Journeys</h3>
+                        <p>Curated expeditions that blend physical adventures with digital enhancements. Every destination becomes a portal to wonder. Travel transforms from movement to metamorphosis.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>🎭 Immersive Cultural Experiences</h3>
+                        <p>Deep dives into local culture enhanced by phygital elements. Language learning through adventure. History that comes alive. Traditions that invite participation.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>✨ Luxury Redefined</h3>
+                        <p>True luxury isn't thread counts—it's transformation. Experiences that change you. Moments that matter. Memories that evolve. Service that anticipates not just needs, but dreams.</p>
+                    </div>
+                    
+                    <div class="info-box" style="margin-top: 20px;">
+                        <p style="text-align: center; color: #800080; font-weight: bold;">Every journey is an alchemical process—transforming travelers into storytellers, tourists into participants, and destinations into living narratives.</p>
+                    </div>
+                </div>
+                
+                <!-- Procurement Glossary Tab -->
+                <div id="tab-glossary" class="tab-content">
+                    <h2 style="color: #000080; margin-bottom: 16px; text-align: center;">📚 AETHER Procurement Glossary</h2>
+                    
+                    <div class="quote-box">
+                        <p>Standardized terminology for the 18-city global touring circuit procurement operations<br>
+                        <span style="font-size: 10px;">Version 3.1 — December 2025 — Aligned with Procurement Database</span></p>
+                    </div>
+                    
+                    <!-- SECTION: Certification & Compliance -->
+                    <h3 style="color: #800080; margin: 16px 0 12px; border-bottom: 1px solid #800080; padding-bottom: 4px;">⚖️ Certification & Compliance</h3>
+                    
+                    <div class="service-card">
+                        <h3>B Corp Certification</h3>
+                        <p>Third-party certification measuring a company's entire social and environmental impact. AETHER maintains B Corp status, requiring vendors to meet rigorous standards of social and environmental performance, accountability, and transparency. Certification verified by B Lab.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Declare Label</h3>
+                        <p>A "nutrition label" for building products requiring manufacturers to disclose all ingredients. Part of the Living Building Challenge framework, ensuring material transparency across fabrication and venue operations. Products must list all ingredients down to 100ppm.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>ILFI (International Living Future Institute)</h3>
+                        <p>Organization behind Living Building Challenge and Declare Labels. AETHER's primary sustainability certification partner for venue construction and materials procurement. Sets the world's most rigorous green building standards.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Living Building Challenge</h3>
+                        <p>ILFI's most ambitious performance standard for buildings. Requires net-positive energy, water, and waste performance. Guides AETHER venue development toward regenerative design principles.</p>
+                    </div>
+                    
+                    <!-- SECTION: Operations & Logistics -->
+                    <h3 style="color: #800080; margin: 20px 0 12px; border-bottom: 1px solid #800080; padding-bottom: 4px;">🌍 Operations & Logistics</h3>
+                    
+                    <div class="service-card">
+                        <h3>Global Touring Circuit</h3>
+                        <p>AETHER's 18-city network spanning four continents: <strong>North America</strong> (12 cities: Sedona HQ, San Francisco, Orange County, Palm Springs/Indio, Las Vegas, Seattle, Chicago, Atlanta, Dallas, New Orleans, Vancouver, Montreal), <strong>Asia-Pacific</strong> (Sanya, Shanghai, Tokyo), <strong>Europe</strong> (Paris), <strong>Latin America</strong> (Tulum, Rio de Janeiro). Defines procurement zones and vendor relationships.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Alchemist Atelier aRtGaRDErN TECHNO-FABRIQUE</h3>
+                        <p>AETHER's 45,900 sq ft primary manufacturing facility in Sedona, Arizona. Central hub for fabrication, prototyping, and quality control operations. Houses proprietary manufacturing equipment and serves as R&D center.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Fleet Operations</h3>
+                        <p>Mobile touring infrastructure including specialized transport vehicles (AC Future custom trailers, Volta zero-emission trucks), on-site fabrication capabilities, and logistics coordination. Integrates sustainable power systems (Honda Hydrogen Fuel Cells, CHYLYNN Hydro Cells, Insta Grid).</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Circuit City</h3>
+                        <p>Any of the 18 cities in AETHER's touring network. Each circuit city has designated local fabrication partners, venue relationships, and logistics protocols.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Base Camp</h3>
+                        <p>Mobile production headquarters deployed at circuit cities during experience runs. Includes AC Future Infinity House trailers configured for operations, crew support, and equipment staging.</p>
+                    </div>
+                    
+                    <!-- SECTION: Technology Stack -->
+                    <h3 style="color: #800080; margin: 20px 0 12px; border-bottom: 1px solid #800080; padding-bottom: 4px;">⚡ Technology Stack</h3>
+                    
+                    <div class="service-card">
+                        <h3>Phygital</h3>
+                        <p>The seamless integration of physical and digital experiences. Core AETHER philosophy where tangible installations merge with digital enhancement, AR/VR, and interactive technologies. Coined from "physical + digital" convergence.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Techno-Alchemy Stack</h3>
+                        <p>AETHER's complete technology ecosystem including personal tech packages ($33K/employee), proprietary software (ToT), custom hardware, and IoT platforms. Financed through Apple partnership for continuous technology refresh.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>ToT (Tools of Transformation)</h3>
+                        <p>AETHER's proprietary in-house software suite. Includes: Procreate (digital illustration), VizCom (AI sketch-to-render), Spline (3D web design), nTop (generative design), TouchDesigner (real-time visual), Metal 4 + Apple Dev (graphics/development), Koniku Bio Sensors (bio-electric sensing), PASQAL Compute (quantum computing).</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Aether Hardware — 1st Batch</h3>
+                        <p>Proprietary hardware line: <strong>Aether Codex</strong> ($21,000) — central processing brain; <strong>Aether Unity Dongle</strong> ($360) — smart device converter with battery; <strong>Aether Control Modules</strong> ($4,500) — physical interface elements (knobs, joysticks, buttons).</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>L.I.L.L.I.A.N.</h3>
+                        <p>AETHER's AI orchestration system integrated with IoT platforms (Popcorn.space). Manages device coordination, guest experience personalization, and real-time environmental adaptation across installations.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Spatial Computing</h3>
+                        <p>Technology enabling digital content to exist and interact within physical spaces. Primary platform: Apple Vision Pro/Air. Key procurement category including AR/VR hardware, tracking systems, and projection mapping equipment.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>PASQAL Compute</h3>
+                        <p>Quantum computing partnership with PASQAL for next-generation processing. Applied to complex simulation, optimization problems, and advanced AI training for experience personalization.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Koniku Bio Sensors</h3>
+                        <p>Bio-electric sensing technology for detecting biological signals. Enables experiences that respond to guest biometrics, emotional states, and physiological responses.</p>
+                    </div>
+                    
+                    <!-- SECTION: Lighting & AV Systems -->
+                    <h3 style="color: #800080; margin: 20px 0 12px; border-bottom: 1px solid #800080; padding-bottom: 4px;">💡 Lighting & AV Systems</h3>
+                    
+                    <div class="service-card">
+                        <h3>ROBE Lighting Package</h3>
+                        <p>Primary automated lighting fixture line. Core fixtures: iProMotion™, iSpiiderX®, iTetra2™, FOOTSIE2™, Tarrantula™, iPointe65®, miniPointe. High-output moving lights for dynamic theatrical effects.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Obsidian Controls / ONYX</h3>
+                        <p>Primary lighting control platform. ONYX software manages all show lighting cues, fixture programming, and integration with motion control systems.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Christie Projection</h3>
+                        <p>Large-format projection systems. Models: M 4K+25 RGB, Sapphire 40k, Griffyn 4K50-RGB, Eclipse. High-lumen projectors for immersive environments and architectural mapping.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Immersive Sound Ecosystem</h3>
+                        <p>Multi-partner audio architecture: <strong>THX</strong> (theatrical certification), <strong>Genelec</strong> (reference monitoring), <strong>Bang & Olufsen</strong> (premium consumer), <strong>Echoic Audio</strong> (spatial audio), <strong>AIVOX Litiz</strong> (professional systems).</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Wahlberg Motion</h3>
+                        <p>Motion control systems for kinetic scenic elements. Equipment: Winch 50 Double, Triple Winch, DMX Giga Rotator, Track Profile systems, Rotracktor, Remote Controlled Platforms. Enables flying effects and automated scenic movement.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Showven / ShowTex</h3>
+                        <p>Special effects manufacturers. Showven: pyrotechnics, cryo effects, confetti systems. ShowTex: theatrical fabrics, scrims, projection surfaces, and soft goods.</p>
+                    </div>
+                    
+                    <!-- SECTION: Fabrication & Manufacturing -->
+                    <h3 style="color: #800080; margin: 20px 0 12px; border-bottom: 1px solid #800080; padding-bottom: 4px;">🔧 Fabrication & Manufacturing</h3>
+                    
+                    <div class="service-card">
+                        <h3>Final Fabrication Partners</h3>
+                        <p>Primary scenic and prop manufacturers: <strong>Ironhead Studios</strong> (creature effects, costumes), <strong>Saint Chaffrey</strong> (French craftsmanship), <strong>Plastic Studios</strong> (digital-to-physical), <strong>Atelier Devineau</strong> (artisanal), <strong>Scène Éthique</strong> (sustainable scenic), <strong>0h11</strong> (avant-garde), <strong>UAP</strong> (monumental art).</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Manufacturing Equipment Partners</h3>
+                        <p>High-capacity customized equipment suppliers: X-Tool (fab tech), Stratasys (3D printing), FujiFilm (industrial printing), PFAFF (industrial sewing), Siasun (robotics), Vention (automation), Presto Max (fabric printing), Boston Dynamics (robotics), PAL Robotics, Maker srl.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Materials Science Partners</h3>
+                        <p>Advanced materials suppliers: <strong>Kerakoll</strong> (building materials), <strong>GOODCYCLE</strong> (recycled materials), <strong>Keel Labs</strong> (bio-materials), <strong>Cambridge Materials</strong> (research materials), <strong>ITALPREZIOSI</strong> (fine metals), <strong>Cycora</strong> (sustainable materials).</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Portal Pop-Up</h3>
+                        <p>AETHER's modular installation format. Large-scale art pieces and immersive environments designed for rapid deployment and reconfiguration. Primary fabricator: UAP (United Art Projects).</p>
+                    </div>
+                    
+                    <!-- SECTION: Couture & Fashion -->
+                    <h3 style="color: #800080; margin: 20px 0 12px; border-bottom: 1px solid #800080; padding-bottom: 4px;">👗 Couture & Fashion</h3>
+                    
+                    <div class="service-card">
+                        <h3>Haute Couture Partners</h3>
+                        <p>14 fashion houses under collaboration: <strong>Mugler</strong> (architectural/theatrical), <strong>Heaven Gaia</strong> (Chinese couture), <strong>Balmain</strong> (military/structured), <strong>Ashi Studio</strong> (ethereal), <strong>Maison Margiela Artisanal</strong> (avant-garde), <strong>Rahul Mishra</strong> (Indian craft), <strong>Iris Van Herpen</strong> (3D-printed/futuristic), <strong>Germanier</strong> (upcycled), <strong>Guo Pei</strong> (Chinese imperial), <strong>Schiaparelli</strong> (surrealist), <strong>Robert Wun</strong> (dark romanticism), <strong>The Blondes</strong> (glamour), <strong>Stephane Rolland</strong> (sculptural).</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Atelier Partners</h3>
+                        <p>Specialty craft workshops: <strong>Atelier Montex</strong> (Chanel embroidery house), <strong>Saint Chaffrey</strong> (French artisanal), <strong>Atelier Devineau</strong> (luxury finishing), <strong>ARCH Textiles</strong> (specialty fabrics), <strong>Britex Fabrics SF</strong> (premium textiles).</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Emerging Fashion Brands</h3>
+                        <p>Next-generation designer relationships: Embryoo, Ultranova, FOUND, Tigra Tigra, House of Errors, Karina Bond, Ultra Nova Brand (Wiccan Cosplay). Pipeline for fresh creative voices.</p>
+                    </div>
+                    
+                    <!-- SECTION: Beauty & Wellness -->
+                    <h3 style="color: #800080; margin: 20px 0 12px; border-bottom: 1px solid #800080; padding-bottom: 4px;">✨ Beauty & Wellness</h3>
+                    
+                    <div class="service-card">
+                        <h3>Metamorphosis Spa</h3>
+                        <p>AETHER's wellness vertical featuring curated beauty, skincare, and experiential hospitality. 50+ partner brands across skincare, haircare, makeup, fragrance, and body care. Positioned as transformation-focused wellness journey.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Skincare Partners</h3>
+                        <p>Clean and luxury skincare: Freaks of Nature, SubtleBodies, Herbar, Birds & Bloakes, Manasi7, AYOND, Mimétique, Victoria Beckham Beauty, Scorpion & Toad, DEHIYA, Gentlerist, Dr. Metacine, Raaw Alchemy, sitre, natureofthings, Reome, Protocol, Sure Solaris, Bulk Homme, Prequel.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Haircare Partners</h3>
+                        <p>Premium hair care brands: <strong>CÉCRED</strong> (Beyoncé's line), Bread (texture-focused), CAIR, REVERIE, Biography (personalized), Act+Acre (scalp health), isima, Arete (color), Sennok.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Artist-Grade Makeup</h3>
+                        <p>Professional makeup partners: <strong>Pat McGrath Labs</strong> (legendary artistry), <strong>Westman Atelier</strong> (clean luxury), <strong>Face Atelier</strong> (professional), <strong>Rituel de Fille</strong> (artisanal), <strong>Florasis</strong> (Chinese beauty).</p>
+                    </div>
+                    
+                    <!-- SECTION: Food & Beverage -->
+                    <h3 style="color: #800080; margin: 20px 0 12px; border-bottom: 1px solid #800080; padding-bottom: 4px;">🍽️ Food & Beverage</h3>
+                    
+                    <div class="service-card">
+                        <h3>Premium F&B Partners</h3>
+                        <p>Cast/crew and VIP catering: <strong>Erewhon</strong> (premium grocery/prepared), <strong>Super Producteur</strong> (French sourcing), <strong>Amorino Gelato</strong>, <strong>Coco Asante</strong> (chocolate), <strong>AlterFood France</strong> (plant-based).</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Wine & Spirits Partners</h3>
+                        <p>Beverage curation: The Wine Noir, Haus Alcohol, Piper-Heidsieck (champagne), Ethic Drinks, Oé, Fornostria. Focus on sustainable and artisanal producers.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Premium Water Brands</h3>
+                        <p>Venue hydration partners: Menehune, Hawaiian Springs, Sedona Water, Antipodes, VOSS, BERG. Selected for purity, sustainability, and brand alignment.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Moley Robotics Kitchen</h3>
+                        <p>Robotic kitchen systems for automated food preparation. Enables consistent quality and theatrical food experiences in high-volume venue settings.</p>
+                    </div>
+                    
+                    <!-- SECTION: Financial & Investment -->
+                    <h3 style="color: #800080; margin: 20px 0 12px; border-bottom: 1px solid #800080; padding-bottom: 4px;">💰 Financial & Investment</h3>
+                    
+                    <div class="service-card">
+                        <h3>Financial Infrastructure</h3>
+                        <p><strong>Amalgamated Bank</strong> (primary commercial banking), <strong>OneUnited Bank</strong> (secondary/community investment), <strong>AetherPay</strong> (proprietary payment platform built on Aliviere).</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Impact VC Partners</h3>
+                        <p>Venture capital investors prioritizing impact: Blisce/ (consumer/impact), Octopus Group (UK growth), Revaia VC (France), Rally Assets (Canada impact), EUTOPIA (European), Sycomore AM (sustainable finance), Breega VC, 125 Ventures (Black VC), The Equity Studio, Meridiam VC (infrastructure).</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Strategic Investment Partners</h3>
+                        <p>Institutional relationships: Cambridge University (academic venture), Mayo Health (health ventures), Ivesta Family Office, Founders Future VC, 15 Partners VC, Origami Groupe, Truffl.</p>
+                    </div>
+                    
+                    <!-- SECTION: Creative Talent -->
+                    <h3 style="color: #800080; margin: 20px 0 12px; border-bottom: 1px solid #800080; padding-bottom: 4px;">🎨 Creative Talent</h3>
+                    
+                    <div class="service-card">
+                        <h3>Core Creatives</h3>
+                        <p>Directors, composers, designers under active contract. Includes directors (Nicole Brooks, Kym Moore, Liesel Tommie), choreographers (Camille Brown, Chucky Klapow, Deborah Colker), composers (Toby Marlow & Lucy Moss of SIX, Michael Giacchino), scenic designers (Derrick McLane, George Tsypin), and creative directors.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Strategic Talent</h3>
+                        <p>High-profile creative partnerships: Chaka Khan (music legend), DAFT PUNK (electronic icons), Michael Giacchino (Oscar-winning composer). Reserved for marquee projects and brand collaborations.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Priority Hires</h3>
+                        <p>Active recruitment targets: Joe Rohde (Imagineering legend), WDI alumni (Genell Zuciya, Asa Kalama, Sinan Ulcay), costume specialists (Cameron Hughes, Trevor Powell, Taylor Moten). Pipeline for scaling creative team.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Studio Partnerships</h3>
+                        <p>Production company relationships: Legendary Entertainment, Bad Robot. Enables co-development of IP and access to film/TV production resources.</p>
+                    </div>
+                    
+                    <!-- SECTION: Brand & IP -->
+                    <h3 style="color: #800080; margin: 20px 0 12px; border-bottom: 1px solid #800080; padding-bottom: 4px;">⚗️ Brand & IP</h3>
+                    
+                    <div class="service-card">
+                        <h3>Alchemist Brand Palette</h3>
+                        <p><strong>Primary Metals:</strong> Gold, Copper, Platinum. <strong>Precious Stones:</strong> Ice Blue Platinum (pinkish pulling Sapphire), Diamonds, Rubies, Bluish Iridescent Emerald, Aquamarine, Painite, Lapis Lazuli, Alexandrite, Iridescent Pearl (purple/blue/golden). Defines visual standards for all vendor deliverables.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Tales of Lucidia</h3>
+                        <p>AETHER's proprietary transmedia IP featuring three Warrior Princesses defending reality from cosmic threats. Universal Pictures tracking development. Drives licensed merchandise, collectibles, couture costumes, and cross-platform content. Requires specialized manufacturing partners (Bon Bon Toys, Italian Artisan).</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>E.L.I.A.S. Framework</h3>
+                        <p>AETHER's operational philosophy: <strong>E</strong>xperiential Equity, <strong>L</strong>eisure Integration, <strong>I</strong>magination Activation, <strong>A</strong>musement Engineering, <strong>S</strong>tory-Commerce Integration. Guides all procurement and partnership decisions.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Promo Video Concept</h3>
+                        <p>Visual identity standard: Flashing static between clips creating channel-flipping aesthetic—rapid cuts showcasing work samples, venue deployments, and immersive moments. Static transitions evoke analog television tuning, reinforcing phygital bridge.</p>
+                    </div>
+                    
+                    <!-- SECTION: Hospitality & HR -->
+                    <h3 style="color: #800080; margin: 20px 0 12px; border-bottom: 1px solid #800080; padding-bottom: 4px;">🏨 Hospitality & HR</h3>
+                    
+                    <div class="service-card">
+                        <h3>Hospitality Partners</h3>
+                        <p>Accommodation network: <strong>Aman</strong> (ultra-luxury resorts, VIP accommodations), <strong>Regent IHG</strong> (premium guest), <strong>Wynn Resorts</strong> (Las Vegas circuit, entertainment venues), <strong>BASE China</strong> (extended cast/crew residencies).</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Travel Partners</h3>
+                        <p><strong>StarLux Airlines</strong> — Premium carrier for Asia-Pacific routing. Handles cast/crew and VIP transport between Asian circuit cities.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>HR & Talent Partners</h3>
+                        <p><strong>Futureberry</strong> (innovation consulting, strategic foresight), <strong>HireRight</strong> (background verification, global screening), <strong>Nelly Rodi</strong> (2-3 year trend forecasting, cultural insights).</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Education Partners</h3>
+                        <p>Academic collaborations: <strong>MIT Media Lab</strong> (R&D, emerging tech), <strong>Cambridge University</strong> (Obsidian Knowledge curriculum), <strong>Ishikawa Lab</strong> (high-speed vision, robotics), <strong>Saint Heron</strong> (arts education), <strong>SuperHi</strong> (STEAM, creative coding).</p>
+                    </div>
+                    
+                    <!-- SECTION: Design Studios -->
+                    <h3 style="color: #800080; margin: 20px 0 12px; border-bottom: 1px solid #800080; padding-bottom: 4px;">🎭 Design & Creative Studios</h3>
+                    
+                    <div class="service-card">
+                        <h3>Strategic Creative Partners</h3>
+                        <p>Design and production studios: Ironhead Studios, Adre Development, 0h11, Adulte Adulte, Farm League, NDA Paris, Capsule Studios, Illogic Studios, Onesal, Limelight HK. Engaged for specialized creative production.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Entertainment Partners</h3>
+                        <p>Experience production companies: <strong>Lune Rouge</strong> (Cirque du Soleil founders), <strong>Fantawild</strong> (Chinese theme parks), <strong>Ennismore</strong> (lifestyle hospitality), <strong>iicombined</strong> (South Korea brand strategy), <strong>teamLab</strong> (digital art collective).</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Architecture & Development</h3>
+                        <p>Design firms for venues and installations: <strong>MAD Architecture</strong> (Ma Yansong), <strong>XL Muse China</strong>, <strong>Patriarche</strong> (French), <strong>Studio Paolo Ferrari</strong>, <strong>Uchronia</strong>, <strong>Chandos</strong>.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Licensing Partners</h3>
+                        <p>Consumer product and IP licensing: <strong>ArtiStory</strong> (brand licensing), <strong>Italdesign</strong> (design firm), <strong>Spline FR</strong> (digital design).</p>
+                    </div>
+                    
+                    <!-- SECTION: Vendor Status Codes -->
+                    <h3 style="color: #800080; margin: 20px 0 12px; border-bottom: 1px solid #800080; padding-bottom: 4px;">📋 Vendor Status Classifications</h3>
+                    
+                    <div class="service-card">
+                        <h3>Status Badges</h3>
+                        <p><strong>CORE</strong> — Active contracted relationship with ongoing engagement. <strong>STRATEGIC</strong> — High-profile partnership requiring executive oversight. <strong>PRIORITY HIRE</strong> — Active recruitment target. <strong>CUSTOM</strong> — Bespoke product/service development in progress. <strong>RENTAL</strong> — Equipment or venue lease arrangement. <strong>EVAL</strong> — Under evaluation for potential partnership.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <h3>Partnership Synergy</h3>
+                        <p>Documented alignment between vendor capabilities and AETHER operational needs. Required field in vendor database indicating specific value contribution to circuit operations.</p>
+                    </div>
+                    
+                    <div class="info-box" style="margin-top: 20px; background: #f8f8ff;">
+                        <p style="text-align: center; font-size: 10px; color: #666;">
+                            <strong>AETHER Procurement Glossary v3.1</strong><br>
+                            Aligned with Complete Procurement Database — December 2025<br>
+                            18-City Global Circuit • B Corp Certified • Declare Compliant<br>
+                            For internal reference only
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Window -->
+        <div id="window-contact" class="window" style="display: none; width: 400px; top: 200px; left: 300px;">
+            <div class="window-header" onmousedown="startDrag(event, 'window-contact')">
+                <span>Begin Your Transformation</span>
+                <div class="window-controls">
+                    <button class="window-button" onclick="minimizeWindow('contact')">_</button>
+                    <button class="window-button" onclick="maximizeWindow('contact')">□</button>
+                    <button class="window-button" onclick="closeWindow('contact')">×</button>
+                </div>
+            </div>
+            <div class="window-content">
+                <h3 style="color: #000080; margin-bottom: 12px;">Ready to Weave Your Reality?</h3>
+                
+                <form style="display: flex; flex-direction: column; gap: 8px;">
+                    <label>
+                        Name:
+                        <input type="text" style="width: 100%; margin-top: 4px;">
+                    </label>
+                    
+                    <label>
+                        Email:
+                        <input type="email" style="width: 100%; margin-top: 4px;">
+                    </label>
+                    
+                    <label>
+                        Organization:
+                        <input type="text" style="width: 100%; margin-top: 4px;">
+                    </label>
+                    
+                    <label>
+                        Collaboration Type:
+                        <select style="width: 100%; margin-top: 4px;">
+                            <option>Select Collaboration Type...</option>
+                            <option>B2B - Brand Experience Design</option>
+                            <option>B2B - Corporate Transformation</option>
+                            <option>B2B - Retail Innovation</option>
+                            <option>B2B - Cultural Institution</option>
+                            <option>B2C - Hospitality Transformation</option>
+                            <option>B2C - Travel Experience Design</option>
+                            <option>B2C - Narrative Hotel/Resort</option>
+                            <option>Other Phygital Project</option>
+                        </select>
+                    </label>
+                    
+                    <label>
+                        Transformation Vision:
+                        <textarea style="width: 100%; margin-top: 4px; height: 80px;" placeholder="What transformation do you seek to catalyze?"></textarea>
+                    </label>
+                    
+                    <button type="button" onclick="showMagic()" style="padding: 8px; background: #c0c0c0; border: 2px solid; border-color: #dfdfdf #000 #000 #dfdfdf; cursor: pointer;">
+                        ⚗️ Initiate Alchemy
+                    </button>
+                </form>
+                
+                <div id="magicMessage" style="display: none; margin-top: 12px; padding: 8px; background: #800080; color: white;">
+                    ✨ Your transformation journey begins! We'll contact you soon to start weaving your phygital reality.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <button class="start-button" onclick="toggleStartMenu()">
+            <span>⚗️</span> Start
+        </button>
+        
+        <div style="flex: 1; display: flex; gap: 4px; margin-left: 8px;">
+            <div id="activeWindows" style="display: flex; gap: 2px;"></div>
+        </div>
+        
+        <div style="display: flex; gap: 8px; align-items: center;">
+            <span style="padding: 0 4px;">Phygital Engine: Active</span>
+            <div style="padding: 4px 8px; border: 1px inset #808080;">
+                <span id="clock">12:00 PM</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Start Menu -->
+    <div id="startMenu" class="start-menu">
+        <div class="menu-item" onclick="openWindow('main')">
+            <span>🌟</span> Alchemist Atelier
+        </div>
+        <div class="menu-item" onclick="openWindow('main'); setTimeout(() => switchTab('mission'), 100)">
+            <span>📜</span> Mission
+        </div>
+        <div class="menu-item" onclick="openWindow('main'); setTimeout(() => switchTab('b2b'), 100)">
+            <span>⚗️</span> B2B Collaboratory
+        </div>
+        <div class="menu-item" onclick="openWindow('main'); setTimeout(() => switchTab('b2c'), 100)">
+            <span>🏰</span> B2C Hospitality
+        </div>
+        <div class="menu-item" onclick="openWindow('contact')">
+            <span>📧</span> Contact
+        </div>
+        <div class="menu-item" onclick="openWindow('main'); setTimeout(() => switchTab('glossary'), 100)">
+            <span>📚</span> Procurement Glossary
+        </div>
+        <hr style="margin: 4px 0;">
+        <div class="menu-item" onclick="showEasterEgg()">
+            <span>🎪</span> Enter Fantasmic Mode
+        </div>
+    </div>
+
+    <script>
+        // Boot sequence
+        setTimeout(() => {
+            document.getElementById('bootScreen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('bootScreen').style.display = 'none';
+                // Auto-open main window
+                openWindow('main');
+            }, 500);
+        }, 3000);
+
+        // Window management
+        let activeWindow = null;
+        let isDragging = false;
+        let currentX;
+        let currentY;
+        let initialX;
+        let initialY;
+        let xOffset = 0;
+        let yOffset = 0;
+        let windowZIndex = 100;
+        let openWindows = new Set();
+
+        function openWindow(windowName) {
+            const window = document.getElementById(`window-${windowName}`);
+            window.style.display = 'block';
+            window.style.zIndex = ++windowZIndex;
+            activeWindow = window;
+            openWindows.add(windowName);
+            updateTaskbar();
+            closeStartMenu();
+        }
+
+        function closeWindow(windowName) {
+            document.getElementById(`window-${windowName}`).style.display = 'none';
+            openWindows.delete(windowName);
+            updateTaskbar();
+        }
+
+        function minimizeWindow(windowName) {
+            document.getElementById(`window-${windowName}`).style.display = 'none';
+            updateTaskbar();
+        }
+
+        function maximizeWindow(windowName) {
+            const window = document.getElementById(`window-${windowName}`);
+            if (window.style.width === '100%') {
+                window.style.width = windowName === 'main' ? '750px' : '400px';
+                window.style.height = 'auto';
+                window.style.top = '80px';
+                window.style.left = '100px';
+            } else {
+                window.style.width = '100%';
+                window.style.height = 'calc(100vh - 28px)';
+                window.style.top = '0';
+                window.style.left = '0';
+            }
+        }
+
+        // Update taskbar
+        function updateTaskbar() {
+            const taskbar = document.getElementById('activeWindows');
+            taskbar.innerHTML = '';
+            
+            const windowIcons = {
+                'main': '⚗️ Alchemist',
+                'contact': '📧 Contact'
+            };
+            
+            openWindows.forEach(windowName => {
+                const button = document.createElement('button');
+                button.style.cssText = 'padding: 2px 8px; background: #c0c0c0; border: 2px solid; border-color: #000 #dfdfdf #dfdfdf #000; cursor: pointer; font-size: 11px;';
+                button.textContent = windowIcons[windowName] || windowName;
+                button.onclick = () => {
+                    const window = document.getElementById(`window-${windowName}`);
+                    if (window.style.display === 'none') {
+                        window.style.display = 'block';
+                    }
+                    window.style.zIndex = ++windowZIndex;
+                };
+                taskbar.appendChild(button);
+            });
+        }
+
+        // Dragging functionality
+        function startDrag(e, windowId) {
+            const window = document.getElementById(windowId);
+            window.style.zIndex = ++windowZIndex;
+            
+            initialX = e.clientX - (parseInt(window.style.left) || 0);
+            initialY = e.clientY - (parseInt(window.style.top) || 0);
+            
+            isDragging = true;
+            activeWindow = window;
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging || !activeWindow) return;
+            
+            e.preventDefault();
+            currentX = e.clientX - initialX;
+            currentY = e.clientY - initialY;
+            
+            activeWindow.style.left = currentX + 'px';
+            activeWindow.style.top = currentY + 'px';
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            activeWindow = null;
+        });
+
+        // Tab switching
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+            // Find and activate the correct tab button
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                if (tab.textContent.toLowerCase().includes(tabName) || 
+                    (tabName === 'mission' && tab.textContent === 'Mission') ||
+                    (tabName === 'b2b' && tab.textContent === 'B2B Phygital Collaboratory') ||
+                    (tabName === 'b2c' && tab.textContent === 'B2C Phygital Experiential Hospitality') ||
+                    (tabName === 'glossary' && tab.textContent.includes('Procurement Glossary'))) {
+                    tab.classList.add('active');
+                }
+            });
+        }
+
+        // Start menu
+        function toggleStartMenu() {
+            const menu = document.getElementById('startMenu');
+            menu.classList.toggle('show');
+        }
+
+        function closeStartMenu() {
+            document.getElementById('startMenu').classList.remove('show');
+        }
+
+        // Clock update
+        function updateClock() {
+            const now = new Date();
+            const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('clock').textContent = time;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Magic functions
+        function showMagic() {
+            document.getElementById('magicMessage').style.display = 'block';
+        }
+
+        function showEasterEgg() {
+            document.body.style.background = 'linear-gradient(45deg, #ff00ff, #00ffff)';
+            alert('✨ Welcome to Fantasmic Mode! ✨\n\n"Imagination is a Dream Your Heart Makes"\n\nWhere wonder becomes reality...');
+            setTimeout(() => {
+                document.body.style.background = '#008080';
+            }, 3000);
+            closeStartMenu();
+        }
+
+        // Click outside to close start menu
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.start-button') && !e.target.closest('.start-menu')) {
+                closeStartMenu();
+            }
+        });
+
+        // Magic cursor trail
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.97) { // Only occasionally create sparkles
+                const sparkle = document.createElement('div');
+                sparkle.className = 'magic-trail';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1000);
+            }
+        });
+
+        // Handle tab clicks properly
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                const tabText = e.target.textContent;
+                if (tabText === 'Mission') switchTab('mission');
+                else if (tabText === 'B2B Phygital Collaboratory') switchTab('b2b');
+                else if (tabText === 'B2C Phygital Experiential Hospitality') switchTab('b2c');
+                else if (tabText.includes('Procurement Glossary')) switchTab('glossary');
+            });
+        });
+    </script>
+</body>
+</html>
