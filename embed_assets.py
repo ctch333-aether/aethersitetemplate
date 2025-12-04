@@ -87,6 +87,10 @@ def embed_assets(html_content, assets):
         # Founder
         'Young Christian Charles-Harris': 'BRANDAsset-FOUNDERCTCH.png',
 
+        # Co-founders
+        'Dr. Sha Xinwei Co-Founder': 'BRANDAsset-cofoundershaxinwei.png',
+        'Dr. Vangelis Lympouridis Co-Founder': 'BRANDAsset-cofoundervangelis.png',
+
         # Phygital IPs - Tales of Lucidia (IP #1)
         'Tales of Lucidia Logo': 'BRANDAsset-PHYGITALIP1.png',
 
