@@ -35,24 +35,92 @@ def embed_assets(html_content, assets):
     """
 
     # Map of alt text patterns to asset keys
+    # Verified mappings based on asset filenames and HTML alt text analysis:
+    #
+    # BRAND LOGOS:
+    #   - BRANDAsset-MAINLOGO.png -> AETHER logos/loading
+    #
+    # FOUNDER/CO-FOUNDERS:
+    #   - BRANDAsset-FOUNDERCTCH.png -> Founder Christian Charles-Harris
+    #   - BRANDAsset-FounderCTCH3dtext.png -> (3D text, not used in img tags)
+    #   - BRANDAsset-cofoundershaxinwei.png -> (co-founder, if needed)
+    #   - BRANDAsset-cofoundervangelis.png -> (co-founder, if needed)
+    #   - BRANDAsset-sha3dtext.png -> (3D text, not used)
+    #   - BRANDAsset-van3dtext.png -> (3D text, not used)
+    #
+    # PHYGITAL IPs (Intellectual Properties):
+    #   - BRANDAsset-PHYGITALIP1.png -> Tales of Lucidia (IP #1)
+    #   - BRANDAsset-PHYGITALIP2.png -> Port 51 Lucidia Confectionarium (IP #2)
+    #   - BRANDAsset-PHYGITALIP3.png -> Broussard Bayou Honeymoon BBQ (IP #3)
+    #   - BRANDAsset-PHYGITALIP4.png -> Port 51 Environment Concepts
+    #   - BRANDAsset-PHYGITALIP5.png -> Port 51 Concept Art
+    #
+    # SERVICES:
+    #   - BRANDAsset-services1.png -> Alchemist Atelier
+    #   - BRANDAsset-services2.png -> Project Types
+    #   - BRANDAsset-services3.png -> Skills & Capabilities
+    #
+    # ENCHANT/THEATRICAL WORK:
+    #   - BRANDAsset-enchantwork1.png -> Beauty and the Beast Set Design
+    #   - BRANDAsset-enchantwork2.png -> Beauty and Beast Stained Glass
+    #   - BRANDAsset-enchantwork3.png -> (available for future use)
+    #   - BRANDAsset-enchantwork4.png -> Conceptual Design and Production
+    #
+    # ASSORTED WORK:
+    #   - BRANDAsset-AssortedWork1.png -> Theatrical Projection Mapping
+    #   - BRANDAsset-AssortedWork2.png -> Immersive Set Design
+    #   - BRANDAsset-AssortedWork3.png -> Large-Scale Holiday Lights
+    #
+    # SPECIAL PROJECTS:
+    #   - BRANDAsset-KILLMOVEPARADISE1.png -> I Believe (footer)
+    #   - BRANDAsset-KILLMOVEPARADISE2.png -> (available for future use)
+    #
+    # BACKGROUNDS:
+    #   - BRANDAsset-BCKGRND5.png -> (background, not used in img tags)
+
     asset_mapping = {
+        # Main branding (exact matches first, then partial)
         'AETHER Logo': 'BRANDAsset-MAINLOGO.png',
         'AETHER Loading': 'BRANDAsset-MAINLOGO.png',
+        'AETHER': 'BRANDAsset-MAINLOGO.png',
+
+        # Founder
         'Young Christian Charles-Harris': 'BRANDAsset-FOUNDERCTCH.png',
+
+        # Phygital IPs - Tales of Lucidia (IP #1)
         'Tales of Lucidia Logo': 'BRANDAsset-PHYGITALIP1.png',
+
+        # Phygital IPs - Port 51 Lucidia Confectionarium (IP #2)
         'Port 51 Lucidia Confectionarium Logo': 'BRANDAsset-PHYGITALIP2.png',
-        'Port 51 Lucidia Confectionarium': 'BRANDAsset-PHYGITALIP2.png',
+        'Port 51 Lucidia Confectionarium Concept Art': 'BRANDAsset-PHYGITALIP5.png',
+        'Port 51 Environment Concepts': 'BRANDAsset-PHYGITALIP4.png',
+
+        # Phygital IPs - Broussard Bayou Honeymoon BBQ (IP #3)
         'Broussard Bayou Honeymoon BBQ Logo': 'BRANDAsset-PHYGITALIP3.png',
         'Broussard Bayou Honeymoon BBQ': 'BRANDAsset-PHYGITALIP3.png',
-        'Port 51 Environment Concepts': 'BRANDAsset-PHYGITALIP4.png',
-        'Beauty and the Beast Set Design': 'BRANDAsset-enchantwork1.png',
+
+        # Services
         'Alchemist Atelier': 'BRANDAsset-services1.png',
         'Project Types': 'BRANDAsset-services2.png',
         'Skills & Capabilities': 'BRANDAsset-services3.png',
+
+        # Enchant/Theatrical Work - Beauty and the Beast
+        'Beauty and the Beast Set Design - Stained Glass': 'BRANDAsset-enchantwork2.png',
+        'Beauty and the Beast Set Design': 'BRANDAsset-enchantwork1.png',
+
+        # Enchant Work - Other
+        'Conceptual Design and Production': 'BRANDAsset-enchantwork4.png',
+
+        # Assorted Work
         'Theatrical Projection Mapping': 'BRANDAsset-AssortedWork1.png',
         'Immersive Set Design': 'BRANDAsset-AssortedWork2.png',
         'Large-Scale Holiday Light': 'BRANDAsset-AssortedWork3.png',
-        'Conceptual Design and Production': 'BRANDAsset-enchantwork2.png',
+
+        # Special Projects
+        'I Believe': 'BRANDAsset-KILLMOVEPARADISE1.png',
+
+        # Catch-all for Port 51 without logo suffix (should come after specific matches)
+        'Port 51 Lucidia Confectionarium': 'BRANDAsset-PHYGITALIP2.png',
     }
 
     modified_html = html_content
