@@ -1,0 +1,1307 @@
+#!/usr/bin/env python3
+"""
+Create improved AETHER Internal Project Management website v2
+- Uses v16 optimized styling
+- Password protected with code 144
+- Images embedded locally as base64
+- Images 36% bigger
+- Improved brand asset display
+- Fixed rendering issues
+"""
+
+import base64
+import os
+from pathlib import Path
+
+# Configuration
+ASSETS_DIR = Path("/home/user/aethersitetemplate/aether-website-assets/webp-medium")
+OUTPUT_FILE = Path("/home/user/aethersitetemplate/AETHER-Internal-Project-Management-v2.html")
+
+# Images to embed for each section (using medium resolution for faster load)
+IMAGES_TO_EMBED = {
+    # Company section
+    "founder": "aether-team-founder-ctch_800w.webp",
+    "shaxinwei": "aether-team-cofounder-shaxinwei_800w.webp",
+    "vangelis": "aether-team-cofounder-vangelis_800w.webp",
+    "logo": "aether-brand-logo-main_800w.webp",
+
+    # Operations section
+    "enchant_collage": "BRANDwork-EnchantSite-Collage2_800w.webp",
+    "enchant_collage4": "BRANDwork-EnchantSite-Collage4_800w.webp",
+    "projection_circuit": "BRANDwork-ProjectionMapping-CircuitNeuron_800w.webp",
+
+    # Productions section
+    "warrior_princess": "BRANDAsset-WarriorPrincess-Render51_800w.webp",
+    "warrior_concept": "BRANDAsset-WarriorPrincess-CharacterConcept_800w.webp",
+    "stage_set": "BRANDwork-WarriorPrincessOz-StageSet_800w.webp",
+    "tales_lucidia": "aether-ip-tales-of-lucidia_800w.webp",
+
+    # Technology section
+    "projection_scifi": "BRANDwork-ProjectionMapping-SciFi_800w.webp",
+    "projection_cosmic": "BRANDwork-ProjectionMapping-CosmicEye_800w.webp",
+    "projection_grid": "BRANDwork-ProjectionMapping-GridMatrix_800w.webp",
+
+    # Partners section
+    "enchant_retail": "aether-portfolio-enchant-retail_800w.webp",
+    "enchant_lights": "aether-portfolio-enchant-lights-01_800w.webp",
+    "candlelight": "aether-portfolio-candlelight-venue_800w.webp",
+}
+
+def load_image_base64(filename):
+    """Load an image file and return its base64 encoded data URI."""
+    filepath = ASSETS_DIR / filename
+    if not filepath.exists():
+        print(f"Warning: {filepath} not found")
+        return ""
+
+    with open(filepath, "rb") as f:
+        data = f.read()
+
+    b64 = base64.b64encode(data).decode("utf-8")
+    return f"data:image/webp;base64,{b64}"
+
+def generate_html():
+    """Generate the improved internal website HTML."""
+
+    # Load all images as base64
+    images = {}
+    for key, filename in IMAGES_TO_EMBED.items():
+        images[key] = load_image_base64(filename)
+        print(f"Loaded: {key}")
+
+    # Image size with 36% increase: base max-width 500px * 1.36 = 680px
+    IMG_SIZE = "680"  # 36% bigger than 500px base
+    IMG_SIZE_SMALL = "544"  # 36% bigger than 400px
+
+    html = f'''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AETHER | Internal Project Management | v2.0 | Secure</title>
+    <style>
+        * {{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }}
+
+        @font-face {{
+            font-family: 'MS Sans Serif';
+            src: local('MS Sans Serif'), local('Microsoft Sans Serif'), local('sans-serif');
+        }}
+
+        :root {{
+            /* AETHER Brand Colors - Enhanced */
+            --aether-purple: #667eea;
+            --aether-purple-dark: #764ba2;
+            --aether-blue: #4a90e2;
+            --aether-blue-deep: #1a5fb4;
+            --aether-pink: #f093fb;
+            --aether-sky: #87CEEB;
+            --aether-sky-light: #E0F6FF;
+            --aether-gold: #ffd700;
+            --white: #ffffff;
+            --black: #2c3e50;
+            --win95-gray: #c0c0c0;
+            --win95-dark: #808080;
+
+            /* Enhanced typography variables */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-display: 'Space Grotesk', 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+            /* Refined color palette */
+            --text-primary: #2c3e50;
+            --text-secondary: #5a6c7d;
+            --text-muted: #6b7280;
+            --accent-blue: #667eea;
+            --accent-purple: #764ba2;
+            --accent-success: #059669;
+            --accent-gold: #ffd700;
+            --surface-elevated: rgba(255, 255, 255, 0.95);
+            --surface-glass: rgba(255, 255, 255, 0.25);
+
+            /* Glassmorphism shadows */
+            --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            --shadow-elevated: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 32px rgba(102, 126, 234, 0.2);
+        }}
+
+        body {{
+            font-size: 14px;
+            font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
+            background: #008080;
+            color: #000;
+            overflow: hidden;
+            min-height: 100vh;
+            position: relative;
+            cursor: default;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
+            font-weight: 500;
+        }}
+
+        /* CODE PROTECTION OVERLAY */
+        .code-protection {{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100000;
+            transition: opacity 0.5s ease;
+        }}
+        .code-protection.hidden {{ opacity: 0; pointer-events: none; }}
+        .code-protection h2 {{
+            color: #667eea;
+            font-family: var(--font-display);
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }}
+        .code-protection input {{
+            background: rgba(255,255,255,0.1);
+            border: 2px solid #667eea;
+            padding: 15px 30px;
+            font-size: 24px;
+            color: white;
+            text-align: center;
+            letter-spacing: 8px;
+            border-radius: 8px;
+            width: 200px;
+            outline: none;
+        }}
+        .code-protection input:focus {{ border-color: #f093fb; box-shadow: 0 0 20px rgba(240, 147, 251, 0.3); }}
+        .code-protection .error {{ color: #f56565; margin-top: 15px; font-size: 14px; opacity: 0; transition: opacity 0.3s; }}
+        .code-protection .error.show {{ opacity: 1; }}
+        .code-protection .hint {{ color: rgba(255,255,255,0.5); margin-top: 20px; font-size: 12px; }}
+
+        /* Enhanced Kinetic Sky Background */
+        .sky-glass-layer {{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            background:
+                radial-gradient(ellipse at 25% 25%, rgba(135, 206, 250, 0.6) 0%, transparent 50%),
+                radial-gradient(ellipse at 75% 75%, rgba(255, 182, 193, 0.5) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(230, 190, 255, 0.4) 0%, transparent 70%),
+                radial-gradient(ellipse at 10% 90%, rgba(102, 126, 234, 0.5) 0%, transparent 60%),
+                radial-gradient(ellipse at 90% 10%, rgba(240, 147, 251, 0.45) 0%, transparent 55%),
+                linear-gradient(180deg,
+                    rgba(135, 206, 250, 0.5) 0%,
+                    rgba(255, 255, 255, 0.35) 25%,
+                    rgba(173, 216, 230, 0.4) 45%,
+                    rgba(255, 182, 193, 0.35) 65%,
+                    rgba(147, 112, 219, 0.45) 85%,
+                    rgba(102, 126, 234, 0.5) 100%
+                );
+            animation: skyFlow 25s ease infinite;
+            overflow: hidden;
+        }}
+
+        .sky-glass-layer::before {{
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 60% 60%, rgba(135, 206, 250, 0.35) 0%, transparent 45%),
+                radial-gradient(circle at 80% 20%, rgba(255, 182, 193, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(173, 216, 230, 0.3) 0%, transparent 40%);
+            animation: cloudDrift 40s linear infinite;
+            filter: blur(2px);
+        }}
+
+        @keyframes skyFlow {{
+            0%, 100% {{
+                filter: hue-rotate(0deg) brightness(1) contrast(1.1) saturate(1.1);
+                transform: scale(1) rotate(0deg);
+            }}
+            50% {{
+                filter: hue-rotate(15deg) brightness(1.05) contrast(1) saturate(1.2);
+                transform: scale(1.02) rotate(0.5deg);
+            }}
+        }}
+
+        @keyframes cloudDrift {{
+            0% {{ transform: translate(0, 0) scale(1) rotate(0deg); }}
+            50% {{ transform: translate(10%, -15%) scale(0.95) rotate(-1deg); }}
+            100% {{ transform: translate(0, 0) scale(1) rotate(0deg); }}
+        }}
+
+        /* Matrix Canvas */
+        #matrixCanvas {{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.45;
+            mix-blend-mode: screen;
+        }}
+
+        /* Loading Screen */
+        .loading-screen {{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 25%, #2a1a4a 50%, #1a1a3a 75%, #0a0a1a 100%);
+            background-size: 400% 400%;
+            animation: loadingBgShift 8s ease infinite;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            color: white;
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }}
+
+        @keyframes loadingBgShift {{
+            0%, 100% {{ background-position: 0% 50%; }}
+            50% {{ background-position: 100% 50%; }}
+        }}
+
+        .loading-screen.hidden {{ opacity: 0; pointer-events: none; transform: scale(1.05); }}
+
+        .boot-text {{
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 0 20px rgba(102, 126, 234, 0.8), 0 0 40px rgba(118, 75, 162, 0.6);
+            animation: bootTextPulse 2s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+        }}
+
+        @keyframes bootTextPulse {{
+            0%, 100% {{ opacity: 1; }}
+            50% {{ opacity: 0.7; }}
+        }}
+
+        .alchemical-loader {{
+            max-width: 350px;
+            width: 80%;
+            height: auto;
+            animation: logoSpinEnhanced 5s ease-in-out infinite;
+            filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.9));
+        }}
+
+        @keyframes logoSpinEnhanced {{
+            0%, 100% {{ transform: rotate(0deg) scale(1); }}
+            50% {{ transform: rotate(180deg) scale(1.1); }}
+        }}
+
+        /* Desktop */
+        .desktop {{
+            width: 100%;
+            height: calc(100vh - 120px);
+            position: relative;
+            padding: 30px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+        }}
+
+        /* Brand Logo Center */
+        .brand-logo-container {{
+            animation: logoFloat 4s ease-in-out infinite;
+            filter: drop-shadow(0 10px 30px rgba(102, 126, 234, 0.6));
+        }}
+
+        .brand-logo-container img {{
+            max-width: 600px;
+            width: 90%;
+            height: auto;
+            display: block;
+        }}
+
+        @keyframes logoFloat {{
+            0%, 100% {{ transform: translateY(0); }}
+            50% {{ transform: translateY(-20px); }}
+        }}
+
+        /* Main Desktop Buttons */
+        .main-button-container {{
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1400px;
+        }}
+
+        .main-desktop-button {{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            padding: 30px 25px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 12px 50px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            min-width: 200px;
+            max-width: 260px;
+        }}
+        .main-desktop-button:hover {{
+            transform: translateY(-8px) scale(1.03);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.5);
+        }}
+        .button-icon {{ font-size: 48px; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3)); }}
+        .button-label {{
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }}
+        .button-subtitle {{
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 11px;
+            text-align: center;
+            line-height: 1.4;
+        }}
+
+        /* Windows 95 Style */
+        .window {{
+            position: absolute;
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            display: none;
+            flex-direction: column;
+            min-width: 400px;
+            max-width: 92vw;
+            max-height: 88vh;
+        }}
+        .window.active {{ display: flex; }}
+
+        .window-header {{
+            background: linear-gradient(135deg, var(--aether-purple) 0%, var(--aether-blue) 50%, var(--aether-purple-dark) 100%);
+            color: white;
+            padding: 3px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 11px;
+            cursor: move;
+            user-select: none;
+            position: relative;
+            overflow: hidden;
+        }}
+
+        .window-header::after {{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 3s infinite;
+        }}
+
+        @keyframes shimmer {{
+            0% {{ left: -100%; }}
+            100% {{ left: 200%; }}
+        }}
+
+        .window-title {{ display: flex; align-items: center; gap: 5px; padding-left: 3px; }}
+        .window-controls {{ display: flex; gap: 2px; }}
+        .window-button {{
+            width: 16px; height: 14px;
+            background: #c0c0c0;
+            border: 1px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            font-weight: bold;
+        }}
+        .window-button:active {{ border-color: #000000 #ffffff #ffffff #000000; }}
+
+        .window-content {{
+            font-size: 15px;
+            line-height: 1.85;
+            color: var(--text-primary);
+            padding: 36px 40px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 255, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            overflow-y: auto;
+            max-height: calc(88vh - 30px);
+            font-family: var(--font-primary);
+        }}
+
+        /* Typography */
+        .window-content h1 {{
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 300;
+            margin-bottom: 28px;
+            color: var(--text-primary);
+            border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+            padding-bottom: 18px;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }}
+        .window-content h2 {{
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 400;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+            padding-bottom: 10px;
+        }}
+        .window-content h3 {{
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 500;
+            margin-top: 24px;
+            margin-bottom: 14px;
+            color: var(--accent-blue);
+        }}
+        .window-content p {{ margin-bottom: 16px; color: var(--text-secondary); }}
+        .window-content ul {{ margin-left: 24px; margin-bottom: 16px; }}
+        .window-content li {{ margin-bottom: 10px; color: var(--text-secondary); }}
+        .window-content li::marker {{ color: var(--accent-blue); }}
+        .window-content strong {{ font-weight: 600; color: var(--text-primary); }}
+
+        /* Brand Asset Images - 36% bigger */
+        .brand-asset-image {{
+            width: 100%;
+            max-width: {IMG_SIZE}px;
+            height: auto;
+            margin: 24px auto;
+            display: block;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }}
+        .brand-asset-image:hover {{
+            transform: scale(1.02);
+            box-shadow: 0 16px 50px rgba(102, 126, 234, 0.35);
+        }}
+
+        .brand-asset-float {{
+            width: 45%;
+            max-width: {IMG_SIZE_SMALL}px;
+            height: auto;
+            margin: 10px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.2);
+            transition: transform 0.3s ease;
+        }}
+        .brand-asset-float.left {{ float: left; margin-right: 24px; margin-left: 0; }}
+        .brand-asset-float.right {{ float: right; margin-left: 24px; margin-right: 0; }}
+        .brand-asset-float:hover {{ transform: scale(1.03); }}
+
+        .image-gallery {{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 24px 0;
+            clear: both;
+        }}
+        .image-gallery img {{
+            flex: 1 1 300px;
+            max-width: 400px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }}
+        .image-gallery img:hover {{ transform: scale(1.05); }}
+
+        .img-caption {{
+            text-align: center;
+            font-style: italic;
+            color: #667eea;
+            margin-top: 8px;
+            font-size: 13px;
+        }}
+
+        .clearfix {{ clear: both; }}
+
+        /* Takeaway and Highlight Boxes - Glassmorphism */
+        .takeaway-box {{
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: 4px solid var(--accent-blue);
+            padding: 24px 28px;
+            margin: 24px 0;
+            box-shadow: var(--shadow-glass);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            clear: both;
+        }}
+        .takeaway-box:hover {{
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            background: rgba(255, 255, 255, 0.45);
+        }}
+
+        .highlight-box {{
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(102, 126, 234, 0.12));
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 215, 0, 0.35);
+            padding: 28px 32px;
+            margin: 28px 0;
+            box-shadow: 0 8px 32px rgba(255, 215, 0, 0.15);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            clear: both;
+        }}
+        .highlight-box:hover {{
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.25);
+        }}
+
+        .metrics-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+            clear: both;
+        }}
+        .metric-card {{
+            background: #ffffff;
+            border: 1px solid #d0d0d0;
+            padding: 16px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease;
+        }}
+        .metric-card:hover {{ transform: translateY(-2px); }}
+        .metric-card .number {{
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a5fb4;
+            display: block;
+        }}
+        .metric-card .label {{ font-size: 12px; color: #555; margin-top: 4px; }}
+
+        /* Taskbar */
+        .taskbar {{
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(180deg, #dfdfdf 0%, #c0c0c0 100%);
+            border-top: 2px solid #ffffff;
+            display: flex;
+            align-items: center;
+            padding: 0 4px;
+            z-index: 9999;
+        }}
+        .start-button {{
+            background: linear-gradient(180deg, #c0c0c0 0%, #a0a0a0 100%);
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            padding: 2px 8px;
+            font-weight: bold;
+            font-size: 11px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            height: 28px;
+        }}
+        .start-button:active {{ border-color: #000000 #ffffff #ffffff #000000; }}
+        .task-buttons {{ display: flex; gap: 4px; margin-left: 8px; flex: 1; }}
+        .task-button {{
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            padding: 2px 12px;
+            font-size: 11px;
+            cursor: pointer;
+            max-width: 160px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            height: 24px;
+        }}
+        .system-tray {{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 8px;
+            border-left: 2px solid #808080;
+            height: 100%;
+            background: linear-gradient(180deg, #c0c0c0 0%, #a0a0a0 100%);
+        }}
+        #clock {{ font-size: 11px; font-weight: bold; }}
+
+        /* Start Menu */
+        .start-menu {{
+            position: fixed;
+            bottom: 44px;
+            left: 4px;
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            min-width: 200px;
+            display: none;
+            z-index: 10001;
+        }}
+        .start-menu.show {{ display: block; }}
+        .start-menu-item {{
+            padding: 8px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+        }}
+        .start-menu-item:hover {{ background: linear-gradient(135deg, var(--aether-purple), var(--aether-blue)); color: white; }}
+        .start-menu-divider {{ height: 2px; background: #808080; margin: 4px 0; }}
+
+        /* Responsive */
+        @media (max-width: 768px) {{
+            .main-button-container {{ gap: 15px; }}
+            .main-desktop-button {{ min-width: 150px; padding: 20px 15px; }}
+            .button-icon {{ font-size: 36px; }}
+            .button-label {{ font-size: 14px; }}
+            .window {{ min-width: 95vw; }}
+            .brand-asset-float {{ float: none !important; width: 100% !important; margin: 16px 0 !important; }}
+            .window-content {{ padding: 20px; }}
+        }}
+    </style>
+</head>
+<body>
+    <!-- CODE PROTECTION - Access Code: 144 -->
+    <div class="code-protection" id="codeProtection">
+        <h2>AETHER Internal Access</h2>
+        <input type="password" id="accessCode" placeholder="---" maxlength="3" autofocus>
+        <div class="error" id="codeError">Invalid access code</div>
+        <div class="hint">Enter 3-digit access code</div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="boot-text">INITIALIZING AETHER INTERNAL v2.0...</div>
+        <svg class="alchemical-loader" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#667eea"/>
+                    <stop offset="50%" style="stop-color:#f093fb"/>
+                    <stop offset="100%" style="stop-color:#667eea"/>
+                </linearGradient>
+            </defs>
+            <circle cx="50" cy="50" r="45" fill="none" stroke="url(#grad1)" stroke-width="3"/>
+            <polygon points="50,15 85,75 15,75" fill="none" stroke="url(#grad1)" stroke-width="2"/>
+            <polygon points="50,85 15,25 85,25" fill="none" stroke="url(#grad1)" stroke-width="2"/>
+            <circle cx="50" cy="50" r="20" fill="none" stroke="url(#grad1)" stroke-width="2"/>
+            <text x="50" y="55" text-anchor="middle" fill="url(#grad1)" font-size="14" font-family="serif">A</text>
+        </svg>
+    </div>
+
+    <div class="sky-glass-layer"></div>
+    <canvas id="matrixCanvas"></canvas>
+
+    <div class="desktop">
+        <div class="brand-logo-container">
+            <svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px;">
+                <defs>
+                    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#667eea"/>
+                        <stop offset="50%" style="stop-color:#f093fb"/>
+                        <stop offset="100%" style="stop-color:#764ba2"/>
+                    </linearGradient>
+                </defs>
+                <text x="200" y="70" text-anchor="middle" fill="url(#logoGrad)" font-size="48" font-family="'Space Grotesk', sans-serif" font-weight="700" letter-spacing="8">AETHER</text>
+                <text x="200" y="100" text-anchor="middle" fill="white" font-size="14" font-family="'Inter', sans-serif" letter-spacing="4" opacity="0.8">INTERNAL PROJECT MANAGEMENT v2.0</text>
+            </svg>
+        </div>
+
+        <div class="main-button-container">
+            <div class="main-desktop-button" onclick="openWindow('company')">
+                <span class="button-icon">&#x1F3E2;</span>
+                <span class="button-label">Company</span>
+                <span class="button-subtitle">Overview & Leadership</span>
+            </div>
+            <div class="main-desktop-button" onclick="openWindow('operations')">
+                <span class="button-icon">&#x2699;</span>
+                <span class="button-label">Operations</span>
+                <span class="button-subtitle">Facility & Manufacturing</span>
+            </div>
+            <div class="main-desktop-button" onclick="openWindow('productions')">
+                <span class="button-icon">&#x1F3AD;</span>
+                <span class="button-label">Productions</span>
+                <span class="button-subtitle">Shows & Pipeline</span>
+            </div>
+            <div class="main-desktop-button" onclick="openWindow('technology')">
+                <span class="button-icon">&#x1F4BB;</span>
+                <span class="button-label">Technology</span>
+                <span class="button-subtitle">PXR Platform & Systems</span>
+            </div>
+            <div class="main-desktop-button" onclick="openWindow('partners')">
+                <span class="button-icon">&#x1F91D;</span>
+                <span class="button-label">Partners</span>
+                <span class="button-subtitle">Vendors & Collaborations</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMPANY WINDOW -->
+    <div class="window" id="window-company" style="top: 50px; left: 50px; width: 950px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-company')">
+            <div class="window-title"><span>&#x1F3E2;</span><span>Company Overview</span></div>
+            <div class="window-controls">
+                <button class="window-button" onclick="minimizeWindow('company')">_</button>
+                <button class="window-button" onclick="closeWindow('company')">&#x2715;</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>AETHER Overview</h1>
+
+            <img src="{images['logo']}" alt="AETHER Brand Logo" class="brand-asset-image" style="max-width: 400px;">
+            <p class="img-caption">AETHER Brand Identity</p>
+
+            <p><strong>AETHER</strong> is a phygital experience platform company creating immersive entertainment that seamlessly blends physical and digital elements. We operate the <strong>Alchemist Atelier aRtGaRDErN TECHNO-FABRIQUE</strong> a 45,900 sq ft manufacturing facility in Sedona, Arizona.</p>
+
+            <div class="highlight-box">
+                <p><strong>Mission:</strong> Democratize transformative experiences through accessible pricing ($27-$396) and cutting-edge technology, achieving 92% cost reduction through inflatable venue technology.</p>
+            </div>
+
+            <h2>Leadership</h2>
+
+            <img src="{images['founder']}" alt="Christian Charles-Harris - Founder & CEO" class="brand-asset-float left">
+            <div class="takeaway-box">
+                <h3>Christian Charles-Harris Founder & CEO</h3>
+                <p>Visionary leader with expertise in brand transformation, experiential design, and phygital storytelling. Former roles at major entertainment companies. Leading AETHER's mission to create accessible, transformative experiences.</p>
+            </div>
+            <div class="clearfix"></div>
+
+            <img src="{images['shaxinwei']}" alt="Dr. Sha Xin Wei - Chief Research Officer" class="brand-asset-float right">
+            <div class="takeaway-box">
+                <h3>Dr. Sha Xin Wei Chief Research Officer</h3>
+                <p>Academic leader and researcher specializing in responsive environments, computational media, and embodied interaction. Director of the Synthesis Center at Arizona State University.</p>
+            </div>
+            <div class="clearfix"></div>
+
+            <h2>E.L.I.A.S. Framework</h2>
+            <p>Our operational philosophy:</p>
+            <ul>
+                <li><strong>E</strong>xperiential Equity Accessible premium experiences for all</li>
+                <li><strong>L</strong>eisure Integration Seamless entertainment ecosystems</li>
+                <li><strong>I</strong>magination Activation Sparking wonder and creativity</li>
+                <li><strong>A</strong>musement Engineering Technical excellence in entertainment</li>
+                <li><strong>S</strong>tory-Commerce Integration Narrative-driven commerce</li>
+            </ul>
+
+            <h2>Key Metrics</h2>
+            <div class="metrics-grid">
+                <div class="metric-card"><span class="number">$75B</span><span class="label">Target Valuation 2035</span></div>
+                <div class="metric-card"><span class="number">18</span><span class="label">Global Circuit Cities</span></div>
+                <div class="metric-card"><span class="number">63</span><span class="label">Team Members</span></div>
+                <div class="metric-card"><span class="number">98%</span><span class="label">Employee Retention</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OPERATIONS WINDOW -->
+    <div class="window" id="window-operations" style="top: 80px; left: 100px; width: 950px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-operations')">
+            <div class="window-title"><span>&#x2699;</span><span>Operations & Manufacturing</span></div>
+            <div class="window-controls">
+                <button class="window-button" onclick="minimizeWindow('operations')">_</button>
+                <button class="window-button" onclick="closeWindow('operations')">&#x2715;</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>Operations & Manufacturing</h1>
+
+            <h2>Alchemist Atelier TECHNO-FABRIQUE</h2>
+            <p>Location: 333 Schnebly Hill Road, Sedona, Arizona</p>
+
+            <div class="image-gallery">
+                <img src="{images['enchant_collage']}" alt="Enchant Site Collage">
+                <img src="{images['enchant_collage4']}" alt="Manufacturing Operations">
+            </div>
+            <p class="img-caption">AETHER Manufacturing & Production Capabilities</p>
+
+            <div class="metrics-grid">
+                <div class="metric-card"><span class="number">45,900</span><span class="label">Square Feet</span></div>
+                <div class="metric-card"><span class="number">153</span><span class="label">Specialized Systems</span></div>
+                <div class="metric-card"><span class="number">$71.1M+</span><span class="label">Annual Production Value</span></div>
+                <div class="metric-card"><span class="number">40x</span><span class="label">Faster Than Industry</span></div>
+            </div>
+
+            <h2>DREAM-CREATE-BUILD Methodology</h2>
+
+            <img src="{images['projection_circuit']}" alt="Circuit Neuron Projection" class="brand-asset-float right">
+
+            <div class="takeaway-box">
+                <p><strong>8-Week Production Cycle:</strong></p>
+                <ul>
+                    <li><strong>DREAM (Weeks 1-3):</strong> Ideation, prototyping, VR visualization</li>
+                    <li><strong>CREATE (Weeks 4-6):</strong> Integrated design-engineering, simulation</li>
+                    <li><strong>BUILD (Weeks 6-8):</strong> Parallel production, validation</li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+
+            <h2>Inflatable Modular Venue System</h2>
+            <div class="highlight-box">
+                <p><strong>Revolutionary Deployment:</strong></p>
+                <ul>
+                    <li>$3.2M per venue (vs. $30-50M traditional)</li>
+                    <li>72-hour inflation (vs. 20-33 months construction)</li>
+                    <li>12 shipping containers per production</li>
+                    <li>800-1,200 guest capacity</li>
+                    <li>120 mph wind rating, -40F to 130F operation</li>
+                </ul>
+            </div>
+
+            <h2>Annual Touring Cycle</h2>
+            <div class="metrics-grid">
+                <div class="metric-card"><span class="number">36</span><span class="label">Weeks Performing</span></div>
+                <div class="metric-card"><span class="number">3</span><span class="label">Cities Per Year</span></div>
+                <div class="metric-card"><span class="number">12</span><span class="label">Weeks Per City</span></div>
+                <div class="metric-card"><span class="number">94%</span><span class="label">On-Time Delivery</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCTIONS WINDOW -->
+    <div class="window" id="window-productions" style="top: 110px; left: 150px; width: 950px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-productions')">
+            <div class="window-title"><span>&#x1F3AD;</span><span>Productions Pipeline</span></div>
+            <div class="window-controls">
+                <button class="window-button" onclick="minimizeWindow('productions')">_</button>
+                <button class="window-button" onclick="closeWindow('productions')">&#x2715;</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>Productions Pipeline</h1>
+
+            <div class="image-gallery">
+                <img src="{images['warrior_princess']}" alt="Warrior Princess Render">
+                <img src="{images['warrior_concept']}" alt="Warrior Princess Concept">
+            </div>
+            <p class="img-caption">Tales of Lucidia - Warrior Princess IP Development</p>
+
+            <h2>Upcoming Shows</h2>
+            <div class="takeaway-box">
+                <h3>2029 Launches</h3>
+                <ul>
+                    <li><strong>Sailor Moon: Sonic Celestial Circus</strong> Summer 2029, $27M</li>
+                    <li><strong>Into the Woods</strong> Late 2029, $27M (Sondheim reimagined)</li>
+                    <li><strong>Beauty & the Beast</strong> Late Fall 2029, $27M</li>
+                </ul>
+            </div>
+
+            <img src="{images['stage_set']}" alt="Warrior Princess Stage Set" class="brand-asset-float left">
+
+            <div class="takeaway-box">
+                <h3>2030 Launches</h3>
+                <ul>
+                    <li><strong>Little Mermaid</strong> Summer 2030, $27M</li>
+                    <li><strong>Marvel's Spider-Verse: TOTEM</strong> Summer 2030, $36M</li>
+                    <li><strong>Epic Mickey: KINGDOM HEARTS</strong> Fall 2030, $36M (Julie Taymor)</li>
+                    <li><strong>Pixar: Tales of Adventure</strong> Fall 2030</li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="takeaway-box">
+                <h3>2031+ Pipeline</h3>
+                <ul>
+                    <li><strong>Transformers</strong> Large-scale animatronic robots</li>
+                    <li><strong>Mary Poppins</strong> Gravity-defying phygital magic</li>
+                    <li><strong>Anastasia</strong> Czarist Russia visual odyssey</li>
+                </ul>
+            </div>
+
+            <h2>Production Company Structure</h2>
+            <div class="metrics-grid">
+                <div class="metric-card"><span class="number">21</span><span class="label">Cast Members</span></div>
+                <div class="metric-card"><span class="number">24</span><span class="label">Crew Members</span></div>
+                <div class="metric-card"><span class="number">45</span><span class="label">Total Company</span></div>
+            </div>
+
+            <h2>Tales of Lucidia IP</h2>
+            <img src="{images['tales_lucidia']}" alt="Tales of Lucidia" class="brand-asset-image">
+            <p class="img-caption">Tales of Lucidia - Original Transmedia IP</p>
+
+            <div class="highlight-box">
+                <p>Proprietary transmedia IP featuring three Warrior Princesses (Ozma, Alice, Polychrome) defending reality across the NYA universe. Universal Pictures tracking development.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TECHNOLOGY WINDOW -->
+    <div class="window" id="window-technology" style="top: 140px; left: 200px; width: 950px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-technology')">
+            <div class="window-title"><span>&#x1F4BB;</span><span>Technology Platform</span></div>
+            <div class="window-controls">
+                <button class="window-button" onclick="minimizeWindow('technology')">_</button>
+                <button class="window-button" onclick="closeWindow('technology')">&#x2715;</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>AETHER PXR Platform</h1>
+            <p>The world's first complete operating system for phygital spaces.</p>
+
+            <div class="image-gallery">
+                <img src="{images['projection_scifi']}" alt="SciFi Projection Mapping">
+                <img src="{images['projection_cosmic']}" alt="Cosmic Eye Projection">
+            </div>
+            <p class="img-caption">Advanced Projection Mapping Technologies</p>
+
+            <div class="metrics-grid">
+                <div class="metric-card"><span class="number">10^18</span><span class="label">Operations/Second</span></div>
+                <div class="metric-card"><span class="number">1,024</span><span class="label">Sensors per 100m2</span></div>
+                <div class="metric-card"><span class="number">32,000</span><span class="label">Control Points</span></div>
+                <div class="metric-card"><span class="number">&lt;10ms</span><span class="label">Response Latency</span></div>
+            </div>
+
+            <h2>Show Technology Systems ($9M)</h2>
+
+            <img src="{images['projection_grid']}" alt="Grid Matrix Projection" class="brand-asset-float right">
+
+            <div class="takeaway-box">
+                <ul>
+                    <li><strong>Projection:</strong> AETHER 8K Quantum Dot (81,000 lumens, 30M:1 contrast)</li>
+                    <li><strong>Lighting:</strong> AETHER Luminance (28,000 lumens per fixture)</li>
+                    <li><strong>Audio:</strong> THX-certified (240,000W arena-class)</li>
+                    <li><strong>Effects:</strong> AETHER FX sustainable (85% environmental impact reduction)</li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+
+            <h2>Strategic Technology Partners</h2>
+            <div class="highlight-box">
+                <ul>
+                    <li><strong>Apple</strong> Technology integration</li>
+                    <li><strong>PASQAL</strong> Quantum computing</li>
+                    <li><strong>Anthropic</strong> AI integration</li>
+                    <li><strong>Warner Bros</strong> IP integration</li>
+                    <li><strong>Legendary Entertainment</strong> Consortium partnerships</li>
+                </ul>
+            </div>
+
+            <h2>Equipment Partners</h2>
+            <p>X-Tool, Stratasys (3D printing), FujiFilm, PFAFF (industrial sewing), Siasun (robotics), Vention (automation), Boston Dynamics, PAL Robotics</p>
+        </div>
+    </div>
+
+    <!-- PARTNERS WINDOW -->
+    <div class="window" id="window-partners" style="top: 170px; left: 250px; width: 950px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-partners')">
+            <div class="window-title"><span>&#x1F91D;</span><span>Partners & Vendors</span></div>
+            <div class="window-controls">
+                <button class="window-button" onclick="minimizeWindow('partners')">_</button>
+                <button class="window-button" onclick="closeWindow('partners')">&#x2715;</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>Partners & Vendors</h1>
+
+            <div class="image-gallery">
+                <img src="{images['enchant_retail']}" alt="Enchant Retail Experience">
+                <img src="{images['enchant_lights']}" alt="Enchant Lights Installation">
+            </div>
+            <p class="img-caption">AETHER Experience Environments</p>
+
+            <h2>Haute Couture Partners</h2>
+            <div class="takeaway-box">
+                <p>14 fashion houses: Mugler, Heaven Gaia, Balmain, Ashi Studio, Maison Margiela Artisanal, Rahul Mishra, Iris Van Herpen, Germanier, Guo Pei, Schiaparelli, Robert Wun, The Blondes, Stephane Rolland</p>
+            </div>
+
+            <h2>Beauty & Wellness (Metamorphosis Spa)</h2>
+
+            <img src="{images['candlelight']}" alt="Candlelight Venue" class="brand-asset-float right">
+
+            <div class="takeaway-box">
+                <p><strong>Skincare:</strong> Freaks of Nature, Victoria Beckham Beauty, Dr. Metacine, Raaw Alchemy</p>
+                <p><strong>Haircare:</strong> CECRED (Beyonce), Bread, REVERIE, Act+Acre</p>
+                <p><strong>Makeup:</strong> Pat McGrath Labs, Westman Atelier, Face Atelier, Florasis</p>
+            </div>
+            <div class="clearfix"></div>
+
+            <h2>Creative Talent</h2>
+            <div class="highlight-box">
+                <p><strong>Directors:</strong> Nicole Brooks, Kym Moore, Liesel Tommie, Julie Taymor</p>
+                <p><strong>Choreographers:</strong> Camille Brown, Chucky Klapow, Deborah Colker</p>
+                <p><strong>Composers:</strong> Toby Marlow & Lucy Moss (SIX), Michael Giacchino</p>
+                <p><strong>Strategic:</strong> Chaka Khan, DAFT PUNK</p>
+            </div>
+
+            <h2>Financial Partners</h2>
+            <div class="takeaway-box">
+                <p><strong>Banking:</strong> Amalgamated Bank, OneUnited Bank, AetherPay (Aliviere)</p>
+                <p><strong>Impact VC:</strong> Blisce/, Octopus Group, Revaia VC, Rally Assets, EUTOPIA, 125 Ventures</p>
+            </div>
+
+            <h2>Hospitality & Travel</h2>
+            <p>Aman (ultra-luxury), Regent IHG, Wynn Resorts, BASE China, StarLux Airlines</p>
+
+            <h2>Global Circuit (18 Cities)</h2>
+            <div class="highlight-box">
+                <p><strong>North America (12):</strong> Sedona HQ, San Francisco, Orange County, Palm Springs, Las Vegas, Seattle, Chicago, Atlanta, Dallas, New Orleans, Vancouver, Montreal</p>
+                <p><strong>Asia-Pacific (3):</strong> Sanya, Shanghai, Tokyo</p>
+                <p><strong>Europe (1):</strong> Paris</p>
+                <p><strong>Latin America (2):</strong> Tulum, Rio de Janeiro</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Start Menu -->
+    <div class="start-menu" id="startMenu">
+        <div class="start-menu-item" onclick="openWindow('company')">&#x1F3E2; Company</div>
+        <div class="start-menu-item" onclick="openWindow('operations')">&#x2699; Operations</div>
+        <div class="start-menu-item" onclick="openWindow('productions')">&#x1F3AD; Productions</div>
+        <div class="start-menu-item" onclick="openWindow('technology')">&#x1F4BB; Technology</div>
+        <div class="start-menu-item" onclick="openWindow('partners')">&#x1F91D; Partners</div>
+        <div class="start-menu-divider"></div>
+        <div class="start-menu-item" onclick="location.reload()">&#x1F512; Lock</div>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <button class="start-button" onclick="toggleStartMenu()">
+            <span>&#x1F31F;</span>
+            <span>Start</span>
+        </button>
+        <div class="task-buttons" id="taskButtons"></div>
+        <div class="system-tray">
+            <span>&#x1F50A;</span>
+            <span id="clock">00:00</span>
+        </div>
+    </div>
+
+    <script>
+        // CODE PROTECTION - Access Code: 144
+        const ACCESS_CODE = '144';
+        const codeInput = document.getElementById('accessCode');
+        const codeError = document.getElementById('codeError');
+        const codeProtection = document.getElementById('codeProtection');
+
+        codeInput.addEventListener('input', function() {{
+            if (this.value.length === 3) {{
+                if (this.value === ACCESS_CODE) {{
+                    codeProtection.classList.add('hidden');
+                    setTimeout(() => {{
+                        document.getElementById('loadingScreen').classList.add('hidden');
+                    }}, 2500);
+                }} else {{
+                    codeError.classList.add('show');
+                    this.value = '';
+                    setTimeout(() => codeError.classList.remove('show'), 2000);
+                }}
+            }}
+        }});
+
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrixChars = 'AETHER10';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        for (let i = 0; i < columns; i++) {{
+            drops[i] = Math.random() * canvas.height / fontSize;
+        }}
+
+        function drawMatrix() {{
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {{
+                const char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                const colors = ['#00ff41', '#00ff00', '#33ff33', '#66ff66'];
+                ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+                ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.98) {{
+                    drops[i] = 0;
+                }}
+                drops[i] += 0.5 + Math.random() * 0.5;
+            }}
+        }}
+        setInterval(drawMatrix, 30);
+
+        window.addEventListener('resize', () => {{
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }});
+
+        // Window Management
+        let windowZIndex = 100;
+        let activeWindows = new Set();
+        let isDragging = false;
+        let draggedWindow = null;
+        let offsetX, offsetY;
+
+        function openWindow(name) {{
+            const win = document.getElementById(`window-${{name}}`);
+            if (!win) return;
+            win.classList.add('active');
+            win.style.zIndex = ++windowZIndex;
+            activeWindows.add(name);
+            updateTaskbar();
+            document.getElementById('startMenu').classList.remove('show');
+        }}
+
+        function closeWindow(name) {{
+            const win = document.getElementById(`window-${{name}}`);
+            if (!win) return;
+            win.classList.remove('active');
+            activeWindows.delete(name);
+            updateTaskbar();
+        }}
+
+        function minimizeWindow(name) {{
+            const win = document.getElementById(`window-${{name}}`);
+            if (!win) return;
+            win.classList.remove('active');
+            updateTaskbar();
+        }}
+
+        function updateTaskbar() {{
+            const taskButtons = document.getElementById('taskButtons');
+            taskButtons.innerHTML = '';
+            const names = {{
+                'company': '&#x1F3E2; Company',
+                'operations': '&#x2699; Operations',
+                'productions': '&#x1F3AD; Productions',
+                'technology': '&#x1F4BB; Technology',
+                'partners': '&#x1F91D; Partners'
+            }};
+            activeWindows.forEach(name => {{
+                const btn = document.createElement('button');
+                btn.className = 'task-button';
+                btn.innerHTML = names[name] || name;
+                btn.onclick = () => {{
+                    const win = document.getElementById(`window-${{name}}`);
+                    if (win.classList.contains('active')) {{
+                        win.classList.remove('active');
+                    }} else {{
+                        win.classList.add('active');
+                        win.style.zIndex = ++windowZIndex;
+                    }}
+                }};
+                taskButtons.appendChild(btn);
+            }});
+        }}
+
+        // Dragging
+        function startDrag(e, windowId) {{
+            e.preventDefault();
+            isDragging = true;
+            draggedWindow = document.getElementById(windowId);
+            const rect = draggedWindow.getBoundingClientRect();
+            offsetX = e.clientX - rect.left;
+            offsetY = e.clientY - rect.top;
+            draggedWindow.style.zIndex = ++windowZIndex;
+        }}
+
+        document.addEventListener('mousemove', (e) => {{
+            if (!isDragging || !draggedWindow) return;
+            const x = e.clientX - offsetX;
+            const y = e.clientY - offsetY;
+            draggedWindow.style.left = Math.max(0, Math.min(x, window.innerWidth - draggedWindow.offsetWidth)) + 'px';
+            draggedWindow.style.top = Math.max(0, Math.min(y, window.innerHeight - 40 - draggedWindow.offsetHeight)) + 'px';
+        }});
+
+        document.addEventListener('mouseup', () => {{
+            isDragging = false;
+            draggedWindow = null;
+        }});
+
+        // Start Menu
+        function toggleStartMenu() {{
+            document.getElementById('startMenu').classList.toggle('show');
+        }}
+
+        document.addEventListener('click', (e) => {{
+            if (!e.target.closest('.start-button') && !e.target.closest('.start-menu')) {{
+                document.getElementById('startMenu').classList.remove('show');
+            }}
+        }});
+
+        // Clock
+        function updateClock() {{
+            const now = new Date();
+            document.getElementById('clock').textContent = now.toLocaleTimeString([], {{ hour: '2-digit', minute: '2-digit' }});
+        }}
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
+'''
+
+    return html
+
+def main():
+    print("Creating AETHER Internal Project Management v2...")
+    print("=" * 50)
+
+    html = generate_html()
+
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        f.write(html)
+
+    file_size = os.path.getsize(OUTPUT_FILE) / (1024 * 1024)
+    print(f"\nGenerated: {OUTPUT_FILE}")
+    print(f"File size: {file_size:.2f} MB")
+    print("\nFeatures:")
+    print("  - Password protected (code: 144)")
+    print("  - v16 optimized styling")
+    print("  - Images 36% bigger (680px max)")
+    print("  - Locally embedded base64 images")
+    print("  - Improved brand asset display")
+    print("  - Fixed rendering issues")
+    print("  - Glassmorphism effects")
+    print("  - Windows 95-style interface")
+
+if __name__ == "__main__":
+    main()
