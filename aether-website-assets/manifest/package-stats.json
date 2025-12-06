@@ -1,0 +1,35 @@
+{
+  "generated": "2025-12-06T07:53:40.525816",
+  "version": "3.1.0",
+  "directories": {
+    "webp": {
+      "files": 39,
+      "sizeKb": 3065.9
+    },
+    "avif": {
+      "files": 39,
+      "sizeKb": 1831.1
+    },
+    "webp-medium": {
+      "files": 39,
+      "sizeKb": 814.3
+    },
+    "webp-mobile": {
+      "files": 39,
+      "sizeKb": 253.3
+    },
+    "lqip": {
+      "files": 39,
+      "sizeKb": 5.5
+    },
+    "thumbnails": {
+      "files": 27,
+      "sizeKb": 172.0
+    }
+  },
+  "compressionRatios": {
+    "avifVsWebp": 40.3,
+    "mediumVsFull": 73.4,
+    "mobileVsFull": 91.7
+  }
+}

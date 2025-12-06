@@ -1,0 +1,407 @@
+{
+  "version": "2.0.0",
+  "generated": "2025-12-06",
+  "description": "Pre-computed srcset configurations for all assets",
+  "basePath": "/assets",
+  "formats": {
+    "webp": true,
+    "png": true,
+    "avif": true
+  },
+  "breakpoints": {
+    "mobile": 640,
+    "tablet": 1024,
+    "desktop": 1440
+  },
+  "assets": {
+    "BRANDAsset-PhygitalIP-BroussardBayouBBQ": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDAsset-PhygitalIP-BroussardBayouBBQ-64w.webp 64w, thumbnails/128/BRANDAsset-PhygitalIP-BroussardBayouBBQ-128w.webp 128w, thumbnails/256/BRANDAsset-PhygitalIP-BroussardBayouBBQ-256w.webp 256w, thumbnails/512/BRANDAsset-PhygitalIP-BroussardBayouBBQ-512w.webp 512w, webp/BRANDAsset-PhygitalIP-BroussardBayouBBQ.webp 1024w",
+        "png": "thumbnails/64/BRANDAsset-PhygitalIP-BroussardBayouBBQ-64w.png 64w, thumbnails/128/BRANDAsset-PhygitalIP-BroussardBayouBBQ-128w.png 128w, thumbnails/256/BRANDAsset-PhygitalIP-BroussardBayouBBQ-256w.png 256w, thumbnails/512/BRANDAsset-PhygitalIP-BroussardBayouBBQ-512w.png 512w, png-fallback/BRANDAsset-PhygitalIP-BroussardBayouBBQ.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDAsset-PhygitalIP-BroussardBayouBBQ-blur.webp",
+      "fallback": "png-fallback/BRANDAsset-PhygitalIP-BroussardBayouBBQ.png"
+    }
+,
+    "BRANDAsset-PhygitalIP-Port51Confectionarium": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDAsset-PhygitalIP-Port51Confectionarium-64w.webp 64w, thumbnails/128/BRANDAsset-PhygitalIP-Port51Confectionarium-128w.webp 128w, thumbnails/256/BRANDAsset-PhygitalIP-Port51Confectionarium-256w.webp 256w, thumbnails/512/BRANDAsset-PhygitalIP-Port51Confectionarium-512w.webp 512w, webp/BRANDAsset-PhygitalIP-Port51Confectionarium.webp 1024w",
+        "png": "thumbnails/64/BRANDAsset-PhygitalIP-Port51Confectionarium-64w.png 64w, thumbnails/128/BRANDAsset-PhygitalIP-Port51Confectionarium-128w.png 128w, thumbnails/256/BRANDAsset-PhygitalIP-Port51Confectionarium-256w.png 256w, thumbnails/512/BRANDAsset-PhygitalIP-Port51Confectionarium-512w.png 512w, png-fallback/BRANDAsset-PhygitalIP-Port51Confectionarium.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDAsset-PhygitalIP-Port51Confectionarium-blur.webp",
+      "fallback": "png-fallback/BRANDAsset-PhygitalIP-Port51Confectionarium.png"
+    }
+,
+    "BRANDAsset-Typography3D-AlchemicalArtisans": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDAsset-Typography3D-AlchemicalArtisans-64w.webp 64w, thumbnails/128/BRANDAsset-Typography3D-AlchemicalArtisans-128w.webp 128w, thumbnails/256/BRANDAsset-Typography3D-AlchemicalArtisans-256w.webp 256w, thumbnails/512/BRANDAsset-Typography3D-AlchemicalArtisans-512w.webp 512w, webp/BRANDAsset-Typography3D-AlchemicalArtisans.webp 1024w",
+        "png": "thumbnails/64/BRANDAsset-Typography3D-AlchemicalArtisans-64w.png 64w, thumbnails/128/BRANDAsset-Typography3D-AlchemicalArtisans-128w.png 128w, thumbnails/256/BRANDAsset-Typography3D-AlchemicalArtisans-256w.png 256w, thumbnails/512/BRANDAsset-Typography3D-AlchemicalArtisans-512w.png 512w, png-fallback/BRANDAsset-Typography3D-AlchemicalArtisans.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDAsset-Typography3D-AlchemicalArtisans-blur.webp",
+      "fallback": "png-fallback/BRANDAsset-Typography3D-AlchemicalArtisans.png"
+    }
+,
+    "BRANDAsset-Typography3D-ShaXinWei": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDAsset-Typography3D-ShaXinWei-64w.webp 64w, thumbnails/128/BRANDAsset-Typography3D-ShaXinWei-128w.webp 128w, thumbnails/256/BRANDAsset-Typography3D-ShaXinWei-256w.webp 256w, thumbnails/512/BRANDAsset-Typography3D-ShaXinWei-512w.webp 512w, webp/BRANDAsset-Typography3D-ShaXinWei.webp 1024w",
+        "png": "thumbnails/64/BRANDAsset-Typography3D-ShaXinWei-64w.png 64w, thumbnails/128/BRANDAsset-Typography3D-ShaXinWei-128w.png 128w, thumbnails/256/BRANDAsset-Typography3D-ShaXinWei-256w.png 256w, thumbnails/512/BRANDAsset-Typography3D-ShaXinWei-512w.png 512w, png-fallback/BRANDAsset-Typography3D-ShaXinWei.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDAsset-Typography3D-ShaXinWei-blur.webp",
+      "fallback": "png-fallback/BRANDAsset-Typography3D-ShaXinWei.png"
+    }
+,
+    "BRANDAsset-Typography3D-VangelisLympouridis": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDAsset-Typography3D-VangelisLympouridis-64w.webp 64w, thumbnails/128/BRANDAsset-Typography3D-VangelisLympouridis-128w.webp 128w, thumbnails/256/BRANDAsset-Typography3D-VangelisLympouridis-256w.webp 256w, thumbnails/512/BRANDAsset-Typography3D-VangelisLympouridis-512w.webp 512w, webp/BRANDAsset-Typography3D-VangelisLympouridis.webp 1024w",
+        "png": "thumbnails/64/BRANDAsset-Typography3D-VangelisLympouridis-64w.png 64w, thumbnails/128/BRANDAsset-Typography3D-VangelisLympouridis-128w.png 128w, thumbnails/256/BRANDAsset-Typography3D-VangelisLympouridis-256w.png 256w, thumbnails/512/BRANDAsset-Typography3D-VangelisLympouridis-512w.png 512w, png-fallback/BRANDAsset-Typography3D-VangelisLympouridis.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDAsset-Typography3D-VangelisLympouridis-blur.webp",
+      "fallback": "png-fallback/BRANDAsset-Typography3D-VangelisLympouridis.png"
+    }
+,
+    "BRANDAsset-WarriorPrincess-CharacterConcept": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDAsset-WarriorPrincess-CharacterConcept-64w.webp 64w, thumbnails/128/BRANDAsset-WarriorPrincess-CharacterConcept-128w.webp 128w, thumbnails/256/BRANDAsset-WarriorPrincess-CharacterConcept-256w.webp 256w, thumbnails/512/BRANDAsset-WarriorPrincess-CharacterConcept-512w.webp 512w, webp/BRANDAsset-WarriorPrincess-CharacterConcept.webp 1024w",
+        "png": "thumbnails/64/BRANDAsset-WarriorPrincess-CharacterConcept-64w.png 64w, thumbnails/128/BRANDAsset-WarriorPrincess-CharacterConcept-128w.png 128w, thumbnails/256/BRANDAsset-WarriorPrincess-CharacterConcept-256w.png 256w, thumbnails/512/BRANDAsset-WarriorPrincess-CharacterConcept-512w.png 512w, png-fallback/BRANDAsset-WarriorPrincess-CharacterConcept.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDAsset-WarriorPrincess-CharacterConcept-blur.webp",
+      "fallback": "png-fallback/BRANDAsset-WarriorPrincess-CharacterConcept.png"
+    }
+,
+    "BRANDAsset-WarriorPrincess-Render51": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDAsset-WarriorPrincess-Render51-64w.webp 64w, thumbnails/128/BRANDAsset-WarriorPrincess-Render51-128w.webp 128w, thumbnails/256/BRANDAsset-WarriorPrincess-Render51-256w.webp 256w, thumbnails/512/BRANDAsset-WarriorPrincess-Render51-512w.webp 512w, webp/BRANDAsset-WarriorPrincess-Render51.webp 1024w",
+        "png": "thumbnails/64/BRANDAsset-WarriorPrincess-Render51-64w.png 64w, thumbnails/128/BRANDAsset-WarriorPrincess-Render51-128w.png 128w, thumbnails/256/BRANDAsset-WarriorPrincess-Render51-256w.png 256w, thumbnails/512/BRANDAsset-WarriorPrincess-Render51-512w.png 512w, png-fallback/BRANDAsset-WarriorPrincess-Render51.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDAsset-WarriorPrincess-Render51-blur.webp",
+      "fallback": "png-fallback/BRANDAsset-WarriorPrincess-Render51.png"
+    }
+,
+    "BRANDwork-EnchantSite-Collage2": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDwork-EnchantSite-Collage2-64w.webp 64w, thumbnails/128/BRANDwork-EnchantSite-Collage2-128w.webp 128w, thumbnails/256/BRANDwork-EnchantSite-Collage2-256w.webp 256w, thumbnails/512/BRANDwork-EnchantSite-Collage2-512w.webp 512w, webp/BRANDwork-EnchantSite-Collage2.webp 1024w",
+        "png": "thumbnails/64/BRANDwork-EnchantSite-Collage2-64w.png 64w, thumbnails/128/BRANDwork-EnchantSite-Collage2-128w.png 128w, thumbnails/256/BRANDwork-EnchantSite-Collage2-256w.png 256w, thumbnails/512/BRANDwork-EnchantSite-Collage2-512w.png 512w, png-fallback/BRANDwork-EnchantSite-Collage2.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDwork-EnchantSite-Collage2-blur.webp",
+      "fallback": "png-fallback/BRANDwork-EnchantSite-Collage2.png"
+    }
+,
+    "BRANDwork-EnchantSite-Collage4": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDwork-EnchantSite-Collage4-64w.webp 64w, thumbnails/128/BRANDwork-EnchantSite-Collage4-128w.webp 128w, thumbnails/256/BRANDwork-EnchantSite-Collage4-256w.webp 256w, thumbnails/512/BRANDwork-EnchantSite-Collage4-512w.webp 512w, webp/BRANDwork-EnchantSite-Collage4.webp 1024w",
+        "png": "thumbnails/64/BRANDwork-EnchantSite-Collage4-64w.png 64w, thumbnails/128/BRANDwork-EnchantSite-Collage4-128w.png 128w, thumbnails/256/BRANDwork-EnchantSite-Collage4-256w.png 256w, thumbnails/512/BRANDwork-EnchantSite-Collage4-512w.png 512w, png-fallback/BRANDwork-EnchantSite-Collage4.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDwork-EnchantSite-Collage4-blur.webp",
+      "fallback": "png-fallback/BRANDwork-EnchantSite-Collage4.png"
+    }
+,
+    "BRANDwork-EnchantSite-Collage6": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDwork-EnchantSite-Collage6-64w.webp 64w, thumbnails/128/BRANDwork-EnchantSite-Collage6-128w.webp 128w, thumbnails/256/BRANDwork-EnchantSite-Collage6-256w.webp 256w, thumbnails/512/BRANDwork-EnchantSite-Collage6-512w.webp 512w, webp/BRANDwork-EnchantSite-Collage6.webp 1024w",
+        "png": "thumbnails/64/BRANDwork-EnchantSite-Collage6-64w.png 64w, thumbnails/128/BRANDwork-EnchantSite-Collage6-128w.png 128w, thumbnails/256/BRANDwork-EnchantSite-Collage6-256w.png 256w, thumbnails/512/BRANDwork-EnchantSite-Collage6-512w.png 512w, png-fallback/BRANDwork-EnchantSite-Collage6.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDwork-EnchantSite-Collage6-blur.webp",
+      "fallback": "png-fallback/BRANDwork-EnchantSite-Collage6.png"
+    }
+,
+    "BRANDwork-EnchantSite-Collage7": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDwork-EnchantSite-Collage7-64w.webp 64w, thumbnails/128/BRANDwork-EnchantSite-Collage7-128w.webp 128w, thumbnails/256/BRANDwork-EnchantSite-Collage7-256w.webp 256w, thumbnails/512/BRANDwork-EnchantSite-Collage7-512w.webp 512w, webp/BRANDwork-EnchantSite-Collage7.webp 1024w",
+        "png": "thumbnails/64/BRANDwork-EnchantSite-Collage7-64w.png 64w, thumbnails/128/BRANDwork-EnchantSite-Collage7-128w.png 128w, thumbnails/256/BRANDwork-EnchantSite-Collage7-256w.png 256w, thumbnails/512/BRANDwork-EnchantSite-Collage7-512w.png 512w, png-fallback/BRANDwork-EnchantSite-Collage7.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDwork-EnchantSite-Collage7-blur.webp",
+      "fallback": "png-fallback/BRANDwork-EnchantSite-Collage7.png"
+    }
+,
+    "BRANDwork-EnchantSite-Collage8": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDwork-EnchantSite-Collage8-64w.webp 64w, thumbnails/128/BRANDwork-EnchantSite-Collage8-128w.webp 128w, thumbnails/256/BRANDwork-EnchantSite-Collage8-256w.webp 256w, thumbnails/512/BRANDwork-EnchantSite-Collage8-512w.webp 512w, webp/BRANDwork-EnchantSite-Collage8.webp 1024w",
+        "png": "thumbnails/64/BRANDwork-EnchantSite-Collage8-64w.png 64w, thumbnails/128/BRANDwork-EnchantSite-Collage8-128w.png 128w, thumbnails/256/BRANDwork-EnchantSite-Collage8-256w.png 256w, thumbnails/512/BRANDwork-EnchantSite-Collage8-512w.png 512w, png-fallback/BRANDwork-EnchantSite-Collage8.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDwork-EnchantSite-Collage8-blur.webp",
+      "fallback": "png-fallback/BRANDwork-EnchantSite-Collage8.png"
+    }
+,
+    "BRANDwork-ProjectionMapping-CircuitNeuron": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDwork-ProjectionMapping-CircuitNeuron-64w.webp 64w, thumbnails/128/BRANDwork-ProjectionMapping-CircuitNeuron-128w.webp 128w, thumbnails/256/BRANDwork-ProjectionMapping-CircuitNeuron-256w.webp 256w, thumbnails/512/BRANDwork-ProjectionMapping-CircuitNeuron-512w.webp 512w, webp/BRANDwork-ProjectionMapping-CircuitNeuron.webp 1024w",
+        "png": "thumbnails/64/BRANDwork-ProjectionMapping-CircuitNeuron-64w.png 64w, thumbnails/128/BRANDwork-ProjectionMapping-CircuitNeuron-128w.png 128w, thumbnails/256/BRANDwork-ProjectionMapping-CircuitNeuron-256w.png 256w, thumbnails/512/BRANDwork-ProjectionMapping-CircuitNeuron-512w.png 512w, png-fallback/BRANDwork-ProjectionMapping-CircuitNeuron.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDwork-ProjectionMapping-CircuitNeuron-blur.webp",
+      "fallback": "png-fallback/BRANDwork-ProjectionMapping-CircuitNeuron.png"
+    }
+,
+    "BRANDwork-ProjectionMapping-CosmicEye": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDwork-ProjectionMapping-CosmicEye-64w.webp 64w, thumbnails/128/BRANDwork-ProjectionMapping-CosmicEye-128w.webp 128w, thumbnails/256/BRANDwork-ProjectionMapping-CosmicEye-256w.webp 256w, thumbnails/512/BRANDwork-ProjectionMapping-CosmicEye-512w.webp 512w, webp/BRANDwork-ProjectionMapping-CosmicEye.webp 1024w",
+        "png": "thumbnails/64/BRANDwork-ProjectionMapping-CosmicEye-64w.png 64w, thumbnails/128/BRANDwork-ProjectionMapping-CosmicEye-128w.png 128w, thumbnails/256/BRANDwork-ProjectionMapping-CosmicEye-256w.png 256w, thumbnails/512/BRANDwork-ProjectionMapping-CosmicEye-512w.png 512w, png-fallback/BRANDwork-ProjectionMapping-CosmicEye.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDwork-ProjectionMapping-CosmicEye-blur.webp",
+      "fallback": "png-fallback/BRANDwork-ProjectionMapping-CosmicEye.png"
+    }
+,
+    "BRANDwork-ProjectionMapping-GridMatrix": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDwork-ProjectionMapping-GridMatrix-64w.webp 64w, thumbnails/128/BRANDwork-ProjectionMapping-GridMatrix-128w.webp 128w, thumbnails/256/BRANDwork-ProjectionMapping-GridMatrix-256w.webp 256w, thumbnails/512/BRANDwork-ProjectionMapping-GridMatrix-512w.webp 512w, webp/BRANDwork-ProjectionMapping-GridMatrix.webp 1024w",
+        "png": "thumbnails/64/BRANDwork-ProjectionMapping-GridMatrix-64w.png 64w, thumbnails/128/BRANDwork-ProjectionMapping-GridMatrix-128w.png 128w, thumbnails/256/BRANDwork-ProjectionMapping-GridMatrix-256w.png 256w, thumbnails/512/BRANDwork-ProjectionMapping-GridMatrix-512w.png 512w, png-fallback/BRANDwork-ProjectionMapping-GridMatrix.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDwork-ProjectionMapping-GridMatrix-blur.webp",
+      "fallback": "png-fallback/BRANDwork-ProjectionMapping-GridMatrix.png"
+    }
+,
+    "BRANDwork-ProjectionMapping-OceanForge": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDwork-ProjectionMapping-OceanForge-64w.webp 64w, thumbnails/128/BRANDwork-ProjectionMapping-OceanForge-128w.webp 128w, thumbnails/256/BRANDwork-ProjectionMapping-OceanForge-256w.webp 256w, thumbnails/512/BRANDwork-ProjectionMapping-OceanForge-512w.webp 512w, webp/BRANDwork-ProjectionMapping-OceanForge.webp 1024w",
+        "png": "thumbnails/64/BRANDwork-ProjectionMapping-OceanForge-64w.png 64w, thumbnails/128/BRANDwork-ProjectionMapping-OceanForge-128w.png 128w, thumbnails/256/BRANDwork-ProjectionMapping-OceanForge-256w.png 256w, thumbnails/512/BRANDwork-ProjectionMapping-OceanForge-512w.png 512w, png-fallback/BRANDwork-ProjectionMapping-OceanForge.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDwork-ProjectionMapping-OceanForge-blur.webp",
+      "fallback": "png-fallback/BRANDwork-ProjectionMapping-OceanForge.png"
+    }
+,
+    "BRANDwork-ProjectionMapping-SciFi": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDwork-ProjectionMapping-SciFi-64w.webp 64w, thumbnails/128/BRANDwork-ProjectionMapping-SciFi-128w.webp 128w, thumbnails/256/BRANDwork-ProjectionMapping-SciFi-256w.webp 256w, thumbnails/512/BRANDwork-ProjectionMapping-SciFi-512w.webp 512w, webp/BRANDwork-ProjectionMapping-SciFi.webp 1024w",
+        "png": "thumbnails/64/BRANDwork-ProjectionMapping-SciFi-64w.png 64w, thumbnails/128/BRANDwork-ProjectionMapping-SciFi-128w.png 128w, thumbnails/256/BRANDwork-ProjectionMapping-SciFi-256w.png 256w, thumbnails/512/BRANDwork-ProjectionMapping-SciFi-512w.png 512w, png-fallback/BRANDwork-ProjectionMapping-SciFi.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDwork-ProjectionMapping-SciFi-blur.webp",
+      "fallback": "png-fallback/BRANDwork-ProjectionMapping-SciFi.png"
+    }
+,
+    "BRANDwork-ProjectionMapping-Vintage": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDwork-ProjectionMapping-Vintage-64w.webp 64w, thumbnails/128/BRANDwork-ProjectionMapping-Vintage-128w.webp 128w, thumbnails/256/BRANDwork-ProjectionMapping-Vintage-256w.webp 256w, thumbnails/512/BRANDwork-ProjectionMapping-Vintage-512w.webp 512w, webp/BRANDwork-ProjectionMapping-Vintage.webp 1024w",
+        "png": "thumbnails/64/BRANDwork-ProjectionMapping-Vintage-64w.png 64w, thumbnails/128/BRANDwork-ProjectionMapping-Vintage-128w.png 128w, thumbnails/256/BRANDwork-ProjectionMapping-Vintage-256w.png 256w, thumbnails/512/BRANDwork-ProjectionMapping-Vintage-512w.png 512w, png-fallback/BRANDwork-ProjectionMapping-Vintage.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDwork-ProjectionMapping-Vintage-blur.webp",
+      "fallback": "png-fallback/BRANDwork-ProjectionMapping-Vintage.png"
+    }
+,
+    "BRANDwork-StageProduction-GhostProjection": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDwork-StageProduction-GhostProjection-64w.webp 64w, thumbnails/128/BRANDwork-StageProduction-GhostProjection-128w.webp 128w, thumbnails/256/BRANDwork-StageProduction-GhostProjection-256w.webp 256w, thumbnails/512/BRANDwork-StageProduction-GhostProjection-512w.webp 512w, webp/BRANDwork-StageProduction-GhostProjection.webp 1024w",
+        "png": "thumbnails/64/BRANDwork-StageProduction-GhostProjection-64w.png 64w, thumbnails/128/BRANDwork-StageProduction-GhostProjection-128w.png 128w, thumbnails/256/BRANDwork-StageProduction-GhostProjection-256w.png 256w, thumbnails/512/BRANDwork-StageProduction-GhostProjection-512w.png 512w, png-fallback/BRANDwork-StageProduction-GhostProjection.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDwork-StageProduction-GhostProjection-blur.webp",
+      "fallback": "png-fallback/BRANDwork-StageProduction-GhostProjection.png"
+    }
+,
+    "BRANDwork-StageProduction-PrisonScene": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDwork-StageProduction-PrisonScene-64w.webp 64w, thumbnails/128/BRANDwork-StageProduction-PrisonScene-128w.webp 128w, thumbnails/256/BRANDwork-StageProduction-PrisonScene-256w.webp 256w, thumbnails/512/BRANDwork-StageProduction-PrisonScene-512w.webp 512w, webp/BRANDwork-StageProduction-PrisonScene.webp 1024w",
+        "png": "thumbnails/64/BRANDwork-StageProduction-PrisonScene-64w.png 64w, thumbnails/128/BRANDwork-StageProduction-PrisonScene-128w.png 128w, thumbnails/256/BRANDwork-StageProduction-PrisonScene-256w.png 256w, thumbnails/512/BRANDwork-StageProduction-PrisonScene-512w.png 512w, png-fallback/BRANDwork-StageProduction-PrisonScene.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDwork-StageProduction-PrisonScene-blur.webp",
+      "fallback": "png-fallback/BRANDwork-StageProduction-PrisonScene.png"
+    }
+,
+    "BRANDwork-WarriorPrincessOz-ArenaLayout": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDwork-WarriorPrincessOz-ArenaLayout-64w.webp 64w, thumbnails/128/BRANDwork-WarriorPrincessOz-ArenaLayout-128w.webp 128w, thumbnails/256/BRANDwork-WarriorPrincessOz-ArenaLayout-256w.webp 256w, thumbnails/512/BRANDwork-WarriorPrincessOz-ArenaLayout-512w.webp 512w, webp/BRANDwork-WarriorPrincessOz-ArenaLayout.webp 1024w",
+        "png": "thumbnails/64/BRANDwork-WarriorPrincessOz-ArenaLayout-64w.png 64w, thumbnails/128/BRANDwork-WarriorPrincessOz-ArenaLayout-128w.png 128w, thumbnails/256/BRANDwork-WarriorPrincessOz-ArenaLayout-256w.png 256w, thumbnails/512/BRANDwork-WarriorPrincessOz-ArenaLayout-512w.png 512w, png-fallback/BRANDwork-WarriorPrincessOz-ArenaLayout.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDwork-WarriorPrincessOz-ArenaLayout-blur.webp",
+      "fallback": "png-fallback/BRANDwork-WarriorPrincessOz-ArenaLayout.png"
+    }
+,
+    "BRANDwork-WarriorPrincessOz-EmeraldCrystals": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDwork-WarriorPrincessOz-EmeraldCrystals-64w.webp 64w, thumbnails/128/BRANDwork-WarriorPrincessOz-EmeraldCrystals-128w.webp 128w, thumbnails/256/BRANDwork-WarriorPrincessOz-EmeraldCrystals-256w.webp 256w, thumbnails/512/BRANDwork-WarriorPrincessOz-EmeraldCrystals-512w.webp 512w, webp/BRANDwork-WarriorPrincessOz-EmeraldCrystals.webp 1024w",
+        "png": "thumbnails/64/BRANDwork-WarriorPrincessOz-EmeraldCrystals-64w.png 64w, thumbnails/128/BRANDwork-WarriorPrincessOz-EmeraldCrystals-128w.png 128w, thumbnails/256/BRANDwork-WarriorPrincessOz-EmeraldCrystals-256w.png 256w, thumbnails/512/BRANDwork-WarriorPrincessOz-EmeraldCrystals-512w.png 512w, png-fallback/BRANDwork-WarriorPrincessOz-EmeraldCrystals.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDwork-WarriorPrincessOz-EmeraldCrystals-blur.webp",
+      "fallback": "png-fallback/BRANDwork-WarriorPrincessOz-EmeraldCrystals.png"
+    }
+,
+    "BRANDwork-WarriorPrincessOz-StageSet": {
+      "srcset": {
+        "webp": "thumbnails/64/BRANDwork-WarriorPrincessOz-StageSet-64w.webp 64w, thumbnails/128/BRANDwork-WarriorPrincessOz-StageSet-128w.webp 128w, thumbnails/256/BRANDwork-WarriorPrincessOz-StageSet-256w.webp 256w, thumbnails/512/BRANDwork-WarriorPrincessOz-StageSet-512w.webp 512w, webp/BRANDwork-WarriorPrincessOz-StageSet.webp 1024w",
+        "png": "thumbnails/64/BRANDwork-WarriorPrincessOz-StageSet-64w.png 64w, thumbnails/128/BRANDwork-WarriorPrincessOz-StageSet-128w.png 128w, thumbnails/256/BRANDwork-WarriorPrincessOz-StageSet-256w.png 256w, thumbnails/512/BRANDwork-WarriorPrincessOz-StageSet-512w.png 512w, png-fallback/BRANDwork-WarriorPrincessOz-StageSet.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/BRANDwork-WarriorPrincessOz-StageSet-blur.webp",
+      "fallback": "png-fallback/BRANDwork-WarriorPrincessOz-StageSet.png"
+    }
+,
+    "aether-brand-ctch-logotype": {
+      "srcset": {
+        "webp": "thumbnails/64/aether-brand-ctch-logotype-64w.webp 64w, thumbnails/128/aether-brand-ctch-logotype-128w.webp 128w, thumbnails/256/aether-brand-ctch-logotype-256w.webp 256w, thumbnails/512/aether-brand-ctch-logotype-512w.webp 512w, webp/aether-brand-ctch-logotype.webp 1024w",
+        "png": "thumbnails/64/aether-brand-ctch-logotype-64w.png 64w, thumbnails/128/aether-brand-ctch-logotype-128w.png 128w, thumbnails/256/aether-brand-ctch-logotype-256w.png 256w, thumbnails/512/aether-brand-ctch-logotype-512w.png 512w, png-fallback/aether-brand-ctch-logotype.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/aether-brand-ctch-logotype-blur.webp",
+      "fallback": "png-fallback/aether-brand-ctch-logotype.png"
+    }
+,
+    "aether-brand-logo-main": {
+      "srcset": {
+        "webp": "thumbnails/64/aether-brand-logo-main-64w.webp 64w, thumbnails/128/aether-brand-logo-main-128w.webp 128w, thumbnails/256/aether-brand-logo-main-256w.webp 256w, thumbnails/512/aether-brand-logo-main-512w.webp 512w, webp/aether-brand-logo-main.webp 1024w",
+        "png": "thumbnails/64/aether-brand-logo-main-64w.png 64w, thumbnails/128/aether-brand-logo-main-128w.png 128w, thumbnails/256/aether-brand-logo-main-256w.png 256w, thumbnails/512/aether-brand-logo-main-512w.png 512w, png-fallback/aether-brand-logo-main.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/aether-brand-logo-main-blur.webp",
+      "fallback": "png-fallback/aether-brand-logo-main.png"
+    }
+,
+    "aether-ip-maryjane-mainframe": {
+      "srcset": {
+        "webp": "thumbnails/64/aether-ip-maryjane-mainframe-64w.webp 64w, thumbnails/128/aether-ip-maryjane-mainframe-128w.webp 128w, thumbnails/256/aether-ip-maryjane-mainframe-256w.webp 256w, thumbnails/512/aether-ip-maryjane-mainframe-512w.webp 512w, webp/aether-ip-maryjane-mainframe.webp 1024w",
+        "png": "thumbnails/64/aether-ip-maryjane-mainframe-64w.png 64w, thumbnails/128/aether-ip-maryjane-mainframe-128w.png 128w, thumbnails/256/aether-ip-maryjane-mainframe-256w.png 256w, thumbnails/512/aether-ip-maryjane-mainframe-512w.png 512w, png-fallback/aether-ip-maryjane-mainframe.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/aether-ip-maryjane-mainframe-blur.webp",
+      "fallback": "png-fallback/aether-ip-maryjane-mainframe.png"
+    }
+,
+    "aether-ip-metamorphasis-apothecary": {
+      "srcset": {
+        "webp": "thumbnails/64/aether-ip-metamorphasis-apothecary-64w.webp 64w, thumbnails/128/aether-ip-metamorphasis-apothecary-128w.webp 128w, thumbnails/256/aether-ip-metamorphasis-apothecary-256w.webp 256w, thumbnails/512/aether-ip-metamorphasis-apothecary-512w.webp 512w, webp/aether-ip-metamorphasis-apothecary.webp 1024w",
+        "png": "thumbnails/64/aether-ip-metamorphasis-apothecary-64w.png 64w, thumbnails/128/aether-ip-metamorphasis-apothecary-128w.png 128w, thumbnails/256/aether-ip-metamorphasis-apothecary-256w.png 256w, thumbnails/512/aether-ip-metamorphasis-apothecary-512w.png 512w, png-fallback/aether-ip-metamorphasis-apothecary.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/aether-ip-metamorphasis-apothecary-blur.webp",
+      "fallback": "png-fallback/aether-ip-metamorphasis-apothecary.png"
+    }
+,
+    "aether-ip-tales-of-lucidia": {
+      "srcset": {
+        "webp": "thumbnails/64/aether-ip-tales-of-lucidia-64w.webp 64w, thumbnails/128/aether-ip-tales-of-lucidia-128w.webp 128w, thumbnails/256/aether-ip-tales-of-lucidia-256w.webp 256w, thumbnails/512/aether-ip-tales-of-lucidia-512w.webp 512w, webp/aether-ip-tales-of-lucidia.webp 1024w",
+        "png": "thumbnails/64/aether-ip-tales-of-lucidia-64w.png 64w, thumbnails/128/aether-ip-tales-of-lucidia-128w.png 128w, thumbnails/256/aether-ip-tales-of-lucidia-256w.png 256w, thumbnails/512/aether-ip-tales-of-lucidia-512w.png 512w, png-fallback/aether-ip-tales-of-lucidia.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/aether-ip-tales-of-lucidia-blur.webp",
+      "fallback": "png-fallback/aether-ip-tales-of-lucidia.png"
+    }
+,
+    "aether-portfolio-batb-setdesign": {
+      "srcset": {
+        "webp": "thumbnails/64/aether-portfolio-batb-setdesign-64w.webp 64w, thumbnails/128/aether-portfolio-batb-setdesign-128w.webp 128w, thumbnails/256/aether-portfolio-batb-setdesign-256w.webp 256w, thumbnails/512/aether-portfolio-batb-setdesign-512w.webp 512w, webp/aether-portfolio-batb-setdesign.webp 1024w",
+        "png": "thumbnails/64/aether-portfolio-batb-setdesign-64w.png 64w, thumbnails/128/aether-portfolio-batb-setdesign-128w.png 128w, thumbnails/256/aether-portfolio-batb-setdesign-256w.png 256w, thumbnails/512/aether-portfolio-batb-setdesign-512w.png 512w, png-fallback/aether-portfolio-batb-setdesign.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/aether-portfolio-batb-setdesign-blur.webp",
+      "fallback": "png-fallback/aether-portfolio-batb-setdesign.png"
+    }
+,
+    "aether-portfolio-candlelight-venue": {
+      "srcset": {
+        "webp": "thumbnails/64/aether-portfolio-candlelight-venue-64w.webp 64w, thumbnails/128/aether-portfolio-candlelight-venue-128w.webp 128w, thumbnails/256/aether-portfolio-candlelight-venue-256w.webp 256w, thumbnails/512/aether-portfolio-candlelight-venue-512w.webp 512w, webp/aether-portfolio-candlelight-venue.webp 1024w",
+        "png": "thumbnails/64/aether-portfolio-candlelight-venue-64w.png 64w, thumbnails/128/aether-portfolio-candlelight-venue-128w.png 128w, thumbnails/256/aether-portfolio-candlelight-venue-256w.png 256w, thumbnails/512/aether-portfolio-candlelight-venue-512w.png 512w, png-fallback/aether-portfolio-candlelight-venue.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/aether-portfolio-candlelight-venue-blur.webp",
+      "fallback": "png-fallback/aether-portfolio-candlelight-venue.png"
+    }
+,
+    "aether-portfolio-enchant-daytime": {
+      "srcset": {
+        "webp": "thumbnails/64/aether-portfolio-enchant-daytime-64w.webp 64w, thumbnails/128/aether-portfolio-enchant-daytime-128w.webp 128w, thumbnails/256/aether-portfolio-enchant-daytime-256w.webp 256w, thumbnails/512/aether-portfolio-enchant-daytime-512w.webp 512w, webp/aether-portfolio-enchant-daytime.webp 1024w",
+        "png": "thumbnails/64/aether-portfolio-enchant-daytime-64w.png 64w, thumbnails/128/aether-portfolio-enchant-daytime-128w.png 128w, thumbnails/256/aether-portfolio-enchant-daytime-256w.png 256w, thumbnails/512/aether-portfolio-enchant-daytime-512w.png 512w, png-fallback/aether-portfolio-enchant-daytime.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/aether-portfolio-enchant-daytime-blur.webp",
+      "fallback": "png-fallback/aether-portfolio-enchant-daytime.png"
+    }
+,
+    "aether-portfolio-enchant-lights-01": {
+      "srcset": {
+        "webp": "thumbnails/64/aether-portfolio-enchant-lights-01-64w.webp 64w, thumbnails/128/aether-portfolio-enchant-lights-01-128w.webp 128w, thumbnails/256/aether-portfolio-enchant-lights-01-256w.webp 256w, thumbnails/512/aether-portfolio-enchant-lights-01-512w.webp 512w, webp/aether-portfolio-enchant-lights-01.webp 1024w",
+        "png": "thumbnails/64/aether-portfolio-enchant-lights-01-64w.png 64w, thumbnails/128/aether-portfolio-enchant-lights-01-128w.png 128w, thumbnails/256/aether-portfolio-enchant-lights-01-256w.png 256w, thumbnails/512/aether-portfolio-enchant-lights-01-512w.png 512w, png-fallback/aether-portfolio-enchant-lights-01.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/aether-portfolio-enchant-lights-01-blur.webp",
+      "fallback": "png-fallback/aether-portfolio-enchant-lights-01.png"
+    }
+,
+    "aether-portfolio-enchant-lights-02": {
+      "srcset": {
+        "webp": "thumbnails/64/aether-portfolio-enchant-lights-02-64w.webp 64w, thumbnails/128/aether-portfolio-enchant-lights-02-128w.webp 128w, thumbnails/256/aether-portfolio-enchant-lights-02-256w.webp 256w, thumbnails/512/aether-portfolio-enchant-lights-02-512w.webp 512w, webp/aether-portfolio-enchant-lights-02.webp 1024w",
+        "png": "thumbnails/64/aether-portfolio-enchant-lights-02-64w.png 64w, thumbnails/128/aether-portfolio-enchant-lights-02-128w.png 128w, thumbnails/256/aether-portfolio-enchant-lights-02-256w.png 256w, thumbnails/512/aether-portfolio-enchant-lights-02-512w.png 512w, png-fallback/aether-portfolio-enchant-lights-02.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/aether-portfolio-enchant-lights-02-blur.webp",
+      "fallback": "png-fallback/aether-portfolio-enchant-lights-02.png"
+    }
+,
+    "aether-portfolio-enchant-retail": {
+      "srcset": {
+        "webp": "thumbnails/64/aether-portfolio-enchant-retail-64w.webp 64w, thumbnails/128/aether-portfolio-enchant-retail-128w.webp 128w, thumbnails/256/aether-portfolio-enchant-retail-256w.webp 256w, thumbnails/512/aether-portfolio-enchant-retail-512w.webp 512w, webp/aether-portfolio-enchant-retail.webp 1024w",
+        "png": "thumbnails/64/aether-portfolio-enchant-retail-64w.png 64w, thumbnails/128/aether-portfolio-enchant-retail-128w.png 128w, thumbnails/256/aether-portfolio-enchant-retail-256w.png 256w, thumbnails/512/aether-portfolio-enchant-retail-512w.png 512w, png-fallback/aether-portfolio-enchant-retail.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/aether-portfolio-enchant-retail-blur.webp",
+      "fallback": "png-fallback/aether-portfolio-enchant-retail.png"
+    }
+,
+    "aether-portfolio-killmove-01": {
+      "srcset": {
+        "webp": "thumbnails/64/aether-portfolio-killmove-01-64w.webp 64w, thumbnails/128/aether-portfolio-killmove-01-128w.webp 128w, thumbnails/256/aether-portfolio-killmove-01-256w.webp 256w, thumbnails/512/aether-portfolio-killmove-01-512w.webp 512w, webp/aether-portfolio-killmove-01.webp 1024w",
+        "png": "thumbnails/64/aether-portfolio-killmove-01-64w.png 64w, thumbnails/128/aether-portfolio-killmove-01-128w.png 128w, thumbnails/256/aether-portfolio-killmove-01-256w.png 256w, thumbnails/512/aether-portfolio-killmove-01-512w.png 512w, png-fallback/aether-portfolio-killmove-01.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/aether-portfolio-killmove-01-blur.webp",
+      "fallback": "png-fallback/aether-portfolio-killmove-01.png"
+    }
+,
+    "aether-portfolio-killmove-02": {
+      "srcset": {
+        "webp": "thumbnails/64/aether-portfolio-killmove-02-64w.webp 64w, thumbnails/128/aether-portfolio-killmove-02-128w.webp 128w, thumbnails/256/aether-portfolio-killmove-02-256w.webp 256w, thumbnails/512/aether-portfolio-killmove-02-512w.webp 512w, webp/aether-portfolio-killmove-02.webp 1024w",
+        "png": "thumbnails/64/aether-portfolio-killmove-02-64w.png 64w, thumbnails/128/aether-portfolio-killmove-02-128w.png 128w, thumbnails/256/aether-portfolio-killmove-02-256w.png 256w, thumbnails/512/aether-portfolio-killmove-02-512w.png 512w, png-fallback/aether-portfolio-killmove-02.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/aether-portfolio-killmove-02-blur.webp",
+      "fallback": "png-fallback/aether-portfolio-killmove-02.png"
+    }
+,
+    "aether-team-cofounder-shaxinwei": {
+      "srcset": {
+        "webp": "thumbnails/64/aether-team-cofounder-shaxinwei-64w.webp 64w, thumbnails/128/aether-team-cofounder-shaxinwei-128w.webp 128w, thumbnails/256/aether-team-cofounder-shaxinwei-256w.webp 256w, thumbnails/512/aether-team-cofounder-shaxinwei-512w.webp 512w, webp/aether-team-cofounder-shaxinwei.webp 1024w",
+        "png": "thumbnails/64/aether-team-cofounder-shaxinwei-64w.png 64w, thumbnails/128/aether-team-cofounder-shaxinwei-128w.png 128w, thumbnails/256/aether-team-cofounder-shaxinwei-256w.png 256w, thumbnails/512/aether-team-cofounder-shaxinwei-512w.png 512w, png-fallback/aether-team-cofounder-shaxinwei.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/aether-team-cofounder-shaxinwei-blur.webp",
+      "fallback": "png-fallback/aether-team-cofounder-shaxinwei.png"
+    }
+,
+    "aether-team-cofounder-vangelis": {
+      "srcset": {
+        "webp": "thumbnails/64/aether-team-cofounder-vangelis-64w.webp 64w, thumbnails/128/aether-team-cofounder-vangelis-128w.webp 128w, thumbnails/256/aether-team-cofounder-vangelis-256w.webp 256w, thumbnails/512/aether-team-cofounder-vangelis-512w.webp 512w, webp/aether-team-cofounder-vangelis.webp 1024w",
+        "png": "thumbnails/64/aether-team-cofounder-vangelis-64w.png 64w, thumbnails/128/aether-team-cofounder-vangelis-128w.png 128w, thumbnails/256/aether-team-cofounder-vangelis-256w.png 256w, thumbnails/512/aether-team-cofounder-vangelis-512w.png 512w, png-fallback/aether-team-cofounder-vangelis.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/aether-team-cofounder-vangelis-blur.webp",
+      "fallback": "png-fallback/aether-team-cofounder-vangelis.png"
+    }
+,
+    "aether-team-founder-ctch": {
+      "srcset": {
+        "webp": "thumbnails/64/aether-team-founder-ctch-64w.webp 64w, thumbnails/128/aether-team-founder-ctch-128w.webp 128w, thumbnails/256/aether-team-founder-ctch-256w.webp 256w, thumbnails/512/aether-team-founder-ctch-512w.webp 512w, webp/aether-team-founder-ctch.webp 1024w",
+        "png": "thumbnails/64/aether-team-founder-ctch-64w.png 64w, thumbnails/128/aether-team-founder-ctch-128w.png 128w, thumbnails/256/aether-team-founder-ctch-256w.png 256w, thumbnails/512/aether-team-founder-ctch-512w.png 512w, png-fallback/aether-team-founder-ctch.png 1024w"
+      },
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "lqip": "lqip/aether-team-founder-ctch-blur.webp",
+      "fallback": "png-fallback/aether-team-founder-ctch.png"
+    }
+  }
+}

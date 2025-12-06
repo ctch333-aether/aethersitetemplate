@@ -4182,6 +4182,88 @@
             background: rgba(26, 26, 46, 0.95);
             border-color: rgba(102, 126, 234, 0.3);
         }
+
+        /* ===== AETHER ASSET GALLERY STYLES ===== */
+        .aether-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border-radius: 12px;
+            border: 1px solid rgba(102, 126, 234, 0.15);
+        }
+
+        .aether-gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        .aether-gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+        }
+
+        .aether-gallery-item picture {
+            display: block;
+            width: 100%;
+        }
+
+        .aether-gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .aether-gallery-item:hover img {
+            transform: scale(1.03);
+        }
+
+        .aether-gallery-caption {
+            padding: 12px 15px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 255, 0.98) 100%);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            text-align: center;
+            border-top: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .aether-gallery-3col {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .aether-gallery-2col {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 768px) {
+            .aether-gallery {
+                grid-template-columns: 1fr;
+            }
+            .aether-gallery-3col,
+            .aether-gallery-2col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .gallery-section-title {
+            font-family: var(--font-display);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -4686,6 +4768,59 @@
             
             <p>This combination addresses the fundamental challenge facing experiential technology: most platforms are built by either business operators who lack deep technical expertise, or by researchers who lack commercial experience, or by technologists who lack rigorous validation. AETHER uniquely integrates all three dimensions, ensuring that our platform delivers proven business results, stands on solid theoretical foundations, and meets the highest standards of evidence-based validation.</p>
 
+            <!-- AETHER Technology Portfolio Gallery -->
+            <div class="gallery-section-title">Projection Mapping & Technology Showcase</div>
+            <div class="aether-gallery aether-gallery-3col">
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/BRANDwork-ProjectionMapping-CircuitNeuron.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/BRANDwork-ProjectionMapping-CircuitNeuron.webp">
+                        <img src="aether-website-assets/png-fallback/BRANDwork-ProjectionMapping-CircuitNeuron.png" alt="Circuit Neuron Projection Mapping" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Circuit Neuron Mapping</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/BRANDwork-ProjectionMapping-CosmicEye.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/BRANDwork-ProjectionMapping-CosmicEye.webp">
+                        <img src="aether-website-assets/png-fallback/BRANDwork-ProjectionMapping-CosmicEye.png" alt="Cosmic Eye Projection" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Cosmic Eye Projection</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/BRANDwork-ProjectionMapping-GridMatrix.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/BRANDwork-ProjectionMapping-GridMatrix.webp">
+                        <img src="aether-website-assets/png-fallback/BRANDwork-ProjectionMapping-GridMatrix.png" alt="Grid Matrix Technology" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Grid Matrix Technology</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/BRANDwork-ProjectionMapping-OceanForge.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/BRANDwork-ProjectionMapping-OceanForge.webp">
+                        <img src="aether-website-assets/png-fallback/BRANDwork-ProjectionMapping-OceanForge.png" alt="Ocean Forge Immersive" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Ocean Forge Immersive</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/BRANDwork-ProjectionMapping-SciFi.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/BRANDwork-ProjectionMapping-SciFi.webp">
+                        <img src="aether-website-assets/png-fallback/BRANDwork-ProjectionMapping-SciFi.png" alt="Sci-Fi Environment" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Sci-Fi Environment</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/BRANDwork-ProjectionMapping-Vintage.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/BRANDwork-ProjectionMapping-Vintage.webp">
+                        <img src="aether-website-assets/png-fallback/BRANDwork-ProjectionMapping-Vintage.png" alt="Vintage Aesthetic" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Vintage Aesthetic</div>
+                </div>
+            </div>
+
             <div class="section-divider"></div>
             <h2>Strategic Advisors: Industry Wisdom & Network Access</h2>
 
@@ -4933,6 +5068,112 @@
             <p>My rolodex includes exceptional talent from artistic, technical, and operational fields. Notable creatives committed to the project have worked with icons like Janet Jackson and Van Halen, as well as industry leaders such as Apple, Stanford, Disney and Universal Parks, and prestigious international opera houses.</p>
 
             <p style="font-style: italic; text-align: right; margin-top: 20px;">Sincerely, Christían Charles-Harris</p>
+
+            <!-- Enchant Christmas Portfolio Gallery -->
+            <div class="gallery-section-title">Enchant Christmas — Immersive Holiday Experience</div>
+            <div class="aether-gallery aether-gallery-3col">
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/aether-portfolio-enchant-lights-01.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/aether-portfolio-enchant-lights-01.webp">
+                        <img src="aether-website-assets/png-fallback/aether-portfolio-enchant-lights-01.png" alt="Enchant Christmas Light Installation" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Light Installation Design</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/aether-portfolio-enchant-lights-02.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/aether-portfolio-enchant-lights-02.webp">
+                        <img src="aether-website-assets/png-fallback/aether-portfolio-enchant-lights-02.png" alt="Enchant Light Pathway" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Immersive Light Pathway</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/aether-portfolio-enchant-daytime.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/aether-portfolio-enchant-daytime.webp">
+                        <img src="aether-website-assets/png-fallback/aether-portfolio-enchant-daytime.png" alt="Enchant Daytime Installation" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Daytime Experience</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/aether-portfolio-enchant-retail.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/aether-portfolio-enchant-retail.webp">
+                        <img src="aether-website-assets/png-fallback/aether-portfolio-enchant-retail.png" alt="Enchant Retail Experience" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Retail Integration</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/BRANDwork-EnchantSite-Collage2.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/BRANDwork-EnchantSite-Collage2.webp">
+                        <img src="aether-website-assets/png-fallback/BRANDwork-EnchantSite-Collage2.png" alt="Enchant Experience Collage" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Experience Moments</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/BRANDwork-EnchantSite-Collage4.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/BRANDwork-EnchantSite-Collage4.webp">
+                        <img src="aether-website-assets/png-fallback/BRANDwork-EnchantSite-Collage4.png" alt="Enchant Design Elements" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Design Elements</div>
+                </div>
+            </div>
+
+            <!-- Theatrical Production Gallery -->
+            <div class="gallery-section-title">Theatrical Production & Stage Design</div>
+            <div class="aether-gallery aether-gallery-3col">
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/aether-portfolio-batb-setdesign.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/aether-portfolio-batb-setdesign.webp">
+                        <img src="aether-website-assets/png-fallback/aether-portfolio-batb-setdesign.png" alt="Beauty and the Beast Set Design" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Beauty & The Beast — Set Design</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/aether-portfolio-killmove-01.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/aether-portfolio-killmove-01.webp">
+                        <img src="aether-website-assets/png-fallback/aether-portfolio-killmove-01.png" alt="Kill Move Paradise Production" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Kill Move Paradise — Production</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/aether-portfolio-killmove-02.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/aether-portfolio-killmove-02.webp">
+                        <img src="aether-website-assets/png-fallback/aether-portfolio-killmove-02.png" alt="Kill Move Paradise Media Design" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Kill Move Paradise — Media Design</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/BRANDwork-StageProduction-GhostProjection.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/BRANDwork-StageProduction-GhostProjection.webp">
+                        <img src="aether-website-assets/png-fallback/BRANDwork-StageProduction-GhostProjection.png" alt="Ghost Projection Effect" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Ghost Projection Effect</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/BRANDwork-StageProduction-PrisonScene.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/BRANDwork-StageProduction-PrisonScene.webp">
+                        <img src="aether-website-assets/png-fallback/BRANDwork-StageProduction-PrisonScene.png" alt="Prison Scene Design" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Spider Woman — Prison Scene</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/aether-portfolio-candlelight-venue.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/aether-portfolio-candlelight-venue.webp">
+                        <img src="aether-website-assets/png-fallback/aether-portfolio-candlelight-venue.png" alt="Candlelight Concert Venue" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Candlelight Concert Venue</div>
+                </div>
+            </div>
 
             <div class="section-divider"></div>
             <h2>Memory, Alchemy, and the Cult of Conformity</h2>
@@ -5972,6 +6213,88 @@
 
             <div class="takeaway-box">
                 <p><strong>Transmedia Development Strategy:</strong> Literary development through agents including Ed Wood at The Blair Partnership positions Tales of Lucidia for publication through major houses. Streaming development through partnerships with Warner Bros and Legendary Entertainment enables animated or live-action series. Immersive installation development through AETHER's phygital platform creates location-based experiences where guests interact directly with story world. Interactive digital development through game partnerships enables persistent narrative progression across platforms. Each format is designed to stand alone while rewarding engagement across multiple media, creating network effects where deeper investment in franchise increases lifetime value per fan.</p>
+            </div>
+
+            <!-- Tales of Lucidia IP Gallery -->
+            <div class="gallery-section-title">Tales of Lucidia — Warrior Princess IP</div>
+            <div class="aether-gallery aether-gallery-3col">
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/aether-ip-tales-of-lucidia.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/aether-ip-tales-of-lucidia.webp">
+                        <img src="aether-website-assets/png-fallback/aether-ip-tales-of-lucidia.png" alt="Tales of Lucidia Key Art" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Tales of Lucidia — Key Art</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/BRANDAsset-WarriorPrincess-CharacterConcept.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/BRANDAsset-WarriorPrincess-CharacterConcept.webp">
+                        <img src="aether-website-assets/png-fallback/BRANDAsset-WarriorPrincess-CharacterConcept.png" alt="Warrior Princess Character Concept" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Warrior Princess Concept</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/BRANDAsset-WarriorPrincess-Render51.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/BRANDAsset-WarriorPrincess-Render51.webp">
+                        <img src="aether-website-assets/png-fallback/BRANDAsset-WarriorPrincess-Render51.png" alt="Warrior Princess Render" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Warrior Princess Render</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/aether-ip-maryjane-mainframe.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/aether-ip-maryjane-mainframe.webp">
+                        <img src="aether-website-assets/png-fallback/aether-ip-maryjane-mainframe.png" alt="MaryJane Mainframe" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">MaryJane Mainframe</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/aether-ip-metamorphasis-apothecary.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/aether-ip-metamorphasis-apothecary.webp">
+                        <img src="aether-website-assets/png-fallback/aether-ip-metamorphasis-apothecary.png" alt="Metamorphasis Apothecary" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Metamorphasis Apothecary</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/BRANDwork-WarriorPrincessOz-EmeraldCrystals.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/BRANDwork-WarriorPrincessOz-EmeraldCrystals.webp">
+                        <img src="aether-website-assets/png-fallback/BRANDwork-WarriorPrincessOz-EmeraldCrystals.png" alt="Emerald Crystals Environment" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Emerald Crystals Environment</div>
+                </div>
+            </div>
+
+            <!-- Phygital IP Brands Gallery -->
+            <div class="gallery-section-title">Phygital IP — Brand Extensions</div>
+            <div class="aether-gallery aether-gallery-3col">
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/BRANDAsset-PhygitalIP-BroussardBayouBBQ.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/BRANDAsset-PhygitalIP-BroussardBayouBBQ.webp">
+                        <img src="aether-website-assets/png-fallback/BRANDAsset-PhygitalIP-BroussardBayouBBQ.png" alt="Broussard Bayou BBQ" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Broussard Bayou BBQ</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/BRANDAsset-PhygitalIP-Port51Confectionarium.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/BRANDAsset-PhygitalIP-Port51Confectionarium.webp">
+                        <img src="aether-website-assets/png-fallback/BRANDAsset-PhygitalIP-Port51Confectionarium.png" alt="Port 51 Confectionarium" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Port 51 Confectionarium</div>
+                </div>
+                <div class="aether-gallery-item">
+                    <picture>
+                        <source type="image/avif" srcset="aether-website-assets/avif/BRANDwork-WarriorPrincessOz-ArenaLayout.avif">
+                        <source type="image/webp" srcset="aether-website-assets/webp/BRANDwork-WarriorPrincessOz-ArenaLayout.webp">
+                        <img src="aether-website-assets/png-fallback/BRANDwork-WarriorPrincessOz-ArenaLayout.png" alt="Arena Layout Design" loading="lazy">
+                    </picture>
+                    <div class="aether-gallery-caption">Arena Experience Layout</div>
+                </div>
             </div>
 
             <div class="section-divider"></div>

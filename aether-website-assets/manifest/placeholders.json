@@ -1,0 +1,236 @@
+{
+  "BRANDAsset-PhygitalIP-BroussardBayouBBQ": {
+    "width": 1200,
+    "height": 675,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/BRANDAsset-PhygitalIP-BroussardBayouBBQ-blur.webp"
+  },
+  "BRANDAsset-PhygitalIP-Port51Confectionarium": {
+    "width": 1200,
+    "height": 675,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/BRANDAsset-PhygitalIP-Port51Confectionarium-blur.webp"
+  },
+  "BRANDAsset-Typography3D-AlchemicalArtisans": {
+    "width": 1200,
+    "height": 675,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/BRANDAsset-Typography3D-AlchemicalArtisans-blur.webp"
+  },
+  "BRANDAsset-Typography3D-ShaXinWei": {
+    "width": 1200,
+    "height": 675,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/BRANDAsset-Typography3D-ShaXinWei-blur.webp"
+  },
+  "BRANDAsset-Typography3D-VangelisLympouridis": {
+    "width": 1200,
+    "height": 675,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/BRANDAsset-Typography3D-VangelisLympouridis-blur.webp"
+  },
+  "BRANDAsset-WarriorPrincess-CharacterConcept": {
+    "width": 1200,
+    "height": 675,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/BRANDAsset-WarriorPrincess-CharacterConcept-blur.webp"
+  },
+  "BRANDAsset-WarriorPrincess-Render51": {
+    "width": 1200,
+    "height": 1600,
+    "aspectRatio": 0.75,
+    "lqip": "lqip/BRANDAsset-WarriorPrincess-Render51-blur.webp"
+  },
+  "BRANDwork-EnchantSite-Collage2": {
+    "width": 1200,
+    "height": 675,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/BRANDwork-EnchantSite-Collage2-blur.webp"
+  },
+  "BRANDwork-EnchantSite-Collage4": {
+    "width": 1200,
+    "height": 675,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/BRANDwork-EnchantSite-Collage4-blur.webp"
+  },
+  "BRANDwork-EnchantSite-Collage6": {
+    "width": 1200,
+    "height": 675,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/BRANDwork-EnchantSite-Collage6-blur.webp"
+  },
+  "BRANDwork-EnchantSite-Collage7": {
+    "width": 1200,
+    "height": 675,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/BRANDwork-EnchantSite-Collage7-blur.webp"
+  },
+  "BRANDwork-EnchantSite-Collage8": {
+    "width": 1200,
+    "height": 675,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/BRANDwork-EnchantSite-Collage8-blur.webp"
+  },
+  "BRANDwork-ProjectionMapping-CircuitNeuron": {
+    "width": 1200,
+    "height": 553,
+    "aspectRatio": 2.17,
+    "lqip": "lqip/BRANDwork-ProjectionMapping-CircuitNeuron-blur.webp"
+  },
+  "BRANDwork-ProjectionMapping-CosmicEye": {
+    "width": 1200,
+    "height": 553,
+    "aspectRatio": 2.17,
+    "lqip": "lqip/BRANDwork-ProjectionMapping-CosmicEye-blur.webp"
+  },
+  "BRANDwork-ProjectionMapping-GridMatrix": {
+    "width": 1200,
+    "height": 553,
+    "aspectRatio": 2.17,
+    "lqip": "lqip/BRANDwork-ProjectionMapping-GridMatrix-blur.webp"
+  },
+  "BRANDwork-ProjectionMapping-OceanForge": {
+    "width": 1200,
+    "height": 553,
+    "aspectRatio": 2.17,
+    "lqip": "lqip/BRANDwork-ProjectionMapping-OceanForge-blur.webp"
+  },
+  "BRANDwork-ProjectionMapping-SciFi": {
+    "width": 1200,
+    "height": 553,
+    "aspectRatio": 2.17,
+    "lqip": "lqip/BRANDwork-ProjectionMapping-SciFi-blur.webp"
+  },
+  "BRANDwork-ProjectionMapping-Vintage": {
+    "width": 1200,
+    "height": 553,
+    "aspectRatio": 2.17,
+    "lqip": "lqip/BRANDwork-ProjectionMapping-Vintage-blur.webp"
+  },
+  "BRANDwork-StageProduction-GhostProjection": {
+    "width": 1200,
+    "height": 609,
+    "aspectRatio": 1.97,
+    "lqip": "lqip/BRANDwork-StageProduction-GhostProjection-blur.webp"
+  },
+  "BRANDwork-StageProduction-PrisonScene": {
+    "width": 1200,
+    "height": 651,
+    "aspectRatio": 1.843,
+    "lqip": "lqip/BRANDwork-StageProduction-PrisonScene-blur.webp"
+  },
+  "BRANDwork-WarriorPrincessOz-ArenaLayout": {
+    "width": 1024,
+    "height": 484,
+    "aspectRatio": 2.116,
+    "lqip": "lqip/BRANDwork-WarriorPrincessOz-ArenaLayout-blur.webp"
+  },
+  "BRANDwork-WarriorPrincessOz-EmeraldCrystals": {
+    "width": 1200,
+    "height": 675,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/BRANDwork-WarriorPrincessOz-EmeraldCrystals-blur.webp"
+  },
+  "BRANDwork-WarriorPrincessOz-StageSet": {
+    "width": 1200,
+    "height": 675,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/BRANDwork-WarriorPrincessOz-StageSet-blur.webp"
+  },
+  "aether-brand-ctch-logotype": {
+    "width": 2000,
+    "height": 1125,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/aether-brand-ctch-logotype-blur.webp"
+  },
+  "aether-brand-logo-main": {
+    "width": 2000,
+    "height": 1125,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/aether-brand-logo-main-blur.webp"
+  },
+  "aether-ip-maryjane-mainframe": {
+    "width": 2000,
+    "height": 1125,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/aether-ip-maryjane-mainframe-blur.webp"
+  },
+  "aether-ip-metamorphasis-apothecary": {
+    "width": 2000,
+    "height": 1125,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/aether-ip-metamorphasis-apothecary-blur.webp"
+  },
+  "aether-ip-tales-of-lucidia": {
+    "width": 2000,
+    "height": 1125,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/aether-ip-tales-of-lucidia-blur.webp"
+  },
+  "aether-portfolio-batb-setdesign": {
+    "width": 2000,
+    "height": 666,
+    "aspectRatio": 3.003,
+    "lqip": "lqip/aether-portfolio-batb-setdesign-blur.webp"
+  },
+  "aether-portfolio-candlelight-venue": {
+    "width": 2000,
+    "height": 1125,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/aether-portfolio-candlelight-venue-blur.webp"
+  },
+  "aether-portfolio-enchant-daytime": {
+    "width": 2000,
+    "height": 1125,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/aether-portfolio-enchant-daytime-blur.webp"
+  },
+  "aether-portfolio-enchant-lights-01": {
+    "width": 2000,
+    "height": 1125,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/aether-portfolio-enchant-lights-01-blur.webp"
+  },
+  "aether-portfolio-enchant-lights-02": {
+    "width": 2000,
+    "height": 1125,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/aether-portfolio-enchant-lights-02-blur.webp"
+  },
+  "aether-portfolio-enchant-retail": {
+    "width": 2000,
+    "height": 1125,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/aether-portfolio-enchant-retail-blur.webp"
+  },
+  "aether-portfolio-killmove-01": {
+    "width": 2000,
+    "height": 1125,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/aether-portfolio-killmove-01-blur.webp"
+  },
+  "aether-portfolio-killmove-02": {
+    "width": 2000,
+    "height": 1125,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/aether-portfolio-killmove-02-blur.webp"
+  },
+  "aether-team-cofounder-shaxinwei": {
+    "width": 2000,
+    "height": 1125,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/aether-team-cofounder-shaxinwei-blur.webp"
+  },
+  "aether-team-cofounder-vangelis": {
+    "width": 2000,
+    "height": 1125,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/aether-team-cofounder-vangelis-blur.webp"
+  },
+  "aether-team-founder-ctch": {
+    "width": 2000,
+    "height": 1125,
+    "aspectRatio": 1.778,
+    "lqip": "lqip/aether-team-founder-ctch-blur.webp"
+  }
+}

@@ -1,0 +1,187 @@
+<!--
+  AETHER Assets - Preload Hints v2.0.0
+  Copy these link tags to your <head> section for optimal loading performance
+  Generated: 2025-12-06
+-->
+
+<!-- ============================================
+     CRITICAL ASSETS - Above the Fold
+     Add these to your <head> immediately after charset/viewport
+     ============================================ -->
+
+<!-- Main Logo - Usually in header -->
+<link rel="preload" 
+      href="/assets/webp/aether-brand-logo-main.webp" 
+      as="image" 
+      type="image/webp"
+      fetchpriority="high">
+
+<!-- Hero Image - First visible large image -->
+<link rel="preload" 
+      href="/assets/webp/aether-portfolio-enchant-lights-01.webp" 
+      as="image" 
+      type="image/webp"
+      fetchpriority="high">
+
+<!-- ============================================
+     RESPONSIVE PRELOADING with Media Queries
+     Use these for responsive hero images
+     ============================================ -->
+
+<!-- Mobile-first responsive preload -->
+<link rel="preload" 
+      href="/assets/thumbnails/512/aether-portfolio-enchant-lights-01-512w.webp" 
+      as="image" 
+      type="image/webp"
+      media="(max-width: 640px)">
+
+<link rel="preload" 
+      href="/assets/webp/aether-portfolio-enchant-lights-01.webp" 
+      as="image" 
+      type="image/webp"
+      media="(min-width: 641px)">
+
+<!-- ============================================
+     PREFETCH - Below the Fold / Next Page
+     Lower priority, loads when idle
+     ============================================ -->
+
+<!-- Team photos - likely visible on scroll -->
+<link rel="prefetch" href="/assets/webp/aether-team-founder-ctch.webp" as="image">
+<link rel="prefetch" href="/assets/webp/aether-team-cofounder-shaxinwei.webp" as="image">
+<link rel="prefetch" href="/assets/webp/aether-team-cofounder-vangelis.webp" as="image">
+
+<!-- Portfolio items -->
+<link rel="prefetch" href="/assets/webp/aether-portfolio-enchant-lights-02.webp" as="image">
+<link rel="prefetch" href="/assets/webp/aether-portfolio-batb-setdesign.webp" as="image">
+
+<!-- IP showcase logos -->
+<link rel="prefetch" href="/assets/webp/aether-ip-tales-of-lucidia.webp" as="image">
+
+<!-- ============================================
+     DNS PREFETCH / PRECONNECT
+     For external resources (CDN, analytics, etc)
+     ============================================ -->
+
+<!-- If using a CDN for assets -->
+<!-- <link rel="preconnect" href="https://cdn.aether.example.com" crossorigin> -->
+<!-- <link rel="dns-prefetch" href="https://cdn.aether.example.com"> -->
+
+<!-- ============================================
+     MODULEPRELOAD - JavaScript
+     ============================================ -->
+
+<link rel="modulepreload" href="/assets/aether-assets.js">
+
+<!-- ============================================
+     STYLESHEET PRELOAD
+     ============================================ -->
+
+<link rel="preload" href="/assets/aether-assets.css" as="style">
+
+<!-- ============================================
+     INLINE CRITICAL CSS
+     Embed this in your <head> for instant styling
+     ============================================ -->
+
+<style>
+/* Critical above-the-fold styles */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+img[loading="lazy"].loaded,
+img.loaded {
+  opacity: 1;
+}
+.skeleton {
+  background: linear-gradient(90deg, #c0c0c0 25%, #fff 50%, #c0c0c0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+</style>
+
+<!-- ============================================
+     USAGE EXAMPLES
+     ============================================ -->
+
+<!--
+EXAMPLE 1: Basic preload with WebP fallback
+
+<head>
+  <link rel="preload" 
+        href="/assets/webp/aether-brand-logo-main.webp" 
+        as="image" 
+        type="image/webp"
+        imagesrcset="/assets/thumbnails/256/aether-brand-logo-main-256w.webp 256w,
+                     /assets/thumbnails/512/aether-brand-logo-main-512w.webp 512w,
+                     /assets/webp/aether-brand-logo-main.webp 1024w"
+        imagesizes="(max-width: 640px) 256px, 512px">
+</head>
+
+
+EXAMPLE 2: Conditional preload based on connection speed
+
+<script>
+if (navigator.connection) {
+  const connection = navigator.connection;
+  if (connection.effectiveType === '4g' && !connection.saveData) {
+    // Preload high-res images
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = '/assets/webp/aether-portfolio-enchant-lights-02.webp';
+    document.head.appendChild(link);
+  }
+}
+</script>
+
+
+EXAMPLE 3: Preload with fetchpriority
+
+<link rel="preload" 
+      href="/assets/webp/aether-brand-logo-main.webp" 
+      as="image" 
+      type="image/webp"
+      fetchpriority="high">
+
+<link rel="preload" 
+      href="/assets/webp/aether-portfolio-enchant-lights-01.webp" 
+      as="image" 
+      type="image/webp"
+      fetchpriority="low">
+-->
+
+<!-- ============================================
+     FULL INITIALIZATION SCRIPT
+     Add to bottom of <body>
+     ============================================ -->
+
+<script type="module">
+import AetherAssets from '/assets/aether-assets.js';
+
+// Initialize with configuration
+AetherAssets.init({
+  debug: false,
+  enableMetrics: true,
+  rootMargin: '100px 0px' // Start loading 100px before viewport
+});
+
+// Preload critical images programmatically
+AetherAssets.preloadImages([
+  'aether-brand-logo-main',
+  'aether-portfolio-enchant-lights-01'
+]);
+
+// Load manifest and register assets
+fetch('/assets/manifest/aether-website-assets-manifest.json')
+  .then(r => r.json())
+  .then(manifest => {
+    AetherAssets.registerAssets(manifest);
+    console.log('Assets registered:', manifest.totalAssets);
+  });
+</script>

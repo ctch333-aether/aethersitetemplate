@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AETHER Website Assets - Integration Guide</title>
+  <style>
+    :root {
+      --win95-bg: #008080;
+      --win95-window: #c0c0c0;
+      --win95-border-light: #ffffff;
+      --win95-border-dark: #808080;
+      --win95-title: #000080;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'MS Sans Serif', 'Segoe UI', Tahoma, sans-serif; background: var(--win95-bg); padding: 20px; color: #000; }
+    .window { background: var(--win95-window); border: 2px solid; border-color: var(--win95-border-light) var(--win95-border-dark) var(--win95-border-dark) var(--win95-border-light); margin-bottom: 20px; }
+    .title-bar { background: linear-gradient(90deg, var(--win95-title), #1084d0); color: white; padding: 4px 8px; font-weight: bold; display: flex; justify-content: space-between; }
+    .content { padding: 16px; }
+    h2 { border-bottom: 1px solid var(--win95-border-dark); padding-bottom: 8px; margin-bottom: 16px; }
+    h3 { margin: 16px 0 8px; }
+    pre { background: #fff; border: 1px inset var(--win95-border-dark); padding: 12px; overflow-x: auto; font-size: 12px; margin: 8px 0; }
+    code { font-family: 'Courier New', monospace; }
+    .asset-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin: 16px 0; }
+    .asset-card { background: #fff; border: 1px solid var(--win95-border-dark); padding: 8px; text-align: center; }
+    .asset-card img { max-width: 100%; height: auto; border: 1px solid #ccc; }
+    .asset-card p { font-size: 11px; margin-top: 8px; word-break: break-all; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    th, td { border: 1px solid var(--win95-border-dark); padding: 8px; text-align: left; font-size: 12px; }
+    th { background: var(--win95-window); }
+    .note { background: #ffffcc; border: 1px solid #999; padding: 12px; margin: 16px 0; }
+  </style>
+</head>
+<body>
+
+<div class="window">
+  <div class="title-bar">
+    <span>📁 AETHER Website Assets v2.0.0 - Integration Guide</span>
+    <span>❌</span>
+  </div>
+  <div class="content">
+    <h2>Overview</h2>
+    <p>This comprehensive package contains all AETHER brand assets optimized for web deployment with local embedding. Total assets: <strong>256 files</strong> across WebP, PNG fallback, and responsive thumbnail formats.</p>
+    
+    <div class="note">
+      <strong>⚠️ Directory Structure:</strong><br>
+      <code>/assets/webp/</code> - Primary WebP images (39 files)<br>
+      <code>/assets/png-fallback/</code> - PNG fallbacks for older browsers (39 files)<br>
+      <code>/assets/webp-medium/</code> - 800px width medium resolution (23 files)<br>
+      <code>/assets/thumbnails/64|128|256|512/</code> - Responsive srcset thumbnails<br>
+      <code>/assets/thumbnails/</code> - Brand asset thumbs (_thumb.webp)<br>
+      <code>/assets/manifest/</code> - JSON manifest and integration docs
+    </div>
+  </div>
+</div>
+
+<div class="window">
+  <div class="title-bar">
+    <span>🖼️ Brand Assets</span>
+  </div>
+  <div class="content">
+    <h3>Main Logo</h3>
+    <pre><code>&lt;picture&gt;
+  &lt;source 
+    srcset="assets/thumbnails/64/aether-brand-logo-main-64w.webp 64w,
+            assets/thumbnails/128/aether-brand-logo-main-128w.webp 128w,
+            assets/thumbnails/256/aether-brand-logo-main-256w.webp 256w,
+            assets/thumbnails/512/aether-brand-logo-main-512w.webp 512w,
+            assets/webp/aether-brand-logo-main.webp 1024w"
+    sizes="(max-width: 768px) 256px, 512px"
+    type="image/webp"&gt;
+  &lt;img src="assets/png-fallback/aether-brand-logo-main.png" 
+       alt="AETHER Logo - Crystalline wolf emblem"
+       loading="lazy"
+       decoding="async"&gt;
+&lt;/picture&gt;</code></pre>
+
+    <h3>CTCH Logotype</h3>
+    <pre><code>&lt;picture&gt;
+  &lt;source srcset="assets/webp/aether-brand-ctch-logotype.webp" type="image/webp"&gt;
+  &lt;img src="assets/png-fallback/aether-brand-ctch-logotype.png" 
+       alt="CTCH - Christian Charles Harris" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+  </div>
+</div>
+
+<div class="window">
+  <div class="title-bar">
+    <span>👥 Team Section Assets</span>
+  </div>
+  <div class="content">
+    <table>
+      <tr>
+        <th>Asset ID</th>
+        <th>Description</th>
+        <th>Formats Available</th>
+      </tr>
+      <tr>
+        <td>aether-team-founder-ctch</td>
+        <td>Founder CTCH Portrait (Win95 frame)</td>
+        <td>WebP, PNG, Thumbnails (64-512)</td>
+      </tr>
+      <tr>
+        <td>aether-team-cofounder-shaxinwei</td>
+        <td>Co-Founder Sha Xinwei Portrait</td>
+        <td>WebP, PNG, Thumbnails (64-512)</td>
+      </tr>
+      <tr>
+        <td>aether-team-cofounder-vangelis</td>
+        <td>Co-Founder Vangelis Portrait</td>
+        <td>WebP, PNG, Thumbnails (64-512)</td>
+      </tr>
+      <tr>
+        <td>BRANDAsset-Typography3D-ShaXinWei</td>
+        <td>3D Typography Name</td>
+        <td>WebP, PNG, Medium (800w)</td>
+      </tr>
+      <tr>
+        <td>BRANDAsset-Typography3D-VangelisLympouridis</td>
+        <td>3D Typography Name</td>
+        <td>WebP, PNG, Medium (800w)</td>
+      </tr>
+      <tr>
+        <td>BRANDAsset-Typography3D-AlchemicalArtisans</td>
+        <td>3D Typography Team Title</td>
+        <td>WebP, PNG, Medium (800w)</td>
+      </tr>
+    </table>
+    
+    <h3>Team Portrait Example</h3>
+    <pre><code>&lt;figure class="team-member"&gt;
+  &lt;picture&gt;
+    &lt;source 
+      srcset="assets/thumbnails/128/aether-team-founder-ctch-128w.webp 128w,
+              assets/thumbnails/256/aether-team-founder-ctch-256w.webp 256w,
+              assets/thumbnails/512/aether-team-founder-ctch-512w.webp 512w"
+      sizes="(max-width: 768px) 128px, 256px"
+      type="image/webp"&gt;
+    &lt;img src="assets/png-fallback/aether-team-founder-ctch.png" 
+         alt="CTCH - Founder & CEO"
+         loading="lazy"&gt;
+  &lt;/picture&gt;
+  &lt;figcaption&gt;
+    &lt;img src="assets/webp/aether-brand-ctch-logotype.webp" alt="CTCH"&gt;
+    &lt;span&gt;Founder & CEO&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+  </div>
+</div>
+
+<div class="window">
+  <div class="title-bar">
+    <span>🎭 Portfolio Assets</span>
+  </div>
+  <div class="content">
+    <h3>Enchant Light Festival</h3>
+    <table>
+      <tr>
+        <th>Asset ID</th>
+        <th>Description</th>
+      </tr>
+      <tr><td>aether-portfolio-enchant-lights-01</td><td>Nighttime LED sculptures</td></tr>
+      <tr><td>aether-portfolio-enchant-lights-02</td><td>Ice rink and light tunnels</td></tr>
+      <tr><td>aether-portfolio-enchant-daytime</td><td>Daytime operations</td></tr>
+      <tr><td>aether-portfolio-enchant-retail</td><td>Holiday market booth</td></tr>
+      <tr><td>BRANDwork-EnchantSite-Collage2</td><td>Production collage</td></tr>
+      <tr><td>BRANDwork-EnchantSite-Collage4</td><td>Production collage</td></tr>
+      <tr><td>BRANDwork-EnchantSite-Collage6</td><td>Production collage</td></tr>
+      <tr><td>BRANDwork-EnchantSite-Collage7</td><td>Production collage</td></tr>
+      <tr><td>BRANDwork-EnchantSite-Collage8</td><td>Production collage</td></tr>
+    </table>
+    
+    <h3>Theatrical Productions</h3>
+    <table>
+      <tr>
+        <th>Asset ID</th>
+        <th>Description</th>
+      </tr>
+      <tr><td>aether-portfolio-batb-setdesign</td><td>Beauty and the Beast stained glass</td></tr>
+      <tr><td>aether-portfolio-killmove-01</td><td>Kill Move Paradise projection</td></tr>
+      <tr><td>aether-portfolio-killmove-02</td><td>Kill Move Paradise scenes</td></tr>
+      <tr><td>BRANDwork-StageProduction-GhostProjection</td><td>Ghost projection effect</td></tr>
+      <tr><td>BRANDwork-StageProduction-PrisonScene</td><td>Prison scene production</td></tr>
+    </table>
+    
+    <h3>Projection Mapping</h3>
+    <table>
+      <tr>
+        <th>Asset ID</th>
+        <th>Description</th>
+      </tr>
+      <tr><td>BRANDwork-ProjectionMapping-CircuitNeuron</td><td>Neural circuit artwork</td></tr>
+      <tr><td>BRANDwork-ProjectionMapping-CosmicEye</td><td>Cosmic eye artwork</td></tr>
+      <tr><td>BRANDwork-ProjectionMapping-GridMatrix</td><td>Grid matrix artwork</td></tr>
+      <tr><td>BRANDwork-ProjectionMapping-OceanForge</td><td>Ocean themed artwork</td></tr>
+      <tr><td>BRANDwork-ProjectionMapping-SciFi</td><td>Sci-fi artwork</td></tr>
+      <tr><td>BRANDwork-ProjectionMapping-Vintage</td><td>Vintage aesthetic artwork</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="window">
+  <div class="title-bar">
+    <span>💎 Intellectual Property Assets</span>
+  </div>
+  <div class="content">
+    <h3>Tales of Lucidia Franchise</h3>
+    <table>
+      <tr>
+        <th>Asset ID</th>
+        <th>Description</th>
+      </tr>
+      <tr><td>aether-ip-tales-of-lucidia</td><td>Ancient stone tablet logo</td></tr>
+      <tr><td>BRANDAsset-WarriorPrincess-CharacterConcept</td><td>Character design concept</td></tr>
+      <tr><td>BRANDAsset-WarriorPrincess-Render51</td><td>3D character render</td></tr>
+      <tr><td>BRANDwork-WarriorPrincessOz-ArenaLayout</td><td>Arena venue layout</td></tr>
+      <tr><td>BRANDwork-WarriorPrincessOz-EmeraldCrystals</td><td>Emerald design elements</td></tr>
+      <tr><td>BRANDwork-WarriorPrincessOz-StageSet</td><td>Stage set concept</td></tr>
+    </table>
+    
+    <h3>Phygital IP Concepts</h3>
+    <table>
+      <tr>
+        <th>Asset ID</th>
+        <th>Description</th>
+      </tr>
+      <tr><td>aether-ip-maryjane-mainframe</td><td>Retro hobbies digital aesthetic</td></tr>
+      <tr><td>aether-ip-metamorphasis-apothecary</td><td>Crystalline pharmacy logo</td></tr>
+      <tr><td>BRANDAsset-PhygitalIP-BroussardBayouBBQ</td><td>Louisiana BBQ venue concept</td></tr>
+      <tr><td>BRANDAsset-PhygitalIP-Port51Confectionarium</td><td>Sci-fi candy venue concept</td></tr>
+    </table>
+    
+    <h3>IP Showcase Example</h3>
+    <pre><code>&lt;section class="ip-showcase"&gt;
+  &lt;article class="ip-card"&gt;
+    &lt;picture&gt;
+      &lt;source srcset="assets/webp/aether-ip-tales-of-lucidia.webp" type="image/webp"&gt;
+      &lt;img src="assets/png-fallback/aether-ip-tales-of-lucidia.png" 
+           alt="Tales of Lucidia" loading="lazy"&gt;
+    &lt;/picture&gt;
+    &lt;h3&gt;Tales of Lucidia&lt;/h3&gt;
+    &lt;p&gt;Transmedia franchise featuring three Warrior Princesses&lt;/p&gt;
+  &lt;/article&gt;
+  
+  &lt;article class="ip-card"&gt;
+    &lt;picture&gt;
+      &lt;source srcset="assets/webp-medium/BRANDAsset-WarriorPrincess-Render51_800w.webp" type="image/webp"&gt;
+      &lt;img src="assets/png-fallback/BRANDAsset-WarriorPrincess-Render51.png" 
+           alt="Warrior Princess" loading="lazy"&gt;
+    &lt;/picture&gt;
+  &lt;/article&gt;
+&lt;/section&gt;</code></pre>
+  </div>
+</div>
+
+<div class="window">
+  <div class="title-bar">
+    <span>⚙️ CSS Integration</span>
+  </div>
+  <div class="content">
+    <h3>CSS Variables for Asset Paths</h3>
+    <pre><code>:root {
+  --asset-base: '/assets';
+  --asset-webp: '/assets/webp';
+  --asset-png: '/assets/png-fallback';
+  --asset-thumb: '/assets/thumbnails';
+  --asset-medium: '/assets/webp-medium';
+}
+
+/* Background image with fallback */
+.hero-section {
+  background-image: url(var(--asset-png)/aether-portfolio-enchant-lights-01.png);
+  background-image: image-set(
+    url(var(--asset-webp)/aether-portfolio-enchant-lights-01.webp) type("image/webp"),
+    url(var(--asset-png)/aether-portfolio-enchant-lights-01.png) type("image/png")
+  );
+  background-size: cover;
+  background-position: center;
+}</code></pre>
+
+    <h3>Lazy Loading Configuration</h3>
+    <pre><code>/* Native lazy loading */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+img[loading="lazy"].loaded,
+img[loading="lazy"]:not([src=""]) {
+  opacity: 1;
+}
+
+/* Intersection Observer enhancement */
+&lt;script&gt;
+document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+  img.addEventListener('load', () => img.classList.add('loaded'));
+});
+&lt;/script&gt;</code></pre>
+  </div>
+</div>
+
+<div class="window">
+  <div class="title-bar">
+    <span>📋 Quick Reference - All Assets</span>
+  </div>
+  <div class="content">
+    <h3>Assets with Full Thumbnail Sets (64/128/256/512)</h3>
+    <pre><code>aether-brand-logo-main
+aether-brand-ctch-logotype
+aether-team-founder-ctch
+aether-team-cofounder-shaxinwei
+aether-team-cofounder-vangelis
+aether-portfolio-batb-setdesign
+aether-portfolio-candlelight-venue
+aether-portfolio-enchant-lights-01
+aether-portfolio-enchant-lights-02
+aether-portfolio-enchant-daytime
+aether-portfolio-enchant-retail
+aether-portfolio-killmove-01
+aether-portfolio-killmove-02
+aether-ip-tales-of-lucidia
+aether-ip-maryjane-mainframe
+aether-ip-metamorphasis-apothecary</code></pre>
+
+    <h3>Assets with Medium (800w) + Thumbnail</h3>
+    <pre><code>BRANDAsset-PhygitalIP-BroussardBayouBBQ
+BRANDAsset-PhygitalIP-Port51Confectionarium
+BRANDAsset-Typography3D-AlchemicalArtisans
+BRANDAsset-Typography3D-ShaXinWei
+BRANDAsset-Typography3D-VangelisLympouridis
+BRANDAsset-WarriorPrincess-CharacterConcept
+BRANDAsset-WarriorPrincess-Render51
+BRANDwork-EnchantSite-Collage2
+BRANDwork-EnchantSite-Collage4
+BRANDwork-EnchantSite-Collage6
+BRANDwork-EnchantSite-Collage7
+BRANDwork-EnchantSite-Collage8
+BRANDwork-ProjectionMapping-CircuitNeuron
+BRANDwork-ProjectionMapping-CosmicEye
+BRANDwork-ProjectionMapping-GridMatrix
+BRANDwork-ProjectionMapping-OceanForge
+BRANDwork-ProjectionMapping-SciFi
+BRANDwork-ProjectionMapping-Vintage
+BRANDwork-StageProduction-GhostProjection
+BRANDwork-StageProduction-PrisonScene
+BRANDwork-WarriorPrincessOz-ArenaLayout
+BRANDwork-WarriorPrincessOz-EmeraldCrystals
+BRANDwork-WarriorPrincessOz-StageSet</code></pre>
+  </div>
+</div>
+
+<div class="window">
+  <div class="title-bar">
+    <span>ℹ️ Package Information</span>
+  </div>
+  <div class="content">
+    <p><strong>Generated:</strong> December 6, 2025</p>
+    <p><strong>Version:</strong> 2.0.0 (Merged Comprehensive)</p>
+    <p><strong>Total Files:</strong> 256</p>
+    <p><strong>Organization:</strong> AETHER Phygital Experience Platform</p>
+    <p><strong>Manifest:</strong> aether-website-assets-manifest.json</p>
+  </div>
+</div>
+
+</body>
+</html>

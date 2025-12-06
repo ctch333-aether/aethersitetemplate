@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<!--
+  AETHER Brand Assets - HTML Integration Reference
+  Following AETHER's Windows 95 Aesthetic Web Standards
+  
+  This file contains ready-to-use HTML snippets for embedding
+  optimized brand assets with WebP primary / PNG fallback pattern.
+  
+  Generated: 2025-12-06
+  Organization: AETHER Phygital Experience Platform
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AETHER Brand Assets - Integration Reference</title>
+    <style>
+        /* AETHER Windows 95 Aesthetic Variables */
+        :root {
+            --aether-purple: #8B5CF6;
+            --win95-gray: #C0C0C0;
+            --win95-dark-gray: #808080;
+            --win95-blue: #000080;
+            --win95-white: #FFFFFF;
+            --win95-black: #000000;
+        }
+
+        body {
+            font-family: 'MS Sans Serif', 'Segoe UI', Tahoma, sans-serif;
+            background: var(--win95-gray);
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1, h2, h3 {
+            font-family: 'MS Sans Serif', 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        .window {
+            background: var(--win95-gray);
+            border: 2px solid;
+            border-color: var(--win95-white) var(--win95-dark-gray) var(--win95-dark-gray) var(--win95-white);
+            margin-bottom: 20px;
+        }
+
+        .window-titlebar {
+            background: linear-gradient(90deg, var(--win95-blue), #1084d0);
+            color: white;
+            padding: 4px 8px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .window-content {
+            padding: 16px;
+            background: var(--win95-gray);
+        }
+
+        pre {
+            background: white;
+            border: 2px inset var(--win95-dark-gray);
+            padding: 12px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+
+        .asset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .asset-card {
+            background: white;
+            border: 2px inset var(--win95-dark-gray);
+            padding: 8px;
+            text-align: center;
+        }
+
+        .asset-card img {
+            max-width: 100%;
+            height: auto;
+            image-rendering: auto;
+        }
+
+        .category-header {
+            background: var(--aether-purple);
+            color: white;
+            padding: 8px 12px;
+            margin: 20px 0 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- AETHER BRAND ASSETS - PICTURE ELEMENT PATTERNS -->
+<!-- ============================================ -->
+
+<div class="window">
+    <div class="window-titlebar">
+        <span>📁 AETHER Brand Assets - Integration Guide</span>
+        <span>⬜ ❎</span>
+    </div>
+    <div class="window-content">
+        <p><strong>Base URL Pattern:</strong> <code>/assets/brand/{format}/{asset-id}.{ext}</code></p>
+        <p><strong>Thumbnail Pattern:</strong> <code>/assets/brand/thumbnails/{size}/{asset-id}-{size}w.{ext}</code></p>
+    </div>
+</div>
+
+<!-- ===================== -->
+<!-- BRAND CATEGORY        -->
+<!-- ===================== -->
+
+<div class="category-header">🏛️ BRAND ASSETS</div>
+
+<div class="window">
+    <div class="window-titlebar">
+        <span>aether-brand-logo-main</span>
+    </div>
+    <div class="window-content">
+        <p><strong>AETHER Main Logo</strong> - Crystalline wolf with orbital rings</p>
+        <pre>&lt;picture&gt;
+    &lt;source srcset="/assets/brand/webp/aether-brand-logo-main.webp" type="image/webp"&gt;
+    &lt;img src="/assets/brand/png-fallback/aether-brand-logo-main.png" 
+         alt="AETHER - Phygital Experience Platform" 
+         loading="lazy"
+         width="400" height="300"&gt;
+&lt;/picture&gt;</pre>
+        <p><strong>Responsive with thumbnails:</strong></p>
+        <pre>&lt;picture&gt;
+    &lt;source media="(max-width: 480px)" 
+            srcset="/assets/brand/thumbnails/256/aether-brand-logo-main-256w.webp" 
+            type="image/webp"&gt;
+    &lt;source media="(max-width: 768px)" 
+            srcset="/assets/brand/thumbnails/512/aether-brand-logo-main-512w.webp" 
+            type="image/webp"&gt;
+    &lt;source srcset="/assets/brand/webp/aether-brand-logo-main.webp" type="image/webp"&gt;
+    &lt;img src="/assets/brand/png-fallback/aether-brand-logo-main.png" 
+         alt="AETHER - Phygital Experience Platform" 
+         loading="lazy"&gt;
+&lt;/picture&gt;</pre>
+    </div>
+</div>
+
+<div class="window">
+    <div class="window-titlebar">
+        <span>aether-brand-ctch-logotype</span>
+    </div>
+    <div class="window-content">
+        <p><strong>CTCH Founder Logotype</strong> - 3D metallic text treatment</p>
+        <pre>&lt;picture&gt;
+    &lt;source srcset="/assets/brand/webp/aether-brand-ctch-logotype.webp" type="image/webp"&gt;
+    &lt;img src="/assets/brand/png-fallback/aether-brand-ctch-logotype.png" 
+         alt="Christian Charles Harris" 
+         loading="lazy"&gt;
+&lt;/picture&gt;</pre>
+    </div>
+</div>
+
+<!-- ===================== -->
+<!-- TEAM CATEGORY         -->
+<!-- ===================== -->
+
+<div class="category-header">👥 TEAM PORTRAITS</div>
+
+<div class="window">
+    <div class="window-titlebar">
+        <span>aether-team-founder-ctch</span>
+    </div>
+    <div class="window-content">
+        <p><strong>Founder CTCH</strong> - Windows 95 MS Paint aesthetic frame</p>
+        <pre>&lt;picture&gt;
+    &lt;source srcset="/assets/brand/webp/aether-team-founder-ctch.webp" type="image/webp"&gt;
+    &lt;img src="/assets/brand/png-fallback/aether-team-founder-ctch.png" 
+         alt="CTCH - Founder &amp; CEO, AETHER" 
+         loading="lazy"
+         style="image-rendering: pixelated;"&gt;
+&lt;/picture&gt;</pre>
+    </div>
+</div>
+
+<div class="window">
+    <div class="window-titlebar">
+        <span>aether-team-cofounder-shaxinwei</span>
+    </div>
+    <div class="window-content">
+        <p><strong>Co-Founder Sha Xinwei</strong> - Windows 95 Install Wizard frame</p>
+        <pre>&lt;picture&gt;
+    &lt;source srcset="/assets/brand/webp/aether-team-cofounder-shaxinwei.webp" type="image/webp"&gt;
+    &lt;img src="/assets/brand/png-fallback/aether-team-cofounder-shaxinwei.png" 
+         alt="Sha Xinwei - Co-Founder, AETHER" 
+         loading="lazy"&gt;
+&lt;/picture&gt;</pre>
+    </div>
+</div>
+
+<div class="window">
+    <div class="window-titlebar">
+        <span>aether-team-cofounder-vangelis</span>
+    </div>
+    <div class="window-content">
+        <p><strong>Co-Founder Vangelis</strong> - Windows 95 Install Wizard frame</p>
+        <pre>&lt;picture&gt;
+    &lt;source srcset="/assets/brand/webp/aether-team-cofounder-vangelis.webp" type="image/webp"&gt;
+    &lt;img src="/assets/brand/png-fallback/aether-team-cofounder-vangelis.png" 
+         alt="Vangelis - Co-Founder, AETHER" 
+         loading="lazy"&gt;
+&lt;/picture&gt;</pre>
+    </div>
+</div>
+
+<!-- ===================== -->
+<!-- PORTFOLIO CATEGORY    -->
+<!-- ===================== -->
+
+<div class="category-header">🎨 PORTFOLIO WORK</div>
+
+<div class="window">
+    <div class="window-titlebar">
+        <span>Enchant Productions (4 assets)</span>
+    </div>
+    <div class="window-content">
+        <pre>&lt;!-- Enchant Nighttime Lights 01 --&gt;
+&lt;picture&gt;
+    &lt;source srcset="/assets/brand/webp/aether-portfolio-enchant-lights-01.webp" type="image/webp"&gt;
+    &lt;img src="/assets/brand/png-fallback/aether-portfolio-enchant-lights-01.png" 
+         alt="Enchant Christmas - LED light sculptures and installations" 
+         loading="lazy"&gt;
+&lt;/picture&gt;
+
+&lt;!-- Enchant Nighttime Lights 02 --&gt;
+&lt;picture&gt;
+    &lt;source srcset="/assets/brand/webp/aether-portfolio-enchant-lights-02.webp" type="image/webp"&gt;
+    &lt;img src="/assets/brand/png-fallback/aether-portfolio-enchant-lights-02.png" 
+         alt="Enchant Christmas - Ice rink and immersive light experiences" 
+         loading="lazy"&gt;
+&lt;/picture&gt;
+
+&lt;!-- Enchant Daytime Operations --&gt;
+&lt;picture&gt;
+    &lt;source srcset="/assets/brand/webp/aether-portfolio-enchant-daytime.webp" type="image/webp"&gt;
+    &lt;img src="/assets/brand/png-fallback/aether-portfolio-enchant-daytime.png" 
+         alt="Enchant Christmas - Daytime venue operations" 
+         loading="lazy"&gt;
+&lt;/picture&gt;
+
+&lt;!-- Enchant Retail --&gt;
+&lt;picture&gt;
+    &lt;source srcset="/assets/brand/webp/aether-portfolio-enchant-retail.webp" type="image/webp"&gt;
+    &lt;img src="/assets/brand/png-fallback/aether-portfolio-enchant-retail.png" 
+         alt="Enchant Christmas - Holiday market retail" 
+         loading="lazy"&gt;
+&lt;/picture&gt;</pre>
+    </div>
+</div>
+
+<div class="window">
+    <div class="window-titlebar">
+        <span>Kill Move Paradise Theatrical (2 assets)</span>
+    </div>
+    <div class="window-content">
+        <pre>&lt;!-- Kill Move Paradise 01 --&gt;
+&lt;picture&gt;
+    &lt;source srcset="/assets/brand/webp/aether-portfolio-killmove-01.webp" type="image/webp"&gt;
+    &lt;img src="/assets/brand/png-fallback/aether-portfolio-killmove-01.png" 
+         alt="Kill Move Paradise - Immersive theatrical production" 
+         loading="lazy"&gt;
+&lt;/picture&gt;
+
+&lt;!-- Kill Move Paradise 02 --&gt;
+&lt;picture&gt;
+    &lt;source srcset="/assets/brand/webp/aether-portfolio-killmove-02.webp" type="image/webp"&gt;
+    &lt;img src="/assets/brand/png-fallback/aether-portfolio-killmove-02.png" 
+         alt="Kill Move Paradise - Extended theatrical scenes" 
+         loading="lazy"&gt;
+&lt;/picture&gt;</pre>
+    </div>
+</div>
+
+<div class="window">
+    <div class="window-titlebar">
+        <span>Additional Portfolio Assets</span>
+    </div>
+    <div class="window-content">
+        <pre>&lt;!-- Beauty and the Beast Set Design --&gt;
+&lt;picture&gt;
+    &lt;source srcset="/assets/brand/webp/aether-portfolio-batb-setdesign.webp" type="image/webp"&gt;
+    &lt;img src="/assets/brand/png-fallback/aether-portfolio-batb-setdesign.png" 
+         alt="Beauty and the Beast - Stained glass set design" 
+         loading="lazy"&gt;
+&lt;/picture&gt;
+
+&lt;!-- Candlelight Concert Venue --&gt;
+&lt;picture&gt;
+    &lt;source srcset="/assets/brand/webp/aether-portfolio-candlelight-venue.webp" type="image/webp"&gt;
+    &lt;img src="/assets/brand/png-fallback/aether-portfolio-candlelight-venue.png" 
+         alt="Candlelight Concert - Ambient venue experience" 
+         loading="lazy"&gt;
+&lt;/picture&gt;</pre>
+    </div>
+</div>
+
+<!-- ===================== -->
+<!-- IP CATEGORY           -->
+<!-- ===================== -->
+
+<div class="category-header">⚔️ INTELLECTUAL PROPERTY</div>
+
+<div class="window">
+    <div class="window-titlebar">
+        <span>Phygital IP Franchise Logos</span>
+    </div>
+    <div class="window-content">
+        <pre>&lt;!-- Tales of Lucidia - Transmedia Franchise --&gt;
+&lt;picture&gt;
+    &lt;source srcset="/assets/brand/webp/aether-ip-tales-of-lucidia.webp" type="image/webp"&gt;
+    &lt;img src="/assets/brand/png-fallback/aether-ip-tales-of-lucidia.png" 
+         alt="Tales of Lucidia - AETHER Transmedia Franchise" 
+         loading="lazy"&gt;
+&lt;/picture&gt;
+
+&lt;!-- MaryJane Mainframe - Retro Hobbies --&gt;
+&lt;picture&gt;
+    &lt;source srcset="/assets/brand/webp/aether-ip-maryjane-mainframe.webp" type="image/webp"&gt;
+    &lt;img src="/assets/brand/png-fallback/aether-ip-maryjane-mainframe.png" 
+         alt="MaryJane Mainframe - Retro Hobbies Brand" 
+         loading="lazy"&gt;
+&lt;/picture&gt;
+
+&lt;!-- Metamorphasis Apothecary --&gt;
+&lt;picture&gt;
+    &lt;source srcset="/assets/brand/webp/aether-ip-metamorphasis-apothecary.webp" type="image/webp"&gt;
+    &lt;img src="/assets/brand/png-fallback/aether-ip-metamorphasis-apothecary.png" 
+         alt="Metamorphasis Apothecary - AETHER Brand" 
+         loading="lazy"&gt;
+&lt;/picture&gt;</pre>
+    </div>
+</div>
+
+<!-- ===================== -->
+<!-- CSS UTILITIES         -->
+<!-- ===================== -->
+
+<div class="category-header">🎨 CSS UTILITIES</div>
+
+<div class="window">
+    <div class="window-titlebar">
+        <span>Recommended CSS for AETHER Assets</span>
+    </div>
+    <div class="window-content">
+        <pre>/* AETHER Brand Asset Styles */
+
+/* Standard responsive images */
+.aether-asset {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Retro pixelated rendering for Win95 aesthetic elements */
+.aether-asset--retro {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+/* Lazy loading placeholder */
+.aether-asset[loading="lazy"] {
+    background: var(--win95-gray);
+    min-height: 100px;
+}
+
+/* GPU acceleration for animated assets */
+.aether-asset--animated {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Touch-friendly sizing */
+.aether-asset--interactive {
+    min-width: 44px;
+    min-height: 44px;
+}</pre>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="window">
+    <div class="window-titlebar">
+        <span>📋 File Summary</span>
+    </div>
+    <div class="window-content">
+        <p><strong>Total Assets:</strong> 16</p>
+        <p><strong>Categories:</strong> Brand (2), Team (3), Portfolio (8), IP (3)</p>
+        <p><strong>Formats:</strong> WebP (primary), PNG (fallback)</p>
+        <p><strong>Thumbnail Sizes:</strong> 64px, 128px, 256px, 512px</p>
+        <p style="text-align: center; margin-top: 20px;">
+            <em>Believe®</em>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

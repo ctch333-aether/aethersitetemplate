@@ -1,0 +1,662 @@
+{
+  "name": "AETHER Brand Assets",
+  "version": "3.0.0",
+  "generated": "2025-12-06T07:49:59.391542",
+  "description": "Comprehensive asset manifest with dimensions, sizes, and optimization data",
+  "statistics": {
+    "totalAssets": 39,
+    "categories": {
+      "brand": 2,
+      "team": 6,
+      "portfolio": 24,
+      "ip": 7
+    },
+    "totalSizeKb": {
+      "webpFull": 3066.0,
+      "avifFull": 1831.1,
+      "mobile400w": 253.1
+    },
+    "savingsPercent": {
+      "avifVsWebp": 40.3,
+      "mobileVsFull": 91.7
+    }
+  },
+  "performanceBudget": {
+    "heroImage": {
+      "maxKb": 150,
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "galleryImage": {
+      "maxKb": 80,
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "thumbnail": {
+      "maxKb": 15,
+      "formats": [
+        "webp"
+      ]
+    },
+    "lqip": {
+      "maxKb": 1,
+      "formats": [
+        "webp"
+      ]
+    }
+  },
+  "assets": {
+    "BRANDAsset-PhygitalIP-BroussardBayouBBQ": {
+      "id": "BRANDAsset-PhygitalIP-BroussardBayouBBQ",
+      "category": "ip",
+      "width": 1200,
+      "height": 675,
+      "aspectRatio": 1.778,
+      "priority": 7,
+      "formats": {
+        "webp": 16.5,
+        "avif": 7.6,
+        "medium800w": 9.0,
+        "mobile400w": 2.8,
+        "lqip": 0.07
+      },
+      "dominantColor": "#f3f1f0"
+    },
+    "BRANDAsset-PhygitalIP-Port51Confectionarium": {
+      "id": "BRANDAsset-PhygitalIP-Port51Confectionarium",
+      "category": "ip",
+      "width": 1200,
+      "height": 675,
+      "aspectRatio": 1.778,
+      "priority": 7,
+      "formats": {
+        "webp": 10.6,
+        "avif": 4.7,
+        "medium800w": 6.1,
+        "mobile400w": 2.1,
+        "lqip": 0.06
+      },
+      "dominantColor": "#fbfbfc"
+    },
+    "BRANDAsset-Typography3D-AlchemicalArtisans": {
+      "id": "BRANDAsset-Typography3D-AlchemicalArtisans",
+      "category": "team",
+      "width": 1200,
+      "height": 675,
+      "aspectRatio": 1.778,
+      "priority": 7,
+      "formats": {
+        "webp": 8.0,
+        "avif": 3.7,
+        "medium800w": 4.6,
+        "mobile400w": 1.7,
+        "lqip": 0.06
+      },
+      "dominantColor": "#fcfcfc"
+    },
+    "BRANDAsset-Typography3D-ShaXinWei": {
+      "id": "BRANDAsset-Typography3D-ShaXinWei",
+      "category": "team",
+      "width": 1200,
+      "height": 675,
+      "aspectRatio": 1.778,
+      "priority": 7,
+      "formats": {
+        "webp": 6.0,
+        "avif": 2.7,
+        "medium800w": 3.4,
+        "mobile400w": 1.2,
+        "lqip": 0.06
+      },
+      "dominantColor": "#fcfdfd"
+    },
+    "BRANDAsset-Typography3D-VangelisLympouridis": {
+      "id": "BRANDAsset-Typography3D-VangelisLympouridis",
+      "category": "team",
+      "width": 1200,
+      "height": 675,
+      "aspectRatio": 1.778,
+      "priority": 7,
+      "formats": {
+        "webp": 8.2,
+        "avif": 3.8,
+        "medium800w": 4.6,
+        "mobile400w": 1.6,
+        "lqip": 0.06
+      },
+      "dominantColor": "#fcfcfc"
+    },
+    "BRANDAsset-WarriorPrincess-CharacterConcept": {
+      "id": "BRANDAsset-WarriorPrincess-CharacterConcept",
+      "category": "ip",
+      "width": 1200,
+      "height": 675,
+      "aspectRatio": 1.778,
+      "priority": 7,
+      "formats": {
+        "webp": 98.2,
+        "avif": 44.0,
+        "medium800w": 49.4,
+        "mobile400w": 14.5,
+        "lqip": 0.11
+      },
+      "dominantColor": "#6e7f92"
+    },
+    "BRANDAsset-WarriorPrincess-Render51": {
+      "id": "BRANDAsset-WarriorPrincess-Render51",
+      "category": "ip",
+      "width": 1200,
+      "height": 1600,
+      "aspectRatio": 0.75,
+      "priority": 7,
+      "formats": {
+        "webp": 67.5,
+        "avif": 23.6,
+        "medium800w": 37.2,
+        "mobile400w": 10.8,
+        "lqip": 0.08
+      },
+      "dominantColor": "#7e7d7e"
+    },
+    "BRANDwork-EnchantSite-Collage2": {
+      "id": "BRANDwork-EnchantSite-Collage2",
+      "category": "portfolio",
+      "width": 1200,
+      "height": 675,
+      "aspectRatio": 1.778,
+      "priority": 7,
+      "formats": {
+        "webp": 85.2,
+        "avif": 36.5,
+        "medium800w": 43.0,
+        "mobile400w": 12.8,
+        "lqip": 0.1
+      },
+      "dominantColor": "#94a2ae"
+    },
+    "BRANDwork-EnchantSite-Collage4": {
+      "id": "BRANDwork-EnchantSite-Collage4",
+      "category": "portfolio",
+      "width": 1200,
+      "height": 675,
+      "aspectRatio": 1.778,
+      "priority": 7,
+      "formats": {
+        "webp": 107.6,
+        "avif": 46.1,
+        "medium800w": 52.3,
+        "mobile400w": 14.0,
+        "lqip": 0.1
+      },
+      "dominantColor": "#8c9daa"
+    },
+    "BRANDwork-EnchantSite-Collage6": {
+      "id": "BRANDwork-EnchantSite-Collage6",
+      "category": "portfolio",
+      "width": 1200,
+      "height": 675,
+      "aspectRatio": 1.778,
+      "priority": 7,
+      "formats": {
+        "webp": 88.1,
+        "avif": 40.8,
+        "medium800w": 47.1,
+        "mobile400w": 14.6,
+        "lqip": 0.11
+      },
+      "dominantColor": "#707d8c"
+    },
+    "BRANDwork-EnchantSite-Collage7": {
+      "id": "BRANDwork-EnchantSite-Collage7",
+      "category": "portfolio",
+      "width": 1200,
+      "height": 675,
+      "aspectRatio": 1.778,
+      "priority": 7,
+      "formats": {
+        "webp": 130.5,
+        "avif": 57.1,
+        "medium800w": 64.5,
+        "mobile400w": 16.8,
+        "lqip": 0.1
+      },
+      "dominantColor": "#898882"
+    },
+    "BRANDwork-EnchantSite-Collage8": {
+      "id": "BRANDwork-EnchantSite-Collage8",
+      "category": "portfolio",
+      "width": 1200,
+      "height": 675,
+      "aspectRatio": 1.778,
+      "priority": 7,
+      "formats": {
+        "webp": 111.1,
+        "avif": 49.7,
+        "medium800w": 55.4,
+        "mobile400w": 15.6,
+        "lqip": 0.1
+      },
+      "dominantColor": "#8c8e94"
+    },
+    "BRANDwork-ProjectionMapping-CircuitNeuron": {
+      "id": "BRANDwork-ProjectionMapping-CircuitNeuron",
+      "category": "portfolio",
+      "width": 1200,
+      "height": 553,
+      "aspectRatio": 2.17,
+      "priority": 7,
+      "formats": {
+        "webp": 31.1,
+        "avif": 26.6,
+        "medium800w": 19.3,
+        "mobile400w": 6.5,
+        "lqip": 0.08
+      },
+      "dominantColor": "#14151c"
+    },
+    "BRANDwork-ProjectionMapping-CosmicEye": {
+      "id": "BRANDwork-ProjectionMapping-CosmicEye",
+      "category": "portfolio",
+      "width": 1200,
+      "height": 553,
+      "aspectRatio": 2.17,
+      "priority": 7,
+      "formats": {
+        "webp": 19.8,
+        "avif": 18.2,
+        "medium800w": 12.2,
+        "mobile400w": 4.0,
+        "lqip": 0.07
+      },
+      "dominantColor": "#171716"
+    },
+    "BRANDwork-ProjectionMapping-GridMatrix": {
+      "id": "BRANDwork-ProjectionMapping-GridMatrix",
+      "category": "portfolio",
+      "width": 1200,
+      "height": 553,
+      "aspectRatio": 2.17,
+      "priority": 7,
+      "formats": {
+        "webp": 31.2,
+        "avif": 28.2,
+        "medium800w": 19.3,
+        "mobile400w": 6.6,
+        "lqip": 0.08
+      },
+      "dominantColor": "#201c28"
+    },
+    "BRANDwork-ProjectionMapping-OceanForge": {
+      "id": "BRANDwork-ProjectionMapping-OceanForge",
+      "category": "portfolio",
+      "width": 1200,
+      "height": 553,
+      "aspectRatio": 2.17,
+      "priority": 7,
+      "formats": {
+        "webp": 41.4,
+        "avif": 21.3,
+        "medium800w": 25.3,
+        "mobile400w": 8.7,
+        "lqip": 0.09
+      },
+      "dominantColor": "#153a44"
+    },
+    "BRANDwork-ProjectionMapping-SciFi": {
+      "id": "BRANDwork-ProjectionMapping-SciFi",
+      "category": "portfolio",
+      "width": 1200,
+      "height": 553,
+      "aspectRatio": 2.17,
+      "priority": 7,
+      "formats": {
+        "webp": 26.7,
+        "avif": 13.1,
+        "medium800w": 16.3,
+        "mobile400w": 5.2,
+        "lqip": 0.08
+      },
+      "dominantColor": "#14191a"
+    },
+    "BRANDwork-ProjectionMapping-Vintage": {
+      "id": "BRANDwork-ProjectionMapping-Vintage",
+      "category": "portfolio",
+      "width": 1200,
+      "height": 553,
+      "aspectRatio": 2.17,
+      "priority": 7,
+      "formats": {
+        "webp": 30.2,
+        "avif": 29.6,
+        "medium800w": 19.0,
+        "mobile400w": 6.6,
+        "lqip": 0.08
+      },
+      "dominantColor": "#2f2926"
+    },
+    "BRANDwork-StageProduction-GhostProjection": {
+      "id": "BRANDwork-StageProduction-GhostProjection",
+      "category": "portfolio",
+      "width": 1200,
+      "height": 609,
+      "aspectRatio": 1.97,
+      "priority": 7,
+      "formats": {
+        "webp": 22.0,
+        "avif": 9.8,
+        "medium800w": 13.4,
+        "mobile400w": 5.0,
+        "lqip": 0.08
+      },
+      "dominantColor": "#2c2421"
+    },
+    "BRANDwork-StageProduction-PrisonScene": {
+      "id": "BRANDwork-StageProduction-PrisonScene",
+      "category": "portfolio",
+      "width": 1200,
+      "height": 651,
+      "aspectRatio": 1.843,
+      "priority": 7,
+      "formats": {
+        "webp": 25.6,
+        "avif": 11.3,
+        "medium800w": 15.6,
+        "mobile400w": 5.7,
+        "lqip": 0.09
+      },
+      "dominantColor": "#38313a"
+    },
+    "BRANDwork-WarriorPrincessOz-ArenaLayout": {
+      "id": "BRANDwork-WarriorPrincessOz-ArenaLayout",
+      "category": "portfolio",
+      "width": 1024,
+      "height": 484,
+      "aspectRatio": 2.116,
+      "priority": 7,
+      "formats": {
+        "webp": 90.3,
+        "avif": 47.0,
+        "medium800w": 57.8,
+        "mobile400w": 16.5,
+        "lqip": 0.09
+      },
+      "dominantColor": "#625752"
+    },
+    "BRANDwork-WarriorPrincessOz-EmeraldCrystals": {
+      "id": "BRANDwork-WarriorPrincessOz-EmeraldCrystals",
+      "category": "portfolio",
+      "width": 1200,
+      "height": 675,
+      "aspectRatio": 1.778,
+      "priority": 7,
+      "formats": {
+        "webp": 19.9,
+        "avif": 8.6,
+        "medium800w": 12.0,
+        "mobile400w": 4.6,
+        "lqip": 0.1
+      },
+      "dominantColor": "#38413b"
+    },
+    "BRANDwork-WarriorPrincessOz-StageSet": {
+      "id": "BRANDwork-WarriorPrincessOz-StageSet",
+      "category": "portfolio",
+      "width": 1200,
+      "height": 675,
+      "aspectRatio": 1.778,
+      "priority": 7,
+      "formats": {
+        "webp": 28.8,
+        "avif": 12.8,
+        "medium800w": 15.9,
+        "mobile400w": 5.2,
+        "lqip": 0.11
+      },
+      "dominantColor": "#293738"
+    },
+    "aether-brand-ctch-logotype": {
+      "id": "aether-brand-ctch-logotype",
+      "category": "brand",
+      "width": 2000,
+      "height": 1125,
+      "aspectRatio": 1.778,
+      "priority": 9,
+      "formats": {
+        "webp": 51.0,
+        "avif": 48.7,
+        "mobile400w": 3.4,
+        "lqip": 0.17
+      },
+      "dominantColor": "#737a8a"
+    },
+    "aether-brand-logo-main": {
+      "id": "aether-brand-logo-main",
+      "category": "brand",
+      "width": 2000,
+      "height": 1125,
+      "aspectRatio": 1.778,
+      "priority": 10,
+      "formats": {
+        "webp": 143.6,
+        "avif": 106.3,
+        "mobile400w": 8.1,
+        "lqip": 0.28
+      },
+      "dominantColor": "#6885a3"
+    },
+    "aether-ip-maryjane-mainframe": {
+      "id": "aether-ip-maryjane-mainframe",
+      "category": "ip",
+      "width": 2000,
+      "height": 1125,
+      "aspectRatio": 1.778,
+      "priority": 5,
+      "formats": {
+        "webp": 149.4,
+        "avif": 128.1,
+        "mobile400w": 8.8,
+        "lqip": 0.24
+      },
+      "dominantColor": "#684841"
+    },
+    "aether-ip-metamorphasis-apothecary": {
+      "id": "aether-ip-metamorphasis-apothecary",
+      "category": "ip",
+      "width": 2000,
+      "height": 1125,
+      "aspectRatio": 1.778,
+      "priority": 5,
+      "formats": {
+        "webp": 91.9,
+        "avif": 83.0,
+        "mobile400w": 5.9,
+        "lqip": 0.21
+      },
+      "dominantColor": "#4f6e74"
+    },
+    "aether-ip-tales-of-lucidia": {
+      "id": "aether-ip-tales-of-lucidia",
+      "category": "ip",
+      "width": 2000,
+      "height": 1125,
+      "aspectRatio": 1.778,
+      "priority": 5,
+      "formats": {
+        "webp": 62.8,
+        "avif": 42.1,
+        "mobile400w": 3.2,
+        "lqip": 0.23
+      },
+      "dominantColor": "#978685"
+    },
+    "aether-portfolio-batb-setdesign": {
+      "id": "aether-portfolio-batb-setdesign",
+      "category": "portfolio",
+      "width": 2000,
+      "height": 666,
+      "aspectRatio": 3.003,
+      "priority": 5,
+      "formats": {
+        "webp": 88.3,
+        "avif": 51.5,
+        "mobile400w": 4.5,
+        "lqip": 0.08
+      },
+      "dominantColor": "#3f4042"
+    },
+    "aether-portfolio-candlelight-venue": {
+      "id": "aether-portfolio-candlelight-venue",
+      "category": "portfolio",
+      "width": 2000,
+      "height": 1125,
+      "aspectRatio": 1.778,
+      "priority": 5,
+      "formats": {
+        "webp": 44.4,
+        "avif": 22.8,
+        "mobile400w": 2.6,
+        "lqip": 0.24
+      },
+      "dominantColor": "#411607"
+    },
+    "aether-portfolio-enchant-daytime": {
+      "id": "aether-portfolio-enchant-daytime",
+      "category": "portfolio",
+      "width": 2000,
+      "height": 1125,
+      "aspectRatio": 1.778,
+      "priority": 5,
+      "formats": {
+        "webp": 149.0,
+        "avif": 95.5,
+        "mobile400w": 6.4,
+        "lqip": 0.24
+      },
+      "dominantColor": "#5c6874"
+    },
+    "aether-portfolio-enchant-lights-01": {
+      "id": "aether-portfolio-enchant-lights-01",
+      "category": "portfolio",
+      "width": 2000,
+      "height": 1125,
+      "aspectRatio": 1.778,
+      "priority": 5,
+      "formats": {
+        "webp": 119.5,
+        "avif": 78.8,
+        "mobile400w": 4.6,
+        "lqip": 0.22
+      },
+      "dominantColor": "#58564e"
+    },
+    "aether-portfolio-enchant-lights-02": {
+      "id": "aether-portfolio-enchant-lights-02",
+      "category": "portfolio",
+      "width": 2000,
+      "height": 1125,
+      "aspectRatio": 1.778,
+      "priority": 5,
+      "formats": {
+        "webp": 784.8,
+        "avif": 473.3,
+        "mobile400w": 6.0,
+        "lqip": 0.25
+      },
+      "dominantColor": "#56585f"
+    },
+    "aether-portfolio-enchant-retail": {
+      "id": "aether-portfolio-enchant-retail",
+      "category": "portfolio",
+      "width": 2000,
+      "height": 1125,
+      "aspectRatio": 1.778,
+      "priority": 5,
+      "formats": {
+        "webp": 54.3,
+        "avif": 24.4,
+        "mobile400w": 2.5,
+        "lqip": 0.24
+      },
+      "dominantColor": "#5d4534"
+    },
+    "aether-portfolio-killmove-01": {
+      "id": "aether-portfolio-killmove-01",
+      "category": "portfolio",
+      "width": 2000,
+      "height": 1125,
+      "aspectRatio": 1.778,
+      "priority": 5,
+      "formats": {
+        "webp": 54.8,
+        "avif": 30.5,
+        "mobile400w": 3.2,
+        "lqip": 0.23
+      },
+      "dominantColor": "#31393a"
+    },
+    "aether-portfolio-killmove-02": {
+      "id": "aether-portfolio-killmove-02",
+      "category": "portfolio",
+      "width": 2000,
+      "height": 1125,
+      "aspectRatio": 1.778,
+      "priority": 5,
+      "formats": {
+        "webp": 61.4,
+        "avif": 38.0,
+        "mobile400w": 3.9,
+        "lqip": 0.23
+      },
+      "dominantColor": "#36383c"
+    },
+    "aether-team-cofounder-shaxinwei": {
+      "id": "aether-team-cofounder-shaxinwei",
+      "category": "team",
+      "width": 2000,
+      "height": 1125,
+      "aspectRatio": 1.778,
+      "priority": 8,
+      "formats": {
+        "webp": 30.0,
+        "avif": 18.9,
+        "mobile400w": 1.8,
+        "lqip": 0.22
+      },
+      "dominantColor": "#b6afad"
+    },
+    "aether-team-cofounder-vangelis": {
+      "id": "aether-team-cofounder-vangelis",
+      "category": "team",
+      "width": 2000,
+      "height": 1125,
+      "aspectRatio": 1.778,
+      "priority": 8,
+      "formats": {
+        "webp": 36.1,
+        "avif": 21.0,
+        "mobile400w": 2.1,
+        "lqip": 0.22
+      },
+      "dominantColor": "#c4bfc2"
+    },
+    "aether-team-founder-ctch": {
+      "id": "aether-team-founder-ctch",
+      "category": "team",
+      "width": 2000,
+      "height": 1125,
+      "aspectRatio": 1.778,
+      "priority": 8,
+      "formats": {
+        "webp": 40.2,
+        "avif": 21.4,
+        "mobile400w": 3.0,
+        "lqip": 0.23
+      },
+      "dominantColor": "#8c8878"
+    }
+  }
+}
