@@ -1,0 +1,50 @@
+/* AETHER Brand Assets - CSS Helpers */
+/* Windows 95 Aesthetic Web Embedding */
+
+.brand-asset {
+    image-rendering: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.brand-asset-pixelated {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+.brand-asset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+.brand-asset-card {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    padding: 8px;
+}
+
+/* Lazy loading fade-in */
+.brand-asset[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.brand-asset.loaded {
+    opacity: 1;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 768px) {
+    .brand-asset-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 1024px) {
+    .brand-asset-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

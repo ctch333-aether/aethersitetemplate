@@ -1,0 +1,337 @@
+{
+  "version": "2.0.0",
+  "generated": "2025-12-06",
+  "organization": "AETHER Phygital Experience Platform",
+  "description": "Comprehensive web-optimized brand assets for local website embedding",
+  "baseUrl": "/assets/",
+  "formats": {
+    "primary": "webp",
+    "fallback": "png",
+    "thumbnailSizes": [64, 128, 256, 512],
+    "mediumWidth": 800
+  },
+  "directories": {
+    "webp": "Primary WebP images (full resolution)",
+    "png-fallback": "PNG fallbacks for older browsers",
+    "webp-medium": "Medium-resolution WebP (800px width)",
+    "thumbnails": "Multi-size thumbnails for responsive srcset",
+    "manifest": "Asset manifests and integration guides"
+  },
+  "assets": {
+    "brand": [
+      {
+        "id": "aether-brand-logo-main",
+        "name": "AETHER Main Logo",
+        "description": "Crystalline wolf emblem with iridescent orbital rings",
+        "usage": ["headers", "hero-sections", "merchandise"],
+        "hasThumbnails": true
+      },
+      {
+        "id": "aether-brand-ctch-logotype",
+        "name": "CTCH Logotype",
+        "description": "Christian Charles Harris 3D metallic text",
+        "usage": ["founder-bios", "about-pages"],
+        "hasThumbnails": true
+      }
+    ],
+    "team": [
+      {
+        "id": "aether-team-founder-ctch",
+        "name": "Founder CTCH Portrait",
+        "description": "CTCH in Windows 95 MS Paint frame",
+        "usage": ["about-page", "team-section"],
+        "hasThumbnails": true
+      },
+      {
+        "id": "aether-team-cofounder-shaxinwei",
+        "name": "Co-Founder Sha Xinwei",
+        "description": "Windows 95 Install Wizard frame",
+        "usage": ["about-page", "team-section"],
+        "hasThumbnails": true
+      },
+      {
+        "id": "aether-team-cofounder-vangelis",
+        "name": "Co-Founder Vangelis Lympouridis",
+        "description": "Windows 95 Install Wizard frame",
+        "usage": ["about-page", "team-section"],
+        "hasThumbnails": true
+      },
+      {
+        "id": "BRANDAsset-Typography3D-ShaXinWei",
+        "name": "Sha Xinwei 3D Typography",
+        "description": "3D metallic name typography",
+        "usage": ["team-section", "about-page"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      },
+      {
+        "id": "BRANDAsset-Typography3D-VangelisLympouridis",
+        "name": "Vangelis Lympouridis 3D Typography",
+        "description": "3D metallic name typography",
+        "usage": ["team-section", "about-page"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      },
+      {
+        "id": "BRANDAsset-Typography3D-AlchemicalArtisans",
+        "name": "Alchemical Artisans 3D Typography",
+        "description": "3D metallic team typography",
+        "usage": ["team-section"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      }
+    ],
+    "portfolio": [
+      {
+        "id": "aether-portfolio-batb-setdesign",
+        "name": "Beauty and the Beast Set Design",
+        "description": "Stained glass set design panorama",
+        "usage": ["portfolio-gallery", "case-studies"],
+        "hasThumbnails": true
+      },
+      {
+        "id": "aether-portfolio-candlelight-venue",
+        "name": "Candlelight Venue",
+        "description": "Ambient concert venue under tensile structure",
+        "usage": ["portfolio-gallery"],
+        "hasThumbnails": true
+      },
+      {
+        "id": "aether-portfolio-enchant-lights-01",
+        "name": "Enchant Light Installations 01",
+        "description": "Nighttime LED sculptures",
+        "usage": ["portfolio-gallery", "hero-sections"],
+        "hasThumbnails": true
+      },
+      {
+        "id": "aether-portfolio-enchant-lights-02",
+        "name": "Enchant Light Installations 02",
+        "description": "Ice rink and light tunnels panorama",
+        "usage": ["portfolio-gallery"],
+        "hasThumbnails": true
+      },
+      {
+        "id": "aether-portfolio-enchant-daytime",
+        "name": "Enchant Daytime",
+        "description": "Daytime operations and setup",
+        "usage": ["portfolio-gallery", "behind-scenes"],
+        "hasThumbnails": true
+      },
+      {
+        "id": "aether-portfolio-enchant-retail",
+        "name": "Enchant Retail",
+        "description": "Holiday market booth",
+        "usage": ["portfolio-gallery"],
+        "hasThumbnails": true
+      },
+      {
+        "id": "aether-portfolio-killmove-01",
+        "name": "Kill Move Paradise 01",
+        "description": "Theatrical projection mapping",
+        "usage": ["portfolio-gallery", "theatrical-work"],
+        "hasThumbnails": true
+      },
+      {
+        "id": "aether-portfolio-killmove-02",
+        "name": "Kill Move Paradise 02",
+        "description": "Extended theatrical scenes",
+        "usage": ["portfolio-gallery", "theatrical-work"],
+        "hasThumbnails": true
+      },
+      {
+        "id": "BRANDwork-EnchantSite-Collage2",
+        "name": "Enchant Site Collage 2",
+        "description": "Multi-image Enchant production collage",
+        "usage": ["portfolio-gallery", "hero-sections"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      },
+      {
+        "id": "BRANDwork-EnchantSite-Collage4",
+        "name": "Enchant Site Collage 4",
+        "description": "Multi-image Enchant production collage",
+        "usage": ["portfolio-gallery"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      },
+      {
+        "id": "BRANDwork-EnchantSite-Collage6",
+        "name": "Enchant Site Collage 6",
+        "description": "Multi-image Enchant production collage",
+        "usage": ["portfolio-gallery"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      },
+      {
+        "id": "BRANDwork-EnchantSite-Collage7",
+        "name": "Enchant Site Collage 7",
+        "description": "Multi-image Enchant production collage",
+        "usage": ["portfolio-gallery"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      },
+      {
+        "id": "BRANDwork-EnchantSite-Collage8",
+        "name": "Enchant Site Collage 8",
+        "description": "Multi-image Enchant production collage",
+        "usage": ["portfolio-gallery"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      },
+      {
+        "id": "BRANDwork-ProjectionMapping-CircuitNeuron",
+        "name": "Projection Mapping - Circuit Neuron",
+        "description": "Neural circuit projection artwork",
+        "usage": ["portfolio-gallery", "projection-mapping"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      },
+      {
+        "id": "BRANDwork-ProjectionMapping-CosmicEye",
+        "name": "Projection Mapping - Cosmic Eye",
+        "description": "Cosmic eye projection artwork",
+        "usage": ["portfolio-gallery", "projection-mapping"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      },
+      {
+        "id": "BRANDwork-ProjectionMapping-GridMatrix",
+        "name": "Projection Mapping - Grid Matrix",
+        "description": "Grid matrix projection artwork",
+        "usage": ["portfolio-gallery", "projection-mapping"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      },
+      {
+        "id": "BRANDwork-ProjectionMapping-OceanForge",
+        "name": "Projection Mapping - Ocean Forge",
+        "description": "Ocean themed projection artwork",
+        "usage": ["portfolio-gallery", "projection-mapping"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      },
+      {
+        "id": "BRANDwork-ProjectionMapping-SciFi",
+        "name": "Projection Mapping - SciFi",
+        "description": "Science fiction projection artwork",
+        "usage": ["portfolio-gallery", "projection-mapping"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      },
+      {
+        "id": "BRANDwork-ProjectionMapping-Vintage",
+        "name": "Projection Mapping - Vintage",
+        "description": "Vintage aesthetic projection artwork",
+        "usage": ["portfolio-gallery", "projection-mapping"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      },
+      {
+        "id": "BRANDwork-StageProduction-GhostProjection",
+        "name": "Stage Production - Ghost Projection",
+        "description": "Theatrical ghost projection effect",
+        "usage": ["portfolio-gallery", "theatrical-work"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      },
+      {
+        "id": "BRANDwork-StageProduction-PrisonScene",
+        "name": "Stage Production - Prison Scene",
+        "description": "Prison scene theatrical production",
+        "usage": ["portfolio-gallery", "theatrical-work"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      }
+    ],
+    "intellectual-property": [
+      {
+        "id": "aether-ip-tales-of-lucidia",
+        "name": "Tales of Lucidia",
+        "description": "Ancient stone tablet logo",
+        "usage": ["ip-showcase", "franchise-pages"],
+        "hasThumbnails": true
+      },
+      {
+        "id": "aether-ip-maryjane-mainframe",
+        "name": "MaryJane Mainframe",
+        "description": "Retro Hobbies digital aesthetic",
+        "usage": ["ip-showcase"],
+        "hasThumbnails": true
+      },
+      {
+        "id": "aether-ip-metamorphasis-apothecary",
+        "name": "Metamorphasis Apothecary",
+        "description": "Crystalline star pharmacy logo",
+        "usage": ["ip-showcase"],
+        "hasThumbnails": true
+      },
+      {
+        "id": "BRANDAsset-PhygitalIP-BroussardBayouBBQ",
+        "name": "Broussard Bayou BBQ",
+        "description": "Phygital IP concept - Louisiana BBQ venue",
+        "usage": ["ip-showcase", "venue-concepts"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      },
+      {
+        "id": "BRANDAsset-PhygitalIP-Port51Confectionarium",
+        "name": "Port 51 Confectionarium",
+        "description": "Phygital IP concept - Sci-fi candy venue",
+        "usage": ["ip-showcase", "venue-concepts"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      },
+      {
+        "id": "BRANDAsset-WarriorPrincess-CharacterConcept",
+        "name": "Warrior Princess Character Concept",
+        "description": "Tales of Lucidia character design",
+        "usage": ["ip-showcase", "franchise-pages"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      },
+      {
+        "id": "BRANDAsset-WarriorPrincess-Render51",
+        "name": "Warrior Princess Render 51",
+        "description": "Tales of Lucidia 3D character render",
+        "usage": ["ip-showcase", "franchise-pages"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      },
+      {
+        "id": "BRANDwork-WarriorPrincessOz-ArenaLayout",
+        "name": "Warrior Princess Oz Arena Layout",
+        "description": "Arena venue concept layout",
+        "usage": ["ip-showcase", "venue-concepts"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      },
+      {
+        "id": "BRANDwork-WarriorPrincessOz-EmeraldCrystals",
+        "name": "Warrior Princess Oz Emerald Crystals",
+        "description": "Emerald city crystal design elements",
+        "usage": ["ip-showcase", "design-elements"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      },
+      {
+        "id": "BRANDwork-WarriorPrincessOz-StageSet",
+        "name": "Warrior Princess Oz Stage Set",
+        "description": "Stage set design concept",
+        "usage": ["ip-showcase", "venue-concepts"],
+        "hasThumbnails": false,
+        "hasMedium": true
+      }
+    ]
+  },
+  "totalAssets": {
+    "webp": 39,
+    "png-fallback": 39,
+    "webp-medium": 23,
+    "thumbnails": 151
+  },
+  "usage": {
+    "responsiveImage": "<picture><source srcset='webp/{id}.webp' type='image/webp'><img src='png-fallback/{id}.png' alt=''></picture>",
+    "srcsetThumbnails": "srcset='thumbnails/64/{id}-64w.webp 64w, thumbnails/128/{id}-128w.webp 128w, thumbnails/256/{id}-256w.webp 256w, thumbnails/512/{id}-512w.webp 512w'",
+    "lazyLoading": "loading='lazy' decoding='async'"
+  }
+}

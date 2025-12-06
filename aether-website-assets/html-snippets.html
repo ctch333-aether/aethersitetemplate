@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AETHER Brand Assets - Complete Web Embedding Reference</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            font-family: 'MS Sans Serif', 'Segoe UI', Tahoma, sans-serif;
+            background: #008080;
+            margin: 0;
+            padding: 20px;
+            color: #000;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        h1 {
+            color: #fff;
+            text-shadow: 2px 2px 0 #000;
+            text-align: center;
+            font-size: 28px;
+        }
+        .window {
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            margin-bottom: 16px;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+        }
+        .window-titlebar {
+            background: linear-gradient(90deg, #000080, #1084d0);
+            color: white;
+            padding: 4px 8px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+        .window-controls span {
+            display: inline-block;
+            width: 16px;
+            height: 14px;
+            background: #c0c0c0;
+            border: 1px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            text-align: center;
+            font-size: 10px;
+            line-height: 12px;
+            margin-left: 2px;
+        }
+        .window-content { padding: 12px; }
+        .asset-preview {
+            width: 100%;
+            max-height: 150px;
+            object-fit: contain;
+            border: 1px solid #808080;
+            background: #222;
+            margin-bottom: 8px;
+        }
+        pre {
+            background: #fff;
+            border: 2px inset #808080;
+            padding: 8px;
+            overflow-x: auto;
+            font-size: 10px;
+            line-height: 1.3;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin: 0;
+        }
+        code { font-family: 'Courier New', monospace; }
+        .stats {
+            background: #ffffcc;
+            border: 2px inset #808080;
+            padding: 12px;
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 24px; font-weight: bold; color: #000080; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 12px;
+        }
+        .section-title {
+            background: linear-gradient(90deg, #000080, #1084d0);
+            color: #fff;
+            padding: 8px 16px;
+            margin: 24px 0 12px 0;
+            font-size: 16px;
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+        }
+        footer {
+            text-align: center;
+            color: #fff;
+            margin-top: 30px;
+            font-style: italic;
+            font-size: 18px;
+        }
+        .meta { font-size: 11px; color: #444; margin: 4px 0; }
+        .copy-btn {
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            padding: 2px 8px;
+            font-size: 10px;
+            cursor: pointer;
+            margin-top: 4px;
+        }
+        .copy-btn:active {
+            border-color: #808080 #ffffff #ffffff #808080;
+        }
+        .directory-structure {
+            background: #000;
+            color: #0f0;
+            padding: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+        .intro { color: #fff; text-align: center; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚗️ AETHER Brand Assets</h1>
+        <p class="intro">Complete Web Embedding Reference — 23 Assets Optimized</p>
+        
+        <div class="window">
+            <div class="window-titlebar">
+                <span>📊 Optimization Summary</span>
+                <div class="window-controls">
+                    <span>_</span><span>□</span><span>×</span>
+                </div>
+            </div>
+            <div class="window-content stats">
+                <div class="stat-item">
+                    <div class="stat-value">23</div>
+                    <div>Total Assets</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">1104KB</div>
+                    <div>WebP Total</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">~67%</div>
+                    <div>Avg Reduction</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div>Size Variants</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="window">
+            <div class="window-titlebar">
+                <span>📁 Directory Structure</span>
+            </div>
+            <div class="window-content">
+                <div class="directory-structure">aether-brand-assets/
+├── webp/              → Primary WebP (1200px max)
+├── webp-medium/       → Medium (800px) for tablets
+├── thumbnails/        → Thumbnails (400px) *_thumb.webp
+├── png-fallback/      → PNG fallback for legacy browsers
+├── html-snippets.html → This reference file
+└── brand-assets.css   → CSS helpers for embedding</div>
+            </div>
+        </div>
+        
+        <div class="window">
+            <div class="window-titlebar">
+                <span>📋 Responsive srcset Pattern</span>
+            </div>
+            <div class="window-content">
+<pre><code>&lt;picture&gt;
+    &lt;source 
+        srcset="assets/thumbnails/ASSET_thumb.webp 400w,
+                assets/webp-medium/ASSET_800w.webp 800w,
+                assets/webp/ASSET.webp 1200w"
+        sizes="(max-width: 600px) 400px,
+               (max-width: 1000px) 800px,
+               1200px"
+        type="image/webp"&gt;
+    &lt;img src="assets/png-fallback/ASSET.png" alt="Description" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+            </div>
+        </div>
+
+        <div class="section-title">🎭 Projection Mapping Installations</div>
+        <div class="grid">
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDwork-ProjectionMapping-SciFi...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDwork-ProjectionMapping-SciFi_thumb.webp" 
+                         alt="Projection Mapping Installation - Sci-Fi Theme" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 26.7KB | <strong>Alt:</strong> Projection Mapping Installation - Sci-Fi Theme...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDwork-ProjectionMapping-SciFi.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDwork-ProjectionMapping-SciFi.png" alt="Projection Mapping Installation - Sci-Fi Theme" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDwork-ProjectionMapping-Vintage...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDwork-ProjectionMapping-Vintage_thumb.webp" 
+                         alt="Projection Mapping Installation - Vintage Room" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 30.2KB | <strong>Alt:</strong> Projection Mapping Installation - Vintage Room...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDwork-ProjectionMapping-Vintage.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDwork-ProjectionMapping-Vintage.png" alt="Projection Mapping Installation - Vintage Room" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDwork-ProjectionMapping-OceanForge...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDwork-ProjectionMapping-OceanForge_thumb.webp" 
+                         alt="Projection Mapping - Ocean Water and Golden Lava Effect" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 41.4KB | <strong>Alt:</strong> Projection Mapping - Ocean Water and Golden Lava E...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDwork-ProjectionMapping-OceanForge.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDwork-ProjectionMapping-OceanForge.png" alt="Projection Mapping - Ocean Water and Golden Lava Effect" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDwork-ProjectionMapping-CircuitNeuro...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDwork-ProjectionMapping-CircuitNeuron_thumb.webp" 
+                         alt="Projection Mapping - Circuit Pattern with Neural Network" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 31.1KB | <strong>Alt:</strong> Projection Mapping - Circuit Pattern with Neural N...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDwork-ProjectionMapping-CircuitNeuron.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDwork-ProjectionMapping-CircuitNeuron.png" alt="Projection Mapping - Circuit Pattern with Neural Network" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDwork-ProjectionMapping-GridMatrix...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDwork-ProjectionMapping-GridMatrix_thumb.webp" 
+                         alt="Projection Mapping - Red Blue Grid Matrix" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 31.2KB | <strong>Alt:</strong> Projection Mapping - Red Blue Grid Matrix...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDwork-ProjectionMapping-GridMatrix.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDwork-ProjectionMapping-GridMatrix.png" alt="Projection Mapping - Red Blue Grid Matrix" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDwork-ProjectionMapping-CosmicEye...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDwork-ProjectionMapping-CosmicEye_thumb.webp" 
+                         alt="Projection Mapping - Cosmic Eye Space Theme" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 19.8KB | <strong>Alt:</strong> Projection Mapping - Cosmic Eye Space Theme...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDwork-ProjectionMapping-CosmicEye.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDwork-ProjectionMapping-CosmicEye.png" alt="Projection Mapping - Cosmic Eye Space Theme" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">🎬 Stage Productions</div>
+        <div class="grid">
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDwork-StageProduction-PrisonScene...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDwork-StageProduction-PrisonScene_thumb.webp" 
+                         alt="Stage Production with Projection Mapping - Prison Cell Scene" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 25.6KB | <strong>Alt:</strong> Stage Production with Projection Mapping - Prison ...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDwork-StageProduction-PrisonScene.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDwork-StageProduction-PrisonScene.png" alt="Stage Production with Projection Mapping - Prison Cell Scene" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDwork-StageProduction-GhostProjectio...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDwork-StageProduction-GhostProjection_thumb.webp" 
+                         alt="Stage Production with Holographic Ghost Projections" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 22.0KB | <strong>Alt:</strong> Stage Production with Holographic Ghost Projection...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDwork-StageProduction-GhostProjection.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDwork-StageProduction-GhostProjection.png" alt="Stage Production with Holographic Ghost Projections" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">👑 Warrior Princess of Oz</div>
+        <div class="grid">
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDwork-WarriorPrincessOz-ArenaLayout...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDwork-WarriorPrincessOz-ArenaLayout_thumb.webp" 
+                         alt="Warrior Princess of Oz - ASU Gammage Arena Layout" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 90.3KB | <strong>Alt:</strong> Warrior Princess of Oz - ASU Gammage Arena Layout...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDwork-WarriorPrincessOz-ArenaLayout.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDwork-WarriorPrincessOz-ArenaLayout.png" alt="Warrior Princess of Oz - ASU Gammage Arena Layout" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDwork-WarriorPrincessOz-EmeraldCryst...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDwork-WarriorPrincessOz-EmeraldCrystals_thumb.webp" 
+                         alt="Warrior Princess of Oz - Emerald Crystal Set" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 19.9KB | <strong>Alt:</strong> Warrior Princess of Oz - Emerald Crystal Set...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDwork-WarriorPrincessOz-EmeraldCrystals.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDwork-WarriorPrincessOz-EmeraldCrystals.png" alt="Warrior Princess of Oz - Emerald Crystal Set" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDwork-WarriorPrincessOz-StageSet...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDwork-WarriorPrincessOz-StageSet_thumb.webp" 
+                         alt="Warrior Princess of Oz - Stage Set Render" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 28.8KB | <strong>Alt:</strong> Warrior Princess of Oz - Stage Set Render...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDwork-WarriorPrincessOz-StageSet.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDwork-WarriorPrincessOz-StageSet.png" alt="Warrior Princess of Oz - Stage Set Render" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDAsset-WarriorPrincess-CharacterConc...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDAsset-WarriorPrincess-CharacterConcept_thumb.webp" 
+                         alt="Tales of Lucidia - Warrior Princess Concept Art" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 98.2KB | <strong>Alt:</strong> Tales of Lucidia - Warrior Princess Concept Art...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDAsset-WarriorPrincess-CharacterConcept.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDAsset-WarriorPrincess-CharacterConcept.png" alt="Tales of Lucidia - Warrior Princess Concept Art" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDAsset-WarriorPrincess-Render51...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDAsset-WarriorPrincess-Render51_thumb.webp" 
+                         alt="Tales of Lucidia - Warrior Princess Full Render" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 67.5KB | <strong>Alt:</strong> Tales of Lucidia - Warrior Princess Full Render...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDAsset-WarriorPrincess-Render51.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDAsset-WarriorPrincess-Render51.png" alt="Tales of Lucidia - Warrior Princess Full Render" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">✨ Enchant Site Collages</div>
+        <div class="grid">
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDwork-EnchantSite-Collage2...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDwork-EnchantSite-Collage2_thumb.webp" 
+                         alt="Enchant Installation Site - Light Displays" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 85.2KB | <strong>Alt:</strong> Enchant Installation Site - Light Displays...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDwork-EnchantSite-Collage2.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDwork-EnchantSite-Collage2.png" alt="Enchant Installation Site - Light Displays" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDwork-EnchantSite-Collage4...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDwork-EnchantSite-Collage4_thumb.webp" 
+                         alt="Enchant Installation Site - Reindeer Sculptures" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 107.6KB | <strong>Alt:</strong> Enchant Installation Site - Reindeer Sculptures...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDwork-EnchantSite-Collage4.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDwork-EnchantSite-Collage4.png" alt="Enchant Installation Site - Reindeer Sculptures" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDwork-EnchantSite-Collage6...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDwork-EnchantSite-Collage6_thumb.webp" 
+                         alt="Enchant Installation Site - Ice Sculptures" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 88.1KB | <strong>Alt:</strong> Enchant Installation Site - Ice Sculptures...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDwork-EnchantSite-Collage6.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDwork-EnchantSite-Collage6.png" alt="Enchant Installation Site - Ice Sculptures" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDwork-EnchantSite-Collage7...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDwork-EnchantSite-Collage7_thumb.webp" 
+                         alt="Enchant Installation Site - Night Display" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 130.5KB | <strong>Alt:</strong> Enchant Installation Site - Night Display...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDwork-EnchantSite-Collage7.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDwork-EnchantSite-Collage7.png" alt="Enchant Installation Site - Night Display" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDwork-EnchantSite-Collage8...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDwork-EnchantSite-Collage8_thumb.webp" 
+                         alt="Enchant Installation Site - Tree Displays" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 111.1KB | <strong>Alt:</strong> Enchant Installation Site - Tree Displays...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDwork-EnchantSite-Collage8.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDwork-EnchantSite-Collage8.png" alt="Enchant Installation Site - Tree Displays" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">🔤 3D Typography</div>
+        <div class="grid">
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDAsset-Typography3D-ShaXinWei...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDAsset-Typography3D-ShaXinWei_thumb.webp" 
+                         alt="3D Typography - Sha Xin Wei PHD" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 6.0KB | <strong>Alt:</strong> 3D Typography - Sha Xin Wei PHD...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDAsset-Typography3D-ShaXinWei.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDAsset-Typography3D-ShaXinWei.png" alt="3D Typography - Sha Xin Wei PHD" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDAsset-Typography3D-VangelisLympouri...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDAsset-Typography3D-VangelisLympouridis_thumb.webp" 
+                         alt="3D Typography - Vangelis Lympouridis PHD" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 8.2KB | <strong>Alt:</strong> 3D Typography - Vangelis Lympouridis PHD...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDAsset-Typography3D-VangelisLympouridis.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDAsset-Typography3D-VangelisLympouridis.png" alt="3D Typography - Vangelis Lympouridis PHD" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDAsset-Typography3D-AlchemicalArtisa...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDAsset-Typography3D-AlchemicalArtisans_thumb.webp" 
+                         alt="3D Typography - Alchemical Artisans" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 8.0KB | <strong>Alt:</strong> 3D Typography - Alchemical Artisans...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDAsset-Typography3D-AlchemicalArtisans.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDAsset-Typography3D-AlchemicalArtisans.png" alt="3D Typography - Alchemical Artisans" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">🎪 Phygital IP Logos</div>
+        <div class="grid">
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDAsset-PhygitalIP-BroussardBayouBBQ...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDAsset-PhygitalIP-BroussardBayouBBQ_thumb.webp" 
+                         alt="Phygital IP - Broussard Bayou Honeymoon BBQ Logo" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 16.5KB | <strong>Alt:</strong> Phygital IP - Broussard Bayou Honeymoon BBQ Logo...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDAsset-PhygitalIP-BroussardBayouBBQ.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDAsset-PhygitalIP-BroussardBayouBBQ.png" alt="Phygital IP - Broussard Bayou Honeymoon BBQ Logo" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+            <div class="window">
+                <div class="window-titlebar">
+                    <span>BRANDAsset-PhygitalIP-Port51Confectionar...</span>
+                </div>
+                <div class="window-content">
+                    <img src="thumbnails/BRANDAsset-PhygitalIP-Port51Confectionarium_thumb.webp" 
+                         alt="Phygital IP - Port 51 Lucidia Confectionarium Logo" 
+                         class="asset-preview"
+                         loading="lazy">
+                    <div class="meta"><strong>Size:</strong> 10.6KB | <strong>Alt:</strong> Phygital IP - Port 51 Lucidia Confectionarium Logo...</div>
+<pre><code>&lt;picture&gt;
+  &lt;source srcset="webp/BRANDAsset-PhygitalIP-Port51Confectionarium.webp" type="image/webp"&gt;
+  &lt;img src="png-fallback/BRANDAsset-PhygitalIP-Port51Confectionarium.png" alt="Phygital IP - Port 51 Lucidia Confectionarium Logo" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            Believe<sup>®</sup><br>
+            AETHER Phygital Experience Platform<br>
+            <small>Alchemist Atelier aRtGaRDErN TECHNO-FABRIQUE • Sedona, Arizona</small>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+{
+  "version": "1.0.0",
+  "generated": "2025-12-06",
+  "organization": "AETHER Phygital Experience Platform",
+  "baseUrl": "/assets/brand/",
+  "formats": {
+    "primary": "webp",
+    "fallback": "png",
+    "thumbnailSizes": [64, 128, 256, 512]
+  },
+  "assets": [
+    {
+      "id": "aether-brand-logo-main",
+      "name": "AETHER Main Logo",
+      "description": "Crystalline wolf emblem with iridescent orbital rings",
+      "category": "brand",
+      "usage": ["headers", "hero-sections", "merchandise"]
+    },
+    {
+      "id": "aether-brand-ctch-logotype",
+      "name": "CTCH Logotype",
+      "description": "Christian Charles Harris 3D metallic text",
+      "category": "brand",
+      "usage": ["founder-bios", "about-pages"]
+    },
+    {
+      "id": "aether-team-founder-ctch",
+      "name": "Founder CTCH Portrait",
+      "description": "CTCH in Windows 95 MS Paint frame",
+      "category": "team",
+      "usage": ["about-page", "team-section"]
+    },
+    {
+      "id": "aether-team-cofounder-shaxinwei",
+      "name": "Co-Founder Sha Xinwei",
+      "description": "Windows 95 Install Wizard frame",
+      "category": "team",
+      "usage": ["about-page", "team-section"]
+    },
+    {
+      "id": "aether-team-cofounder-vangelis",
+      "name": "Co-Founder Vangelis",
+      "description": "Windows 95 Install Wizard frame",
+      "category": "team",
+      "usage": ["about-page", "team-section"]
+    },
+    {
+      "id": "aether-portfolio-batb-setdesign",
+      "name": "Beauty and the Beast Set Design",
+      "description": "Stained glass set design panorama",
+      "category": "portfolio",
+      "usage": ["portfolio-gallery", "case-studies"]
+    },
+    {
+      "id": "aether-portfolio-candlelight-venue",
+      "name": "Candlelight Venue",
+      "description": "Ambient concert venue under tensile structure",
+      "category": "portfolio",
+      "usage": ["portfolio-gallery"]
+    },
+    {
+      "id": "aether-portfolio-enchant-lights-01",
+      "name": "Enchant Light Installations 01",
+      "description": "Nighttime LED sculptures",
+      "category": "portfolio",
+      "usage": ["portfolio-gallery", "hero-sections"]
+    },
+    {
+      "id": "aether-portfolio-enchant-lights-02",
+      "name": "Enchant Light Installations 02",
+      "description": "Ice rink and light tunnels",
+      "category": "portfolio",
+      "usage": ["portfolio-gallery"]
+    },
+    {
+      "id": "aether-portfolio-enchant-daytime",
+      "name": "Enchant Daytime",
+      "description": "Daytime operations and setup",
+      "category": "portfolio",
+      "usage": ["portfolio-gallery", "behind-scenes"]
+    },
+    {
+      "id": "aether-portfolio-enchant-retail",
+      "name": "Enchant Retail",
+      "description": "Holiday market booth",
+      "category": "portfolio",
+      "usage": ["portfolio-gallery"]
+    },
+    {
+      "id": "aether-portfolio-killmove-01",
+      "name": "Kill Move Paradise 01",
+      "description": "Theatrical projection mapping",
+      "category": "portfolio",
+      "usage": ["portfolio-gallery", "theatrical-work"]
+    },
+    {
+      "id": "aether-portfolio-killmove-02",
+      "name": "Kill Move Paradise 02",
+      "description": "Extended theatrical scenes",
+      "category": "portfolio",
+      "usage": ["portfolio-gallery", "theatrical-work"]
+    },
+    {
+      "id": "aether-ip-tales-of-lucidia",
+      "name": "Tales of Lucidia",
+      "description": "Ancient stone tablet logo",
+      "category": "intellectual-property",
+      "usage": ["ip-showcase", "franchise-pages"]
+    },
+    {
+      "id": "aether-ip-maryjane-mainframe",
+      "name": "MaryJane Mainframe",
+      "description": "Retro Hobbies digital aesthetic",
+      "category": "intellectual-property",
+      "usage": ["ip-showcase"]
+    },
+    {
+      "id": "aether-ip-metamorphasis-apothecary",
+      "name": "Metamorphasis Apothecary",
+      "description": "Crystalline star pharmacy logo",
+      "category": "intellectual-property",
+      "usage": ["ip-showcase"]
+    }
+  ]
+}

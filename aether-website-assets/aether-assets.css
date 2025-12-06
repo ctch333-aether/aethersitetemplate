@@ -1,0 +1,439 @@
+/**
+ * AETHER Website Assets - Comprehensive CSS v2.0.0
+ * Optimized for performance, accessibility, and AetherPunk Win95 aesthetic
+ * Generated: 2025-12-06
+ */
+
+/* ============================================
+   CSS CUSTOM PROPERTIES (Design Tokens)
+   ============================================ */
+:root {
+  /* Win95 Color Palette */
+  --win95-bg: #008080;
+  --win95-window: #c0c0c0;
+  --win95-border-light: #ffffff;
+  --win95-border-dark: #808080;
+  --win95-border-darker: #404040;
+  --win95-title: #000080;
+  --win95-title-active: linear-gradient(90deg, #000080, #1084d0);
+  --win95-button: #c0c0c0;
+  --win95-text: #000000;
+  --win95-link: #0000ff;
+  
+  /* AETHER Brand Colors */
+  --aether-primary: #6b5ce7;
+  --aether-secondary: #00d4aa;
+  --aether-accent: #ff6b9d;
+  --aether-dark: #1a1a2e;
+  --aether-light: #eaeaea;
+  
+  /* Asset Paths */
+  --asset-base: '/assets';
+  --asset-webp: '/assets/webp';
+  --asset-png: '/assets/png-fallback';
+  --asset-thumb: '/assets/thumbnails';
+  --asset-medium: '/assets/webp-medium';
+  --asset-lqip: '/assets/lqip';
+  
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+}
+
+/* ============================================
+   BASE IMAGE STYLES
+   ============================================ */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Progressive image loading */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+img[loading="lazy"].loaded,
+img.loaded {
+  opacity: 1;
+}
+
+/* Aspect ratio containers */
+.aspect-16-9 { aspect-ratio: 16 / 9; }
+.aspect-4-3 { aspect-ratio: 4 / 3; }
+.aspect-1-1 { aspect-ratio: 1 / 1; }
+.aspect-3-4 { aspect-ratio: 3 / 4; }
+.aspect-9-16 { aspect-ratio: 9 / 16; }
+
+/* Object fit utilities */
+.img-cover { object-fit: cover; }
+.img-contain { object-fit: contain; }
+.img-fill { object-fit: fill; }
+.img-scale-down { object-fit: scale-down; }
+
+/* ============================================
+   WIN95 WINDOW FRAME COMPONENT
+   ============================================ */
+.win95-window {
+  background: var(--win95-window);
+  border: 2px solid;
+  border-color: var(--win95-border-light) var(--win95-border-dark) var(--win95-border-dark) var(--win95-border-light);
+  box-shadow: 1px 1px 0 var(--win95-border-darker);
+}
+
+.win95-title-bar {
+  background: var(--win95-title-active);
+  color: white;
+  padding: var(--space-xs) var(--space-sm);
+  font-family: 'MS Sans Serif', 'Segoe UI', Tahoma, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.win95-content {
+  padding: var(--space-md);
+}
+
+.win95-inset {
+  border: 2px solid;
+  border-color: var(--win95-border-dark) var(--win95-border-light) var(--win95-border-light) var(--win95-border-dark);
+  background: white;
+}
+
+.win95-button {
+  background: var(--win95-button);
+  border: 2px solid;
+  border-color: var(--win95-border-light) var(--win95-border-dark) var(--win95-border-dark) var(--win95-border-light);
+  padding: var(--space-xs) var(--space-md);
+  font-family: 'MS Sans Serif', 'Segoe UI', Tahoma, sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+  min-width: 75px;
+}
+
+.win95-button:active {
+  border-color: var(--win95-border-dark) var(--win95-border-light) var(--win95-border-light) var(--win95-border-dark);
+}
+
+/* ============================================
+   IMAGE FRAME COMPONENTS
+   ============================================ */
+.aether-img-frame {
+  position: relative;
+  overflow: hidden;
+}
+
+/* LQIP blur placeholder background */
+.aether-img-frame.has-lqip {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.aether-img-frame img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+/* Win95 MS Paint frame style */
+.frame-mspaint {
+  background: var(--win95-window);
+  padding: 3px;
+  border: 2px solid;
+  border-color: var(--win95-border-light) var(--win95-border-dark) var(--win95-border-dark) var(--win95-border-light);
+}
+
+.frame-mspaint::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid;
+  border-color: var(--win95-border-dark) var(--win95-border-light) var(--win95-border-light) var(--win95-border-dark);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Win95 Install Wizard frame style */
+.frame-wizard {
+  background: var(--win95-window);
+  padding: var(--space-sm);
+  border: 2px solid;
+  border-color: var(--win95-border-light) var(--win95-border-dark) var(--win95-border-dark) var(--win95-border-light);
+}
+
+.frame-wizard .wizard-content {
+  border: 2px solid;
+  border-color: var(--win95-border-dark) var(--win95-border-light) var(--win95-border-light) var(--win95-border-dark);
+  background: white;
+}
+
+/* Holographic/iridescent frame */
+.frame-holo {
+  position: relative;
+  padding: 4px;
+  background: linear-gradient(
+    135deg,
+    #ff6b9d 0%,
+    #6b5ce7 25%,
+    #00d4aa 50%,
+    #6b5ce7 75%,
+    #ff6b9d 100%
+  );
+  background-size: 400% 400%;
+  animation: holo-shift 8s ease infinite;
+}
+
+@keyframes holo-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.frame-holo img {
+  display: block;
+}
+
+/* ============================================
+   GALLERY & GRID LAYOUTS
+   ============================================ */
+.aether-gallery {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.gallery-2col { grid-template-columns: repeat(2, 1fr); }
+.gallery-3col { grid-template-columns: repeat(3, 1fr); }
+.gallery-4col { grid-template-columns: repeat(4, 1fr); }
+.gallery-auto { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+
+@media (max-width: 768px) {
+  .gallery-2col,
+  .gallery-3col,
+  .gallery-4col {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .gallery-3col,
+  .gallery-4col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Masonry-style layout */
+.gallery-masonry {
+  columns: 3;
+  column-gap: var(--space-md);
+}
+
+.gallery-masonry > * {
+  break-inside: avoid;
+  margin-bottom: var(--space-md);
+}
+
+/* ============================================
+   TEAM SECTION STYLES
+   ============================================ */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-xl);
+}
+
+.team-member {
+  text-align: center;
+}
+
+.team-member-photo {
+  max-width: 256px;
+  margin: 0 auto var(--space-md);
+}
+
+.team-member-name {
+  font-family: 'MS Sans Serif', 'Segoe UI', Tahoma, sans-serif;
+  margin-bottom: var(--space-xs);
+}
+
+.team-member-title {
+  color: var(--win95-border-dark);
+  font-size: 0.875em;
+}
+
+/* ============================================
+   PORTFOLIO CARD STYLES
+   ============================================ */
+.portfolio-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.portfolio-card img {
+  transition: transform var(--transition-slow);
+}
+
+.portfolio-card:hover img {
+  transform: scale(1.05);
+}
+
+.portfolio-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-md);
+  color: white;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.portfolio-card:hover .portfolio-card-overlay {
+  opacity: 1;
+}
+
+/* ============================================
+   IP SHOWCASE STYLES
+   ============================================ */
+.ip-showcase {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-xl);
+}
+
+.ip-card {
+  position: relative;
+}
+
+.ip-card-logo {
+  max-height: 120px;
+  margin: 0 auto var(--space-md);
+  object-fit: contain;
+}
+
+/* ============================================
+   HERO SECTION STYLES
+   ============================================ */
+.hero-bg {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg-image {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.hero-bg-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-bg-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.3) 0%,
+    rgba(0,0,0,0.5) 100%
+  );
+}
+
+/* ============================================
+   LOADING STATES & ANIMATIONS
+   ============================================ */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--win95-window) 25%,
+    var(--win95-border-light) 50%,
+    var(--win95-window) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-normal) forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+/* Visibility */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus states for accessibility */
+:focus-visible {
+  outline: 2px dashed var(--aether-primary);
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .win95-window {
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+  
+  .frame-holo {
+    background: none;
+    border: 1px solid #000;
+  }
+}

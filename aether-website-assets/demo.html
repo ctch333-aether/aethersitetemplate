@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AETHER Brand Assets - Optimized Asset Library Demo">
+  <title>AETHER Assets Demo - Optimized Image Loading</title>
+  
+  <!-- Preload Critical Assets -->
+  <link rel="preload" as="image" type="image/webp" href="webp/aether-brand-logo-main.webp">
+  <link rel="preload" as="image" type="image/webp" href="lqip/aether-brand-logo-main-blur.webp">
+  
+  <!-- Critical CSS (inline in production) -->
+  <link rel="stylesheet" href="aether-critical.css">
+  
+  <style>
+    /* Demo-specific styles */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f0f1a;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    h1, h2, h3 {
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(135deg, #6366f1, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    h2 {
+      font-size: 1.75rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #333;
+    }
+    
+    p { margin-bottom: 1rem; opacity: 0.8; }
+    
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: rgba(99, 102, 241, 0.2);
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      border-radius: 4px;
+      font-size: 0.875rem;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .badge.avif { background: rgba(139, 92, 246, 0.2); border-color: rgba(139, 92, 246, 0.4); }
+    .badge.webp { background: rgba(34, 197, 94, 0.2); border-color: rgba(34, 197, 94, 0.4); }
+    .badge.lqip { background: rgba(236, 72, 153, 0.2); border-color: rgba(236, 72, 153, 0.4); }
+    
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    
+    .stat {
+      background: rgba(255,255,255,0.05);
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #6366f1;
+    }
+    
+    .stat-label {
+      font-size: 0.875rem;
+      opacity: 0.6;
+    }
+    
+    code {
+      background: rgba(255,255,255,0.1);
+      padding: 0.125rem 0.5rem;
+      border-radius: 4px;
+      font-family: 'SF Mono', Monaco, monospace;
+      font-size: 0.875rem;
+    }
+    
+    pre {
+      background: #1a1a2e;
+      padding: 1.5rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 1rem 0;
+      border: 1px solid #333;
+    }
+    
+    pre code {
+      background: none;
+      padding: 0;
+    }
+    
+    .demo-section {
+      margin: 3rem 0;
+      padding: 2rem;
+      background: rgba(255,255,255,0.02);
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    
+    .demo-card {
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .demo-card-image {
+      aspect-ratio: 16/9;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .demo-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.3s ease;
+    }
+    
+    .demo-card-info {
+      padding: 1rem;
+      font-size: 0.875rem;
+    }
+    
+    .demo-card-info strong {
+      color: #fff;
+    }
+    
+    /* Web Component Demo */
+    aether-image, aether-hero {
+      display: block;
+      width: 100%;
+    }
+    
+    /* Performance Monitor */
+    #perf-monitor {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      background: rgba(0,0,0,0.9);
+      color: #0f0;
+      font-family: monospace;
+      font-size: 12px;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #333;
+      z-index: 1000;
+      max-width: 300px;
+    }
+    
+    #perf-monitor h4 {
+      color: #6366f1;
+      margin-bottom: 0.5rem;
+    }
+    
+    #perf-monitor .metric {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.25rem 0;
+    }
+    
+    #perf-monitor .metric.pass { color: #22c55e; }
+    #perf-monitor .metric.fail { color: #ef4444; }
+    #perf-monitor .metric.pending { color: #f59e0b; }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <header style="position: relative; height: 60vh; overflow: hidden;">
+    <div class="aether-image" style="position: absolute; inset: 0;">
+      <div class="lqip" style="background-image: url('lqip/aether-portfolio-enchant-lights-02-blur.webp')"></div>
+      <picture>
+        <source type="image/avif" srcset="avif/aether-portfolio-enchant-lights-02.avif">
+        <source type="image/webp" 
+                srcset="webp-mobile/aether-portfolio-enchant-lights-02_400w.webp 400w,
+                        webp-medium/aether-portfolio-enchant-lights-02_800w.webp 800w,
+                        webp/aether-portfolio-enchant-lights-02.webp 1600w"
+                sizes="100vw">
+        <img src="webp/aether-portfolio-enchant-lights-02.webp" 
+             alt="AETHER Enchant Christmas Lights"
+             loading="eager"
+             decoding="sync"
+             fetchpriority="high"
+             onload="this.classList.add('loaded'); this.parentElement.parentElement.classList.add('loaded')">
+      </picture>
+    </div>
+    <div style="position: absolute; inset: 0; background: linear-gradient(transparent 40%, rgba(15,15,26,0.95)); z-index: 1;"></div>
+    <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 3rem; z-index: 2;">
+      <div class="container">
+        <h1>AETHER Brand Assets</h1>
+        <p style="font-size: 1.25rem; max-width: 600px;">
+          Optimized image library with AVIF/WebP, responsive srcsets, LQIP placeholders, 
+          and intelligent lazy loading for maximum performance.
+        </p>
+        <div style="margin-top: 1rem;">
+          <span class="badge avif">AVIF</span>
+          <span class="badge webp">WebP</span>
+          <span class="badge lqip">LQIP</span>
+          <span class="badge">Srcset</span>
+          <span class="badge">Lazy Load</span>
+          <span class="badge">Service Worker</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Statistics -->
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value">39</div>
+        <div class="stat-label">Total Assets</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">40%</div>
+        <div class="stat-label">AVIF Savings</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">92%</div>
+        <div class="stat-label">Mobile Savings</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">5</div>
+        <div class="stat-label">Format Variants</div>
+      </div>
+    </div>
+
+    <!-- Format Comparison -->
+    <section class="demo-section">
+      <h2>Format Comparison</h2>
+      <p>Same image in different formats with file sizes:</p>
+      
+      <div class="demo-grid">
+        <div class="demo-card">
+          <div class="demo-card-image aether-image">
+            <div class="lqip" style="background-image: url('lqip/aether-portfolio-enchant-lights-01-blur.webp')"></div>
+            <img src="webp/aether-portfolio-enchant-lights-01.webp" 
+                 alt="WebP Full"
+                 loading="lazy"
+                 onload="this.classList.add('loaded'); this.parentElement.classList.add('loaded')">
+          </div>
+          <div class="demo-card-info">
+            <strong>WebP Full (1600w)</strong><br>
+            ~120 KB • Best quality
+          </div>
+        </div>
+        
+        <div class="demo-card">
+          <div class="demo-card-image aether-image">
+            <img src="avif/aether-portfolio-enchant-lights-01.avif" 
+                 alt="AVIF Full"
+                 loading="lazy"
+                 onload="this.classList.add('loaded'); this.parentElement.classList.add('loaded')">
+          </div>
+          <div class="demo-card-info">
+            <strong>AVIF Full</strong><br>
+            ~79 KB • 40% smaller
+          </div>
+        </div>
+        
+        <div class="demo-card">
+          <div class="demo-card-image aether-image">
+            <img src="webp-medium/aether-portfolio-enchant-lights-01_800w.webp" 
+                 alt="WebP Medium"
+                 loading="lazy"
+                 onload="this.classList.add('loaded'); this.parentElement.classList.add('loaded')">
+          </div>
+          <div class="demo-card-info">
+            <strong>WebP Medium (800w)</strong><br>
+            ~45 KB • Tablet optimized
+          </div>
+        </div>
+        
+        <div class="demo-card">
+          <div class="demo-card-image aether-image">
+            <img src="webp-mobile/aether-portfolio-enchant-lights-01_400w.webp" 
+                 alt="WebP Mobile"
+                 loading="lazy"
+                 onload="this.classList.add('loaded'); this.parentElement.classList.add('loaded')">
+          </div>
+          <div class="demo-card-info">
+            <strong>WebP Mobile (400w)</strong><br>
+            ~12 KB • Mobile optimized
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LQIP Demo -->
+    <section class="demo-section">
+      <h2>LQIP Blur-Up Effect</h2>
+      <p>Low Quality Image Placeholders provide instant visual feedback while full images load:</p>
+      
+      <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
+        <div class="demo-card">
+          <div class="demo-card-image aether-image" id="lqip-demo">
+            <div class="lqip" style="background-image: url('lqip/aether-ip-tales-of-lucidia-blur.webp')"></div>
+            <img id="lqip-demo-img"
+                 alt="Tales of Lucidia"
+                 loading="lazy"
+                 onload="this.classList.add('loaded'); this.parentElement.classList.add('loaded')">
+          </div>
+          <div class="demo-card-info">
+            <strong>Tales of Lucidia</strong><br>
+            <button onclick="loadLqipDemo()" style="margin-top: 0.5rem; padding: 0.5rem 1rem; cursor: pointer;">
+              Reload to See Effect
+            </button>
+          </div>
+        </div>
+        
+        <div class="demo-card">
+          <div class="demo-card-image" style="display: flex; align-items: center; justify-content: center; background: #1a1a2e;">
+            <img src="lqip/aether-ip-tales-of-lucidia-blur.webp" 
+                 alt="LQIP Only"
+                 style="width: 100%; height: 100%; object-fit: cover; filter: blur(0);">
+          </div>
+          <div class="demo-card-info">
+            <strong>LQIP Only (512 bytes)</strong><br>
+            Instant placeholder
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Demo -->
+    <section class="demo-section">
+      <h2>Portfolio Gallery</h2>
+      <p>Responsive gallery with lazy loading and LQIP placeholders:</p>
+      
+      <div class="aether-gallery">
+        <div class="aether-image">
+          <div class="lqip" style="background-image: url('lqip/BRANDwork-EnchantSite-Collage2-blur.webp')"></div>
+          <picture>
+            <source type="image/avif" srcset="avif/BRANDwork-EnchantSite-Collage2.avif">
+            <source type="image/webp" 
+                    srcset="webp-mobile/BRANDwork-EnchantSite-Collage2_400w.webp 400w,
+                            webp-medium/BRANDwork-EnchantSite-Collage2_800w.webp 800w,
+                            webp/BRANDwork-EnchantSite-Collage2.webp 1600w"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">
+            <img src="webp/BRANDwork-EnchantSite-Collage2.webp" 
+                 alt="Enchant Collage 2"
+                 loading="lazy"
+                 onload="this.classList.add('loaded'); this.parentElement.parentElement.classList.add('loaded')">
+          </picture>
+        </div>
+        
+        <div class="aether-image">
+          <div class="lqip" style="background-image: url('lqip/BRANDwork-ProjectionMapping-OceanForge-blur.webp')"></div>
+          <picture>
+            <source type="image/avif" srcset="avif/BRANDwork-ProjectionMapping-OceanForge.avif">
+            <source type="image/webp" srcset="webp/BRANDwork-ProjectionMapping-OceanForge.webp">
+            <img src="webp/BRANDwork-ProjectionMapping-OceanForge.webp" 
+                 alt="Ocean Forge Projection"
+                 loading="lazy"
+                 onload="this.classList.add('loaded'); this.parentElement.parentElement.classList.add('loaded')">
+          </picture>
+        </div>
+        
+        <div class="aether-image">
+          <div class="lqip" style="background-image: url('lqip/BRANDwork-WarriorPrincessOz-ArenaLayout-blur.webp')"></div>
+          <picture>
+            <source type="image/avif" srcset="avif/BRANDwork-WarriorPrincessOz-ArenaLayout.avif">
+            <source type="image/webp" srcset="webp/BRANDwork-WarriorPrincessOz-ArenaLayout.webp">
+            <img src="webp/BRANDwork-WarriorPrincessOz-ArenaLayout.webp" 
+                 alt="Warrior Princess Arena"
+                 loading="lazy"
+                 onload="this.classList.add('loaded'); this.parentElement.parentElement.classList.add('loaded')">
+          </picture>
+        </div>
+        
+        <div class="aether-image">
+          <div class="lqip" style="background-image: url('lqip/aether-portfolio-killmove-01-blur.webp')"></div>
+          <picture>
+            <source type="image/avif" srcset="avif/aether-portfolio-killmove-01.avif">
+            <source type="image/webp" srcset="webp/aether-portfolio-killmove-01.webp">
+            <img src="webp/aether-portfolio-killmove-01.webp" 
+                 alt="Kill Move Production"
+                 loading="lazy"
+                 onload="this.classList.add('loaded'); this.parentElement.parentElement.classList.add('loaded')">
+          </picture>
+        </div>
+        
+        <div class="aether-image">
+          <div class="lqip" style="background-image: url('lqip/aether-ip-metamorphasis-apothecary-blur.webp')"></div>
+          <picture>
+            <source type="image/avif" srcset="avif/aether-ip-metamorphasis-apothecary.avif">
+            <source type="image/webp" srcset="webp/aether-ip-metamorphasis-apothecary.webp">
+            <img src="webp/aether-ip-metamorphasis-apothecary.webp" 
+                 alt="Metamorphasis Apothecary"
+                 loading="lazy"
+                 onload="this.classList.add('loaded'); this.parentElement.parentElement.classList.add('loaded')">
+          </picture>
+        </div>
+        
+        <div class="aether-image">
+          <div class="lqip" style="background-image: url('lqip/BRANDAsset-WarriorPrincess-CharacterConcept-blur.webp')"></div>
+          <picture>
+            <source type="image/avif" srcset="avif/BRANDAsset-WarriorPrincess-CharacterConcept.avif">
+            <source type="image/webp" srcset="webp/BRANDAsset-WarriorPrincess-CharacterConcept.webp">
+            <img src="webp/BRANDAsset-WarriorPrincess-CharacterConcept.webp" 
+                 alt="Warrior Princess Concept"
+                 loading="lazy"
+                 onload="this.classList.add('loaded'); this.parentElement.parentElement.classList.add('loaded')">
+          </picture>
+        </div>
+      </div>
+    </section>
+
+    <!-- Usage Examples -->
+    <section class="demo-section">
+      <h2>Integration Examples</h2>
+      
+      <h3>Basic Picture Element</h3>
+      <pre><code>&lt;picture&gt;
+  &lt;source type="image/avif" srcset="avif/asset-name.avif"&gt;
+  &lt;source type="image/webp" 
+          srcset="webp-mobile/asset-name_400w.webp 400w,
+                  webp-medium/asset-name_800w.webp 800w,
+                  webp/asset-name.webp 1600w"
+          sizes="(max-width: 640px) 100vw, 50vw"&gt;
+  &lt;img src="webp/asset-name.webp" alt="Description" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+
+      <h3>With LQIP Placeholder</h3>
+      <pre><code>&lt;div class="aether-image"&gt;
+  &lt;div class="lqip" style="background-image: url('lqip/asset-name-blur.webp')"&gt;&lt;/div&gt;
+  &lt;img src="webp/asset-name.webp" 
+       onload="this.classList.add('loaded'); this.parentElement.classList.add('loaded')"&gt;
+&lt;/div&gt;</code></pre>
+
+      <h3>Web Component (with JS)</h3>
+      <pre><code>&lt;script src="aether-components.js"&gt;&lt;/script&gt;
+
+&lt;aether-image 
+  asset="aether-portfolio-enchant-lights-01" 
+  alt="Enchant Christmas Lights"
+  sizes="(max-width: 640px) 100vw, 50vw"
+  aspect="16-9"&gt;
+&lt;/aether-image&gt;
+
+&lt;aether-gallery 
+  assets='["asset-1", "asset-2", "asset-3"]'
+  columns="3"
+  gap="1rem"&gt;
+&lt;/aether-gallery&gt;</code></pre>
+
+      <h3>Service Worker Registration</h3>
+      <pre><code>if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/assets/aether-sw.js')
+    .then(reg => console.log('AETHER SW registered'))
+    .catch(err => console.error('SW registration failed:', err));
+}</code></pre>
+    </section>
+
+    <!-- Files Reference -->
+    <section class="demo-section">
+      <h2>Package Contents</h2>
+      <div style="columns: 2; column-gap: 2rem;">
+        <div style="break-inside: avoid; margin-bottom: 1rem;">
+          <h3 style="margin-top: 0;">Images</h3>
+          <ul style="list-style: none; font-size: 0.875rem;">
+            <li><code>webp/</code> - Full resolution WebP (39 files)</li>
+            <li><code>avif/</code> - Full resolution AVIF (39 files)</li>
+            <li><code>webp-medium/</code> - 800w WebP (39 files)</li>
+            <li><code>webp-mobile/</code> - 400w WebP (39 files)</li>
+            <li><code>lqip/</code> - Blur placeholders (39 files)</li>
+            <li><code>thumbnails/</code> - Gallery thumbs</li>
+          </ul>
+        </div>
+        <div style="break-inside: avoid; margin-bottom: 1rem;">
+          <h3 style="margin-top: 0;">JavaScript</h3>
+          <ul style="list-style: none; font-size: 0.875rem;">
+            <li><code>aether-assets.js</code> - Core loader library</li>
+            <li><code>aether-components.js</code> - Web Components</li>
+            <li><code>aether-budget.js</code> - Performance tracking</li>
+            <li><code>aether-sw.js</code> - Service Worker</li>
+            <li><code>aether-assets-react.jsx</code> - React components</li>
+            <li><code>aether-assets-vue.js</code> - Vue components</li>
+          </ul>
+        </div>
+        <div style="break-inside: avoid; margin-bottom: 1rem;">
+          <h3 style="margin-top: 0;">CSS</h3>
+          <ul style="list-style: none; font-size: 0.875rem;">
+            <li><code>aether-critical.css</code> - Critical inline CSS</li>
+            <li><code>aether-assets.css</code> - Full stylesheet</li>
+          </ul>
+        </div>
+        <div style="break-inside: avoid; margin-bottom: 1rem;">
+          <h3 style="margin-top: 0;">Manifests</h3>
+          <ul style="list-style: none; font-size: 0.875rem;">
+            <li><code>manifest/enhanced-manifest.json</code></li>
+            <li><code>manifest/dominant-colors.json</code></li>
+            <li><code>manifest/srcset-config.json</code></li>
+            <li><code>manifest/preload-hints.html</code></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Performance Monitor -->
+  <div id="perf-monitor">
+    <h4>📊 Performance</h4>
+    <div class="metric" id="metric-lcp">
+      <span>LCP:</span>
+      <span id="lcp-value">measuring...</span>
+    </div>
+    <div class="metric" id="metric-fcp">
+      <span>FCP:</span>
+      <span id="fcp-value">measuring...</span>
+    </div>
+    <div class="metric">
+      <span>Images:</span>
+      <span id="image-count">0</span>
+    </div>
+    <div class="metric">
+      <span>Total KB:</span>
+      <span id="total-kb">0</span>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // LQIP Demo reload
+    function loadLqipDemo() {
+      const img = document.getElementById('lqip-demo-img');
+      const container = document.getElementById('lqip-demo');
+      img.classList.remove('loaded');
+      container.classList.remove('loaded');
+      img.src = '';
+      setTimeout(() => {
+        img.src = 'webp/aether-ip-tales-of-lucidia.webp';
+      }, 100);
+    }
+    
+    // Initialize demo
+    document.addEventListener('DOMContentLoaded', () => {
+      loadLqipDemo();
+      
+      // Simple performance monitoring
+      let imageCount = 0;
+      
+      document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('load', () => {
+          imageCount++;
+          document.getElementById('image-count').textContent = imageCount;
+        });
+      });
+      
+      // Core Web Vitals
+      if ('PerformanceObserver' in window) {
+        // LCP
+        new PerformanceObserver((list) => {
+          const entries = list.getEntries();
+          const lcp = entries[entries.length - 1];
+          const lcpValue = document.getElementById('lcp-value');
+          const lcpMetric = document.getElementById('metric-lcp');
+          lcpValue.textContent = Math.round(lcp.startTime) + 'ms';
+          lcpMetric.classList.add(lcp.startTime < 2500 ? 'pass' : 'fail');
+        }).observe({ type: 'largest-contentful-paint', buffered: true });
+        
+        // FCP
+        new PerformanceObserver((list) => {
+          list.getEntries().forEach(entry => {
+            if (entry.name === 'first-contentful-paint') {
+              const fcpValue = document.getElementById('fcp-value');
+              const fcpMetric = document.getElementById('metric-fcp');
+              fcpValue.textContent = Math.round(entry.startTime) + 'ms';
+              fcpMetric.classList.add(entry.startTime < 1800 ? 'pass' : 'fail');
+            }
+          });
+        }).observe({ type: 'paint', buffered: true });
+      }
+    });
+  </script>
+</body>
+</html>

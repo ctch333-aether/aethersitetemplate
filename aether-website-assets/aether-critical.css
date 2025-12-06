@@ -1,0 +1,222 @@
+/**
+ * AETHER Critical CSS v2.0.0
+ * Inline this in <head> for optimal loading performance
+ * 
+ * Features:
+ * - CSS custom properties for dominant colors
+ * - Aspect ratio preservation to prevent CLS
+ * - LQIP blur placeholders
+ * - Progressive enhancement
+ */
+
+:root {
+  /* AETHER Brand Colors */
+  --aether-primary: #6366f1;
+  --aether-secondary: #8b5cf6;
+  --aether-accent: #ec4899;
+  --aether-dark: #1a1a2e;
+  --aether-light: #f8fafc;
+  
+  /* Asset Paths */
+  --aether-assets: '/assets';
+  --aether-webp: '/assets/webp';
+  --aether-avif: '/assets/avif';
+  --aether-lqip: '/assets/lqip';
+  --aether-mobile: '/assets/webp-mobile';
+  --aether-medium: '/assets/webp-medium';
+  
+  /* Dominant Colors for Placeholders */
+  --aether-color-BRANDAsset_PhygitalIP_BroussardBayouBBQ: #f3f1f0;
+  --aether-color-BRANDAsset_PhygitalIP_Port51Confectionarium: #fbfbfc;
+  --aether-color-BRANDAsset_Typography3D_AlchemicalArtisans: #fcfcfc;
+  --aether-color-BRANDAsset_Typography3D_ShaXinWei: #fcfdfd;
+  --aether-color-BRANDAsset_Typography3D_VangelisLympouridis: #fcfcfc;
+  --aether-color-BRANDAsset_WarriorPrincess_CharacterConcept: #6e7f92;
+  --aether-color-BRANDAsset_WarriorPrincess_Render51: #7e7d7e;
+  --aether-color-BRANDwork_EnchantSite_Collage2: #94a2ae;
+  --aether-color-BRANDwork_EnchantSite_Collage4: #8c9daa;
+  --aether-color-BRANDwork_EnchantSite_Collage6: #707d8c;
+  --aether-color-BRANDwork_EnchantSite_Collage7: #898882;
+  --aether-color-BRANDwork_EnchantSite_Collage8: #8c8e94;
+  --aether-color-BRANDwork_ProjectionMapping_CircuitNeuron: #14151c;
+  --aether-color-BRANDwork_ProjectionMapping_CosmicEye: #171716;
+  --aether-color-BRANDwork_ProjectionMapping_GridMatrix: #201c28;
+  --aether-color-BRANDwork_ProjectionMapping_OceanForge: #153a44;
+  --aether-color-BRANDwork_ProjectionMapping_SciFi: #14191a;
+  --aether-color-BRANDwork_ProjectionMapping_Vintage: #2f2926;
+  --aether-color-BRANDwork_StageProduction_GhostProjection: #2c2421;
+  --aether-color-BRANDwork_StageProduction_PrisonScene: #38313a;
+  --aether-color-BRANDwork_WarriorPrincessOz_ArenaLayout: #625752;
+  --aether-color-BRANDwork_WarriorPrincessOz_EmeraldCrystals: #38413b;
+  --aether-color-BRANDwork_WarriorPrincessOz_StageSet: #293738;
+  --aether-color-aether_brand_ctch_logotype: #737a8a;
+  --aether-color-aether_brand_logo_main: #6885a3;
+  --aether-color-aether_ip_maryjane_mainframe: #684841;
+  --aether-color-aether_ip_metamorphasis_apothecary: #4f6e74;
+  --aether-color-aether_ip_tales_of_lucidia: #978685;
+  --aether-color-aether_portfolio_batb_setdesign: #3f4042;
+  --aether-color-aether_portfolio_candlelight_venue: #411607;
+  --aether-color-aether_portfolio_enchant_daytime: #5c6874;
+  --aether-color-aether_portfolio_enchant_lights_01: #58564e;
+  --aether-color-aether_portfolio_enchant_lights_02: #56585f;
+  --aether-color-aether_portfolio_enchant_retail: #5d4534;
+  --aether-color-aether_portfolio_killmove_01: #31393a;
+  --aether-color-aether_portfolio_killmove_02: #36383c;
+  --aether-color-aether_team_cofounder_shaxinwei: #b6afad;
+  --aether-color-aether_team_cofounder_vangelis: #c4bfc2;
+  --aether-color-aether_team_founder_ctch: #8c8878;
+
+  /* Animation Timings */
+  --aether-fade-in: 0.3s ease-out;
+  --aether-blur-transition: 0.5s ease-out;
+}
+
+/* Base Image Styles */
+.aether-image {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--aether-dark);
+}
+
+.aether-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity var(--aether-fade-in);
+}
+
+.aether-image img.loaded {
+  opacity: 1;
+}
+
+/* LQIP Placeholder */
+.aether-image .lqip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(20px);
+  transform: scale(1.1);
+  transition: opacity var(--aether-blur-transition);
+}
+
+.aether-image.loaded .lqip {
+  opacity: 0;
+}
+
+/* Aspect Ratios (prevents CLS) */
+.ar-1-1 { aspect-ratio: 1 / 1; }
+.ar-4-3 { aspect-ratio: 4 / 3; }
+.ar-3-2 { aspect-ratio: 3 / 2; }
+.ar-16-9 { aspect-ratio: 16 / 9; }
+.ar-21-9 { aspect-ratio: 21 / 9; }
+
+/* Custom aspect ratios */
+.ar-custom-BRANDAsset_WarriorPrincess_Render51 { aspect-ratio: 0.75; }
+.ar-custom-BRANDwork_ProjectionMapping_CircuitNeuron { aspect-ratio: 2.17; }
+.ar-custom-BRANDwork_ProjectionMapping_CosmicEye { aspect-ratio: 2.17; }
+.ar-custom-BRANDwork_ProjectionMapping_GridMatrix { aspect-ratio: 2.17; }
+.ar-custom-BRANDwork_ProjectionMapping_OceanForge { aspect-ratio: 2.17; }
+.ar-custom-BRANDwork_ProjectionMapping_SciFi { aspect-ratio: 2.17; }
+.ar-custom-BRANDwork_ProjectionMapping_Vintage { aspect-ratio: 2.17; }
+.ar-custom-BRANDwork_StageProduction_GhostProjection { aspect-ratio: 1.97; }
+.ar-custom-BRANDwork_StageProduction_PrisonScene { aspect-ratio: 1.843; }
+.ar-custom-BRANDwork_WarriorPrincessOz_ArenaLayout { aspect-ratio: 2.116; }
+.ar-custom-aether_portfolio_batb_setdesign { aspect-ratio: 3.003; }
+
+/* Hero Image */
+.aether-hero {
+  position: relative;
+  width: 100%;
+  min-height: 50vh;
+  overflow: hidden;
+}
+
+.aether-hero img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aether-hero .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent 50%, rgba(0,0,0,0.7));
+  z-index: 1;
+}
+
+.aether-hero .content {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  color: white;
+}
+
+/* Gallery Grid */
+.aether-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.aether-gallery .aether-image {
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.aether-gallery .aether-image:hover {
+  transform: scale(1.02);
+}
+
+/* Loading States */
+.aether-loading {
+  animation: aether-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes aether-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .aether-gallery {
+    grid-template-columns: 1fr;
+  }
+  
+  .aether-hero {
+    min-height: 40vh;
+  }
+}
+
+/* Print styles */
+@media print {
+  .aether-image img {
+    opacity: 1 !important;
+  }
+  .aether-image .lqip {
+    display: none;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .aether-image img,
+  .aether-image .lqip {
+    transition: none;
+  }
+}

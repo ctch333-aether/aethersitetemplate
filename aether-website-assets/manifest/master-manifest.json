@@ -1,0 +1,204 @@
+{
+  "name": "AETHER Website Assets",
+  "version": "2.1.0",
+  "description": "Comprehensive brand asset package with multi-format images, responsive thumbnails, and modern framework integrations",
+  "generated": "2025-12-06T07:45:00Z",
+  "author": "AETHER Phygital Experience Platform",
+  "license": "Proprietary",
+  
+  "statistics": {
+    "totalAssets": 39,
+    "totalFiles": 450,
+    "formats": {
+      "avif": { "count": 39, "totalSize": "1.9MB", "avgSavings": "40% vs WebP" },
+      "webp": { "count": 39, "totalSize": "3.1MB", "avgSavings": "60% vs PNG" },
+      "png": { "count": 39, "totalSize": "18MB", "purpose": "Universal fallback" }
+    },
+    "responsive": {
+      "lqip": { "count": 39, "avgSize": "600B", "purpose": "Blur placeholders" },
+      "thumbnails64": 55,
+      "thumbnails128": 55,
+      "thumbnails256": 55,
+      "thumbnails512": 55,
+      "medium800": 23
+    }
+  },
+  
+  "directories": {
+    "avif": "Next-gen AVIF format (90%+ browser support)",
+    "webp": "Modern WebP format (95%+ browser support)",
+    "png-fallback": "Universal PNG fallback",
+    "lqip": "Low Quality Image Placeholders (20x20 blur)",
+    "thumbnails/64": "64px responsive thumbnails",
+    "thumbnails/128": "128px responsive thumbnails",
+    "thumbnails/256": "256px responsive thumbnails",
+    "thumbnails/512": "512px responsive thumbnails",
+    "webp-medium": "800px medium resolution",
+    "manifest": "Documentation and configuration",
+    "server-config": "Apache/Nginx configurations"
+  },
+  
+  "files": {
+    "css": {
+      "aether-assets.css": "Comprehensive CSS with Win95 components and utilities",
+      "brand-assets.css": "Legacy brand CSS"
+    },
+    "javascript": {
+      "aether-assets.js": "Vanilla JS module for image loading",
+      "aether-assets-react.jsx": "React component library",
+      "aether-assets-vue.js": "Vue 3 component library",
+      "sw.js": "Service Worker for offline caching"
+    },
+    "manifests": {
+      "master-manifest.json": "This file",
+      "aether-website-assets-manifest.json": "Asset categorization",
+      "image-dimensions.json": "Width/height/aspect ratios",
+      "srcset-config.json": "Pre-computed srcset strings",
+      "placeholders.json": "LQIP metadata"
+    },
+    "integration": {
+      "aether-website-integration-guide.html": "HTML integration guide",
+      "aether-html-integration.html": "HTML snippets",
+      "preload-hints.html": "Performance optimization hints"
+    },
+    "serverConfig": {
+      ".htaccess": "Apache configuration",
+      "nginx.conf": "Nginx configuration"
+    }
+  },
+  
+  "assets": {
+    "brand": [
+      {
+        "id": "aether-brand-logo-main",
+        "name": "AETHER Main Logo",
+        "category": "brand",
+        "usage": "Primary brand mark, headers, hero sections"
+      },
+      {
+        "id": "aether-brand-ctch-logotype",
+        "name": "CTCH Logotype",
+        "category": "brand",
+        "usage": "Founder signature, personal branding"
+      }
+    ],
+    "team": [
+      {
+        "id": "aether-team-founder-ctch",
+        "name": "CTCH - Founder & CEO",
+        "category": "team"
+      },
+      {
+        "id": "aether-team-cofounder-shaxinwei",
+        "name": "Sha Xinwei - Co-Founder",
+        "category": "team"
+      },
+      {
+        "id": "aether-team-cofounder-vangelis",
+        "name": "Vangelis Lympouridis - Co-Founder",
+        "category": "team"
+      },
+      {
+        "id": "BRANDAsset-Typography3D-AlchemicalArtisans",
+        "name": "Alchemical Artisans 3D Typography",
+        "category": "team"
+      },
+      {
+        "id": "BRANDAsset-Typography3D-ShaXinWei",
+        "name": "Sha Xinwei 3D Typography",
+        "category": "team"
+      },
+      {
+        "id": "BRANDAsset-Typography3D-VangelisLympouridis",
+        "name": "Vangelis 3D Typography",
+        "category": "team"
+      }
+    ],
+    "portfolio": {
+      "enchant": [
+        "aether-portfolio-enchant-lights-01",
+        "aether-portfolio-enchant-lights-02",
+        "aether-portfolio-enchant-daytime",
+        "aether-portfolio-enchant-retail",
+        "BRANDwork-EnchantSite-Collage2",
+        "BRANDwork-EnchantSite-Collage4",
+        "BRANDwork-EnchantSite-Collage6",
+        "BRANDwork-EnchantSite-Collage7",
+        "BRANDwork-EnchantSite-Collage8"
+      ],
+      "projectionMapping": [
+        "BRANDwork-ProjectionMapping-CircuitNeuron",
+        "BRANDwork-ProjectionMapping-CosmicEye",
+        "BRANDwork-ProjectionMapping-GridMatrix",
+        "BRANDwork-ProjectionMapping-OceanForge",
+        "BRANDwork-ProjectionMapping-SciFi",
+        "BRANDwork-ProjectionMapping-Vintage"
+      ],
+      "theatrical": [
+        "aether-portfolio-batb-setdesign",
+        "aether-portfolio-killmove-01",
+        "aether-portfolio-killmove-02",
+        "BRANDwork-StageProduction-GhostProjection",
+        "BRANDwork-StageProduction-PrisonScene"
+      ],
+      "venues": [
+        "aether-portfolio-candlelight-venue",
+        "BRANDwork-WarriorPrincessOz-ArenaLayout",
+        "BRANDwork-WarriorPrincessOz-EmeraldCrystals",
+        "BRANDwork-WarriorPrincessOz-StageSet"
+      ]
+    },
+    "ip": [
+      {
+        "id": "aether-ip-tales-of-lucidia",
+        "name": "Tales of Lucidia",
+        "franchise": "Tales of Lucidia"
+      },
+      {
+        "id": "aether-ip-maryjane-mainframe",
+        "name": "MaryJane Mainframe",
+        "franchise": "Tales of Lucidia"
+      },
+      {
+        "id": "aether-ip-metamorphasis-apothecary",
+        "name": "Metamorphasis Apothecary",
+        "franchise": "Tales of Lucidia"
+      },
+      {
+        "id": "BRANDAsset-WarriorPrincess-CharacterConcept",
+        "name": "Warrior Princess Concept",
+        "franchise": "Tales of Lucidia"
+      },
+      {
+        "id": "BRANDAsset-WarriorPrincess-Render51",
+        "name": "Warrior Princess Render",
+        "franchise": "Tales of Lucidia"
+      },
+      {
+        "id": "BRANDAsset-PhygitalIP-BroussardBayouBBQ",
+        "name": "Broussard Bayou BBQ",
+        "franchise": "Phygital IP"
+      },
+      {
+        "id": "BRANDAsset-PhygitalIP-Port51Confectionarium",
+        "name": "Port 51 Confectionarium",
+        "franchise": "Phygital IP"
+      }
+    ]
+  },
+  
+  "integration": {
+    "quickStart": {
+      "html": "<!-- Include CSS -->\n<link rel=\"stylesheet\" href=\"/assets/aether-assets.css\">\n\n<!-- Include JS -->\n<script type=\"module\" src=\"/assets/aether-assets.js\"></script>\n\n<!-- Use an image -->\n<picture>\n  <source type=\"image/avif\" srcset=\"/assets/avif/aether-brand-logo-main.avif\">\n  <source type=\"image/webp\" srcset=\"/assets/webp/aether-brand-logo-main.webp\">\n  <img src=\"/assets/png-fallback/aether-brand-logo-main.png\" alt=\"AETHER\">\n</picture>",
+      "react": "import { AetherImage } from './aether-assets-react';\n\n<AetherImage assetId=\"aether-brand-logo-main\" alt=\"AETHER\" />",
+      "vue": "import AetherAssets from './aether-assets-vue';\napp.use(AetherAssets);\n\n<AetherImage asset-id=\"aether-brand-logo-main\" alt=\"AETHER\" />"
+    },
+    "serviceWorker": "if ('serviceWorker' in navigator) {\n  navigator.serviceWorker.register('/assets/sw.js', { scope: '/assets/' });\n}"
+  },
+  
+  "browserSupport": {
+    "avif": "Chrome 85+, Firefox 93+, Safari 16+, Edge 121+",
+    "webp": "Chrome 32+, Firefox 65+, Safari 14+, Edge 18+",
+    "png": "All browsers"
+  }
+}
