@@ -1,0 +1,2546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALCHEMIST ATELIER Strategic Outreach Suite | B2B & Investment Contact Manager v5.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --win95-gray: #c0c0c0;
+            --win95-dark: #808080;
+            --win95-light: #dfdfdf;
+            --win95-blue: #000080;
+            --win95-cyan: #008080;
+            --aether-purple: #6b5b95;
+            --aether-gold: #d4af37;
+            --aether-black: #1a1a2e;
+            --aether-dark: #16213e;
+            --status-verified: #2ecc71;
+            --status-updated: #f39c12;
+            --status-notfound: #e74c3c;
+            --status-clarify: #9b59b6;
+            --status-priority: #00bcd4;
+            --status-warning: #ff5722;
+            --status-contacted: #3498db;
+            --status-meeting: #27ae60;
+            --status-followup: #e67e22;
+            
+            /* Category colors */
+            --glossary-tier1: #d4af37;
+            --glossary-tier2: #6b5b95;
+            --glossary-bipoc: #e74c3c;
+            --glossary-lgbtq: #9b59b6;
+            --glossary-impact: #2ecc71;
+            --glossary-entertainment: #f39c12;
+            --glossary-hospitality: #3498db;
+            --glossary-growth: #1abc9c;
+            --glossary-technology: #00bcd4;
+            --glossary-creative: #ff5722;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Mono', monospace;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e8e8e8;
+            overflow-x: hidden;
+        }
+
+        /* Scanline effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.1) 0px,
+                rgba(0, 0, 0, 0.1) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            z-index: 1000;
+        }
+
+        .window {
+            background: var(--win95-gray);
+            border: 2px solid;
+            border-color: var(--win95-light) var(--win95-dark) var(--win95-dark) var(--win95-light);
+            margin: 20px auto;
+            max-width: 1900px;
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.5);
+        }
+
+        .title-bar {
+            background: linear-gradient(90deg, var(--win95-blue), var(--aether-purple));
+            color: white;
+            padding: 4px 8px;
+            font-family: 'VT323', monospace;
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .title-bar-text {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .title-bar-text::before {
+            content: '◆';
+            color: var(--aether-gold);
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 2px;
+        }
+
+        .window-btn {
+            width: 18px;
+            height: 18px;
+            background: var(--win95-gray);
+            border: 2px solid;
+            border-color: var(--win95-light) var(--win95-dark) var(--win95-dark) var(--win95-light);
+            font-family: 'VT323', monospace;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .window-btn:active {
+            border-color: var(--win95-dark) var(--win95-light) var(--win95-light) var(--win95-dark);
+        }
+
+        .window-content {
+            padding: 16px;
+            background: #2a2a4a;
+        }
+
+        /* Header Section */
+        .header-section {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: linear-gradient(180deg, rgba(107,91,149,0.3) 0%, transparent 100%);
+            border: 1px solid var(--aether-purple);
+        }
+
+        .header-section h1 {
+            font-family: 'VT323', monospace;
+            font-size: 42px;
+            color: var(--aether-gold);
+            text-shadow: 2px 2px 0 var(--aether-purple), 4px 4px 0 rgba(0,0,0,0.5);
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .header-section .subtitle {
+            font-size: 14px;
+            color: #9b9bbb;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: var(--aether-purple);
+            color: white;
+            padding: 2px 8px;
+            font-size: 11px;
+            border-radius: 2px;
+            margin-left: 8px;
+        }
+
+        /* Quick Action Bar */
+        .quick-action-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            padding: 12px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--aether-purple);
+            flex-wrap: wrap;
+        }
+
+        .quick-action-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            font-family: 'VT323', monospace;
+            font-size: 16px;
+            background: linear-gradient(180deg, #4a4a6a 0%, #3a3a5a 100%);
+            border: 2px solid;
+            border-color: #6a6a8a #2a2a4a #2a2a4a #6a6a8a;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quick-action-btn:hover {
+            background: linear-gradient(180deg, #5a5a7a 0%, #4a4a6a 100%);
+            transform: translateY(-1px);
+        }
+
+        .quick-action-btn:active {
+            border-color: #2a2a4a #6a6a8a #6a6a8a #2a2a4a;
+        }
+
+        .quick-action-btn.tier-1-action {
+            background: linear-gradient(180deg, var(--glossary-tier1), #b8960c);
+            color: #1a1a2e;
+        }
+
+        .quick-action-btn.tier-2-action {
+            background: linear-gradient(180deg, var(--glossary-tier2), #524578);
+        }
+
+        .quick-action-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Tab Navigation */
+        .tab-nav {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 16px;
+            background: var(--win95-gray);
+            padding: 8px 8px 0 8px;
+            border: 2px solid;
+            border-color: var(--win95-light) var(--win95-dark) var(--win95-dark) var(--win95-light);
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 8px 16px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            background: var(--win95-gray);
+            border: 2px solid;
+            border-color: var(--win95-light) var(--win95-dark) var(--win95-dark) var(--win95-light);
+            border-bottom: none;
+            cursor: pointer;
+            position: relative;
+            top: 2px;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tab-btn:hover {
+            background: #d0d0d0;
+        }
+
+        .tab-btn.active {
+            background: #2a2a4a;
+            color: var(--aether-gold);
+            border-color: var(--win95-light) var(--win95-dark) #2a2a4a var(--win95-light);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Email Template Builder Styles */
+        .template-builder {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 20px;
+            min-height: 600px;
+        }
+
+        @media (max-width: 1200px) {
+            .template-builder {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .template-sidebar {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid #444;
+            padding: 16px;
+        }
+
+        .template-sidebar h3 {
+            font-family: 'VT323', monospace;
+            font-size: 22px;
+            color: var(--aether-gold);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--aether-purple);
+        }
+
+        .template-category {
+            margin-bottom: 20px;
+        }
+
+        .template-category-title {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .template-option {
+            padding: 10px 12px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid #333;
+            margin-bottom: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .template-option:hover {
+            border-color: var(--aether-purple);
+            background: rgba(107,91,149,0.2);
+        }
+
+        .template-option.selected {
+            border-color: var(--aether-gold);
+            background: rgba(212,175,55,0.2);
+        }
+
+        .template-option-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+
+        .template-option-text {
+            flex: 1;
+        }
+
+        .template-option-name {
+            font-size: 13px;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+
+        .template-option-desc {
+            font-size: 10px;
+            color: #888;
+        }
+
+        .template-tier-badge {
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 2px;
+        }
+
+        .tier-1-badge {
+            background: var(--glossary-tier1);
+            color: #1a1a2e;
+        }
+
+        .tier-2-badge {
+            background: var(--glossary-tier2);
+            color: white;
+        }
+
+        /* Email Preview Panel */
+        .email-preview-panel {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid #444;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .email-header {
+            padding: 16px;
+            background: rgba(0,0,0,0.3);
+            border-bottom: 1px solid #444;
+        }
+
+        .email-field {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .email-field-label {
+            width: 60px;
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .email-field-input {
+            flex: 1;
+            padding: 6px 10px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #555;
+            color: #fff;
+            outline: none;
+        }
+
+        .email-field-input:focus {
+            border-color: var(--aether-purple);
+        }
+
+        .email-body-container {
+            flex: 1;
+            padding: 16px;
+            overflow: auto;
+        }
+
+        .email-body {
+            width: 100%;
+            min-height: 350px;
+            padding: 16px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            line-height: 1.8;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #444;
+            color: #e8e8e8;
+            resize: vertical;
+            outline: none;
+        }
+
+        .email-body:focus {
+            border-color: var(--aether-purple);
+        }
+
+        .email-signature-preview {
+            padding: 16px;
+            background: rgba(0,0,0,0.3);
+            border-top: 1px solid #444;
+        }
+
+        .signature-block {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #aaa;
+        }
+
+        .signature-name {
+            font-family: 'VT323', monospace;
+            font-size: 20px;
+            color: var(--aether-gold);
+        }
+
+        .signature-title {
+            color: #888;
+        }
+
+        .signature-company {
+            color: var(--aether-purple);
+            font-weight: 600;
+        }
+
+        .signature-divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--aether-gold), var(--aether-purple));
+            margin: 8px 0;
+        }
+
+        /* Email Actions */
+        .email-actions {
+            display: flex;
+            gap: 8px;
+            padding: 16px;
+            background: rgba(0,0,0,0.3);
+            border-top: 1px solid #444;
+            flex-wrap: wrap;
+        }
+
+        .email-action-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            border: 2px solid;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .email-action-btn.primary {
+            background: var(--aether-purple);
+            border-color: #8a7aaa #4a4a6a #4a4a6a #8a7aaa;
+            color: white;
+        }
+
+        .email-action-btn.primary:hover {
+            background: #7b6b85;
+        }
+
+        .email-action-btn.secondary {
+            background: var(--win95-gray);
+            border-color: var(--win95-light) var(--win95-dark) var(--win95-dark) var(--win95-light);
+            color: #333;
+        }
+
+        .email-action-btn.secondary:hover {
+            background: #d0d0d0;
+        }
+
+        .email-action-btn.gold {
+            background: var(--aether-gold);
+            border-color: #e8c847 #b8960c #b8960c #e8c847;
+            color: #1a1a2e;
+        }
+
+        .email-action-btn svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Contact Table Styles */
+        .controls-section {
+            background: var(--win95-gray);
+            border: 2px solid;
+            border-color: var(--win95-dark) var(--win95-light) var(--win95-light) var(--win95-dark);
+            padding: 12px;
+            margin-bottom: 16px;
+        }
+
+        .controls-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .control-group label {
+            font-size: 11px;
+            color: #333;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .search-input {
+            width: 250px;
+            padding: 6px 10px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            border: 2px solid;
+            border-color: var(--win95-dark) var(--win95-light) var(--win95-light) var(--win95-dark);
+            background: white;
+        }
+
+        .filter-select {
+            padding: 6px 10px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            border: 2px solid;
+            border-color: var(--win95-dark) var(--win95-light) var(--win95-light) var(--win95-dark);
+            background: white;
+            cursor: pointer;
+        }
+
+        .btn {
+            padding: 6px 16px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            background: var(--win95-gray);
+            border: 2px solid;
+            border-color: var(--win95-light) var(--win95-dark) var(--win95-dark) var(--win95-light);
+            cursor: pointer;
+        }
+
+        .btn:active {
+            border-color: var(--win95-dark) var(--win95-light) var(--win95-light) var(--win95-dark);
+        }
+
+        .btn-primary {
+            background: var(--aether-purple);
+            color: white;
+        }
+
+        .results-counter {
+            margin-left: auto;
+            font-size: 12px;
+            color: #333;
+        }
+
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+            background: #1a1a2e;
+            border: 2px solid;
+            border-color: var(--win95-dark) var(--win95-light) var(--win95-light) var(--win95-dark);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        thead {
+            background: linear-gradient(180deg, #3a3a5a 0%, #2a2a4a 100%);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        th {
+            padding: 12px 8px;
+            text-align: left;
+            color: var(--aether-gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 10px;
+            border-bottom: 2px solid var(--aether-purple);
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        th:hover {
+            background: rgba(107,91,149,0.3);
+        }
+
+        td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #333;
+            vertical-align: middle;
+        }
+
+        tr {
+            transition: background 0.2s;
+        }
+
+        tr:hover {
+            background: rgba(107,91,149,0.15);
+            cursor: pointer;
+        }
+
+        tr.selected {
+            background: rgba(212,175,55,0.2);
+        }
+
+        .col-checkbox {
+            width: 40px;
+            text-align: center;
+        }
+
+        .row-checkbox {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .col-num {
+            width: 40px;
+            text-align: center;
+            color: #666;
+            font-family: 'VT323', monospace;
+            font-size: 16px;
+        }
+
+        .col-company {
+            min-width: 180px;
+        }
+
+        .company-name {
+            display: block;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+
+        .col-category {
+            min-width: 120px;
+            font-size: 11px;
+        }
+
+        .tier-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            font-size: 10px;
+            border-radius: 2px;
+            font-weight: 600;
+        }
+
+        .tier-1 {
+            background: linear-gradient(135deg, #d4af37 0%, #b8960c 100%);
+            color: #1a1a2e;
+        }
+
+        .tier-2 {
+            background: linear-gradient(135deg, #6b5b95 0%, #524578 100%);
+            color: white;
+        }
+
+        .col-executive {
+            min-width: 160px;
+        }
+
+        .exec-name {
+            color: #ddd;
+            font-weight: 500;
+        }
+
+        .exec-title {
+            font-size: 10px;
+            color: #888;
+            display: block;
+            max-width: 180px;
+        }
+
+        .col-outreach {
+            min-width: 100px;
+        }
+
+        .outreach-status {
+            display: inline-block;
+            padding: 3px 8px;
+            font-size: 10px;
+            font-weight: 600;
+            border-radius: 2px;
+            text-transform: uppercase;
+        }
+
+        .outreach-none { background: #444; color: #888; }
+        .outreach-contacted { background: var(--status-contacted); color: #fff; }
+        .outreach-meeting { background: var(--status-meeting); color: #fff; }
+        .outreach-followup { background: var(--status-followup); color: #fff; }
+
+        .col-actions {
+            min-width: 140px;
+        }
+
+        .action-btn-small {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+            font-size: 10px;
+            color: #6bb;
+            text-decoration: none;
+            background: rgba(102,187,187,0.1);
+            border-radius: 2px;
+            margin-right: 4px;
+            margin-bottom: 4px;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+        .action-btn-small:hover {
+            background: rgba(102,187,187,0.2);
+        }
+
+        .action-btn-small svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        /* Status badges */
+        .status-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            font-size: 10px;
+            font-weight: 600;
+            border-radius: 2px;
+            text-transform: uppercase;
+        }
+
+        .status-verified { background: var(--status-verified); color: #fff; }
+        .status-updated { background: var(--status-updated); color: #fff; }
+        .status-notfound { background: var(--status-notfound); color: #fff; }
+        .status-priority { background: var(--status-priority); color: #fff; }
+
+        /* Meeting Request Builder */
+        .meeting-builder {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid #444;
+            padding: 20px;
+        }
+
+        .meeting-builder h3 {
+            font-family: 'VT323', monospace;
+            font-size: 26px;
+            color: var(--aether-gold);
+            margin-bottom: 20px;
+        }
+
+        .meeting-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 900px) {
+            .meeting-form {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 8px 12px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #555;
+            color: #fff;
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: var(--aether-purple);
+        }
+
+        .form-textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 12px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 15px;
+            line-height: 1.6;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #555;
+            color: #fff;
+            resize: vertical;
+            outline: none;
+        }
+
+        .form-textarea:focus {
+            border-color: var(--aether-purple);
+        }
+
+        /* Signature Builder */
+        .signature-builder {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 1000px) {
+            .signature-builder {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .signature-form {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid #444;
+            padding: 20px;
+        }
+
+        .signature-form h3 {
+            font-family: 'VT323', monospace;
+            font-size: 24px;
+            color: var(--aether-gold);
+            margin-bottom: 16px;
+        }
+
+        .signature-preview-container {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid #444;
+            padding: 20px;
+        }
+
+        .signature-preview-container h3 {
+            font-family: 'VT323', monospace;
+            font-size: 24px;
+            color: var(--aether-gold);
+            margin-bottom: 16px;
+        }
+
+        .signature-live-preview {
+            background: #fff;
+            color: #333;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .sig-preview-name {
+            font-weight: 700;
+            font-size: 16px;
+            color: #1a1a2e;
+            margin-bottom: 2px;
+        }
+
+        .sig-preview-title {
+            color: #666;
+            margin-bottom: 2px;
+        }
+
+        .sig-preview-company {
+            font-weight: 600;
+            color: #6b5b95;
+            margin-bottom: 8px;
+        }
+
+        .sig-preview-divider {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #d4af37, #6b5b95);
+            margin: 12px 0;
+        }
+
+        .sig-preview-contact {
+            font-size: 13px;
+            color: #555;
+        }
+
+        .sig-preview-contact a {
+            color: #6b5b95;
+            text-decoration: none;
+        }
+
+        .sig-preview-social {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .sig-preview-social a {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #6b5b95;
+            color: white;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        /* Stats Dashboard */
+        .stats-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid #444;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-card-value {
+            font-family: 'VT323', monospace;
+            font-size: 48px;
+            color: var(--aether-gold);
+            line-height: 1;
+        }
+
+        .stat-card-label {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+
+        .stat-card.tier-1-highlight {
+            border-color: var(--glossary-tier1);
+            background: rgba(212,175,55,0.1);
+        }
+
+        .stat-card.tier-2-highlight {
+            border-color: var(--glossary-tier2);
+            background: rgba(107,91,149,0.1);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--win95-gray);
+            border: 2px solid;
+            border-color: var(--win95-light) var(--win95-dark) var(--win95-dark) var(--win95-light);
+            max-width: 800px;
+            width: 95%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            padding: 20px;
+            background: #2a2a4a;
+            color: #e8e8e8;
+        }
+
+        .modal-field {
+            margin-bottom: 16px;
+        }
+
+        .modal-field label {
+            display: block;
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .modal-field .value {
+            font-size: 14px;
+        }
+
+        .modal-field a {
+            color: #6bb;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--win95-gray);
+            border: 2px solid;
+            border-color: var(--win95-light) var(--win95-dark) var(--win95-dark) var(--win95-light);
+            padding: 12px 20px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            color: #333;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast.show {
+            display: flex;
+            animation: slideIn 0.3s ease;
+        }
+
+        .toast.success {
+            border-left: 4px solid var(--status-verified);
+        }
+
+        .toast.info {
+            border-left: 4px solid var(--status-contacted);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 16px;
+            font-size: 11px;
+            color: #666;
+            border-top: 1px solid #333;
+            margin-top: 16px;
+        }
+
+        .footer a {
+            color: var(--aether-gold);
+            text-decoration: none;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Print styles */
+        @media print {
+            body::before {
+                display: none;
+            }
+            .window {
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+            .tab-nav, .controls-section, .quick-action-bar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="window">
+        <div class="title-bar">
+            <span class="title-bar-text">ALCHEMIST ATELIER Strategic Outreach Suite — B2B & Investment Contact Manager v5.0</span>
+            <div class="window-controls">
+                <button class="window-btn">_</button>
+                <button class="window-btn">□</button>
+                <button class="window-btn">×</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <!-- Header -->
+            <div class="header-section">
+                <h1>ALCHEMIST ATELIER STRATEGIC OUTREACH</h1>
+                <div class="subtitle">B2B Partnership & Investment Banking Contact Manager <span class="version-badge">v5.0</span></div>
+                <div style="margin-top: 12px; font-family: 'Cormorant Garamond', serif; font-size: 14px; color: #9b9bbb; font-style: italic;">
+                    "Transmuting the mundane into the magical — The Operating System for the Phygital Era"
+                </div>
+            </div>
+
+            <!-- Quick Action Bar -->
+            <div class="quick-action-bar">
+                <button class="quick-action-btn tier-1-action" onclick="generateBulkEmail('tier1')">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    Tier 1 Investor Outreach
+                </button>
+                <button class="quick-action-btn tier-2-action" onclick="generateBulkEmail('tier2')">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    Tier 2 B2B Outreach
+                </button>
+                <button class="quick-action-btn" onclick="exportSelectedContacts()">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Export Selected
+                </button>
+                <button class="quick-action-btn" onclick="showMeetingModal()">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg>
+                    Meeting Request
+                </button>
+                <button class="quick-action-btn" onclick="switchTab('signature')">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                    Signature Builder
+                </button>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="tab-nav">
+                <button class="tab-btn active" onclick="switchTab('contacts')">📋 Contact Directory</button>
+                <button class="tab-btn" onclick="switchTab('templates')">✉️ Email Templates</button>
+                <button class="tab-btn" onclick="switchTab('meeting')">📅 Meeting Request</button>
+                <button class="tab-btn" onclick="switchTab('signature')">✍️ Signature Builder</button>
+                <button class="tab-btn" onclick="switchTab('analytics')">📊 Outreach Analytics</button>
+            </div>
+
+            <!-- TAB: Contact Directory -->
+            <div id="tab-contacts" class="tab-content active">
+                <!-- Stats Dashboard -->
+                <div class="stats-dashboard">
+                    <div class="stat-card tier-1-highlight">
+                        <div class="stat-card-value" id="tier1Count">52</div>
+                        <div class="stat-card-label">Tier 1 Investors</div>
+                    </div>
+                    <div class="stat-card tier-2-highlight">
+                        <div class="stat-card-value" id="tier2Count">92</div>
+                        <div class="stat-card-label">Tier 2 B2B Partners</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value" id="contactedCount">0</div>
+                        <div class="stat-card-label">Contacted</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value" id="meetingsCount">0</div>
+                        <div class="stat-card-label">Meetings Scheduled</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value" id="followupCount">0</div>
+                        <div class="stat-card-label">Follow-ups Pending</div>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="controls-section">
+                    <div class="controls-row">
+                        <div class="control-group">
+                            <label>Search</label>
+                            <input type="text" id="searchInput" class="search-input" placeholder="Company, executive, category...">
+                        </div>
+                        <div class="control-group">
+                            <label>Tier</label>
+                            <select id="tierFilter" class="filter-select">
+                                <option value="">All Tiers</option>
+                                <option value="1">Tier 1 - Investment</option>
+                                <option value="2">Tier 2 - B2B</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label>Category</label>
+                            <select id="categoryFilter" class="filter-select">
+                                <option value="">All Categories</option>
+                                <option value="BIPOC">BIPOC Investment</option>
+                                <option value="LGBTQ+">LGBTQ+ Investment</option>
+                                <option value="Impact">Impact Investment</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Hospitality">Hospitality</option>
+                                <option value="Growth">Growth Equity</option>
+                                <option value="Technology">Technology</option>
+                                <option value="Creative">Creative Agency</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label>Outreach</label>
+                            <select id="outreachFilter" class="filter-select">
+                                <option value="">All Status</option>
+                                <option value="none">Not Contacted</option>
+                                <option value="contacted">Contacted</option>
+                                <option value="meeting">Meeting Set</option>
+                                <option value="followup">Follow-up</option>
+                            </select>
+                        </div>
+                        <button class="btn" onclick="resetFilters()">Reset</button>
+                        <button class="btn btn-primary" onclick="exportCSV()">Export CSV</button>
+                        <span class="results-counter">Showing <span id="resultsCount">144</span> contacts</span>
+                    </div>
+                </div>
+
+                <!-- Contact Table -->
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="col-checkbox"><input type="checkbox" id="selectAll" onclick="toggleSelectAll()"></th>
+                                <th class="col-num" data-col="0" onclick="sortTable(0)"># <span class="sort-indicator">↕</span></th>
+                                <th data-col="1" onclick="sortTable(1)">Company <span class="sort-indicator">↕</span></th>
+                                <th data-col="2" onclick="sortTable(2)">Category / Tier <span class="sort-indicator">↕</span></th>
+                                <th data-col="3" onclick="sortTable(3)">Decision Maker <span class="sort-indicator">↕</span></th>
+                                <th data-col="4" onclick="sortTable(4)">Outreach <span class="sort-indicator">↕</span></th>
+                                <th>Quick Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="contactsTable">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB: Email Templates -->
+            <div id="tab-templates" class="tab-content">
+                <div class="template-builder">
+                    <div class="template-sidebar">
+                        <h3>Email Templates</h3>
+                        
+                        <div class="template-category">
+                            <div class="template-category-title">Tier 1 — Investment Outreach</div>
+                            
+                            <div class="template-option selected" onclick="selectTemplate('investor-intro')">
+                                <div class="template-option-icon" style="background: rgba(212,175,55,0.2); color: var(--glossary-tier1);">💼</div>
+                                <div class="template-option-text">
+                                    <div class="template-option-name">Investor Introduction</div>
+                                    <div class="template-option-desc">First contact with potential investors</div>
+                                </div>
+                                <span class="template-tier-badge tier-1-badge">T1</span>
+                            </div>
+                            
+                            <div class="template-option" onclick="selectTemplate('investor-followup')">
+                                <div class="template-option-icon" style="background: rgba(212,175,55,0.2); color: var(--glossary-tier1);">🔄</div>
+                                <div class="template-option-text">
+                                    <div class="template-option-name">Investor Follow-up</div>
+                                    <div class="template-option-desc">Follow-up after initial contact</div>
+                                </div>
+                                <span class="template-tier-badge tier-1-badge">T1</span>
+                            </div>
+                            
+                            <div class="template-option" onclick="selectTemplate('pitch-request')">
+                                <div class="template-option-icon" style="background: rgba(212,175,55,0.2); color: var(--glossary-tier1);">📊</div>
+                                <div class="template-option-text">
+                                    <div class="template-option-name">Pitch Deck Request</div>
+                                    <div class="template-option-desc">Request to share pitch materials</div>
+                                </div>
+                                <span class="template-tier-badge tier-1-badge">T1</span>
+                            </div>
+                            
+                            <div class="template-option" onclick="selectTemplate('meeting-confirm')">
+                                <div class="template-option-icon" style="background: rgba(212,175,55,0.2); color: var(--glossary-tier1);">📅</div>
+                                <div class="template-option-text">
+                                    <div class="template-option-name">Meeting Confirmation</div>
+                                    <div class="template-option-desc">Confirm scheduled meetings</div>
+                                </div>
+                                <span class="template-tier-badge tier-1-badge">T1</span>
+                            </div>
+                        </div>
+                        
+                        <div class="template-category">
+                            <div class="template-category-title">Tier 2 — B2B Partnership</div>
+                            
+                            <div class="template-option" onclick="selectTemplate('b2b-intro')">
+                                <div class="template-option-icon" style="background: rgba(107,91,149,0.2); color: var(--glossary-tier2);">🤝</div>
+                                <div class="template-option-text">
+                                    <div class="template-option-name">Partnership Introduction</div>
+                                    <div class="template-option-desc">First contact for strategic partnership</div>
+                                </div>
+                                <span class="template-tier-badge tier-2-badge">T2</span>
+                            </div>
+                            
+                            <div class="template-option" onclick="selectTemplate('collaboration')">
+                                <div class="template-option-icon" style="background: rgba(107,91,149,0.2); color: var(--glossary-tier2);">✨</div>
+                                <div class="template-option-text">
+                                    <div class="template-option-name">Collaboration Proposal</div>
+                                    <div class="template-option-desc">Propose specific collaboration</div>
+                                </div>
+                                <span class="template-tier-badge tier-2-badge">T2</span>
+                            </div>
+                            
+                            <div class="template-option" onclick="selectTemplate('vendor-inquiry')">
+                                <div class="template-option-icon" style="background: rgba(107,91,149,0.2); color: var(--glossary-tier2);">📦</div>
+                                <div class="template-option-text">
+                                    <div class="template-option-name">Vendor Inquiry</div>
+                                    <div class="template-option-desc">Inquiry about products/services</div>
+                                </div>
+                                <span class="template-tier-badge tier-2-badge">T2</span>
+                            </div>
+                            
+                            <div class="template-option" onclick="selectTemplate('b2b-followup')">
+                                <div class="template-option-icon" style="background: rgba(107,91,149,0.2); color: var(--glossary-tier2);">🔄</div>
+                                <div class="template-option-text">
+                                    <div class="template-option-name">B2B Follow-up</div>
+                                    <div class="template-option-desc">Follow-up on partnership discussion</div>
+                                </div>
+                                <span class="template-tier-badge tier-2-badge">T2</span>
+                            </div>
+                        </div>
+                        
+                        <div class="template-category">
+                            <div class="template-category-title">Special Outreach</div>
+                            
+                            <div class="template-option" onclick="selectTemplate('linkedin-connection')">
+                                <div class="template-option-icon" style="background: rgba(0,119,181,0.2); color: #0077b5;">in</div>
+                                <div class="template-option-text">
+                                    <div class="template-option-name">LinkedIn Connection</div>
+                                    <div class="template-option-desc">Connection request message</div>
+                                </div>
+                            </div>
+                            
+                            <div class="template-option" onclick="selectTemplate('thank-you')">
+                                <div class="template-option-icon" style="background: rgba(46,204,113,0.2); color: #2ecc71;">🙏</div>
+                                <div class="template-option-text">
+                                    <div class="template-option-name">Thank You</div>
+                                    <div class="template-option-desc">Post-meeting thank you note</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="email-preview-panel">
+                        <div class="email-header">
+                            <div class="email-field">
+                                <span class="email-field-label">To:</span>
+                                <input type="text" class="email-field-input" id="emailTo" placeholder="recipient@company.com">
+                            </div>
+                            <div class="email-field">
+                                <span class="email-field-label">Subject:</span>
+                                <input type="text" class="email-field-input" id="emailSubject" value="ALCHEMIST ATELIER — The Operating System for the Phygital Era">
+                            </div>
+                            <div class="email-field">
+                                <span class="email-field-label">CC:</span>
+                                <input type="text" class="email-field-input" id="emailCc" placeholder="optional">
+                            </div>
+                        </div>
+                        
+                        <div class="email-body-container">
+                            <textarea class="email-body" id="emailBody">Dear [Executive Name],
+
+In the realm of creation, I am both an alchemist and a dreamer.
+
+My name is Christían Charles-Harris, and my journey is one of transmuting the mundane into the magical—and transmuting how brands exist in the world. Enchanted by the mysteries of design, technology, and storytelling, I gaze upon our world with the eyes of an artist and the mind of a strategist, crafting experiences that transcend the boundaries between digital and physical, between in-home and in-person, between transaction and transformation.
+
+The brands that will define the next century won't live on screens or in stores. They'll live everywhere—responsive environments that recognize you, adapt to you, and create meaning with you whether you're in their flagship location or your living room. This is the Phygital era, and most brands aren't ready.
+
+We're building the operating system that makes them ready.
+
+THE ATELIER
+
+Alchemist Atelier exists at the intersection of brand development, strategic operations, and phygital experience design—unified through a proprietary AI/IoT-powered platform that transforms how brands create presence, deliver value, and build loyalty across every environment their customers inhabit.
+
+Just as iOS revolutionized digital interaction, AETHER PXE revolutionizes physical reality—transforming any space into a living environment responding to each person individually. This isn't about entertainment. It's about the fundamental transformation of how brands and humans relate.
+
+I believe [Company Name]'s commitment to [specific alignment point] aligns beautifully with our mission: to enable any organization to transform their brand into responsive, emotionally intelligent phygital experiences that were previously impossible—in half the time.
+
+By 2035, we aim to achieve $75B valuation while powering 85% of the world's phygital brand experiences through a unified platform that makes wonder accessible to every company and every community—returning 9% of profits to communities as reparative infrastructure.
+
+THE INVITATION
+
+I'm building the operating system for the next age of brands—phygital ecosystems existing seamlessly across in-home and in-person environments, transforming every interaction into relationship.
+
+Would you be open to a conversation about how we might create magic together?
+
+With wonder and intention,</textarea>
+                        </div>
+                        
+                        <div class="email-signature-preview">
+                            <div class="signature-block">
+                                <div class="signature-divider"></div>
+                                <div class="signature-name">Christían Charles-Harris (CTCH)</div>
+                                <div class="signature-title">Founder & Chief Alchemist</div>
+                                <div class="signature-company">ALCHEMIST ATELIER — Phygital Experience Platform</div>
+                                <div style="margin-top: 8px; font-size: 11px; color: #888;">
+                                    📍 Sedona, AZ | 📧 ctch@alchemistatelier.world | 🌐 alchemistatelier.world
+                                </div>
+                                <div style="margin-top: 6px; font-size: 10px; color: #6b5b95; font-style: italic;">
+                                    "Transmuting the mundane into the magical"
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="email-actions">
+                            <button class="email-action-btn primary" onclick="copyEmailToClipboard()">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                                Copy to Clipboard
+                            </button>
+                            <button class="email-action-btn gold" onclick="openInMailClient()">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                                Open in Email Client
+                            </button>
+                            <button class="email-action-btn secondary" onclick="saveAsTemplate()">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
+                                Save as Custom
+                            </button>
+                            <button class="email-action-btn secondary" onclick="generateVariation()">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4 4-4H6z"/></svg>
+                                Generate Variation
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: Meeting Request -->
+            <div id="tab-meeting" class="tab-content">
+                <div class="meeting-builder">
+                    <h3>📅 Meeting Request Generator</h3>
+                    
+                    <div class="meeting-form">
+                        <div>
+                            <div class="form-group">
+                                <label>Recipient Name</label>
+                                <input type="text" class="form-input" id="meetingRecipient" placeholder="John Smith">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Recipient Company</label>
+                                <input type="text" class="form-input" id="meetingCompany" placeholder="Harlem Capital Partners">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Recipient Email</label>
+                                <input type="email" class="form-input" id="meetingEmail" placeholder="john@harlemcapital.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Meeting Type</label>
+                                <select class="form-input" id="meetingType">
+                                    <option value="intro">Introduction Call (30 min)</option>
+                                    <option value="pitch">Pitch Presentation (45 min)</option>
+                                    <option value="deep-dive">Deep Dive / Due Diligence (60 min)</option>
+                                    <option value="followup">Follow-up Discussion (30 min)</option>
+                                    <option value="partnership">Partnership Planning (60 min)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Proposed Date/Time Options</label>
+                                <input type="text" class="form-input" id="meetingTimes" placeholder="e.g., Dec 15-17, afternoons PST">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="form-group">
+                                <label>Meeting Purpose / Context</label>
+                                <textarea class="form-textarea" id="meetingContext" placeholder="Add specific context about why you're reaching out and what you hope to discuss...">We're excited to explore how Alchemist Atelier's phygital experience platform aligns with your firm's investment thesis—enabling organizations to transform their brands into responsive, emotionally intelligent experiences that were previously impossible.</textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Key Discussion Points</label>
+                                <textarea class="form-textarea" id="meetingAgenda" placeholder="List 3-5 key topics to cover...">1. The Genesis — Building the operating system for the Phygital era
+2. The AETHER Ecosystem — AetherDream, AetherPay, AetherIndigo Ops
+3. The Transformation — In-Person, In-Home, Experiential Hospitality
+4. The Alchemists — Leadership and advisory team
+5. The Invitation — Partnership alignment and next steps</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
+                        <button class="email-action-btn primary" onclick="generateMeetingRequest()">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                            Generate Meeting Request
+                        </button>
+                        <button class="email-action-btn gold" onclick="createCalendarInvite()">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+                            Create Calendar Invite (.ics)
+                        </button>
+                        <button class="email-action-btn secondary" onclick="copyMeetingLink()">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
+                            Include Meeting Link
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: Signature Builder -->
+            <div id="tab-signature" class="tab-content">
+                <div class="signature-builder">
+                    <div class="signature-form">
+                        <h3>✍️ Email Signature Builder</h3>
+                        
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" class="form-input" id="sigName" value="Christían Charles-Harris (CTCH)" oninput="updateSignaturePreview()">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" class="form-input" id="sigTitle" value="Founder & Chief Alchemist" oninput="updateSignaturePreview()">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Company</label>
+                            <input type="text" class="form-input" id="sigCompany" value="ALCHEMIST ATELIER — Phygital Experience Platform" oninput="updateSignaturePreview()">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-input" id="sigEmail" value="ctch@alchemistatelier.world" oninput="updateSignaturePreview()">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" class="form-input" id="sigPhone" placeholder="+1 (555) 123-4567" oninput="updateSignaturePreview()">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Website</label>
+                            <input type="url" class="form-input" id="sigWebsite" value="alchemistatelier.world" oninput="updateSignaturePreview()">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Location</label>
+                            <input type="text" class="form-input" id="sigLocation" value="Sedona, AZ" oninput="updateSignaturePreview()">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>LinkedIn URL</label>
+                            <input type="url" class="form-input" id="sigLinkedIn" placeholder="linkedin.com/in/username" oninput="updateSignaturePreview()">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Signature Style</label>
+                            <select class="form-input" id="sigStyle" onchange="updateSignaturePreview()">
+                                <option value="professional">Professional</option>
+                                <option value="minimal">Minimal</option>
+                                <option value="branded">AETHER Branded</option>
+                                <option value="compact">Compact</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="signature-preview-container">
+                        <h3>Live Preview</h3>
+                        
+                        <div class="signature-live-preview" id="signaturePreview">
+                            <div class="sig-preview-name">Christían Charles-Harris (CTCH)</div>
+                            <div class="sig-preview-title">Founder & Chief Alchemist</div>
+                            <div class="sig-preview-company">ALCHEMIST ATELIER — Phygital Experience Platform</div>
+                            <div class="sig-preview-divider"></div>
+                            <div class="sig-preview-contact">
+                                📍 Sedona, AZ<br>
+                                📧 <a href="mailto:ctch@alchemistatelier.world">ctch@alchemistatelier.world</a><br>
+                                🌐 <a href="https://alchemistatelier.world">alchemistatelier.world</a>
+                            </div>
+                            <div style="margin-top: 8px; font-size: 12px; color: #6b5b95; font-style: italic;">
+                                "Transmuting the mundane into the magical"
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
+                            <button class="email-action-btn primary" onclick="copySignatureHTML()">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                                Copy HTML
+                            </button>
+                            <button class="email-action-btn secondary" onclick="copySignaturePlainText()">
+                                Copy Plain Text
+                            </button>
+                            <button class="email-action-btn secondary" onclick="downloadSignature()">
+                                Download Signature
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: Analytics -->
+            <div id="tab-analytics" class="tab-content">
+                <div class="stats-dashboard" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+                    <div class="stat-card tier-1-highlight">
+                        <div class="stat-card-value">52</div>
+                        <div class="stat-card-label">Tier 1 Contacts</div>
+                    </div>
+                    <div class="stat-card tier-2-highlight">
+                        <div class="stat-card-value">92</div>
+                        <div class="stat-card-label">Tier 2 Contacts</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value" style="color: var(--status-contacted);">12</div>
+                        <div class="stat-card-label">Emails Sent</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value" style="color: var(--status-verified);">3</div>
+                        <div class="stat-card-label">Responses</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value" style="color: var(--status-meeting);">2</div>
+                        <div class="stat-card-label">Meetings Set</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value" style="color: var(--status-followup);">5</div>
+                        <div class="stat-card-label">Follow-ups Due</div>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                    <div class="meeting-builder">
+                        <h3>📈 Outreach Funnel</h3>
+                        <div style="padding: 20px 0;">
+                            <div style="margin-bottom: 16px;">
+                                <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                                    <span>Total Contacts</span>
+                                    <span>144</span>
+                                </div>
+                                <div style="height: 24px; background: rgba(0,0,0,0.3); border-radius: 4px; overflow: hidden;">
+                                    <div style="height: 100%; width: 100%; background: linear-gradient(90deg, var(--glossary-tier1), var(--glossary-tier2));"></div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 16px;">
+                                <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                                    <span>Contacted</span>
+                                    <span>12 (8.3%)</span>
+                                </div>
+                                <div style="height: 24px; background: rgba(0,0,0,0.3); border-radius: 4px; overflow: hidden;">
+                                    <div style="height: 100%; width: 8.3%; background: var(--status-contacted);"></div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 16px;">
+                                <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                                    <span>Responded</span>
+                                    <span>3 (25%)</span>
+                                </div>
+                                <div style="height: 24px; background: rgba(0,0,0,0.3); border-radius: 4px; overflow: hidden;">
+                                    <div style="height: 100%; width: 25%; background: var(--status-verified);"></div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 16px;">
+                                <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                                    <span>Meetings Scheduled</span>
+                                    <span>2 (66.7%)</span>
+                                </div>
+                                <div style="height: 24px; background: rgba(0,0,0,0.3); border-radius: 4px; overflow: hidden;">
+                                    <div style="height: 100%; width: 66.7%; background: var(--status-meeting);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="meeting-builder">
+                        <h3>📋 Recent Activity</h3>
+                        <div style="max-height: 300px; overflow-y: auto;">
+                            <div style="padding: 12px; background: rgba(0,0,0,0.2); margin-bottom: 8px; border-left: 3px solid var(--status-contacted);">
+                                <div style="font-size: 12px; color: #fff;">Email sent to Harlem Capital Partners</div>
+                                <div style="font-size: 10px; color: #888; margin-top: 4px;">Today, 2:34 PM</div>
+                            </div>
+                            <div style="padding: 12px; background: rgba(0,0,0,0.2); margin-bottom: 8px; border-left: 3px solid var(--status-verified);">
+                                <div style="font-size: 12px; color: #fff;">Response received from Backstage Capital</div>
+                                <div style="font-size: 10px; color: #888; margin-top: 4px;">Yesterday, 4:12 PM</div>
+                            </div>
+                            <div style="padding: 12px; background: rgba(0,0,0,0.2); margin-bottom: 8px; border-left: 3px solid var(--status-meeting);">
+                                <div style="font-size: 12px; color: #fff;">Meeting scheduled with Arlan Hamilton</div>
+                                <div style="font-size: 10px; color: #888; margin-top: 4px;">Dec 15, 2025 at 3:00 PM PST</div>
+                            </div>
+                            <div style="padding: 12px; background: rgba(0,0,0,0.2); margin-bottom: 8px; border-left: 3px solid var(--status-followup);">
+                                <div style="font-size: 12px; color: #fff;">Follow-up due: Base10 Partners</div>
+                                <div style="font-size: 10px; color: #888; margin-top: 4px;">Overdue by 2 days</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                ALCHEMIST ATELIER Strategic Outreach Suite v5.0 | © 2025 Alchemist Atelier — Phygital Experience Platform | 
+                <a href="#">Documentation</a> | <a href="#">Export All Data</a> | 
+                <span style="color: #6b5b95; font-style: italic;">With wonder and intention</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Contact Details -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+        <div class="modal">
+            <div class="title-bar">
+                <span class="title-bar-text" id="modalTitle">Contact Details</span>
+                <div class="window-controls">
+                    <button class="window-btn" onclick="closeModal()">×</button>
+                </div>
+            </div>
+            <div class="modal-content" id="modalContent">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span id="toastMessage">Copied to clipboard!</span>
+    </div>
+
+    <script>
+        // Sample partner data (abbreviated for template - full data from original file)
+        const partners = [
+            { num: 1, company: "Harlem Capital Partners", category: "BIPOC Investment", tier: 1, executive: "Henri Pierre-Jacques", title: "Managing Partner", linkedin: "linkedin.com/in/henripierrejacques", email: "henri@harlemcapital.com", website: "harlemcapital.com", status: "Priority", outreach: "none", notes: "Focus on underrepresented founders; strong alignment with AETHER mission" },
+            { num: 2, company: "Backstage Capital", category: "BIPOC Investment", tier: 1, executive: "Arlan Hamilton", title: "Founder & Managing Partner", linkedin: "linkedin.com/in/arlanhamilton", email: "", website: "backstagecapital.com", status: "Verified", outreach: "contacted", notes: "Pioneer investor in underrepresented founders; media presence" },
+            { num: 3, company: "Base10 Partners", category: "Impact Investment", tier: 1, executive: "Adeyemi Ajao", title: "Co-Founder & Partner", linkedin: "linkedin.com/in/adeyemiajao", email: "", website: "base10.vc", status: "Verified", outreach: "meeting", notes: "Advancement Initiative focus; automation & real economy" },
+            { num: 4, company: "Impact America Fund", category: "Impact Investment", tier: 1, executive: "Jeff Cherry", title: "Founding Partner", linkedin: "linkedin.com/in/jeffcherry", email: "", website: "impactamericafund.com", status: "Verified", outreach: "followup", notes: "Focus on underserved communities; strong alignment" },
+            { num: 5, company: "MaC Venture Capital", category: "BIPOC Investment", tier: 1, executive: "Marlon Nichols", title: "Co-Founder & Managing Partner", linkedin: "linkedin.com/in/marlonrnichols", email: "", website: "macventurecapital.com", status: "Verified", outreach: "none", notes: "Cross-culture innovation focus" },
+            { num: 6, company: "Kapor Capital", category: "Impact Investment", tier: 1, executive: "Mitch Kapor", title: "Partner", linkedin: "linkedin.com/in/mikikapor", email: "", website: "kaporcapital.com", status: "Verified", outreach: "none", notes: "Gap-closing startups; strong social impact mission" },
+            { num: 7, company: "Slauson & Co", category: "BIPOC Investment", tier: 1, executive: "Austin Clements", title: "Co-Founder & General Partner", linkedin: "linkedin.com/in/austinclements", email: "", website: "slausonco.com", status: "Verified", outreach: "none", notes: "LA-based; culturally-driven brands" },
+            { num: 8, company: "New Voices Fund", category: "BIPOC Investment", tier: 1, executive: "Richelieu Dennis", title: "Founder", linkedin: "linkedin.com/in/richelieudennis", email: "", website: "newvoicesfund.com", status: "Verified", outreach: "none", notes: "Women of color entrepreneurs" },
+            { num: 9, company: "Plexo Capital", category: "BIPOC Investment", tier: 1, executive: "Lo Toney", title: "Founding Managing Partner", linkedin: "linkedin.com/in/lotoney", email: "", website: "plexocap.com", status: "Verified", outreach: "none", notes: "Former GV; diverse emerging managers" },
+            { num: 10, company: "Fearless Fund", category: "BIPOC Investment", tier: 1, executive: "Arian Simone", title: "CEO & General Partner", linkedin: "linkedin.com/in/ariansimone", email: "", website: "fearless.fund", status: "Verified", outreach: "none", notes: "Women of color focus" },
+            { num: 11, company: "Superconnector Studios", category: "Entertainment", tier: 2, executive: "Daymond John", title: "CEO", linkedin: "linkedin.com/in/daymondjohn", email: "", website: "superconnectorstudios.com", status: "Verified", outreach: "none", notes: "Brand building & entertainment IP" },
+            { num: 12, company: "Creative Artists Agency", category: "Entertainment", tier: 2, executive: "Bryan Lourd", title: "Co-Chairman", linkedin: "linkedin.com/in/bryanlourd", email: "", website: "caa.com", status: "Verified", outreach: "none", notes: "Talent & IP partnerships" },
+            { num: 13, company: "Endeavor", category: "Entertainment", tier: 2, executive: "Ari Emanuel", title: "CEO", linkedin: "linkedin.com/in/ariemanuel", email: "", website: "endeavorco.com", status: "Verified", outreach: "none", notes: "WME, UFC, events infrastructure" },
+            { num: 14, company: "A24", category: "Entertainment", tier: 2, executive: "Daniel Katz", title: "Co-Founder", linkedin: "", email: "", website: "a24films.com", status: "Verified", outreach: "none", notes: "Premium storytelling; brand alignment" },
+            { num: 15, company: "Warner Bros. Discovery", category: "Entertainment", tier: 2, executive: "David Zaslav", title: "CEO", linkedin: "linkedin.com/in/davidzaslav", email: "", website: "wbd.com", status: "Priority", outreach: "none", notes: "Strategic partnership in development" },
+            // Add more sample contacts as needed...
+        ];
+
+        let filteredData = [...partners];
+        let selectedContacts = new Set();
+        let sortColumn = null;
+        let sortAsc = true;
+
+        // Email templates - ALCHEMIST ATELIER: THE COMPLETE GENESIS
+        const emailTemplates = {
+            'investor-intro': {
+                subject: 'ALCHEMIST ATELIER — The Operating System for the Phygital Era',
+                body: `Dear [Executive Name],
+
+In the realm of creation, I am both an alchemist and a dreamer.
+
+My name is Christían Charles-Harris, and my journey is one of transmuting the mundane into the magical—and transmuting how brands exist in the world. Enchanted by the mysteries of design, technology, and storytelling, I gaze upon our world with the eyes of an artist and the mind of a strategist, crafting experiences that transcend the boundaries between digital and physical, between in-home and in-person, between transaction and transformation.
+
+The brands that will define the next century won't live on screens or in stores. They'll live everywhere—responsive environments that recognize you, adapt to you, and create meaning with you whether you're in their flagship location or your living room. This is the Phygital era, and most brands aren't ready.
+
+We're building the operating system that makes them ready.
+
+THE ATELIER
+
+Alchemist Atelier exists at the intersection of brand development, strategic operations, and phygital experience design—unified through a proprietary AI/IoT-powered platform that transforms how brands create presence, deliver value, and build loyalty across every environment their customers inhabit.
+
+Just as iOS revolutionized digital interaction, AETHER PXE revolutionizes physical reality—transforming any space into a living environment responding to each person individually. This isn't about entertainment. It's about the fundamental transformation of how brands and humans relate.
+
+I believe [Company Name]'s commitment to [specific alignment point] aligns beautifully with our mission: to enable any organization to transform their brand into responsive, emotionally intelligent phygital experiences that were previously impossible—in half the time.
+
+By 2035, we aim to achieve $75B valuation while powering 85% of the world's phygital brand experiences through a unified platform that makes wonder accessible to every company and every community—returning 9% of profits to communities as reparative infrastructure.
+
+THE INVITATION
+
+I'm building the operating system for the next age of brands—phygital ecosystems existing seamlessly across in-home and in-person environments, transforming every interaction into relationship.
+
+Would you be open to a conversation about how we might create magic together?
+
+With wonder and intention,`
+            },
+            'investor-followup': {
+                subject: 'Following Up: The Phygital Transformation Awaits',
+                body: `Dear [Executive Name],
+
+I wanted to follow up on my previous message regarding Alchemist Atelier.
+
+Since my last outreach, the alchemy continues:
+• [Recent milestone 1]
+• [Recent milestone 2]
+• [Recent milestone 3]
+
+The AETHER Ecosystem—AetherDream, AetherPay, and AetherIndigo Ops—now processes 500M data points daily through quantum-classical hybrid architecture, enabling personalization without privacy invasion across every touchpoint.
+
+I remain confident that this represents a compelling opportunity aligned with [Company Name]'s focus on [investment thesis alignment].
+
+The brands that will define the next century are waiting. Would you have 20 minutes to explore how we might build that future together?
+
+With wonder and intention,`
+            },
+            'pitch-request': {
+                subject: 'ALCHEMIST ATELIER — Complete Genesis Materials',
+                body: `Dear [Executive Name],
+
+Thank you for your interest in learning more about the Atelier.
+
+As discussed, I'm sharing our comprehensive materials which illuminate:
+
+◆ THE VISION — A whimsical fusion of the tangible and digital, where storytelling leaps off pages, retail becomes adventure, and avant-garde theatricality merges with groundbreaking technology
+
+◆ THE AETHER ECOSYSTEM — AetherDream (creation suite), AetherPay (story-commerce), AetherIndigo Ops (operational automation)
+
+◆ THE TRANSFORMATION — In-Person Environments, In-Home Environments, Experiential Hospitality
+
+◆ THE ALCHEMISTS — Dr. Sha Xin Wei (CRO), Dr. Vangelis Lympouridis (CIO), and advisors including John Featherstone and Colleen Jennings-Roggensack
+
+◆ THE PATH — $75B valuation by 2035, 9% profit return to communities as reparative infrastructure
+
+Please let me know if you'd like to schedule a walkthrough where I can bring these pages to life.
+
+With wonder and intention,`
+            },
+            'meeting-confirm': {
+                subject: 'Confirmed: Alchemist Atelier Introduction — [Date/Time]',
+                body: `Dear [Executive Name],
+
+Thank you for scheduling time to explore the Atelier together.
+
+◆ DATE: [Meeting Date]
+◆ TIME: [Meeting Time]
+◆ LOCATION: [Video Call Link / Location]
+◆ DURATION: [Duration]
+
+THE AGENDA:
+
+I. The Genesis — How we're building the operating system for the Phygital era
+
+II. The Ecosystem — AetherDream, AetherPay, AetherIndigo Ops processing 500M data points daily
+
+III. The Transformation — In-Person, In-Home, and Experiential Hospitality environments
+
+IV. The Invitation — How we might create magic together
+
+I'll send a calendar invite shortly. Please let me know if you have any questions before our conversation.
+
+With anticipation,`
+            },
+            'b2b-intro': {
+                subject: 'ALCHEMIST ATELIER × [Company Name] — A Phygital Partnership',
+                body: `Dear [Executive Name],
+
+Imagine a place where storytelling leaps off the pages, retail becomes an adventure, and avant-garde theatricality merges with groundbreaking technology—crafting a tapestry of experiences that redefine engagement.
+
+This is Alchemist Atelier.
+
+We exist at the intersection of brand development, strategic operations, and phygital experience design—unified through a proprietary AI/IoT-powered platform that transforms how brands create presence, deliver value, and build loyalty.
+
+I've been following [Company Name]'s work in [specific area], and I see profound alignment with our mission: to enable any organization—retail, hospitality, entertainment, healthcare, education, corporate—to transform their brand into responsive, emotionally intelligent phygital experiences that were previously impossible.
+
+THE AETHER ECOSYSTEM:
+
+◆ AetherDream — Real-time 8K rendering, instant feasibility analysis, AI-assisted design compressing development from months to hours
+
+◆ AetherPay — Dynamic commerce embedded in narrative flow, processing 1M transactions per second with 63% higher per-capita spending
+
+◆ AetherIndigo Ops — Complete operational automation with 99.7% predictive maintenance accuracy
+
+Together, these systems process 500M data points daily through quantum-classical hybrid architecture at 10¹⁸ operations per second.
+
+THE INVITATION:
+
+I'd love to explore how [Company Name] and Alchemist Atelier might create transformative experiences together. Would you be open to a brief exploratory conversation?
+
+With wonder and intention,`
+            },
+            'collaboration': {
+                subject: 'Collaboration Proposal: [Project Name] — Alchemist Atelier × [Company Name]',
+                body: `Dear [Executive Name],
+
+Following our previous conversations, I wanted to share a specific vision for how we might transmute possibility into reality together.
+
+THE PROJECT:
+[Brief project description]
+
+THE ALCHEMY:
+
+◆ Alchemist Atelier contributes: [specific capabilities/resources]
+◆ [Company Name] contributes: [specific capabilities/resources]
+◆ Timeline: [proposed timeline]
+◆ The Transformation: [key deliverables]
+
+THE SHARED MAGIC:
+
+◆ [Benefit 1]
+◆ [Benefit 2]
+◆ [Benefit 3]
+
+I've attached a more detailed proposal. Would you be available to discuss this further next week?
+
+With wonder and intention,`
+            },
+            'vendor-inquiry': {
+                subject: 'Inquiry: [Product/Service] for Alchemist Atelier',
+                body: `Dear [Executive Name],
+
+I'm reaching out from Alchemist Atelier regarding your [product/service category].
+
+We're expanding our capabilities at our 45,900 sq ft Sedona facility—the aRtGaRDErN TECHNO-FABRIQUE—and are evaluating solutions for:
+
+◆ [Specific need 1]
+◆ [Specific need 2]
+◆ [Specific need 3]
+
+ABOUT ALCHEMIST ATELIER:
+
+We exist at the intersection of brand development, strategic operations, and phygital experience design. Our platform—AETHER PXE—transforms any space into a living environment responding to each person individually, processing 500M data points daily through quantum-classical hybrid architecture.
+
+Strategic partnerships include Apple, PASQAL, Anthropic, and Warner Bros.
+
+Could you provide information on:
+1. Product specifications and capabilities
+2. Pricing and volume considerations
+3. Lead times and delivery options
+4. Integration support
+
+I'm available for a call to discuss our requirements in detail.
+
+With appreciation,`
+            },
+            'b2b-followup': {
+                subject: 'Following Up: The Alchemy Continues',
+                body: `Dear [Executive Name],
+
+I wanted to follow up on our recent conversation about partnership between [Company Name] and Alchemist Atelier.
+
+Since we last spoke, the transformation continues: [recent development or progress].
+
+I remain excited about exploring how we might collaborate, particularly around [specific opportunity].
+
+The brands that will define the next century won't live on screens or in stores. They'll live everywhere. I believe [Company Name] has a role to play in that future.
+
+Do you have availability this week or next to continue our conversation?
+
+With wonder and intention,`
+            },
+            'linkedin-connection': {
+                subject: '',
+                body: `Hi [First Name],
+
+I'm building the operating system for the Phygital era—where brands become responsive environments that recognize, adapt, and create meaning across every touchpoint.
+
+[Company Name]'s work in [area] caught my attention. I see potential alignment with our mission to make wonder accessible to every company and community.
+
+Would love to connect.
+
+CTCH
+Founder, Alchemist Atelier`
+            },
+            'thank-you': {
+                subject: 'Gratitude — Our Conversation Continues',
+                body: `Dear [Executive Name],
+
+Thank you for the gift of your time today. I truly enjoyed our exploration of [key topics discussed].
+
+Key threads from our conversation:
+◆ [Point 1]
+◆ [Point 2]
+◆ [Point 3]
+
+As discussed, I'll [next step/action item]. Please don't hesitate to reach out if questions arise in the meantime.
+
+The alchemy has begun. I look forward to what we might create together.
+
+With wonder and intention,`
+            }
+        };
+
+        let currentTemplate = 'investor-intro';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTable();
+            updateStats();
+        });
+
+        // Tab switching
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(`tab-${tab}`).classList.add('active');
+        }
+
+        // Render contacts table
+        function renderTable() {
+            const tbody = document.getElementById('contactsTable');
+            tbody.innerHTML = '';
+            
+            filteredData.forEach(p => {
+                const row = document.createElement('tr');
+                row.className = selectedContacts.has(p.num) ? 'selected' : '';
+                row.onclick = () => showDetail(p);
+                
+                const outreachClass = `outreach-${p.outreach}`;
+                const outreachLabel = {
+                    'none': 'Not Contacted',
+                    'contacted': 'Contacted',
+                    'meeting': 'Meeting Set',
+                    'followup': 'Follow-up'
+                }[p.outreach] || 'Not Contacted';
+                
+                row.innerHTML = `
+                    <td class="col-checkbox" onclick="event.stopPropagation()">
+                        <input type="checkbox" class="row-checkbox" ${selectedContacts.has(p.num) ? 'checked' : ''} onchange="toggleSelect(${p.num})">
+                    </td>
+                    <td class="col-num">${p.num}</td>
+                    <td class="col-company">
+                        <span class="company-name">${p.company}</span>
+                        ${p.website ? `<a href="https://${p.website}" target="_blank" class="company-website" onclick="event.stopPropagation()">${p.website}</a>` : ''}
+                    </td>
+                    <td class="col-category">
+                        <span class="tier-badge tier-${p.tier}">T${p.tier}</span>
+                        <span style="color:#888; font-size:10px; display:block; margin-top:4px;">${p.category}</span>
+                    </td>
+                    <td class="col-executive">
+                        <span class="exec-name">${p.executive}</span>
+                        <span class="exec-title">${p.title}</span>
+                    </td>
+                    <td class="col-outreach">
+                        <span class="outreach-status ${outreachClass}">${outreachLabel}</span>
+                    </td>
+                    <td class="col-actions" onclick="event.stopPropagation()">
+                        <button class="action-btn-small" onclick="quickEmail(${p.num})">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            Email
+                        </button>
+                        ${p.linkedin ? `<a href="https://${p.linkedin}" target="_blank" class="action-btn-small">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                            LI
+                        </a>` : ''}
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+            
+            document.getElementById('resultsCount').textContent = filteredData.length;
+        }
+
+        // Update stats
+        function updateStats() {
+            const tier1 = partners.filter(p => p.tier === 1).length;
+            const tier2 = partners.filter(p => p.tier === 2).length;
+            const contacted = partners.filter(p => p.outreach === 'contacted').length;
+            const meetings = partners.filter(p => p.outreach === 'meeting').length;
+            const followups = partners.filter(p => p.outreach === 'followup').length;
+            
+            document.getElementById('tier1Count').textContent = tier1;
+            document.getElementById('tier2Count').textContent = tier2;
+            document.getElementById('contactedCount').textContent = contacted;
+            document.getElementById('meetingsCount').textContent = meetings;
+            document.getElementById('followupCount').textContent = followups;
+        }
+
+        // Selection functions
+        function toggleSelect(num) {
+            if (selectedContacts.has(num)) {
+                selectedContacts.delete(num);
+            } else {
+                selectedContacts.add(num);
+            }
+            renderTable();
+        }
+
+        function toggleSelectAll() {
+            const selectAll = document.getElementById('selectAll');
+            if (selectAll.checked) {
+                filteredData.forEach(p => selectedContacts.add(p.num));
+            } else {
+                selectedContacts.clear();
+            }
+            renderTable();
+        }
+
+        // Filter functions
+        function applyFilters() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const tier = document.getElementById('tierFilter').value;
+            const category = document.getElementById('categoryFilter').value;
+            const outreach = document.getElementById('outreachFilter').value;
+            
+            filteredData = partners.filter(p => {
+                const matchSearch = !search || 
+                    p.company.toLowerCase().includes(search) ||
+                    p.executive.toLowerCase().includes(search) ||
+                    p.title.toLowerCase().includes(search) ||
+                    p.category.toLowerCase().includes(search);
+                const matchTier = !tier || p.tier == tier;
+                const matchCategory = !category || p.category.includes(category);
+                const matchOutreach = !outreach || p.outreach === outreach;
+                
+                return matchSearch && matchTier && matchCategory && matchOutreach;
+            });
+            
+            renderTable();
+        }
+
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('tierFilter').value = '';
+            document.getElementById('categoryFilter').value = '';
+            document.getElementById('outreachFilter').value = '';
+            filteredData = [...partners];
+            renderTable();
+        }
+
+        // Sort function
+        function sortTable(col) {
+            if (sortColumn === col) {
+                sortAsc = !sortAsc;
+            } else {
+                sortColumn = col;
+                sortAsc = true;
+            }
+            
+            const keys = ['num', 'company', 'category', 'executive', 'outreach'];
+            const key = keys[col];
+            
+            if (key) {
+                filteredData.sort((a, b) => {
+                    let valA = a[key];
+                    let valB = b[key];
+                    if (typeof valA === 'string') {
+                        valA = valA.toLowerCase();
+                        valB = valB.toLowerCase();
+                    }
+                    if (valA < valB) return sortAsc ? -1 : 1;
+                    if (valA > valB) return sortAsc ? 1 : -1;
+                    return 0;
+                });
+            }
+            
+            renderTable();
+        }
+
+        // Email template functions
+        function selectTemplate(templateId) {
+            currentTemplate = templateId;
+            document.querySelectorAll('.template-option').forEach(opt => opt.classList.remove('selected'));
+            event.target.closest('.template-option').classList.add('selected');
+            
+            const template = emailTemplates[templateId];
+            if (template) {
+                document.getElementById('emailSubject').value = template.subject;
+                document.getElementById('emailBody').value = template.body;
+            }
+        }
+
+        function quickEmail(num) {
+            const contact = partners.find(p => p.num === num);
+            if (contact) {
+                // Switch to templates tab
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                document.querySelector('.tab-btn:nth-child(2)').classList.add('active');
+                document.getElementById('tab-templates').classList.add('active');
+                
+                // Pre-fill template
+                const template = contact.tier === 1 ? emailTemplates['investor-intro'] : emailTemplates['b2b-intro'];
+                document.getElementById('emailTo').value = contact.email || '';
+                document.getElementById('emailSubject').value = template.subject.replace('[Company Name]', contact.company);
+                
+                let body = template.body
+                    .replace(/\[Executive Name\]/g, contact.executive)
+                    .replace(/\[Company Name\]/g, contact.company)
+                    .replace(/\[specific alignment point\]/g, contact.notes || 'innovative approach');
+                
+                document.getElementById('emailBody').value = body;
+            }
+        }
+
+        function copyEmailToClipboard() {
+            const subject = document.getElementById('emailSubject').value;
+            const body = document.getElementById('emailBody').value;
+            const signature = `
+
+—
+Christían Charles-Harris (CTCH)
+Founder & Chief Alchemist
+ALCHEMIST ATELIER — Phygital Experience Platform
+📍 Sedona, AZ | 📧 ctch@alchemistatelier.world | 🌐 alchemistatelier.world
+
+"Transmuting the mundane into the magical"`;
+            
+            const fullEmail = `Subject: ${subject}\n\n${body}\n${signature}`;
+            navigator.clipboard.writeText(fullEmail);
+            showToast('Email copied to clipboard!', 'success');
+        }
+
+        function openInMailClient() {
+            const to = document.getElementById('emailTo').value;
+            const subject = encodeURIComponent(document.getElementById('emailSubject').value);
+            const body = encodeURIComponent(document.getElementById('emailBody').value);
+            
+            window.open(`mailto:${to}?subject=${subject}&body=${body}`, '_blank');
+        }
+
+        function generateBulkEmail(tier) {
+            const tierContacts = partners.filter(p => 
+                (tier === 'tier1' ? p.tier === 1 : p.tier === 2) && p.outreach === 'none'
+            );
+            
+            showToast(`${tierContacts.length} contacts ready for ${tier === 'tier1' ? 'investor' : 'B2B'} outreach`, 'info');
+            
+            // Switch to templates tab with appropriate template
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.querySelector('.tab-btn:nth-child(2)').classList.add('active');
+            document.getElementById('tab-templates').classList.add('active');
+            
+            selectTemplate(tier === 'tier1' ? 'investor-intro' : 'b2b-intro');
+        }
+
+        // Meeting functions
+        function generateMeetingRequest() {
+            const recipient = document.getElementById('meetingRecipient').value;
+            const company = document.getElementById('meetingCompany').value;
+            const context = document.getElementById('meetingContext').value;
+            const agenda = document.getElementById('meetingAgenda').value;
+            const times = document.getElementById('meetingTimes').value;
+            const type = document.getElementById('meetingType').value;
+            
+            const typeLabels = {
+                'intro': 'Introduction Call (30 min)',
+                'pitch': 'Pitch Presentation (45 min)',
+                'deep-dive': 'Deep Dive / Due Diligence (60 min)',
+                'followup': 'Follow-up Discussion (30 min)',
+                'partnership': 'Partnership Planning (60 min)'
+            };
+            
+            const meetingEmail = `Dear ${recipient},
+
+I hope this message finds you in good spirits. I'd like to request a ${typeLabels[type]} to explore how Alchemist Atelier might create magic with ${company}.
+
+${context}
+
+THE AGENDA:
+
+${agenda}
+
+AVAILABILITY:
+${times}
+
+Please let me know what works best for your schedule, and I'll send a calendar invite with video conference details.
+
+The brands that will define the next century won't live on screens or in stores. They'll live everywhere. I believe there's something beautiful we might build together.
+
+With wonder and intention,`;
+            
+            // Switch to templates tab and populate
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.querySelector('.tab-btn:nth-child(2)').classList.add('active');
+            document.getElementById('tab-templates').classList.add('active');
+            
+            document.getElementById('emailTo').value = document.getElementById('meetingEmail').value;
+            document.getElementById('emailSubject').value = `The Invitation: Alchemist Atelier × ${company}`;
+            document.getElementById('emailBody').value = meetingEmail;
+            
+            showToast('Meeting request generated!', 'success');
+        }
+
+        function createCalendarInvite() {
+            // Generate .ics file
+            const now = new Date();
+            const start = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000); // 1 week from now
+            start.setHours(15, 0, 0); // 3 PM
+            const end = new Date(start.getTime() + 30 * 60 * 1000); // 30 min duration
+            
+            const recipient = document.getElementById('meetingRecipient').value || 'Partner';
+            const company = document.getElementById('meetingCompany').value || 'Company';
+            
+            const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//ALCHEMIST ATELIER//Outreach Suite//EN
+BEGIN:VEVENT
+DTSTART:${formatICSDate(start)}
+DTEND:${formatICSDate(end)}
+SUMMARY:Alchemist Atelier Introduction — ${recipient}
+DESCRIPTION:Exploring the Phygital transformation and how we might create magic together.
+LOCATION:Video Call (link to be provided)
+ORGANIZER:mailto:ctch@alchemistatelier.world
+END:VEVENT
+END:VCALENDAR`;
+            
+            const blob = new Blob([icsContent], { type: 'text/calendar' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Alchemist_Atelier_Meeting_${company.replace(/\s+/g, '_')}.ics`;
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            showToast('Calendar invite downloaded!', 'success');
+        }
+
+        function formatICSDate(date) {
+            return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+        }
+
+        // Signature functions
+        function updateSignaturePreview() {
+            const name = document.getElementById('sigName').value;
+            const title = document.getElementById('sigTitle').value;
+            const company = document.getElementById('sigCompany').value;
+            const email = document.getElementById('sigEmail').value;
+            const phone = document.getElementById('sigPhone').value;
+            const website = document.getElementById('sigWebsite').value;
+            const location = document.getElementById('sigLocation').value;
+            const linkedin = document.getElementById('sigLinkedIn').value;
+            const style = document.getElementById('sigStyle').value;
+            
+            let html = '';
+            
+            if (style === 'professional') {
+                html = `
+                    <div class="sig-preview-name">${name}</div>
+                    <div class="sig-preview-title">${title}</div>
+                    <div class="sig-preview-company">${company}</div>
+                    <div class="sig-preview-divider"></div>
+                    <div class="sig-preview-contact">
+                        ${location ? `📍 ${location}<br>` : ''}
+                        ${email ? `📧 <a href="mailto:${email}">${email}</a><br>` : ''}
+                        ${phone ? `📞 ${phone}<br>` : ''}
+                        ${website ? `🌐 <a href="https://${website}">${website}</a>` : ''}
+                    </div>
+                    ${linkedin ? `<div class="sig-preview-social"><a href="https://${linkedin}" style="background:#0077b5;">in</a></div>` : ''}
+                `;
+            } else if (style === 'minimal') {
+                html = `
+                    <div style="font-weight:600;">${name}</div>
+                    <div style="color:#666;">${title} | ${company}</div>
+                    <div style="margin-top:4px; font-size:12px; color:#888;">${email}${phone ? ' | ' + phone : ''}</div>
+                `;
+            } else if (style === 'branded') {
+                html = `
+                    <div style="border-left:4px solid linear-gradient(#d4af37, #6b5b95); padding-left:12px;">
+                        <div class="sig-preview-name" style="color:#6b5b95;">${name}</div>
+                        <div class="sig-preview-title">${title}</div>
+                        <div class="sig-preview-company" style="color:#d4af37;">${company}</div>
+                        <div style="margin-top:8px; font-size:12px; color:#555;">
+                            ${location ? location + ' | ' : ''}${email}${website ? ' | ' + website : ''}
+                        </div>
+                    </div>
+                `;
+            } else if (style === 'compact') {
+                html = `
+                    <div style="font-size:13px;"><strong>${name}</strong> | ${title} | ${company}</div>
+                    <div style="font-size:11px; color:#666;">${email}${phone ? ' | ' + phone : ''}${website ? ' | ' + website : ''}</div>
+                `;
+            }
+            
+            document.getElementById('signaturePreview').innerHTML = html;
+        }
+
+        function copySignatureHTML() {
+            const html = document.getElementById('signaturePreview').innerHTML;
+            navigator.clipboard.writeText(html);
+            showToast('HTML signature copied!', 'success');
+        }
+
+        function copySignaturePlainText() {
+            const name = document.getElementById('sigName').value;
+            const title = document.getElementById('sigTitle').value;
+            const company = document.getElementById('sigCompany').value;
+            const email = document.getElementById('sigEmail').value;
+            const phone = document.getElementById('sigPhone').value;
+            const website = document.getElementById('sigWebsite').value;
+            const location = document.getElementById('sigLocation').value;
+            
+            const plainText = `${name}
+${title}
+${company}
+${location ? location + ' | ' : ''}${email}${phone ? ' | ' + phone : ''}${website ? ' | ' + website : ''}`;
+            
+            navigator.clipboard.writeText(plainText);
+            showToast('Plain text signature copied!', 'success');
+        }
+
+        // Modal functions
+        function showDetail(p) {
+            document.getElementById('modalTitle').textContent = p.company;
+            
+            document.getElementById('modalContent').innerHTML = `
+                <div class="modal-field">
+                    <label>Company</label>
+                    <div class="value">${p.company}</div>
+                </div>
+                <div class="modal-field">
+                    <label>Category / Tier</label>
+                    <div class="value">${p.category} • Tier ${p.tier} (${p.tier === 1 ? 'Investment' : 'B2B Partnership'})</div>
+                </div>
+                <div class="modal-field">
+                    <label>Decision Maker</label>
+                    <div class="value" style="font-size:18px; color: var(--aether-gold);">${p.executive}</div>
+                </div>
+                <div class="modal-field">
+                    <label>Title</label>
+                    <div class="value">${p.title}</div>
+                </div>
+                ${p.linkedin ? `<div class="modal-field">
+                    <label>LinkedIn</label>
+                    <div class="value"><a href="https://${p.linkedin}" target="_blank">${p.linkedin}</a></div>
+                </div>` : ''}
+                ${p.email ? `<div class="modal-field">
+                    <label>Email</label>
+                    <div class="value"><a href="mailto:${p.email}">${p.email}</a></div>
+                </div>` : ''}
+                ${p.website ? `<div class="modal-field">
+                    <label>Website</label>
+                    <div class="value"><a href="https://${p.website}" target="_blank">${p.website}</a></div>
+                </div>` : ''}
+                <div class="modal-field">
+                    <label>Outreach Status</label>
+                    <div class="value"><span class="outreach-status outreach-${p.outreach}">${p.outreach === 'none' ? 'Not Contacted' : p.outreach}</span></div>
+                </div>
+                ${p.notes ? `<div style="background: rgba(107,91,149,0.2); border-left: 3px solid var(--aether-purple); padding: 12px; margin-top: 16px;">
+                    <div style="color: var(--aether-gold); font-size: 12px; margin-bottom: 8px;">Strategic Intelligence</div>
+                    <div style="font-size: 13px;">${p.notes}</div>
+                </div>` : ''}
+                <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
+                    <button class="email-action-btn primary" onclick="quickEmail(${p.num}); closeModal();">Generate Email</button>
+                    ${p.linkedin ? `<a href="https://${p.linkedin}" target="_blank" class="email-action-btn secondary" style="text-decoration:none;">View LinkedIn</a>` : ''}
+                </div>
+            `;
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        function closeModal(event) {
+            if (!event || event.target === document.getElementById('modalOverlay')) {
+                document.getElementById('modalOverlay').classList.remove('active');
+            }
+        }
+
+        // Export functions
+        function exportCSV() {
+            const dataToExport = selectedContacts.size > 0 
+                ? partners.filter(p => selectedContacts.has(p.num))
+                : filteredData;
+            
+            const headers = ['#', 'Company', 'Category', 'Tier', 'Executive', 'Title', 'LinkedIn', 'Email', 'Website', 'Outreach Status', 'Notes'];
+            const rows = dataToExport.map(p => [
+                p.num, p.company, p.category, p.tier, p.executive, p.title,
+                p.linkedin ? `https://${p.linkedin}` : '',
+                p.email,
+                p.website ? `https://${p.website}` : '',
+                p.outreach,
+                p.notes || ''
+            ]);
+            
+            let csv = headers.join(',') + '\n';
+            rows.forEach(row => {
+                csv += row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',') + '\n';
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Alchemist_Atelier_Outreach_Contacts_Export.csv';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            showToast(`Exported ${dataToExport.length} contacts!`, 'success');
+        }
+
+        function exportSelectedContacts() {
+            if (selectedContacts.size === 0) {
+                showToast('No contacts selected', 'info');
+                return;
+            }
+            exportCSV();
+        }
+
+        // Toast notification
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            toast.className = `toast show ${type}`;
+            document.getElementById('toastMessage').textContent = message;
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', applyFilters);
+        document.getElementById('tierFilter').addEventListener('change', applyFilters);
+        document.getElementById('categoryFilter').addEventListener('change', applyFilters);
+        document.getElementById('outreachFilter').addEventListener('change', applyFilters);
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+            if (e.key === '/' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+                document.getElementById('searchInput').focus();
+            }
+        });
+    </script>
+</body>
+</html>
