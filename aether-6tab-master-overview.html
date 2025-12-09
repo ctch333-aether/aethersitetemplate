@@ -1,0 +1,2147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AETHER PXE Platform | Master Overview | Phygital Experience Revolution</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            image-rendering: crisp-edges;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+        :root {
+            /* AETHER Brand Colors */
+            --aether-purple: #667eea;
+            --aether-purple-dark: #764ba2;
+            --aether-blue: #4a90e2;
+            --aether-pink: #f093fb;
+            --aether-sky: #87CEEB;
+            --aether-gold: #ffd700;
+            --white: #ffffff;
+            --black: #2c3e50;
+            --text-primary: #2c3e50;
+            --text-secondary: #5a6c7d;
+            --text-light: #ffffff;
+            --surface-glass: rgba(255, 255, 255, 0.15);
+            --surface-elevated: rgba(255, 255, 255, 0.95);
+            --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            --shadow-elevated: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-display: 'Space Grotesk', 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        /* Animated Sky Background */
+        .sky-glass-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background:
+                radial-gradient(ellipse at 25% 25%, rgba(135, 206, 250, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at 75% 75%, rgba(255, 182, 193, 0.3) 0%, transparent 50%),
+                linear-gradient(180deg,
+                    rgba(135, 206, 250, 0.3) 0%,
+                    rgba(255, 255, 255, 0.2) 25%,
+                    rgba(173, 216, 230, 0.25) 50%,
+                    rgba(147, 112, 219, 0.3) 100%
+                );
+            animation: skyFlow 25s ease infinite;
+        }
+
+        @keyframes skyFlow {
+            0%, 100% { filter: hue-rotate(0deg) brightness(1); }
+            50% { filter: hue-rotate(20deg) brightness(1.1); }
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-text {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--aether-purple), var(--aether-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .version-badge {
+            background: var(--aether-purple);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Tab Navigation */
+        .tab-navigation {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding: 0.5rem 0;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+        }
+
+        .tab-navigation::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .tab-navigation::-webkit-scrollbar-thumb {
+            background: var(--aether-purple);
+            border-radius: 2px;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .tab-btn:hover::before {
+            left: 100%;
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: var(--aether-purple);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--aether-purple), var(--aether-purple-dark));
+            color: white;
+            border-color: var(--aether-purple-dark);
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Content Cards */
+        .content-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-elevated);
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--aether-purple);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-title::before {
+            content: '✨';
+            font-size: 1.5rem;
+        }
+
+        .card-subtitle {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--aether-purple-dark);
+            margin: 2rem 0 1rem 0;
+        }
+
+        .card-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg,
+                rgba(102, 126, 234, 0.15),
+                rgba(118, 75, 162, 0.15));
+            border-radius: 24px;
+            padding: 4rem 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: heroGlow 8s ease infinite;
+        }
+
+        @keyframes heroGlow {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(10%, 10%) scale(1.1); }
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--aether-purple), var(--aether-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tagline {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg,
+                rgba(102, 126, 234, 0.1),
+                rgba(118, 75, 162, 0.1));
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--aether-purple);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--aether-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* Feature List */
+        .feature-list {
+            display: grid;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid var(--aether-purple);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateX(8px);
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-title {
+            font-weight: 700;
+            color: var(--aether-purple-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .team-card {
+            background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.95),
+                rgba(255, 255, 255, 0.9));
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-elevated);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--aether-purple);
+            box-shadow: 0 12px 50px rgba(102, 126, 234, 0.3);
+        }
+
+        .team-name {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--aether-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            font-size: 1rem;
+            color: var(--aether-purple-dark);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .team-bio {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Pricing Tiers */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-elevated);
+            border: 3px solid transparent;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--aether-purple), var(--aether-pink));
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--aether-purple);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--aether-gold);
+            background: linear-gradient(135deg,
+                rgba(255, 215, 0, 0.1),
+                rgba(255, 255, 255, 0.95));
+        }
+
+        .pricing-card.featured::before {
+            background: linear-gradient(90deg, var(--aether-gold), var(--aether-purple));
+            height: 6px;
+        }
+
+        .pricing-tier {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--aether-purple);
+            margin-bottom: 1rem;
+        }
+
+        .pricing-card.featured .pricing-tier {
+            color: var(--aether-gold);
+        }
+
+        .pricing-price {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-period {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .pricing-feature::before {
+            content: '✓';
+            color: var(--aether-purple);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--aether-purple), var(--aether-purple-dark));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.5);
+        }
+
+        .pricing-card.featured .cta-button {
+            background: linear-gradient(135deg, var(--aether-gold), #b8960c);
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .pricing-card.featured .cta-button:hover {
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg,
+                rgba(102, 126, 234, 0.1),
+                rgba(240, 147, 251, 0.1));
+            border-left: 4px solid var(--aether-purple);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .highlight-box strong {
+            color: var(--aether-purple-dark);
+        }
+
+        /* List Styling */
+        .styled-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .styled-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .styled-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--aether-purple);
+            font-weight: 700;
+        }
+
+        /* Table Styling */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .data-table th {
+            background: linear-gradient(135deg, var(--aether-purple), var(--aether-purple-dark));
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            color: var(--text-secondary);
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table tr:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            text-align: center;
+            border-top: 2px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--aether-purple), var(--aether-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .tab-navigation {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .card-title {
+                font-size: 1.5rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .hero-section {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        /* Tablet Optimization */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Desktop Large Optimization */
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1600px;
+            }
+
+            .hero-title {
+                font-size: 4rem;
+            }
+        }
+
+        /* Accessibility */
+        .tab-btn:focus,
+        .cta-button:focus {
+            outline: 3px solid var(--aether-purple);
+            outline-offset: 2px;
+        }
+
+        /* Print Optimization */
+        @media print {
+            .header,
+            .tab-navigation,
+            .footer,
+            .sky-glass-layer {
+                display: none;
+            }
+
+            .tab-content {
+                display: block !important;
+            }
+
+            .content-card {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sky-glass-layer"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <div class="logo-text">AETHER PXE</div>
+                <span class="version-badge">v6.0 | December 2025</span>
+            </div>
+            <nav class="tab-navigation">
+                <button class="tab-btn active" onclick="switchTab(0)">Overview</button>
+                <button class="tab-btn" onclick="switchTab(1)">Platform & Technology</button>
+                <button class="tab-btn" onclick="switchTab(2)">Products & Services</button>
+                <button class="tab-btn" onclick="switchTab(3)">Team & Partnerships</button>
+                <button class="tab-btn" onclick="switchTab(4)">Impact & Performance</button>
+                <button class="tab-btn" onclick="switchTab(5)">Get Started</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container">
+
+        <!-- Tab 1: Overview -->
+        <div class="tab-content active" id="tab-0">
+            <div class="hero-section">
+                <h1 class="hero-title">ALCHEMIST ATELIER: THE COMPLETE GENESIS</h1>
+                <p class="hero-subtitle">Phygital Xperiential Brand • Hospitality • Deep Tech Atelier</p>
+                <p class="hero-tagline">Ethos • Pathos • Logos</p>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">Mission & Vision</h2>
+                <div class="highlight-box">
+                    <p class="card-text"><strong>Mission:</strong> Enable any organization—retail, hospitality, entertainment, healthcare, education, corporate—to transform their brand into responsive, emotionally intelligent phygital experiences that were previously impossible and in half the time.</p>
+                </div>
+                <div class="highlight-box">
+                    <p class="card-text"><strong>Vision:</strong> By 2035, achieve $75B valuation while powering 85% of the world's phygital brand experiences through a unified platform that makes wonder accessible to every company and every community—returning 9% of profits to communities as reparative infrastructure.</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">Key Metrics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">$75B</div>
+                        <div class="stat-label">Target Valuation by 2035</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">85%</div>
+                        <div class="stat-label">Population Accessibility</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">18%</div>
+                        <div class="stat-label">Profits to Community</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">2.8×</div>
+                        <div class="stat-label">ROI within 18 Months</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">98%</div>
+                        <div class="stat-label">Employee Retention</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">227</div>
+                        <div class="stat-label">Active Partners</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">$45/hr</div>
+                        <div class="stat-label">Minimum Wage</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">6.2×</div>
+                        <div class="stat-label">Faster Development</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">The Origin Story</h2>
+                <p class="card-text">Raised just a stone's throw from Disneyland's mystical realms, my journey as a weaver of tales and experiences began when I first heard Linda Gary's stunning narration of Fantasmic! That same child, once spellbound, now ponders: <strong>"What is the future of Experiential Entertainment?"</strong></p>
+
+                <p class="card-text">I specialize in merging worlds through future tech and artistic tradition—blending theatrical enchantment, cirque audacity, and next-gen marvels. My background in live entertainment has honed my skills in Producing, Storytelling, Art Direction, and Technological Innovation, creating what I call a <strong>PHYGITAL PHUTURE</strong>.</p>
+
+                <h3 class="card-subtitle">Recognition & Achievements</h3>
+                <ul class="styled-list">
+                    <li>Member of Live Design International's LDInnovations League (2022–2024)</li>
+                    <li>Inaugural recipient of the Pat Mackay Diversity Award and Scholarship</li>
+                    <li>Winner of an AriZoni Award for Media Design</li>
+                </ul>
+
+                <h3 class="card-subtitle">The Defining Paradox</h3>
+                <div class="highlight-box">
+                    <p class="card-text">👁 As a kid who grew up across the street from Disneyland, I had a front-row seat to seeing things in movies come to life before my eyes. But I noticed from a very young age that whenever I would go to Disneyland, Universal Studios, Disney on Ice, or the circus—<strong>I rarely saw kids that looked like me.</strong></p>
+                </div>
+
+                <h3 class="card-subtitle">The Questions That Sparked a Revolution</h3>
+                <ul class="styled-list">
+                    <li>How do we engage multicultural audiences and make entertainment more accessible throughout product categories?</li>
+                    <li>Why has the $4+ trillion of buying power of the Black, Hispanic, Indigenous, and Asian communities been ignored?</li>
+                </ul>
+
+                <p class="card-text">The genesis of AETHER traces back to this defining paradox—geographic proximity revealing systematic exclusion. This childhood experience became the catalyst for a revolution, driving two decades of obsessive study in immersive entertainment.</p>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">The AETHER Solution</h2>
+                <p class="card-text">In a world where screens are all around us, the future of Branded Entertainment merges: <strong>Equitable Commerce, Phygital Experiential Reality & FANDOMONIUM</strong></p>
+
+                <h3 class="card-subtitle">✨ AETHER exists to shatter these barriers entirely.</h3>
+
+                <p class="card-text">AETHER's software ecosystem represents <strong>$288M annual investment</strong> across <strong>615 engineers</strong> building the most sophisticated experience orchestration platform ever created.</p>
+
+                <div class="highlight-box">
+                    <p class="card-text"><strong>Entertainment Accessibility is an equity problem across BOTH CONTENT AND COMMERCE.</strong> AETHER operates through two complementary revenue engines that reinforce each other, creating a diversified risk profile while maximizing growth potential.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Platform & Technology -->
+        <div class="tab-content" id="tab-1">
+            <div class="hero-section">
+                <h1 class="hero-title">Platform & Technology</h1>
+                <p class="hero-subtitle">A Revolutionary Operating System for Physical Reality</p>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">AETHER PXE Platform</h2>
+                <p class="card-text">Just as iOS created the App Store as a marketplace for digital applications, <strong>AETHER operates a portfolio of "Native Apps"</strong>—distinct business verticals built upon the PXE platform.</p>
+
+                <h3 class="card-subtitle">Software Platform Architecture</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Technology Foundation</th>
+                            <th>Team Size</th>
+                            <th>Annual Budget</th>
+                            <th>Primary Function</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>AetherOS Core</strong></td>
+                            <td>Apple Silicon + Metal 4 architecture</td>
+                            <td>125 engineers</td>
+                            <td>$45M</td>
+                            <td>Foundation orchestrating all operations</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AetherDream Suite</strong></td>
+                            <td>Blender, Spline, Metal 4, AI generation</td>
+                            <td>95 developers</td>
+                            <td>$34M</td>
+                            <td>Content creation in hours vs. months</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AetherPay Commerce</strong></td>
+                            <td>GoCardless, blockchain, biometric auth</td>
+                            <td>45 engineers</td>
+                            <td>$28M</td>
+                            <td>Narrative commerce + equity pricing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Indigo Ops Platform</strong></td>
+                            <td>ERP Next, logistics APIs, predictive analytics</td>
+                            <td>75 specialists</td>
+                            <td>$38M</td>
+                            <td>99.7% predictive maintenance accuracy</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Experience Engine</strong></td>
+                            <td>Claude AI, proprietary narrative algorithms</td>
+                            <td>85 developers</td>
+                            <td>$42M</td>
+                            <td>Dynamic story adaptation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Guest Intelligence</strong></td>
+                            <td>Privacy-first analytics, ML personalization</td>
+                            <td>65 data scientists</td>
+                            <td>$35M</td>
+                            <td>Personalization without privacy invasion</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">L.I.L.L.I.A.N: Human Amplification Intelligence</h2>
+                <p class="card-text"><strong>Longevity Intelligence Living Learning Intuitive Alchemy Neuroplasticity</strong></p>
+
+                <p class="card-text">L.I.L.L.I.A.N is AETHER's AI layer that amplifies humans rather than replacing them—handling <strong>14,729 micro-decisions per second</strong> so teams focus on creativity, empathy, and strategic judgment.</p>
+
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">🚀</div>
+                        <div class="feature-content">
+                            <div class="feature-title">Natural Language to 3D</div>
+                            <div class="feature-description">Transform ideas into 3D models in <4 minutes (30-60× faster than traditional methods)</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">😊</div>
+                        <div class="feature-content">
+                            <div class="feature-title">Emotion Detection</div>
+                            <div class="feature-description">92% emotion detection accuracy for adaptive experiences</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔧</div>
+                        <div class="feature-content">
+                            <div class="feature-title">Predictive Maintenance</div>
+                            <div class="feature-description">72-hour advance warning preventing equipment failures</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💼</div>
+                        <div class="feature-content">
+                            <div class="feature-title">Employee Retention</div>
+                            <div class="feature-description">98% employee retention proving the philosophy works</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">E.L.I.A.S. Framework</h2>
+                <p class="card-text"><strong>Experiential Leisure Imagination Amusement Story-Commerce</strong></p>
+
+                <p class="card-text">AETHER's operational philosophy proving accessibility and profitability are complementary. Organizations achieve <strong>2.8× ROI within 18 months</strong> through:</p>
+
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">💰</div>
+                        <div class="feature-content">
+                            <div class="feature-title">E • Experiential Equity</div>
+                            <div class="feature-description">Dynamic pricing ($27-$396) achieving 85% population accessibility</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🧘</div>
+                        <div class="feature-content">
+                            <div class="feature-title">L • Leisure Integration</div>
+                            <div class="feature-description">30% cortisol reduction (Mayo Clinic validated)</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💡</div>
+                        <div class="feature-content">
+                            <div class="feature-title">I • Imagination Activation</div>
+                            <div class="feature-description">Customers become creators; 67% create within 6 months</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎭</div>
+                        <div class="feature-content">
+                            <div class="feature-title">A • Amusement Engineering</div>
+                            <div class="feature-description">98% report "life-changing" moments; 3.4× memory encoding</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🛍️</div>
+                        <div class="feature-content">
+                            <div class="feature-title">S • Story-Commerce</div>
+                            <div class="feature-description">63% higher per-capita spending; purchases advance narrative</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">Network Infrastructure</h2>
+                <ul class="styled-list">
+                    <li><strong>Quantum Backbone:</strong> Instantaneous synchronization, 0ms latency for critical operations</li>
+                    <li><strong>Fiber Optic Grid:</strong> 400Gbps fiber, 100Tbps aggregate bandwidth</li>
+                    <li><strong>5G/6G Wireless:</strong> Private network, 10Gbps per sector, <5ms latency</li>
+                    <li><strong>IoT Mesh:</strong> Zigbee/Thread connecting 100K+ devices per venue</li>
+                    <li><strong>Emergency Fallback:</strong> Satellite + LTE ensuring 99.97% uptime guarantee</li>
+                </ul>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">Competitive Advantages: Seven Pillars of Dominance</h2>
+
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">💎</div>
+                        <div class="feature-content">
+                            <div class="feature-title">1. Capital Efficiency Revolution</div>
+                            <div class="feature-description">90% capital reduction through inflatable venue technology. Traditional: $30-50M, 20-33 months. AETHER: $3.2-6.3M, 2.5 weeks deployment.</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">⚡</div>
+                        <div class="feature-content">
+                            <div class="feature-title">2. Rapid Deployment Advantage</div>
+                            <div class="feature-description">40× faster deployment enabling market agility. Setup time: 2.5 weeks vs. 20-33 months traditional.</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📊</div>
+                        <div class="feature-content">
+                            <div class="feature-title">3. Operational Excellence</div>
+                            <div class="feature-description">31% margin improvement. AETHER OpEx ratio: 12% of revenue vs. 35-65% industry standard.</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🌍</div>
+                        <div class="feature-content">
+                            <div class="feature-title">4. Geographic Flexibility</div>
+                            <div class="feature-description">12× market reach through touring model. Global rotation serving 40+ cities annually per production.</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔬</div>
+                        <div class="feature-content">
+                            <div class="feature-title">5. Technology Moat</div>
+                            <div class="feature-description">5 years R&D creating insurmountable lead. 231 patents (137 granted, 94 pending) protecting core innovations.</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🚀</div>
+                        <div class="feature-content">
+                            <div class="feature-title">6. Innovation Velocity</div>
+                            <div class="feature-description">50× faster iteration compounding advantages. 50+ continuous improvements vs. 1-2 major updates/year traditional.</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🌐</div>
+                        <div class="feature-content">
+                            <div class="feature-title">7. Network Effects</div>
+                            <div class="feature-description">Ecosystem lock-in through integrated value creation. 227 partners creating platform value that increases with scale.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Products & Services -->
+        <div class="tab-content" id="tab-2">
+            <div class="hero-section">
+                <h1 class="hero-title">Products & Services</h1>
+                <p class="hero-subtitle">Dual Business Model: B2C Experiences & B2B Platform</p>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">B2C Experiences: Direct Consumer Engagement</h2>
+
+                <h3 class="card-subtitle">Portal Pop-Ups: Magic to Main Street</h3>
+                <p class="card-text">Compact, modular experiences bringing phygital entertainment directly into communities.</p>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">$39.2M</div>
+                        <div class="stat-label">Annual Revenue per Cluster</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">2K-40K</div>
+                        <div class="stat-label">Square Feet Footprint</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">4hr-1mo</div>
+                        <div class="stat-label">Deployment Time</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">$27-98</div>
+                        <div class="stat-label">Accessible Pricing</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">65%</div>
+                        <div class="stat-label">EBITDA Margin</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">2-14 days</div>
+                        <div class="stat-label">ROI Window</div>
+                    </div>
+                </div>
+
+                <p class="card-text"><strong>Nine Distinct Configurations:</strong></p>
+                <ul class="styled-list">
+                    <li><strong>Broussard Bayou Units 1-3:</strong> Southern heritage dining with mystical bayou environments</li>
+                    <li><strong>Metamorphosis RX Units 1-3:</strong> Personalized wellness journeys with biotechnology integration</li>
+                    <li><strong>Lucidian Confectionerium Units 1-3:</strong> Otherworldly confectionery with quantum gastronomy</li>
+                </ul>
+            </div>
+
+            <div class="content-card">
+                <h3 class="card-subtitle">Phygital Quests & Musicals: Touring Productions</h3>
+                <p class="card-text">Full-scale productions bringing theme park-quality experiences globally.</p>
+
+                <p class="card-text"><strong>Quest Portfolio (Adventure-Based):</strong></p>
+                <ul class="styled-list">
+                    <li><strong>Spider-Man: Web of Destiny</strong> — Web-slinging through NYC with AR villains</li>
+                    <li><strong>Sailor Moon: Cirque Eclipse</strong> — Transform into Sailor Guardian, save Crystal Tokyo</li>
+                    <li><strong>Epic Mickey: Phantasmagique</strong> — Steampunk Disney collaboration</li>
+                    <li><strong>Port 51: Refuge of Parallax</strong> — Original IP atmospheric carnival</li>
+                    <li><strong>Tales of Lucidia: Midsummer's Kingdom</strong> — Original IP fantasy adventure</li>
+                </ul>
+
+                <p class="card-text"><strong>Musical Portfolio (Theatrical):</strong></p>
+                <ul class="styled-list">
+                    <li><strong>Beauty & the Beast</strong> — Classic tale with transforming environments</li>
+                    <li><strong>Little Mermaid</strong> — Underwater tech showcase</li>
+                    <li><strong>Into the Woods</strong> — Sondheim adaptation for adult audiences</li>
+                    <li><strong>Shrek: KINGDOM COME</strong> — Beloved franchise reimagined</li>
+                    <li><strong>Tales of Lucidia: WPOZ</strong> — Original IP theatrical experience</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p class="card-text"><strong>Financial Performance (Sailor Moon Quest Example):</strong></p>
+                    <ul class="styled-list">
+                        <li>Annual Revenue (3 cities): <strong>$154.50M</strong></li>
+                        <li>EBITDA: <strong>$100.42M</strong></li>
+                        <li>Margin: <strong>65%</strong></li>
+                        <li>Annual Guests: <strong>908,820</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">B2B Platform: The Phygitaverse Collaboratory</h2>
+                <p class="card-text">Enterprise transformation platform serving organizations seeking phygital capability across <strong>seven major industries</strong>.</p>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">227</div>
+                        <div class="stat-label">Active Partners</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">$11.01B</div>
+                        <div class="stat-label">Partnership Value</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">91-95%</div>
+                        <div class="stat-label">Satisfaction Rates</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">2,075</div>
+                        <div class="stat-label">Technology Licenses</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">2.8×</div>
+                        <div class="stat-label">Average ROI (18mo)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">45%</div>
+                        <div class="stat-label">Efficiency Gains</div>
+                    </div>
+                </div>
+
+                <h3 class="card-subtitle">Industries Transformed</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Industry</th>
+                            <th>Applications</th>
+                            <th>Proven Impact</th>
+                            <th>Investment Range</th>
+                            <th>Payback Period</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Retail & E-Commerce</strong></td>
+                            <td>Phygital showrooms, AR try-ons, narrative shopping journeys</td>
+                            <td>32% conversion increase, 81% higher AOV</td>
+                            <td>$2-8M</td>
+                            <td>8-14 months</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Museums & Cultural</strong></td>
+                            <td>Interactive exhibits, personalized tours, living archives</td>
+                            <td>340% engagement growth, 67% repeat visitors</td>
+                            <td>$5-15M</td>
+                            <td>12-18 months</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Entertainment Venues</strong></td>
+                            <td>Immersive attractions, living characters, adaptive experiences</td>
+                            <td>45% return rate, 38% revenue increase, 99.99% uptime</td>
+                            <td>$10-50M</td>
+                            <td>14-24 months</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hospitality</strong></td>
+                            <td>Responsive environments, personalized stays, dream-responsive rooms</td>
+                            <td>91% satisfaction, +38% ADR increase</td>
+                            <td>$8-20M per property</td>
+                            <td>10-16 months</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Corporate</strong></td>
+                            <td>Brand activations, innovation centers, adaptive workspaces</td>
+                            <td>60% productivity gain, 45% efficiency</td>
+                            <td>$3-12M</td>
+                            <td>6-12 months</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Healthcare</strong></td>
+                            <td>Therapeutic environments, wayfinding, predictive wellness</td>
+                            <td>35% anxiety reduction, 50% faster recovery</td>
+                            <td>$5-25M</td>
+                            <td>18-30 months</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Education</strong></td>
+                            <td>Immersive learning, virtual labs, adaptive curriculum</td>
+                            <td>55% retention improvement, 340% engagement</td>
+                            <td>$4-18M</td>
+                            <td>12-24 months</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">Aether Pay: Narrative Commerce Platform</h2>
+                <p class="card-text">Aether Pay isn't just payment processing—it's our proprietary narrative commerce engine making every purchase part of the experience journey.</p>
+
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">🔐</div>
+                        <div class="feature-content">
+                            <div class="feature-title">Biometric Payment Authentication</div>
+                            <div class="feature-description">Secure, frictionless <8 second transactions</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💰</div>
+                        <div class="feature-content">
+                            <div class="feature-title">Dynamic Pricing Optimization</div>
+                            <div class="feature-description">AI-driven revenue maximization with equity</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💳</div>
+                        <div class="feature-content">
+                            <div class="feature-title">Zero-Interest Installment Plans</div>
+                            <div class="feature-description">97% approval rate expanding accessibility</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎁</div>
+                        <div class="feature-content">
+                            <div class="feature-title">Loyalty Token Generation</div>
+                            <div class="feature-description">Blockchain-based rewards with 100% redemption</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🌍</div>
+                        <div class="feature-content">
+                            <div class="feature-title">Multi-Currency Processing</div>
+                            <div class="feature-description">Seamless global transactions</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📖</div>
+                        <div class="feature-content">
+                            <div class="feature-title">Story-Driven Purchase Paths</div>
+                            <div class="feature-description">Commerce as narrative progression</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p class="card-text">Premium processing rates (4.5%-9.0% vs. 2.5%-3.0% standard) justified by <strong>45% higher conversion rates, 81% increase in average order value, and 87% satisfaction</strong> with commerce integration (vs. 42% traditional).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Team & Partnerships -->
+        <div class="tab-content" id="tab-3">
+            <div class="hero-section">
+                <h1 class="hero-title">Team & Partnerships</h1>
+                <p class="hero-subtitle">Leadership: Alchemists of the Impossible</p>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">Core Leadership Team</h2>
+
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-name">Christían Harris</div>
+                        <div class="team-role">Founder & CEO</div>
+                        <p class="team-bio">Art director, strategist, technologist, and creative producer. A versatile leader who pioneers the future of Experiential Entertainment—a fusion of tangible experiences and digital platforms.</p>
+                        <p class="team-bio"><strong>Recognition:</strong> LDInnovations League member (2022-2024), Pat Mackay Diversity Award scholar, AriZoni Award winner. 36,000+ hours building phygital reality infrastructure.</p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-name">Dr. Sha Xin Wei</div>
+                        <div class="team-role">Chief Research Officer</div>
+                        <p class="team-bio">PhD from Stanford University (2001) in Mathematics, Computer Science, History and Philosophy of Science. ASU Professor directing the Synthesis Center since 2014.</p>
+                        <p class="team-bio"><strong>Expertise:</strong> "Topological media" framework enabling environments that respond fluidly to human presence. 1,344+ citations demonstrating sustained academic impact. MIT Press author.</p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-name">Dr. Vangelis Lympouridis</div>
+                        <div class="team-role">Chief Innovation Officer</div>
+                        <p class="team-bio">Founder of Enosis, leader in XR technology and spatial computing. Chief Design Officer at AppliedVR (2017-2020), led development of RelieVRx.</p>
+                        <p class="team-bio"><strong>Achievement:</strong> First FDA-authorized VR therapeutic achieving Class II medical device status (2021). 60,000+ patients treated across 200+ healthcare systems globally.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">Advisory Board</h2>
+
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-name">John Featherstone</div>
+                        <div class="team-role">Master of Illumination</div>
+                        <p class="team-bio">Principal and Managing Director of Lightswitch with 35+ years expertise. Lighting designer for Janet Jackson's Rhythm Nation Tour, Hans Zimmer Live, Journey and Van Halen world tours.</p>
+                        <p class="team-bio"><strong>Award:</strong> IES Illumination Award winner. Designer whose work has been witnessed by 200+ million people across stadium tours.</p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-name">Colleen Jennings-Roggensack</div>
+                        <div class="team-role">Champion of Equity</div>
+                        <p class="team-bio">Executive Director of ASU Gammage and Vice President for Cultural Affairs at Arizona State University. President of the Association of Performing Arts Presenters.</p>
+                        <p class="team-bio"><strong>Leadership:</strong> Vice Chair of the Broadway League's Road. Champion of bringing Broadway-quality experiences to regional audiences and underserved communities.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">Strategic Partnerships</h2>
+                <p class="card-text">AETHER maintains strategic partnerships with world-class organizations, creating a technology moat competitors cannot replicate.</p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Partner</th>
+                            <th>Relationship</th>
+                            <th>Strategic Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Apple Inc.</strong></td>
+                            <td>$234M annual integration</td>
+                            <td>ARKit, Metal 4, Vision Pro SDK — world-class phygital infrastructure</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PASQAL</strong></td>
+                            <td>10-year quantum exclusive</td>
+                            <td>Room-temperature quantum optimization capabilities competitors literally cannot access</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Anthropic (Claude)</strong></td>
+                            <td>$45M AI foundation over 5 years</td>
+                            <td>L.I.L.L.I.A.N intelligence amplifying operations with cutting-edge conversational AI</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cambridge University</strong></td>
+                            <td>10-year education partnership</td>
+                            <td>Research-validated methodologies; 100% employment rate for program graduates</td>
+                        </tr>
+                        <tr>
+                            <td><strong>MIT Media Lab</strong></td>
+                            <td>$12M research collaboration</td>
+                            <td>Access to responsive environments, programmable acoustics 3-5 years before commercial availability</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mayo Clinic</strong></td>
+                            <td>$122M wellness validation</td>
+                            <td>Clinical proof: AETHER experiences reduce cortisol 30% and improve wellbeing</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">The Living Wage Commitment</h2>
+                <p class="card-text">Every AETHER employee earns minimum <strong>$45/hour ($93,600 annually)</strong> with comprehensive benefits.</p>
+
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">💰</div>
+                        <div class="feature-content">
+                            <div class="feature-title">$45/hour Minimum Wage</div>
+                            <div class="feature-description">Living wage ensuring financial stability and dignity</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🏥</div>
+                        <div class="feature-content">
+                            <div class="feature-title">Health, Dental, Vision</div>
+                            <div class="feature-description">Premium coverage, $0 employee contribution for basic plan</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🧠</div>
+                        <div class="feature-content">
+                            <div class="feature-title">Mental Health</div>
+                            <div class="feature-description">Unlimited therapy sessions, wellness stipend</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💼</div>
+                        <div class="feature-content">
+                            <div class="feature-title">401(k) with 6% Match</div>
+                            <div class="feature-description">Immediate vesting, building long-term wealth</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📈</div>
+                        <div class="feature-content">
+                            <div class="feature-title">18% Annual Raises</div>
+                            <div class="feature-description">Guaranteed cost-of-living + merit increases</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎓</div>
+                        <div class="feature-content">
+                            <div class="feature-title">$5,000 Education Budget</div>
+                            <div class="feature-description">Annual professional development investment</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p class="card-text"><strong>Result: 98% retention vs. 60-70% industry standard.</strong> The team building your brand's phygital future isn't burned out, underpaid, or looking for the exit. They're invested craftspeople who care about your success.</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">Community Investment</h2>
+                <p class="card-text">Community AETHER Fund (<strong>9% of profits</strong>) supports:</p>
+
+                <ul class="styled-list">
+                    <li><strong>Emerging Artist Grants:</strong> Funding for creators from underrepresented communities</li>
+                    <li><strong>Youth Arts Education:</strong> Programs in underserved schools and communities</li>
+                    <li><strong>Public Art Installations:</strong> Free experiences in communities that lack cultural infrastructure</li>
+                    <li><strong>Artist Residencies:</strong> Paid positions for diverse creators to develop new work</li>
+                    <li><strong>Housing Stability:</strong> Down payment assistance, rent support, transitional housing</li>
+                    <li><strong>Mental Health Access:</strong> Therapy subsidies, crisis support, wellness programs</li>
+                    <li><strong>Job Training:</strong> Technical skills development, apprenticeships, career coaching</li>
+                    <li><strong>Emergency Assistance:</strong> Rapid response to community members in crisis</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Tab 5: Impact & Performance -->
+        <div class="tab-content" id="tab-4">
+            <div class="hero-section">
+                <h1 class="hero-title">Impact & Performance</h1>
+                <p class="hero-subtitle">Platform Performance & Market Opportunity</p>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">Platform Performance Metrics</h2>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">227</div>
+                        <div class="stat-label">Active Partners</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">$11.01B</div>
+                        <div class="stat-label">Partnership Value</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">91-95%</div>
+                        <div class="stat-label">Satisfaction Rates</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">2.8×</div>
+                        <div class="stat-label">ROI (18 Months)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">98%</div>
+                        <div class="stat-label">Contract Renewal</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">12:1</div>
+                        <div class="stat-label">LTV/CAC Ratio</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">Operational Advantages</h2>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">90%</div>
+                        <div class="stat-label">Capital Reduction</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">90 Days</div>
+                        <div class="stat-label">Deployment Time</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">6.2×</div>
+                        <div class="stat-label">Faster Development</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">12%</div>
+                        <div class="stat-label">Overhead vs 35-65%</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">94%</div>
+                        <div class="stat-label">On-Time Delivery</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">99.97%</div>
+                        <div class="stat-label">Uptime SLA</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">10-Year Financial Trajectory</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Revenue</th>
+                            <th>EBITDA</th>
+                            <th>Community Investment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2025</td>
+                            <td>$47M</td>
+                            <td>$8M</td>
+                            <td>$1.4M</td>
+                        </tr>
+                        <tr>
+                            <td>2027</td>
+                            <td>$234M</td>
+                            <td>$52M</td>
+                            <td>$9.4M</td>
+                        </tr>
+                        <tr>
+                            <td>2029</td>
+                            <td>$891M</td>
+                            <td>$214M</td>
+                            <td>$38.5M</td>
+                        </tr>
+                        <tr>
+                            <td>2031</td>
+                            <td>$2.4B</td>
+                            <td>$624M</td>
+                            <td>$112M</td>
+                        </tr>
+                        <tr>
+                            <td>2033</td>
+                            <td>$5.7B</td>
+                            <td>$1.6B</td>
+                            <td>$288M</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2035</strong></td>
+                            <td><strong>$12.1B</strong></td>
+                            <td><strong>$3.6B</strong></td>
+                            <td><strong>$648M</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight-box">
+                    <p class="card-text"><strong>Path to $75B Valuation:</strong> 6.2× revenue multiple (conservative for high-growth platform). $12.1B × 6.2 = <strong>$75B by 2035</strong></p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">Market Opportunity: $2.3 Trillion TAM</h2>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Market Segment</th>
+                            <th>Annual Value</th>
+                            <th>AETHER Strategy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Live Entertainment</td>
+                            <td>$515B</td>
+                            <td>Phygital Quests & Musicals</td>
+                        </tr>
+                        <tr>
+                            <td>Theme Parks & Attractions</td>
+                            <td>$678B</td>
+                            <td>Inflatable venues, B2B platform</td>
+                        </tr>
+                        <tr>
+                            <td>Museums & Cultural</td>
+                            <td>$145B</td>
+                            <td>B2B platform sales</td>
+                        </tr>
+                        <tr>
+                            <td>Corporate Events</td>
+                            <td>$565B</td>
+                            <td>Portal Pop-Ups, custom builds</td>
+                        </tr>
+                        <tr>
+                            <td>Experiential Retail</td>
+                            <td>$397B</td>
+                            <td>Story-commerce integration</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TOTAL TAM</strong></td>
+                            <td><strong>$2.3T</strong></td>
+                            <td><strong>Diversified portfolio approach</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">Competitive Moat: Why This Cannot Be Replicated</h2>
+                <p class="card-text">For competitors to match AETHER's capabilities:</p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Capability Domain</th>
+                            <th>Time to Replicate</th>
+                            <th>Investment Required</th>
+                            <th>Success Probability</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Manufacturing Facility</td>
+                            <td>24-36 months</td>
+                            <td>$80-100M</td>
+                            <td>60%</td>
+                        </tr>
+                        <tr>
+                            <td>Software Platform</td>
+                            <td>36-48 months</td>
+                            <td>$120-150M</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td>Operational Data</td>
+                            <td>48-60 months</td>
+                            <td>Cannot buy</td>
+                            <td>10%</td>
+                        </tr>
+                        <tr>
+                            <td>Quantum Computing</td>
+                            <td>60+ months</td>
+                            <td>$200-300M</td>
+                            <td>15% (PASQAL exclusive)</td>
+                        </tr>
+                        <tr>
+                            <td>Cultural Replication</td>
+                            <td>Cannot be forced</td>
+                            <td>N/A</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TOTAL REPLICATION</strong></td>
+                            <td><strong>60-72 months</strong></td>
+                            <td><strong>$620-910M</strong></td>
+                            <td><strong><5% probability</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight-box">
+                    <p class="card-text"><strong>Strategic Implication:</strong> By 2030, when competitors could replicate 2025 capabilities, AETHER will be 72 months more advanced with compounded network effects. Your partnership today captures 5-7 years of competitive advantage.</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">The Industry Problem We Solve</h2>
+                <p class="card-text"><strong>Traditional Experiential Creation Is Broken</strong></p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Industry Reality</th>
+                            <th>The Translation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Gen Z prioritizing experiences</td>
+                            <td>78%</td>
+                            <td>They don't want stuff. They want stories.</td>
+                        </tr>
+                        <tr>
+                            <td>Millennials prioritizing experiences</td>
+                            <td>72%</td>
+                            <td>Two generations screaming for meaning.</td>
+                        </tr>
+                        <tr>
+                            <td>Millennials deterred by costs</td>
+                            <td>67%</td>
+                            <td>The hunger is there. The access isn't.</td>
+                        </tr>
+                        <tr>
+                            <td>Theme park admission increase</td>
+                            <td>400% faster than income</td>
+                            <td>Pricing out the families who built this country.</td>
+                        </tr>
+                        <tr>
+                            <td>Family vacation to major park</td>
+                            <td>$6,200</td>
+                            <td>More than many families can save in a year.</td>
+                        </tr>
+                        <tr>
+                            <td>Americans never attending theater</td>
+                            <td>86%</td>
+                            <td>The cathedrals have too few doors.</td>
+                        </tr>
+                        <tr>
+                            <td>U.S. economic loss (discrimination)</td>
+                            <td>$16 trillion</td>
+                            <td>Exclusion is economically illiterate.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight-box">
+                    <p class="card-text"><strong>The AETHER Solution:</strong> What took Disney $30-50M and 3 years now takes $3-6M and 90 days. Your customers deserve wonder. Your brand deserves the tools to deliver it.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 6: Get Started -->
+        <div class="tab-content" id="tab-5">
+            <div class="hero-section">
+                <h1 class="hero-title">Get Started with AETHER</h1>
+                <p class="hero-subtitle">Partnership Tiers: Entry Points for Every Scale</p>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">Partnership Tier Structure</h2>
+
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-tier">Prima Materia</div>
+                        <div class="pricing-price">$18K</div>
+                        <div class="pricing-period">per month</div>
+                        <div class="pricing-features">
+                            <div class="pricing-feature">Core platforms access</div>
+                            <div class="pricing-feature">250K interactions/month</div>
+                            <div class="pricing-feature">Digital Twin for 1 location</div>
+                            <div class="pricing-feature">10 admin users</div>
+                            <div class="pricing-feature">12 hrs/mo consulting</div>
+                            <div class="pricing-feature">Quarterly reviews</div>
+                            <div class="pricing-feature">Aether Pay: 4.5% + $0.30</div>
+                        </div>
+                        <button class="cta-button">Start Foundation Tier</button>
+                    </div>
+
+                    <div class="pricing-card">
+                        <div class="pricing-tier">Chrysopoeia</div>
+                        <div class="pricing-price">$45K</div>
+                        <div class="pricing-period">per month</div>
+                        <div class="pricing-features">
+                            <div class="pricing-feature">Full suite access</div>
+                            <div class="pricing-feature">2.5M interactions/month</div>
+                            <div class="pricing-feature">Multi-location Digital Twins</div>
+                            <div class="pricing-feature">50 admin users</div>
+                            <div class="pricing-feature">5 custom integrations</div>
+                            <div class="pricing-feature">30 hrs/mo consulting</div>
+                            <div class="pricing-feature">Monthly sessions</div>
+                            <div class="pricing-feature">Aether Pay: 6.3% + $0.25</div>
+                        </div>
+                        <button class="cta-button">Start Growth Tier</button>
+                    </div>
+
+                    <div class="pricing-card featured">
+                        <div class="pricing-tier">Magnum Opus</div>
+                        <div class="pricing-price">$81K</div>
+                        <div class="pricing-period">per month</div>
+                        <div class="pricing-features">
+                            <div class="pricing-feature">Unlimited access</div>
+                            <div class="pricing-feature">White-label capable</div>
+                            <div class="pricing-feature">Unlimited users</div>
+                            <div class="pricing-feature">On-premise option</div>
+                            <div class="pricing-feature">99.99% SLA</div>
+                            <div class="pricing-feature">60 hrs/mo consulting</div>
+                            <div class="pricing-feature">Weekly sessions + 24/7 support</div>
+                            <div class="pricing-feature">Aether Pay: 9.0% + $0.15</div>
+                        </div>
+                        <button class="cta-button">Start Mastery Tier</button>
+                    </div>
+
+                    <div class="pricing-card">
+                        <div class="pricing-tier">Platinum Alliance</div>
+                        <div class="pricing-price">$10M+</div>
+                        <div class="pricing-period">annual commitment</div>
+                        <div class="pricing-features">
+                            <div class="pricing-feature">Complete co-creation</div>
+                            <div class="pricing-feature">Dedicated teams</div>
+                            <div class="pricing-feature">Custom development</div>
+                            <div class="pricing-feature">Strategic partnership</div>
+                            <div class="pricing-feature">Embedded transformation team</div>
+                            <div class="pricing-feature">Joint R&D access</div>
+                            <div class="pricing-feature">MIT Media Lab collaboration</div>
+                            <div class="pricing-feature">Negotiated custom rates</div>
+                        </div>
+                        <button class="cta-button">Contact for Enterprise</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">The DREAM-CREATE-BUILD-OPERATE Methodology</h2>
+                <p class="card-text">AETHER has refined brand experience deployment into a repeatable framework that dramatically outperforms industry standard timelines and budgets.</p>
+
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">💭</div>
+                        <div class="feature-content">
+                            <div class="feature-title">Phase 1: DREAM (Blue Sky Ideation) — Weeks 1-2</div>
+                            <div class="feature-description">Cross-disciplinary collaboration, VR prototyping, 24-72 hour concept-to-prototype cycles. Real-time cost and feasibility checks. 85% innovation implementation rate.</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎨</div>
+                        <div class="feature-content">
+                            <div class="feature-title">Phase 2: CREATE (Design & Engineering) — Weeks 3-6</div>
+                            <div class="feature-description">Same-building collaboration between designers and fabricators. Real-time iteration. Material testing. Show control programming parallel to physical design.</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🏗️</div>
+                        <div class="feature-content">
+                            <div class="feature-title">Phase 3: BUILD (Manufacturing & Deployment) — Weeks 7-9</div>
+                            <div class="feature-description">45,900 sq ft Sedona facility. 153 specialized fabrication systems. Complete venue mockup validation before deployment. Zero field surprises.</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">⚙️</div>
+                        <div class="feature-content">
+                            <div class="feature-title">Phase 4: OPERATE (Sustained Operations) — Ongoing</div>
+                            <div class="feature-description">Indigo Ops Platform with 99.7% predictive maintenance accuracy. 12% overhead vs. 35-65% industry. 99.97% uptime SLA.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p class="card-text"><strong>Industry Comparison:</strong> Traditional 12-24 months concept-to-opening. AETHER: <strong>90 days concept-to-opening</strong>. Advantage: 4-8× faster, enabling rapid iteration and market responsiveness.</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">What Your Brand Gets</h2>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">90%</div>
+                        <div class="stat-label">Capital Reduction</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">90 Days</div>
+                        <div class="stat-label">Deployment Time</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">12%</div>
+                        <div class="stat-label">Operational Overhead</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">100-150%</div>
+                        <div class="stat-label">Vision Retention</div>
+                    </div>
+                </div>
+
+                <ul class="styled-list">
+                    <li><strong>Cutting-edge technology</strong> — not as a gimmick, but as a democratizing force</li>
+                    <li><strong>Innovative design systems</strong> — modular spectacle that doesn't compromise on awe</li>
+                    <li><strong>Adaptable production techniques</strong> — environments that shape-shift to serve your story</li>
+                    <li><strong>Unified platform operations</strong> — where the physical and digital don't just coexist—they dance</li>
+                </ul>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">The Four Pillars of Brand Experience</h2>
+
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">📖</div>
+                        <div class="feature-content">
+                            <div class="feature-title">STORY</div>
+                            <div class="feature-description">Your brand narrative becomes the spine of the experience. Every touchpoint advances the story. Every interaction deepens the connection. Story is why customers gather. Story is what they remember. Story is what changes them.</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🗿</div>
+                        <div class="feature-content">
+                            <div class="feature-title">SCULPTURE</div>
+                            <div class="feature-description">Physical presence that screens cannot replicate. The weight. The thing customers can touch, walk through, feel pressing against their reality. The dimension that proves this is happening here, now, to them specifically.</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✨</div>
+                        <div class="feature-content">
+                            <div class="feature-title">SPECTACLE</div>
+                            <div class="feature-description">The gasp. The moment where disbelief suspends and wonder floods in. The thing they can't look away from. The memory that will surface unbidden for years—and always connect back to your brand.</div>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🪄</div>
+                        <div class="feature-content">
+                            <div class="feature-title">ILLUSION</div>
+                            <div class="feature-description">The impossible made manifest. The boundary between your brand's digital and physical presence, dissolved. The magic trick that never reveals its secret. The moment customers stop asking "how" and simply surrender to wonder.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">Your Brand's Phygital Future Starts Here</h2>
+
+                <div class="highlight-box">
+                    <p class="card-text">✨ <strong>AETHER transforms any brand into a living, breathing phygital reality.</strong></p>
+                    <p class="card-text">From blue-sky ideation to sustained operations—one platform, complete capability.</p>
+                    <p class="card-text">What took Disney $30-50M and 3 years now takes $3-6M and 90 days.</p>
+                    <p class="card-text">Your customers deserve wonder. Your brand deserves the tools to deliver it.</p>
+                </div>
+
+                <h3 class="card-subtitle">The Invitation</h3>
+                <p class="card-text">This is an invitation. Not to spectate—but to participate. Not to evaluate—but to commit.</p>
+
+                <p class="card-text">The infrastructure exists. The technology works. The team is assembled. The partnerships are signed. The philosophy is proven. The community is ready.</p>
+
+                <p class="card-text"><strong>The only remaining variable is you.</strong></p>
+
+                <p class="card-text">Your brand. Your customers. Your vision. Your decision.</p>
+
+                <p class="card-text">The future of experiential engagement isn't coming—it's here. The question isn't whether phygital experiences will transform how brands connect with customers. The question is whether your brand will lead that transformation or be disrupted by it.</p>
+
+                <div style="text-align: center; margin: 3rem 0;">
+                    <button class="cta-button" style="font-size: 1.2rem; padding: 1.5rem 3rem;">Start Your Phygital Journey</button>
+                </div>
+
+                <div class="highlight-box" style="margin-top: 3rem;">
+                    <p class="card-text" style="text-align: center; font-size: 1.2rem;"><strong>🔥 AETHER: Phygital Experiential Brand • Hospitality • Deep Tech Atelier</strong></p>
+                    <p class="card-text" style="text-align: center;">Powered by AETHER PXE & E.L.I.A.S. Platform</p>
+                    <p class="card-text" style="text-align: center;"><em>From vision to reality. From concept to operations. From brand to experience.</em></p>
+                    <p class="card-text" style="text-align: center; margin-top: 1rem;">Come sit by the fire. The stories are waiting. And they have your brand's face.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">AETHER PXE</div>
+            <p class="footer-text"><strong>Master Overview & Ethos | The Genesis of AETHER</strong></p>
+            <p class="footer-text">Ethos • Pathos • Logos</p>
+            <p class="footer-text">Document Status: COMPLETE GENESIS</p>
+            <p class="footer-text" style="margin-top: 1rem;">© 2024-2025 AETHER PHYGITAVERSE • All Rights Reserved</p>
+            <p class="footer-text">Last Updated: December 2025 | v6.0</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching functionality
+        function switchTab(tabIndex) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all tab buttons
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+
+            // Show selected tab content
+            document.getElementById(`tab-${tabIndex}`).classList.add('active');
+
+            // Add active class to clicked button
+            tabButtons[tabIndex].classList.add('active');
+
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all content cards
+        document.querySelectorAll('.content-card, .stat-card, .team-card, .pricing-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Mobile menu toggle for better UX
+        const tabNav = document.querySelector('.tab-navigation');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        tabNav.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - tabNav.offsetLeft;
+            scrollLeft = tabNav.scrollLeft;
+        });
+
+        tabNav.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+
+        tabNav.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+
+        tabNav.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - tabNav.offsetLeft;
+            const walk = (x - startX) * 2;
+            tabNav.scrollLeft = scrollLeft - walk;
+        });
+
+        // Print optimization
+        window.addEventListener('beforeprint', () => {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.style.display = 'block';
+            });
+        });
+
+        window.addEventListener('afterprint', () => {
+            document.querySelectorAll('.tab-content').forEach((content, index) => {
+                if (!content.classList.contains('active')) {
+                    content.style.display = 'none';
+                }
+            });
+        });
+
+        // Accessibility: Keyboard navigation for tabs
+        document.addEventListener('keydown', (e) => {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const currentIndex = Array.from(tabButtons).findIndex(btn => btn.classList.contains('active'));
+
+            if (e.key === 'ArrowRight' && currentIndex < tabButtons.length - 1) {
+                switchTab(currentIndex + 1);
+            } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                switchTab(currentIndex - 1);
+            }
+        });
+
+        // Track analytics (placeholder for future implementation)
+        console.log('AETHER PXE Platform v6.0 | Master Overview | December 2025');
+    </script>
+</body>
+</html>
