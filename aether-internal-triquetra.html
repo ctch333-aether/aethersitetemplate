@@ -594,6 +594,172 @@
             line-height: 1.6;
         }
 
+        .team-photo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .team-card:hover .team-photo {
+            transform: scale(1.05);
+            border-color: var(--aether-purple);
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Image Gallery */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            padding: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.8));
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+
+        /* Portfolio Gallery - Larger Items */
+        .portfolio-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 24px 0;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.4s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+            border-color: var(--aether-purple);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .portfolio-info {
+            padding: 16px;
+        }
+
+        .portfolio-title {
+            font-family: var(--font-display);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 6px;
+        }
+
+        .portfolio-desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 20000;
+            padding: 40px;
+            cursor: zoom-out;
+        }
+
+        .lightbox.active {
+            display: flex;
+            animation: lightboxFadeIn 0.3s ease;
+        }
+
+        @keyframes lightboxFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+
         /* Timeline */
         .timeline {
             position: relative;
@@ -797,38 +963,72 @@
         <!-- Triquetra Navigation -->
         <nav class="triquetra-nav">
             <div class="triquetra-container">
-                <!-- Central Triquetra Symbol -->
+                <!-- Central Triquetra Symbol - Enhanced Celtic Knot -->
                 <svg class="triquetra-svg" viewBox="0 0 200 200" fill="none">
                     <defs>
                         <linearGradient id="triGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.8"/>
-                            <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.6"/>
+                            <stop offset="0%" style="stop-color:#667eea;stop-opacity:1"/>
+                            <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.9"/>
                         </linearGradient>
                         <linearGradient id="triGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" style="stop-color:#f093fb;stop-opacity:0.8"/>
-                            <stop offset="100%" style="stop-color:#ff6bb5;stop-opacity:0.6"/>
+                            <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1"/>
+                            <stop offset="100%" style="stop-color:#ff6bb5;stop-opacity:0.9"/>
                         </linearGradient>
                         <linearGradient id="triGrad3" x1="50%" y1="100%" x2="50%" y2="0%">
-                            <stop offset="0%" style="stop-color:#00d4aa;stop-opacity:0.8"/>
-                            <stop offset="100%" style="stop-color:#00b496;stop-opacity:0.6"/>
+                            <stop offset="0%" style="stop-color:#00d4aa;stop-opacity:1"/>
+                            <stop offset="100%" style="stop-color:#00b496;stop-opacity:0.9"/>
                         </linearGradient>
-                        <filter id="glow">
-                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
                             <feMerge>
+                                <feMergeNode in="coloredBlur"/>
                                 <feMergeNode in="coloredBlur"/>
                                 <feMergeNode in="SourceGraphic"/>
                             </feMerge>
                         </filter>
+                        <filter id="innerGlow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="2" result="blur"/>
+                            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                        </filter>
                     </defs>
-                    <!-- Top Lobe (ETHOS) -->
-                    <path d="M100 30 Q130 60 100 100 Q70 60 100 30" stroke="url(#triGrad1)" stroke-width="4" fill="none" filter="url(#glow)"/>
+
+                    <!-- Outer glow ring -->
+                    <circle cx="100" cy="100" r="85" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                    <circle cx="100" cy="100" r="75" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+                    <!-- Top Lobe (ETHOS) - Curved vesica piscis shape -->
+                    <path d="M100 25
+                             C125 25, 145 50, 145 75
+                             C145 90, 130 100, 100 100
+                             C70 100, 55 90, 55 75
+                             C55 50, 75 25, 100 25"
+                          stroke="url(#triGrad1)" stroke-width="4" fill="none" filter="url(#glow)" stroke-linecap="round"/>
+
                     <!-- Bottom Left Lobe (PATHOS) -->
-                    <path d="M40 150 Q70 120 100 100 Q50 130 40 150" stroke="url(#triGrad2)" stroke-width="4" fill="none" filter="url(#glow)"/>
+                    <path d="M100 100
+                             C85 115, 70 130, 50 140
+                             C35 148, 25 155, 30 170
+                             C35 180, 55 175, 70 165
+                             C90 150, 100 130, 100 100"
+                          stroke="url(#triGrad2)" stroke-width="4" fill="none" filter="url(#glow)" stroke-linecap="round"/>
+
                     <!-- Bottom Right Lobe (LOGOS) -->
-                    <path d="M160 150 Q130 120 100 100 Q150 130 160 150" stroke="url(#triGrad3)" stroke-width="4" fill="none" filter="url(#glow)"/>
-                    <!-- Central Interlocking -->
-                    <circle cx="100" cy="100" r="15" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
-                    <circle cx="100" cy="100" r="6" fill="white"/>
+                    <path d="M100 100
+                             C100 130, 110 150, 130 165
+                             C145 175, 165 180, 170 170
+                             C175 155, 165 148, 150 140
+                             C130 130, 115 115, 100 100"
+                          stroke="url(#triGrad3)" stroke-width="4" fill="none" filter="url(#glow)" stroke-linecap="round"/>
+
+                    <!-- Central interlocking weave effect -->
+                    <circle cx="100" cy="100" r="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                    <circle cx="100" cy="100" r="12" fill="rgba(102, 126, 234, 0.3)" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+                    <circle cx="100" cy="100" r="5" fill="white" filter="url(#innerGlow)"/>
+
+                    <!-- Decorative dots at intersection points -->
+                    <circle cx="100" cy="55" r="3" fill="#667eea" filter="url(#glow)"/>
+                    <circle cx="65" cy="145" r="3" fill="#f093fb" filter="url(#glow)"/>
+                    <circle cx="135" cy="145" r="3" fill="#00d4aa" filter="url(#glow)"/>
                 </svg>
 
                 <!-- ETHOS Lobe (Top) -->
@@ -922,6 +1122,57 @@
                     <h4 style="color: #ffd700; margin-bottom: 12px; font-weight: 700;">36,000+ Hours of Expertise</h4>
                     <p class="content-text" style="margin: 0;">Combined experience across live entertainment, theatrical production, immersive technology, and business innovation - forged into a single unified vision.</p>
                 </div>
+
+                <div class="content-section">
+                    <h3 class="section-title">Portfolio Highlights</h3>
+                    <p class="content-text">From Enchant Christmas lighting spectacles to immersive theatrical productions, our work spans the full spectrum of experiential entertainment.</p>
+                    <div class="portfolio-gallery">
+                        <div class="portfolio-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/aether-portfolio-enchant-lights-01.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/aether-portfolio-enchant-lights-01.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/aether-portfolio-enchant-lights-01.webp" alt="Enchant Christmas" loading="lazy">
+                            </picture>
+                            <div class="portfolio-info">
+                                <div class="portfolio-title">Enchant Christmas</div>
+                                <div class="portfolio-desc">World's largest holiday light maze and market</div>
+                            </div>
+                        </div>
+                        <div class="portfolio-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/aether-portfolio-enchant-lights-02.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/aether-portfolio-enchant-lights-02.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/aether-portfolio-enchant-lights-02.webp" alt="Enchant Light Installation" loading="lazy">
+                            </picture>
+                            <div class="portfolio-info">
+                                <div class="portfolio-title">Light Installation</div>
+                                <div class="portfolio-desc">4+ million lights synchronized to music</div>
+                            </div>
+                        </div>
+                        <div class="portfolio-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/aether-portfolio-killmove-01.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/aether-portfolio-killmove-01.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/aether-portfolio-killmove-01.webp" alt="Kill Move Paradise" loading="lazy">
+                            </picture>
+                            <div class="portfolio-info">
+                                <div class="portfolio-title">Kill Move Paradise</div>
+                                <div class="portfolio-desc">Immersive theatrical production</div>
+                            </div>
+                        </div>
+                        <div class="portfolio-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/aether-portfolio-batb-setdesign.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/aether-portfolio-batb-setdesign.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/aether-portfolio-batb-setdesign.webp" alt="Stage Set Design" loading="lazy">
+                            </picture>
+                            <div class="portfolio-info">
+                                <div class="portfolio-title">Stage Set Design</div>
+                                <div class="portfolio-desc">Beauty and the Beast production design</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- ETHOS: Leadership -->
@@ -937,6 +1188,13 @@
 
                 <div class="team-grid">
                     <div class="team-card">
+                        <div class="team-photo">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/aether-team-founder-ctch.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/aether-team-founder-ctch.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/aether-team-founder-ctch.webp" alt="Christian Charles-Harris" loading="lazy">
+                            </picture>
+                        </div>
                         <div class="team-name">Christian Charles-Harris</div>
                         <div class="team-role">Founder & CEO</div>
                         <div class="team-bio">
@@ -944,6 +1202,13 @@
                         </div>
                     </div>
                     <div class="team-card">
+                        <div class="team-photo">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/aether-team-cofounder-shaxinwei.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/aether-team-cofounder-shaxinwei.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/aether-team-cofounder-shaxinwei.webp" alt="Dr. Sha Xin Wei" loading="lazy">
+                            </picture>
+                        </div>
                         <div class="team-name">Dr. Sha Xin Wei</div>
                         <div class="team-role">Chief Research Officer</div>
                         <div class="team-bio">
@@ -951,6 +1216,13 @@
                         </div>
                     </div>
                     <div class="team-card">
+                        <div class="team-photo">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/aether-team-cofounder-vangelis.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/aether-team-cofounder-vangelis.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/aether-team-cofounder-vangelis.webp" alt="Dr. Vangelis Lympouridis" loading="lazy">
+                            </picture>
+                        </div>
                         <div class="team-name">Dr. Vangelis Lympouridis</div>
                         <div class="team-role">Chief Technology Officer</div>
                         <div class="team-bio">
@@ -1139,6 +1411,70 @@
                     <p class="content-text">
                         Our flagship transmedia franchise features three warrior princesses whose stories unfold across live productions, interactive experiences, merchandise, and digital extensions. Each character represents different aspects of strength, wisdom, and heart.
                     </p>
+                    <div class="image-gallery">
+                        <div class="gallery-item">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/aether-ip-tales-of-lucidia.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/aether-ip-tales-of-lucidia.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/aether-ip-tales-of-lucidia.webp" alt="Tales of Lucidia" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Tales of Lucidia Logo</div>
+                        </div>
+                        <div class="gallery-item">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/BRANDAsset-WarriorPrincess-CharacterConcept.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/BRANDAsset-WarriorPrincess-CharacterConcept.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/BRANDAsset-WarriorPrincess-CharacterConcept.webp" alt="Warrior Princess Character Concept" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Warrior Princess Concept</div>
+                        </div>
+                        <div class="gallery-item">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/BRANDAsset-WarriorPrincess-Render51.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/BRANDAsset-WarriorPrincess-Render51.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/BRANDAsset-WarriorPrincess-Render51.webp" alt="Warrior Princess Render" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Character Render</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3 class="section-title">Original IP Portfolio</h3>
+                    <div class="image-gallery">
+                        <div class="gallery-item">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/aether-ip-maryjane-mainframe.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/aether-ip-maryjane-mainframe.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/aether-ip-maryjane-mainframe.webp" alt="MaryJane Mainframe" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">MaryJane Mainframe</div>
+                        </div>
+                        <div class="gallery-item">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/aether-ip-metamorphasis-apothecary.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/aether-ip-metamorphasis-apothecary.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/aether-ip-metamorphasis-apothecary.webp" alt="Metamorphasis Apothecary" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Metamorphasis Apothecary</div>
+                        </div>
+                        <div class="gallery-item">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/BRANDAsset-PhygitalIP-BroussardBayouBBQ.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/BRANDAsset-PhygitalIP-BroussardBayouBBQ.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/BRANDAsset-PhygitalIP-BroussardBayouBBQ.webp" alt="Broussard Bayou BBQ" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Broussard Bayou BBQ</div>
+                        </div>
+                        <div class="gallery-item">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/BRANDAsset-PhygitalIP-Port51Confectionarium.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/BRANDAsset-PhygitalIP-Port51Confectionarium.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/BRANDAsset-PhygitalIP-Port51Confectionarium.webp" alt="Port 51 Confectionarium" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Port 51 Confectionarium</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="content-section">
@@ -1221,6 +1557,44 @@
                         <li>Environmental controls for temperature, scent, and air flow</li>
                         <li>Haptic arrays for tactile story elements</li>
                     </ul>
+                </div>
+
+                <div class="content-section">
+                    <h3 class="section-title">Projection Mapping Capabilities</h3>
+                    <div class="image-gallery">
+                        <div class="gallery-item">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/BRANDwork-ProjectionMapping-CosmicEye.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/BRANDwork-ProjectionMapping-CosmicEye.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/BRANDwork-ProjectionMapping-CosmicEye.webp" alt="Cosmic Eye Projection" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Cosmic Eye</div>
+                        </div>
+                        <div class="gallery-item">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/BRANDwork-ProjectionMapping-GridMatrix.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/BRANDwork-ProjectionMapping-GridMatrix.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/BRANDwork-ProjectionMapping-GridMatrix.webp" alt="Grid Matrix Projection" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Grid Matrix</div>
+                        </div>
+                        <div class="gallery-item">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/BRANDwork-ProjectionMapping-CircuitNeuron.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/BRANDwork-ProjectionMapping-CircuitNeuron.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/BRANDwork-ProjectionMapping-CircuitNeuron.webp" alt="Circuit Neuron Projection" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Circuit Neuron</div>
+                        </div>
+                        <div class="gallery-item">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/BRANDwork-ProjectionMapping-OceanForge.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/BRANDwork-ProjectionMapping-OceanForge.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/BRANDwork-ProjectionMapping-OceanForge.webp" alt="Ocean Forge Projection" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Ocean Forge</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="highlight-card" style="border-color: rgba(0, 212, 170, 0.3); background: linear-gradient(135deg, rgba(0, 212, 170, 0.1), rgba(0, 180, 150, 0.05));">
@@ -1368,6 +1742,12 @@
         <p>AETHER TECHNOLOGIES &copy; 2025 | PHYGITAL OPERATING SYSTEM</p>
     </footer>
 
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img src="" alt="Expanded view" id="lightbox-img">
+    </div>
+
     <script>
         // Loading Screen
         window.addEventListener('load', () => {
@@ -1443,7 +1823,50 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closePanel();
+                closeLightbox();
             }
+        });
+
+        // Lightbox functions
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Add click handlers to gallery items
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                if (img) openLightbox(img.src);
+            });
+        });
+
+        // Smooth reveal animation for panels
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        // Observe content sections for reveal animation
+        document.querySelectorAll('.content-section').forEach(section => {
+            revealObserver.observe(section);
         });
     </script>
 </body>
