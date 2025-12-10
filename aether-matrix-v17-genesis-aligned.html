@@ -4182,6 +4182,449 @@
             background: rgba(26, 26, 46, 0.95);
             border-color: rgba(102, 126, 234, 0.3);
         }
+
+        /* ===== ENHANCED LAYOUT IMPROVEMENTS ===== */
+
+        /* Major Section Headers - Clear visual hierarchy */
+        .major-section-header {
+            position: relative;
+            padding: 30px 0 24px;
+            margin: 50px 0 32px;
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .major-section-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(102, 126, 234, 0.04) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .major-section-header h2 {
+            margin: 0 !important;
+            padding-bottom: 0 !important;
+            border-bottom: none !important;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-intro {
+            font-size: 16px !important;
+            line-height: 1.9 !important;
+            color: var(--text-secondary) !important;
+            margin-top: 16px !important;
+            padding-left: 0 !important;
+            border-left: none !important;
+        }
+
+        /* Content Grid Layout - Better organization */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+            margin: 28px 0;
+        }
+
+        .content-grid.two-col {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .content-grid.three-col {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: 900px) {
+            .content-grid.two-col,
+            .content-grid.three-col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Brand Asset Showcase - Improved image placement */
+        .brand-showcase {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.06), rgba(118, 75, 162, 0.04));
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(102, 126, 234, 0.15);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 36px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand-showcase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+
+        .brand-showcase-title {
+            font-family: var(--font-display);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-showcase-title::before {
+            content: '◇';
+            color: var(--accent-blue);
+            font-size: 14px;
+        }
+
+        /* Image Gallery Grid */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 24px 0;
+        }
+
+        .image-gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .image-gallery-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 36px rgba(102, 126, 234, 0.2);
+        }
+
+        .image-gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .image-gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-gallery-caption {
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.95);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        /* Featured Image - Full width showcase */
+        .featured-image {
+            position: relative;
+            margin: 36px 0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .featured-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px 28px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+        }
+
+        .featured-image-title {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .featured-image-caption {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Inline Image with Text Wrap */
+        .inline-image-left,
+        .inline-image-right {
+            max-width: 280px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .inline-image-left {
+            float: left;
+            margin-right: 28px;
+        }
+
+        .inline-image-right {
+            float: right;
+            margin-left: 28px;
+        }
+
+        .inline-image-left img,
+        .inline-image-right img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .clearfix::after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+
+        /* Text Organization - Key Points Summary */
+        .key-summary {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(248, 250, 255, 0.5));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin: 28px 0;
+        }
+
+        .key-summary-title {
+            font-family: var(--font-display);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent-blue);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .key-summary-title::before {
+            content: '◈';
+        }
+
+        .key-summary ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .key-summary li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        /* Sidebar Callout */
+        .sidebar-callout {
+            background: linear-gradient(180deg, rgba(255, 215, 0, 0.08), rgba(255, 215, 0, 0.02));
+            border-left: 4px solid var(--accent-gold);
+            padding: 20px 24px;
+            margin: 24px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .sidebar-callout-title {
+            font-family: var(--font-display);
+            font-size: 14px;
+            font-weight: 600;
+            color: #b45309;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .sidebar-callout p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* Numbered List Enhancement */
+        .numbered-steps {
+            counter-reset: step-counter;
+            list-style: none;
+            padding: 0;
+            margin: 24px 0;
+        }
+
+        .numbered-steps li {
+            counter-increment: step-counter;
+            position: relative;
+            padding-left: 54px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .numbered-steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Profile Card Enhancement */
+        .profile-card {
+            display: flex;
+            gap: 24px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            padding: 28px;
+            margin: 28px 0;
+            transition: all 0.3s ease;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .profile-card-image {
+            flex-shrink: 0;
+            width: 160px;
+            height: 160px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .profile-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-card-content {
+            flex: 1;
+        }
+
+        .profile-card-name {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .profile-card-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+        }
+
+        .profile-card-bio {
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 600px) {
+            .profile-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .profile-card-image {
+                width: 140px;
+                height: 140px;
+            }
+        }
+
+        /* Stats Row - Horizontal metrics display */
+        .stats-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 28px 0;
+            justify-content: space-between;
+        }
+
+        .stat-item {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(8px);
+            border-radius: 12px;
+            border: 1px solid rgba(102, 126, 234, 0.15);
+        }
+
+        .stat-item-value {
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent-blue);
+            line-height: 1.2;
+        }
+
+        .stat-item-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Content Separator - Enhanced */
+        .content-separator {
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, rgba(102, 126, 234, 0.4) 25%, rgba(118, 75, 162, 0.4) 50%, rgba(102, 126, 234, 0.4) 75%, transparent 100%);
+            margin: 48px 0;
+            position: relative;
+        }
+
+        .content-separator::before {
+            content: '✦';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 0 16px;
+            color: var(--accent-purple);
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
@@ -4278,49 +4721,57 @@
                 <li><strong>Democratized access</strong> through E.L.I.A.S. Framework achieving 85% population accessibility vs. 15% industry standard</li>
             </ul>
 
-            <div class="section-divider"></div>
-            <h2>⏳ 36,000 Hours</h2>
-            
-            <div class="pull-quote">
-                <p><strong>Just About.</strong> Of Creating and Tinkering. Building and Rebuilding. <em>An Amalgamation of Beauty, Strife and Determination.</em></p>
+            <div class="content-separator"></div>
+
+            <div class="major-section-header">
+                <h2>⏳ 36,000 Hours</h2>
+                <p class="section-intro">Of Creating and Tinkering. Building and Rebuilding. An Amalgamation of Beauty, Strife and Determination.</p>
             </div>
-            
+
             <p>Thirty-six thousand hours represents more than a decade of focused creative labor—the accumulated wisdom of countless projects, failures, breakthroughs, and transformations. This isn't theoretical knowledge gleaned from textbooks or conferences. This is battle-tested methodology proven across budgets ranging from shoestring to substantial, across venues from intimate black boxes to stadium-scale productions, across stories that challenged and stories that comforted.</p>
-            
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <span class="number">36,000</span>
-                    <span class="label">Hours of Creating, Tinkering, Building, Rebuilding</span>
+
+            <div class="stats-row">
+                <div class="stat-item">
+                    <span class="stat-item-value">36,000</span>
+                    <span class="stat-item-label">Hours of Creating & Building</span>
                 </div>
-                <div class="metric-card">
-                    <span class="number">$18M+</span>
-                    <span class="label">Documented Career Profits Generated</span>
+                <div class="stat-item">
+                    <span class="stat-item-value">$18M+</span>
+                    <span class="stat-item-label">Career Profits Generated</span>
                 </div>
-                <div class="metric-card">
-                    <span class="number">50+</span>
-                    <span class="label">Productions Led with Zero Safety Incidents</span>
+                <div class="stat-item">
+                    <span class="stat-item-value">50+</span>
+                    <span class="stat-item-label">Zero Safety Incidents</span>
                 </div>
             </div>
-            
-            <p>Every hour taught something. Every project revealed new edges of what's possible. The accumulation of these hours creates pattern recognition impossible to shortcut—the intuitive understanding of what will move audiences, what will fail magnificently, what technical approaches will deliver reliability under pressure, what creative risks reward bold pursuit.</p>
-            
-            <div class="section-divider"></div>
-            <h2>The Alchemist's Declaration</h2>
-            
-            <div class="pull-quote">
-                <p>In the realm of creation, I am both an alchemist and a dreamer. My journey is one of transmuting the mundane into the magical, weaving dreams into tangible realities. Enchanted by the mysteries of design, technology and storytelling, I gaze upon our world with the eyes of an artist and the mind of a strategist, crafting experiences that transcend the boundaries of everyday life and leisure.</p>
+
+            <div class="sidebar-callout">
+                <div class="sidebar-callout-title">The Value of Experience</div>
+                <p>Every hour taught something. Every project revealed new edges of what's possible. The accumulation of these hours creates pattern recognition impossible to shortcut—the intuitive understanding of what will move audiences, what will fail magnificently, what technical approaches will deliver reliability under pressure, what creative risks reward bold pursuit.</p>
             </div>
             
+            <div class="content-separator"></div>
+
+            <div class="major-section-header">
+                <h2>The Alchemist's Declaration</h2>
+                <p class="section-intro">Transmuting the mundane into the magical, weaving dreams into tangible realities.</p>
+            </div>
+
+            <div class="brand-showcase">
+                <div class="brand-showcase-title">Our Creative Philosophy</div>
+                <p style="font-style: italic; font-size: 16px; line-height: 1.9; color: #374151; margin: 0;">In the realm of creation, I am both an alchemist and a dreamer. Enchanted by the mysteries of design, technology and storytelling, I gaze upon our world with the eyes of an artist and the mind of a strategist, crafting experiences that transcend the boundaries of everyday life and leisure.</p>
+            </div>
+
             <p>In this post-pandemic era, my canvas is vast and varied, blending the intricate art of high-level business strategy, branding, technology, and storytelling through the lens of an <strong>Experiential Kaleidoscope</strong>. My mission is to infuse life with experiential richness, engaging the senses and the spirit in a dance of digital and physical realities—a <strong>Phygital tapestry</strong> that celebrates hope and the resilience of the human spirit.</p>
-            
-            <div class="comparison-grid">
-                <div class="comparison-item" style="border-color: #dfdfdf #404040 #404040 #dfdfdf;">
-                    <h4>💡 Value (Ethos)</h4>
-                    <p>The foundation upon which trust is built. The reason they return. In a world where uniformity has dulled the edges of innovation, we seek to restore the luster of originality.</p>
+
+            <div class="content-grid two-col">
+                <div class="key-summary">
+                    <div class="key-summary-title">Value (Ethos)</div>
+                    <p style="margin: 0;">The foundation upon which trust is built. The reason they return. In a world where uniformity has dulled the edges of innovation, we seek to restore the luster of originality.</p>
                 </div>
-                <div class="comparison-item" style="border-color: #dfdfdf #404040 #404040 #dfdfdf;">
-                    <h4>🚀 Innovation (Pathos)</h4>
-                    <p>The emotional resonance of the new. The feeling of witnessing the impossible. The spark that ignites wonder in hearts grown weary of the ordinary.</p>
+                <div class="key-summary">
+                    <div class="key-summary-title">Innovation (Pathos)</div>
+                    <p style="margin: 0;">The emotional resonance of the new. The feeling of witnessing the impossible. The spark that ignites wonder in hearts grown weary of the ordinary.</p>
                 </div>
             </div>
             
@@ -4330,15 +4781,16 @@
             
             <p>Alchemist Atelier exists at the intersection of <strong>brand development</strong>, <strong>strategic operations</strong>, and <strong>phygital experience design</strong>—unified through a proprietary AI/IoT-powered platform ecosystem that transforms how stories are created, delivered, and monetized. <strong>Memory is a powerful force in our lives.</strong> It shapes our understanding of the world and our place in it. A singular personal narrative reality, a reality that makes up the fabric of our lives. Merging, opposing, flowing and fraying all the threads around us.</p>
 
-            <div class="section-divider"></div>
-            <h2>Our Alchemical Ecosystem</h2>
-            
-            <p>AETHER is an alchemical ecosystem—a platform that systematically transforms how humans experience narrative, commerce, and community. This is methodology, not metaphor.</p>
+            <div class="content-separator"></div>
 
-            <h3>Phygital Reality + Commerce Engine</h3>
-            
-            <div class="info-box">
-                <p><strong>⚙️ AETHER PXR (Phygital Experiential Reality & Commerce Engine)</strong> isn't just software or hardware—it's the complete operating system AND hardware platform envisioned during those childhood visits to Disneyland, when wondering why magic couldn't be everywhere, accessible to everyone. Just as iOS revolutionized how we interact with digital information, AETHER PXR revolutionizes how we experience physical reality itself—transforming spaces from passive containers into living, breathing environments that respond to each person individually. Built on five years of research combining cognitive science, behavioral economics, quantum computing, and advanced systems theory.</p>
+            <div class="major-section-header">
+                <h2>Our Alchemical Ecosystem</h2>
+                <p class="section-intro">A platform that systematically transforms how humans experience narrative, commerce, and community. This is methodology, not metaphor.</p>
+            </div>
+
+            <div class="brand-showcase">
+                <div class="brand-showcase-title">Phygital Reality + Commerce Engine</div>
+                <p style="margin: 0; line-height: 1.8;"><strong>AETHER PXR (Phygital Experiential Reality & Commerce Engine)</strong> isn't just software or hardware—it's the complete operating system AND hardware platform envisioned during those childhood visits to Disneyland, when wondering why magic couldn't be everywhere, accessible to everyone. Just as iOS revolutionized how we interact with digital information, AETHER PXR revolutionizes how we experience physical reality itself—transforming spaces from passive containers into living, breathing environments that respond to each person individually. Built on five years of research combining cognitive science, behavioral economics, quantum computing, and advanced systems theory.</p>
             </div>
 
             <p>Fintech, game engines, and deep tech power our phygital platform—the core innovation driving everything we create.</p>
@@ -4347,15 +4799,22 @@
 
             <h3>The Convergence Imperative: Why Three Technologies Must Work as One</h3>
 
-            <p>The revolutionary nature of AETHER emerges not from any single technology but from their unprecedented integration. Previous attempts at phygital experiences failed because they treated financial technology, game engines, and deep tech as separate domains requiring independent optimization. AETHER succeeds by recognizing that these technologies must converge into a unified system where each amplifies the capabilities of the others. Financial technology enables access to experiences. Game engines make those experiences dynamically responsive. Deep tech ensures the system operates at scales and speeds that feel magical rather than mechanical. Remove any element and the entire value proposition collapses.</p>
+            <p>The revolutionary nature of AETHER emerges not from any single technology but from their unprecedented integration. Previous attempts at phygital experiences failed because they treated financial technology, game engines, and deep tech as separate domains requiring independent optimization. AETHER succeeds by recognizing that these technologies must converge into a unified system where each amplifies the capabilities of the others.</p>
 
-            <p>Consider how this convergence operates in practice:
+            <div class="sidebar-callout">
+                <div class="sidebar-callout-title">The Integration Principle</div>
+                <p>Financial technology enables access to experiences. Game engines make those experiences dynamically responsive. Deep tech ensures the system operates at scales and speeds that feel magical rather than mechanical. Remove any element and the entire value proposition collapses.</p>
+            </div>
 
-            <p><strong>Fintech:</strong> AetherPay, operating within the E.L.I.A.S. Framework (Experiential Equity, Leisure Integration, Imagination Activation, Amusement Engineering, Story-Commerce Integration), enables zero-interest payment plans with 97% approval rates—unlocking access for 85% of the population versus the industry standard of 15%. Dynamic equity pricing ranges from $27-$396, serving the $4+ trillion buying power of multicultural communities.</p>
+            <h4 style="margin-top: 28px; color: #374151;">How Our Technology Convergence Operates in Practice:</h4>
 
-            <p><strong>Game Engines:</strong> Real-time 3D rendering and AI create responsive environments that adapt to guest behavior and emotion. PXE makes physical spaces programmable as software, developed in strategic partnership with Apple for technology integration and hardware ecosystem alignment.</p>
+            <ol class="numbered-steps">
+                <li><strong>Fintech:</strong> AetherPay, operating within the E.L.I.A.S. Framework (Experiential Equity, Leisure Integration, Imagination Activation, Amusement Engineering, Story-Commerce Integration), enables zero-interest payment plans with 97% approval rates—unlocking access for 85% of the population versus the industry standard of 15%. Dynamic equity pricing ranges from $27-$396, serving the $4+ trillion buying power of multicultural communities.</li>
 
-            <p><strong>Deep Tech:</strong> Quantum computing through PASQAL partnership (10¹⁸ operations per second), biometric sensing (92% emotion accuracy), AI integration with Anthropic for narrative adaptation—all deployed for human experience, not spectacle.</p>
+                <li><strong>Game Engines:</strong> Real-time 3D rendering and AI create responsive environments that adapt to guest behavior and emotion. PXE makes physical spaces programmable as software, developed in strategic partnership with Apple for technology integration and hardware ecosystem alignment.</li>
+
+                <li><strong>Deep Tech:</strong> Quantum computing through PASQAL partnership (10<sup>18</sup> operations per second), biometric sensing (92% emotion accuracy), AI integration with Anthropic for narrative adaptation—all deployed for human experience, not spectacle.</li>
+            </ol>
 
             <div class="highlight-box">
                 <h3>The AETHER PXR platform enables:</h3>
@@ -4371,10 +4830,29 @@
                 </ul>
             </div>
 
-            <div class="section-divider"></div>
-            <h2>The E.L.I.A.S. Framework: Proving Accessibility Drives Profitability</h2>
-            
-            <p>The E.L.I.A.S. Framework represents AETHER's revolutionary operational philosophy, proving accessibility and profitability are complementary rather than contradictory. Organizations achieve <strong>2.8× ROI within 18 months</strong> through five interconnected components. This framework emerged from years of experience in themed entertainment and represents a systematic approach to creating accessible wonder while maximizing business value.</p>
+            <div class="content-separator"></div>
+
+            <div class="major-section-header">
+                <h2>The E.L.I.A.S. Framework: Proving Accessibility Drives Profitability</h2>
+                <p class="section-intro">Revolutionary operational philosophy proving accessibility and profitability are complementary rather than contradictory.</p>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-item">
+                    <span class="stat-item-value">2.8×</span>
+                    <span class="stat-item-label">ROI Within 18 Months</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-item-value">5</span>
+                    <span class="stat-item-label">Interconnected Components</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-item-value">85%</span>
+                    <span class="stat-item-label">Population Accessibility</span>
+                </div>
+            </div>
+
+            <p>This framework emerged from years of experience in themed entertainment and represents a systematic approach to creating accessible wonder while maximizing business value.</p>
 
             <div class="takeaway-box">
                 <p><strong>E • Experiential Equity — Democratizing Access to Premium Experiences</strong></p>
@@ -4406,10 +4884,29 @@
                 <p><strong>Results:</strong> 63% higher per-capita spending than traditional models ($156 vs. $95). 87% satisfaction with commerce (vs. 42% traditional). 12:1 LTV/CAC ratio through repeat visits and subscriptions. 94% of purchases self-reported as "meaningful." 8% regret rate (vs. 32% traditional retail). 25% attendance increase from dynamic pricing optimization. 60% per-capita spending growth through integrated commerce.</p>
             </div>
 
-            <div class="section-divider"></div>
-            <h2>SIXXTHRILL: Transforming Distressed Theme Park Assets</h2>
-            
-            <p>The SIXXTHRILL transformation framework represents AETHER's strategic approach to acquiring and revitalizing distressed theme park assets, with particular focus on the Six Flags portfolio. This initiative projects creation of $12-18 billion in enterprise value through systematic phygital integration across multiple properties. The framework combines AETHER's inflatable venue technology, quantum-optimized operational systems, and transmedia IP development with strategic partnerships including Legendary Entertainment, Warner Bros, and Cirque du Soleil.</p>
+            <div class="content-separator"></div>
+
+            <div class="major-section-header">
+                <h2>SIXXTHRILL: Transforming Distressed Theme Park Assets</h2>
+                <p class="section-intro">Strategic approach to acquiring and revitalizing distressed theme park assets through systematic phygital integration.</p>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-item">
+                    <span class="stat-item-value">$12-18B</span>
+                    <span class="stat-item-label">Enterprise Value Creation</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-item-value">92%</span>
+                    <span class="stat-item-label">Cost Reduction</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-item-value">30-60</span>
+                    <span class="stat-item-label">Days to Deployment</span>
+                </div>
+            </div>
+
+            <p>This initiative combines AETHER's inflatable venue technology, quantum-optimized operational systems, and transmedia IP development with strategic partnerships including Legendary Entertainment, Warner Bros, and Cirque du Soleil.</p>
 
             <div class="highlight-box">
                 <h3>SIXXTHRILL Transformation Waves:</h3>
@@ -4424,10 +4921,36 @@
                 <p><strong>Financial Projections:</strong> Conservative modeling projects $12-18B enterprise value creation through combination of operational optimization (15-20% cost reduction), revenue expansion (30-40% increase in addressable market), and valuation multiple expansion (phygital technology platform commands premium multiples versus traditional entertainment real estate). Strategic exit opportunities include IPO, acquisition by major entertainment conglomerate, or continuation as independent platform provider licensing technology to broader entertainment industry.</p>
             </div>
 
-            <div class="section-divider"></div>
-            <h2>Manufacturing Excellence: The Alchemist Atelier</h2>
-            
-            <p>Our 45,900 square foot Alchemist Atelier aRtGaRDErN TECHNO-FABRIQUE facility in Sedona, Arizona represents one of the most comprehensive entertainment production facilities in the Southwest United States. The facility houses 153 specialized systems across 16 procurement vendor categories, supporting 63 personnel organized under our 30/30/30+10 framework: 30 Creative Technologists focused on experience design and artistic direction, 30 Reality Engineers managing technical implementation and systems integration, 30 Specialists providing domain expertise across disciplines from quantum computing to theatrical fabrication, plus 10 support staff handling operations, administration, and facility management.</p>
+            <div class="content-separator"></div>
+
+            <div class="major-section-header">
+                <h2>Manufacturing Excellence: The Alchemist Atelier</h2>
+                <p class="section-intro">One of the most comprehensive entertainment production facilities in the Southwest United States.</p>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-item">
+                    <span class="stat-item-value">45,900</span>
+                    <span class="stat-item-label">Square Feet</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-item-value">153</span>
+                    <span class="stat-item-label">Specialized Systems</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-item-value">63</span>
+                    <span class="stat-item-label">Personnel</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-item-value">16</span>
+                    <span class="stat-item-label">Vendor Categories</span>
+                </div>
+            </div>
+
+            <div class="brand-showcase">
+                <div class="brand-showcase-title">aRtGaRDErN TECHNO-FABRIQUE | Sedona, Arizona</div>
+                <p style="margin: 0; line-height: 1.8;">Our facility supports personnel organized under the <strong>30/30/30+10 framework</strong>: 30 Creative Technologists focused on experience design and artistic direction, 30 Reality Engineers managing technical implementation and systems integration, 30 Specialists providing domain expertise across disciplines from quantum computing to theatrical fabrication, plus 10 support staff handling operations, administration, and facility management.</p>
+            </div>
 
             <div class="highlight-box">
                 <h3>153 Specialized Systems Overview:</h3>
@@ -4580,9 +5103,38 @@
             <div class="section-divider"></div>
             <p>Understanding AETHER's technical capabilities and market opportunity matters, but ultimately, platforms succeed or fail based on the people building them. The following leadership profiles demonstrate why AETHER uniquely combines the entrepreneurial execution, theoretical rigor, and regulatory validation required to transform an industry. This is not just a team with impressive credentials; this is a team whose diverse expertise addresses the specific challenges that have prevented previous attempts at phygital platform creation from achieving breakthrough success.</p>
 
-            <h2>Visionary Leadership: The Minds Behind AETHER</h2>
-            
-            <p>AETHER is led by a convergence of proven entrepreneurial success, rigorous academic research, and groundbreaking clinical innovation. This leadership team combines the practical wisdom of eighteen million dollars in generated profit, theoretical foundations from Stanford and Harvard mathematics, and real-world validation of FDA-authorized therapeutic technology serving over sixty thousand patients. Our facility operates with 63 total personnel organized under the 30/30/30+10 framework: 30 Creative Technologists, 30 Reality Engineers, 30 Specialists, plus 10 support staff.</p>
+            <div class="content-separator"></div>
+
+            <div class="major-section-header">
+                <h2>👥 Visionary Leadership: The Minds Behind AETHER</h2>
+                <p class="section-intro">A convergence of proven entrepreneurial success, rigorous academic research, and groundbreaking clinical innovation.</p>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-item">
+                    <span class="stat-item-value">63</span>
+                    <span class="stat-item-label">Total Personnel</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-item-value">$18M+</span>
+                    <span class="stat-item-label">Generated Profit</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-item-value">60K+</span>
+                    <span class="stat-item-label">Patients Served</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-item-value">30/30/30+10</span>
+                    <span class="stat-item-label">Framework Structure</span>
+                </div>
+            </div>
+
+            <div class="sidebar-callout">
+                <div class="sidebar-callout-title">The 30/30/30+10 Framework</div>
+                <p>Our facility operates with a balanced organizational structure: <strong>30 Creative Technologists</strong> driving innovation, <strong>30 Reality Engineers</strong> building immersive systems, <strong>30 Specialists</strong> ensuring excellence across disciplines, plus <strong>10 support staff</strong> enabling seamless operations.</p>
+            </div>
+
+            <p>This leadership team combines the practical wisdom of eighteen million dollars in generated profit, theoretical foundations from Stanford and Harvard mathematics, and real-world validation of FDA-authorized therapeutic technology serving over sixty thousand patients.</p>
 
             <div class="leadership-card leadership-featured">
                 <div class="leadership-header">
@@ -4686,8 +5238,12 @@
             
             <p>This combination addresses the fundamental challenge facing experiential technology: most platforms are built by either business operators who lack deep technical expertise, or by researchers who lack commercial experience, or by technologists who lack rigorous validation. AETHER uniquely integrates all three dimensions, ensuring that our platform delivers proven business results, stands on solid theoretical foundations, and meets the highest standards of evidence-based validation.</p>
 
-            <div class="section-divider"></div>
-            <h2>Strategic Advisors: Industry Wisdom & Network Access</h2>
+            <div class="content-separator"></div>
+
+            <div class="major-section-header">
+                <h2>🎯 Strategic Advisors: Industry Wisdom & Network Access</h2>
+                <p class="section-intro">World-class expertise spanning entertainment, technology, academia, and business strategy.</p>
+            </div>
 
             <div class="leadership-card">
                 <h3>Colleen Jennings-Roggensack</h3>
@@ -4784,11 +5340,15 @@
                 </ul>
             </div>
 
-            <div class="section-divider"></div>
-            <h2>⚗️ B2B Phygital Collaboratory</h2>
-            
-            <div class="highlight-box">
-                <p style="text-align: center; font-style: italic; font-size: 16px;">Where Brands and Organizations Transform Through Experiential Innovation</p>
+            <div class="content-separator"></div>
+
+            <div class="major-section-header">
+                <h2>⚗️ B2B Phygital Collaboratory</h2>
+                <p class="section-intro">Where Brands and Organizations Transform Through Experiential Innovation</p>
+            </div>
+
+            <div class="brand-showcase">
+                <p style="text-align: center; font-style: italic; font-size: 16px;">Empowering enterprises, creative agencies, institutions, and brands with AETHER's revolutionary phygital platform capabilities.</p>
             </div>
             
             <div class="metrics-grid">
@@ -4851,11 +5411,15 @@
                 <p>Museums that respond to visitors. Galleries that tell evolving stories. Educational spaces that make learning an adventure. Culture becomes accessible through experiential alchemy.</p>
             </div>
             
-            <div class="section-divider"></div>
-            <h2>🏰 B2C Phygital Experiential Hospitality</h2>
-            
-            <div class="pull-quote">
-                <p><strong>Story Driven. Curated. Eclectic & Artisanal Zen. Experiential Alchemy.</strong></p>
+            <div class="content-separator"></div>
+
+            <div class="major-section-header">
+                <h2>🏰 B2C Phygital Experiential Hospitality</h2>
+                <p class="section-intro">Story Driven. Curated. Eclectic & Artisanal Zen. Experiential Alchemy.</p>
+            </div>
+
+            <div class="brand-showcase">
+                <p style="text-align: center; font-weight: 600;">Transforming hospitality through immersive narrative experiences that transcend traditional luxury.</p>
             </div>
             
             <div class="takeaway-box">
@@ -4913,19 +5477,37 @@
             </div>
 
             <div class="section-divider"></div>
-            <h2>The Origin Story</h2>
-            
+            <div class="content-separator"></div>
+
+            <div class="major-section-header">
+                <h2>🌟 The Origin Story</h2>
+                <p class="section-intro">A journey from Disneyland's mystical realms to redefining the future of Experiential Entertainment.</p>
+            </div>
+
             <p>Raised just a stone's throw from Disneyland's mystical realms, my journey as a weaver of tales and experiences began when I first heard Linda Gary's stunning narration of Fantasmic! That same child, once spellbound, now ponders, "What is the future of Experiential Entertainment?"</p>
 
             <p>I specialize in merging worlds through future tech and artistic tradition, blending theatrical enchantment, cirque audacity, and next-gen marvels. My background in live entertainment has honed my skills in Producing, Storytelling, Art Direction, and Technological Innovation, creating what I call a PHYGITAL PHUTURE.</p>
 
-            <div class="highlight-box">
-                <h3>My achievements include:</h3>
-                <ul>
-                    <li>Membership in Live Design International's LDInnovations League (2022-2024)</li>
-                    <li>Inaugural recipient of the Pat Mackay Diversity Award and Scholarship</li>
-                    <li>Winner of an ArizonI for Media Design</li>
-                </ul>
+            <div class="brand-showcase">
+                <h3>Key Achievements</h3>
+                <div class="content-grid two-col">
+                    <div class="sidebar-callout" style="margin: 0;">
+                        <div class="sidebar-callout-title">Industry Recognition</div>
+                        <ul>
+                            <li>Membership in Live Design International's LDInnovations League (2022-2024)</li>
+                            <li>Inaugural recipient of the Pat Mackay Diversity Award and Scholarship</li>
+                            <li>Winner of an ArizonI for Media Design</li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-callout" style="margin: 0;">
+                        <div class="sidebar-callout-title">Core Expertise</div>
+                        <ul>
+                            <li>Producing & Production Management</li>
+                            <li>Storytelling & Art Direction</li>
+                            <li>Technological Innovation</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
             <p>I excel at guiding projects from concept to execution, integrating creative vision with budgetary constraints and business objectives. I aim to reshape the Experiential landscape through PHYGITAL Experiential Alchemy for All.</p>
@@ -4964,9 +5546,28 @@
 
             <p>This childhood experience became the catalyst for a revolution. Working across every aspect of the entertainment industry—from sweeping floors at local theaters to becoming the youngest Production Head in Enchant history at age 25, designing experiences for Fortune 500 companies—Christían pursued one fundamental question: <strong>Why do experiences that should inspire wonder instead create division?</strong></p>
 
-            <div class="section-divider"></div>
-            <h2>The Market Reality: Entertainment's $2.3T Opportunity</h2>
-            
+            <div class="content-separator"></div>
+
+            <div class="major-section-header">
+                <h2>💰 The Market Reality: Entertainment's $2.3T Opportunity</h2>
+                <p class="section-intro">A massive untapped market ready for disruption through equitable, accessible entertainment.</p>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-item">
+                    <span class="stat-item-value">$2.3T</span>
+                    <span class="stat-item-label">Market Opportunity</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-item-value">78%</span>
+                    <span class="stat-item-label">Gen Z Prefer Experiences</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-item-value">72%</span>
+                    <span class="stat-item-label">Millennials Prefer Experiences</span>
+                </div>
+            </div>
+
             <p>With Gen Z and Millennials favoring experiences over material goods, the potential for live experiential entertainment is vast. Yet traditional entertainment continues to systematically exclude the majority of the population through pricing structures, geographic concentration, and cultural design that centers affluent white experiences. Our founding team's diverse background in art, entertainment and technology is our strength. This fusion of expertise underpins our belief in AETHER's potential to revolutionize the industry, ensuring both profitability and equity.</p>
 
             <p>Through this journey, observation revealed how traditional venues weaponize scarcity as a business model, limiting access to maintain premium pricing while creating experiences that degrade with popularity. The answer revealed systematic patterns of exclusion far beyond simple economics:</p>
@@ -4989,8 +5590,12 @@
 
             <p>The industry's response has been tepid at best. We've witnessed the proliferation of so-called "immersive" experiences that amount to little more than projections on walls—expensive installations that mistake visual spectacle for genuine engagement, that confuse technological novelty with meaningful innovation.</p>
 
-            <div class="section-divider"></div>
-            <h2>The Mission: Breaking Boundaries</h2>
+            <div class="content-separator"></div>
+
+            <div class="major-section-header">
+                <h2>🚀 The Mission: Breaking Boundaries</h2>
+                <p class="section-intro">Transforming entertainment from exclusive luxury to universal right.</p>
+            </div>
             
             <p>As the founder of AETHER, I stand at the forefront of an exciting and transformative journey. Our mission is clear: to break boundaries and go the extra mile in engaging all individuals, irrespective of their identity, through the innovative blend of physical and digital realms—what we proudly call 'phygital' experiential storytelling and reality.</p>
 
@@ -5131,8 +5736,12 @@
                 </ul>
             </div>
 
-            <div class="section-divider"></div>
-            <h2>Show Quality Standards: The Audacity of Excellence for Everyone</h2>
+            <div class="content-separator"></div>
+
+            <div class="major-section-header">
+                <h2>✨ Show Quality Standards: The Audacity of Excellence for Everyone</h2>
+                <p class="section-intro">Rejecting the false choice between quality and accessibility.</p>
+            </div>
             
             <p>This vision stems from a deep-seated belief that <strong>all audiences, regardless of location or demographic, deserve high-quality, immersive entertainment.</strong></p>
             
@@ -5201,8 +5810,12 @@
             
             <p>The audience is there. The hunger is there. The wallets are there. What's missing is the <em>audacity</em> to serve them.</p>
             
-            <div class="section-divider"></div>
-            <h2>The Four Pillars of Experiential Alchemy</h2>
+            <div class="content-separator"></div>
+
+            <div class="major-section-header">
+                <h2>🏛️ The Four Pillars of Experiential Alchemy</h2>
+                <p class="section-intro">Core frameworks that power AETHER's revolutionary approach to phygital entertainment.</p>
+            </div>
             
             <div class="comparison-grid">
                 <div class="comparison-item">
@@ -5325,8 +5938,12 @@
                 <p><strong>Serviceable Obtainable Market (SOM):</strong> $58B by Year 10 through combination of direct operation (200+ installations), platform licensing (1,000+ deployments), IP portfolio development (Tales of Lucidia + additional franchises), and transformative acquisitions (SIXXTHRILL framework). This represents 2.5% of TAM—conservative given platform advantages and demonstrated execution capability.</p>
             </div>
             
-            <div class="section-divider"></div>
-            <h2>Financial Projections: Path to $75B Valuation</h2>
+            <div class="content-separator"></div>
+
+            <div class="major-section-header">
+                <h2>📈 Financial Projections: Path to $75B Valuation</h2>
+                <p class="section-intro">Conservative projections based on proven entertainment industry valuations and market dynamics.</p>
+            </div>
             
             <h3>Five-Year Revenue Trajectory</h3>
             
