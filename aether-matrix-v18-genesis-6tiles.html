@@ -19,8 +19,8 @@
             src: local('MS Sans Serif'), local('Microsoft Sans Serif'), local('sans-serif');
         }
         
-        /* Import premium fonts for enhanced typography */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+        /* System font fallbacks for fully offline functionality */
+        /* Removed Google Fonts import for offline support */
 
         :root {
             /* AETHER Brand Colors - Enhanced */
@@ -641,6 +641,42 @@
             border-color: #000000 #ffffff #ffffff #000000;
         }
 
+        /* Window Control Buttons - for 6 main windows */
+        .window-control {
+            width: 16px;
+            height: 14px;
+            background: #c0c0c0;
+            border: 1px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            line-height: 1;
+            padding: 0;
+        }
+
+        .window-control:hover {
+            background: #d4d4d4;
+        }
+
+        .window-control:active {
+            border-color: #000000 #ffffff #ffffff #000000;
+        }
+
+        .window-control.minimize { color: #000; }
+        .window-control.maximize { color: #000; }
+        .window-control.close {
+            color: #000;
+        }
+        .window-control.close:hover {
+            background: #e81123;
+            color: white;
+        }
+
         .window-content {
             font-size: 15px;
             line-height: 1.85;
@@ -744,7 +780,36 @@
             border-left: none;
             border-radius: 0;
         }
-        
+
+        /* Text Gradient Classes for Section Titles */
+        .text-gradient-purple {
+            background: linear-gradient(135deg, var(--aether-purple), var(--aether-purple-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .text-gradient-blue {
+            background: linear-gradient(135deg, var(--aether-blue), var(--aether-blue-deep));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .text-gradient-pink {
+            background: linear-gradient(135deg, var(--aether-pink), var(--aether-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .text-gradient-gold {
+            background: linear-gradient(135deg, var(--aether-gold), #ff9500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         .window-content h3::before {
             content: none;
         }
@@ -4916,11 +4981,13 @@
                 <span>About AETHER</span>
             </div>
             <div class="window-controls">
-                <button class="window-button" onclick="minimizeWindow('about')">_</button>
-                <button class="window-button" onclick="closeWindow('about')">✕</button>
+                <button class="window-control minimize" onclick="minimizeWindow('about')">_</button>
+                <button class="window-control maximize" onclick="maximizeWindow('about')">□</button>
+                <button class="window-control close" onclick="closeWindow('about')">×</button>
             </div>
         </div>
-        <div class="window-content">
+        <div class="window-content about-window">
+            <div class="content-scroll">
             <h1>About AETHER</h1>
             
             <p>AETHER is a phygital experience platform company creating immersive entertainment installations that seamlessly blend physical and digital elements. We operate a 45,900 square foot manufacturing facility called "Alchemist Atelier aRtGaRDErN TECHNO-FABRIQUE" in Sedona, Arizona, representing one of the most comprehensive entertainment production facilities in the Southwest United States.</p>
@@ -5023,7 +5090,7 @@
             <h2>Contact</h2>
             
             <div class="highlight-box">
-                <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="aec6cbc2c2c1eecfcbdac6cbdc80cbd6decbdcc7cbc0cdcb">[email&#160;protected]</a></p>
+                <p><strong>Email:</strong> <a href="mailto:contact@aether.experience">contact@aether.experience</a></p>
                 <p><strong>Website:</strong> www.aether.experience</p>
                 <p style="margin-top: 15px; text-align: center;">
                     <strong>AETHER PXR v3.0</strong><br>
@@ -5046,11 +5113,9 @@
                 <p style="text-align: center;"><strong>Story. Spectacle. Phygital Phandamonium.</strong></p>
                 <p style="text-align: center;"><em>Come sit by the fire. The stories are waiting. And they have your face.</em></p>
             </div>
+            </div>
         </div>
     </div>
-
-    <!-- Taskbar -->
-    <div class="taskbar">
 
     <!-- Start Menu with 6 Tiles -->
     <div class="start-menu" id="startMenu">
@@ -5335,6 +5400,47 @@
             .main-button-container.six-tiles {
                 grid-template-columns: 1fr;
             }
+        }
+
+        /* Accessibility Stats Grid */
+        .accessibility-stats {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* Window Section Styling */
+        .window-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .window-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .window-section h2 {
+            margin-bottom: 15px;
+        }
+
+        /* Content Intro Paragraphs */
+        .mission-intro,
+        .platform-intro,
+        .lillian-intro,
+        .elias-intro,
+        .vertical-intro,
+        .collaboratory-intro,
+        .market-intro,
+        .spiritual-intro,
+        .heritage-intro {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
         }
 
         /* Taskbar Window Buttons */
