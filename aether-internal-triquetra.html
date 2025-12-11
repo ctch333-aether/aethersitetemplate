@@ -79,7 +79,7 @@
             50% { opacity: 0.8; transform: scale(1.05); }
         }
 
-        /* Matrix Rain Canvas */
+        /* Matrix Rain Canvas - Enhanced from v17 */
         #matrixCanvas {
             position: fixed;
             top: 0;
@@ -87,56 +87,158 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.15;
+            opacity: 0.35;
             pointer-events: none;
+            mix-blend-mode: screen;
         }
 
-        /* Loading Screen */
+        /* Loading Screen - Enhanced v17 Boot Experience */
         .loading-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #2a1a4a 100%);
+            background: linear-gradient(135deg,
+                #0a0a1a 0%,
+                #1a1a3a 25%,
+                #2a1a4a 50%,
+                #1a1a3a 75%,
+                #0a0a1a 100%);
+            background-size: 400% 400%;
+            animation: loadingBgShift 8s ease infinite;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 10000;
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+
+        @keyframes loadingBgShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Animated particles/stars in loading screen */
+        .loading-screen::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background:
+                radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.8), transparent),
+                radial-gradient(2px 2px at 40% 70%, rgba(102,126,234,0.8), transparent),
+                radial-gradient(1px 1px at 60% 20%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 80% 50%, rgba(118,75,162,0.8), transparent),
+                radial-gradient(1px 1px at 10% 80%, rgba(240,147,251,0.6), transparent),
+                radial-gradient(2px 2px at 70% 90%, rgba(102,126,234,0.6), transparent),
+                radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,0.5), transparent),
+                radial-gradient(1px 1px at 90% 40%, rgba(118,75,162,0.5), transparent);
+            background-size: 200px 200px;
+            animation: starFloat 60s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes starFloat {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-100px, 100px) rotate(360deg); }
+        }
+
+        /* Radial glow behind loader */
+        .loading-screen::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle,
+                rgba(102, 126, 234, 0.3) 0%,
+                rgba(118, 75, 162, 0.2) 30%,
+                transparent 70%);
+            animation: glowPulse 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
         }
 
         .loading-screen.hidden {
             opacity: 0;
             pointer-events: none;
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .loading-triquetra {
-            width: 150px;
-            height: 150px;
-            animation: triquetaSpin 3s linear infinite;
+            width: 180px;
+            height: 180px;
+            animation: triquetaSpin 5s ease-in-out infinite;
+            filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.9));
+            position: relative;
+            z-index: 2;
         }
 
         @keyframes triquetaSpin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0%, 100% {
+                transform: rotate(0deg) scale(1);
+                filter:
+                    drop-shadow(0 0 30px rgba(255, 255, 255, 0.9))
+                    drop-shadow(0 0 60px rgba(102, 126, 234, 0.5));
+            }
+            25% {
+                transform: rotate(90deg) scale(1.05);
+                filter:
+                    drop-shadow(0 0 40px rgba(102, 126, 234, 1))
+                    drop-shadow(0 0 80px rgba(118, 75, 162, 0.7));
+            }
+            50% {
+                transform: rotate(180deg) scale(1.1);
+                filter:
+                    drop-shadow(0 0 50px rgba(118, 75, 162, 1))
+                    drop-shadow(0 0 100px rgba(240, 147, 251, 0.8));
+            }
+            75% {
+                transform: rotate(270deg) scale(1.05);
+                filter:
+                    drop-shadow(0 0 40px rgba(240, 147, 251, 1))
+                    drop-shadow(0 0 80px rgba(102, 126, 234, 0.7));
+            }
         }
 
         .loading-text {
             margin-top: 30px;
             font-family: var(--font-mono);
-            font-size: 14px;
+            font-size: 16px;
+            font-weight: 700;
             letter-spacing: 4px;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.8);
-            animation: textPulse 2s ease-in-out infinite;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow:
+                0 0 20px rgba(102, 126, 234, 0.8),
+                0 0 40px rgba(118, 75, 162, 0.6);
+            animation: bootTextPulse 2s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
         }
 
-        @keyframes textPulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+        @keyframes bootTextPulse {
+            0%, 100% {
+                opacity: 1;
+                text-shadow:
+                    0 0 20px rgba(102, 126, 234, 0.8),
+                    0 0 40px rgba(118, 75, 162, 0.6);
+            }
+            50% {
+                opacity: 0.7;
+                text-shadow:
+                    0 0 30px rgba(102, 126, 234, 1),
+                    0 0 60px rgba(118, 75, 162, 0.8),
+                    0 0 80px rgba(240, 147, 251, 0.4);
+            }
         }
 
         /* Header */
@@ -295,18 +397,53 @@
             white-space: nowrap;
         }
 
+        /* Animated border glow - v17 style */
         .curved-btn::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg,
+                rgba(102, 126, 234, 0.5),
+                rgba(118, 75, 162, 0.5),
+                rgba(240, 147, 251, 0.5),
+                rgba(102, 126, 234, 0.5));
+            background-size: 300% 300%;
+            border-radius: 52px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            animation: borderGlow 4s ease infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .curved-btn:hover::before {
+            opacity: 1;
+        }
+
+        /* Shine sweep effect - v17 style */
+        .curved-btn::after {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent);
+            transition: left 0.6s ease;
+            border-radius: 50px;
         }
 
-        .curved-btn:hover::before {
+        .curved-btn:hover::after {
             left: 100%;
         }
 
@@ -1173,6 +1310,100 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="content-section">
+                    <h3 class="section-title">Enchant Site Experiences</h3>
+                    <p class="content-text">Enchant transforms venues into immersive wonderlands with millions of lights, interactive installations, and magical experiences.</p>
+                    <div class="image-gallery">
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/BRANDwork-EnchantSite-Collage2.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/BRANDwork-EnchantSite-Collage2.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/BRANDwork-EnchantSite-Collage2.webp" alt="Enchant Site Collage" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Light Maze Experience</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/BRANDwork-EnchantSite-Collage4.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/BRANDwork-EnchantSite-Collage4.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/BRANDwork-EnchantSite-Collage4.webp" alt="Enchant Installations" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Interactive Installations</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/BRANDwork-EnchantSite-Collage6.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/BRANDwork-EnchantSite-Collage6.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/BRANDwork-EnchantSite-Collage6.webp" alt="Enchant Displays" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Light Displays</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/BRANDwork-EnchantSite-Collage7.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/BRANDwork-EnchantSite-Collage7.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/BRANDwork-EnchantSite-Collage7.webp" alt="Enchant Wonderland" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Holiday Wonderland</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/BRANDwork-EnchantSite-Collage8.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/BRANDwork-EnchantSite-Collage8.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/BRANDwork-EnchantSite-Collage8.webp" alt="Enchant Spectacular" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Light Spectacular</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/aether-portfolio-enchant-daytime.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/aether-portfolio-enchant-daytime.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/aether-portfolio-enchant-daytime.webp" alt="Enchant Daytime" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Daytime Magic</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3 class="section-title">Stage Productions</h3>
+                    <p class="content-text">From theatrical projections to immersive scenic design, AETHER brings stories to life through cutting-edge stage technology.</p>
+                    <div class="image-gallery">
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/BRANDwork-StageProduction-GhostProjection.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/BRANDwork-StageProduction-GhostProjection.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/BRANDwork-StageProduction-GhostProjection.webp" alt="Ghost Projection" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Ghost Projection Effect</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/BRANDwork-StageProduction-PrisonScene.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/BRANDwork-StageProduction-PrisonScene.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/BRANDwork-StageProduction-PrisonScene.webp" alt="Prison Scene" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Immersive Prison Scene</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/aether-portfolio-killmove-02.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/aether-portfolio-killmove-02.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/aether-portfolio-killmove-02.webp" alt="Kill Move Paradise 2" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Kill Move Paradise</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/aether-portfolio-candlelight-venue.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/aether-portfolio-candlelight-venue.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/aether-portfolio-candlelight-venue.webp" alt="Candlelight Venue" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Candlelight Venue Design</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- ETHOS: Leadership -->
@@ -1412,7 +1643,7 @@
                         Our flagship transmedia franchise features three warrior princesses whose stories unfold across live productions, interactive experiences, merchandise, and digital extensions. Each character represents different aspects of strength, wisdom, and heart.
                     </p>
                     <div class="image-gallery">
-                        <div class="gallery-item">
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
                             <picture>
                                 <source srcset="aether-website-assets/avif/aether-ip-tales-of-lucidia.avif" type="image/avif">
                                 <source srcset="aether-website-assets/webp/aether-ip-tales-of-lucidia.webp" type="image/webp">
@@ -1420,7 +1651,7 @@
                             </picture>
                             <div class="gallery-caption">Tales of Lucidia Logo</div>
                         </div>
-                        <div class="gallery-item">
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
                             <picture>
                                 <source srcset="aether-website-assets/avif/BRANDAsset-WarriorPrincess-CharacterConcept.avif" type="image/avif">
                                 <source srcset="aether-website-assets/webp/BRANDAsset-WarriorPrincess-CharacterConcept.webp" type="image/webp">
@@ -1428,7 +1659,7 @@
                             </picture>
                             <div class="gallery-caption">Warrior Princess Concept</div>
                         </div>
-                        <div class="gallery-item">
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
                             <picture>
                                 <source srcset="aether-website-assets/avif/BRANDAsset-WarriorPrincess-Render51.avif" type="image/avif">
                                 <source srcset="aether-website-assets/webp/BRANDAsset-WarriorPrincess-Render51.webp" type="image/webp">
@@ -1440,9 +1671,42 @@
                 </div>
 
                 <div class="content-section">
+                    <h3 class="section-title">Warrior Princess of Oz - Immersive Arena</h3>
+                    <p class="content-text">
+                        Our flagship production "Warrior Princess of Oz" reimagines the classic tale as an immersive arena experience with stunning scenic environments, emerald crystal formations, and dynamic stage designs.
+                    </p>
+                    <div class="image-gallery">
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/BRANDwork-WarriorPrincessOz-ArenaLayout.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/BRANDwork-WarriorPrincessOz-ArenaLayout.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/BRANDwork-WarriorPrincessOz-ArenaLayout.webp" alt="Arena Layout" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Arena Layout Design</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/BRANDwork-WarriorPrincessOz-EmeraldCrystals.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/BRANDwork-WarriorPrincessOz-EmeraldCrystals.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/BRANDwork-WarriorPrincessOz-EmeraldCrystals.webp" alt="Emerald Crystals" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Emerald Crystal Formation</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/BRANDwork-WarriorPrincessOz-StageSet.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/BRANDwork-WarriorPrincessOz-StageSet.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/BRANDwork-WarriorPrincessOz-StageSet.webp" alt="Stage Set Design" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Stage Set Design</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
                     <h3 class="section-title">Original IP Portfolio</h3>
                     <div class="image-gallery">
-                        <div class="gallery-item">
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
                             <picture>
                                 <source srcset="aether-website-assets/avif/aether-ip-maryjane-mainframe.avif" type="image/avif">
                                 <source srcset="aether-website-assets/webp/aether-ip-maryjane-mainframe.webp" type="image/webp">
@@ -1450,7 +1714,7 @@
                             </picture>
                             <div class="gallery-caption">MaryJane Mainframe</div>
                         </div>
-                        <div class="gallery-item">
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
                             <picture>
                                 <source srcset="aether-website-assets/avif/aether-ip-metamorphasis-apothecary.avif" type="image/avif">
                                 <source srcset="aether-website-assets/webp/aether-ip-metamorphasis-apothecary.webp" type="image/webp">
@@ -1458,7 +1722,7 @@
                             </picture>
                             <div class="gallery-caption">Metamorphasis Apothecary</div>
                         </div>
-                        <div class="gallery-item">
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
                             <picture>
                                 <source srcset="aether-website-assets/avif/BRANDAsset-PhygitalIP-BroussardBayouBBQ.avif" type="image/avif">
                                 <source srcset="aether-website-assets/webp/BRANDAsset-PhygitalIP-BroussardBayouBBQ.webp" type="image/webp">
@@ -1466,7 +1730,7 @@
                             </picture>
                             <div class="gallery-caption">Broussard Bayou BBQ</div>
                         </div>
-                        <div class="gallery-item">
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
                             <picture>
                                 <source srcset="aether-website-assets/avif/BRANDAsset-PhygitalIP-Port51Confectionarium.avif" type="image/avif">
                                 <source srcset="aether-website-assets/webp/BRANDAsset-PhygitalIP-Port51Confectionarium.webp" type="image/webp">
@@ -1562,7 +1826,7 @@
                 <div class="content-section">
                     <h3 class="section-title">Projection Mapping Capabilities</h3>
                     <div class="image-gallery">
-                        <div class="gallery-item">
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
                             <picture>
                                 <source srcset="aether-website-assets/avif/BRANDwork-ProjectionMapping-CosmicEye.avif" type="image/avif">
                                 <source srcset="aether-website-assets/webp/BRANDwork-ProjectionMapping-CosmicEye.webp" type="image/webp">
@@ -1570,7 +1834,7 @@
                             </picture>
                             <div class="gallery-caption">Cosmic Eye</div>
                         </div>
-                        <div class="gallery-item">
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
                             <picture>
                                 <source srcset="aether-website-assets/avif/BRANDwork-ProjectionMapping-GridMatrix.avif" type="image/avif">
                                 <source srcset="aether-website-assets/webp/BRANDwork-ProjectionMapping-GridMatrix.webp" type="image/webp">
@@ -1578,7 +1842,7 @@
                             </picture>
                             <div class="gallery-caption">Grid Matrix</div>
                         </div>
-                        <div class="gallery-item">
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
                             <picture>
                                 <source srcset="aether-website-assets/avif/BRANDwork-ProjectionMapping-CircuitNeuron.avif" type="image/avif">
                                 <source srcset="aether-website-assets/webp/BRANDwork-ProjectionMapping-CircuitNeuron.webp" type="image/webp">
@@ -1586,13 +1850,29 @@
                             </picture>
                             <div class="gallery-caption">Circuit Neuron</div>
                         </div>
-                        <div class="gallery-item">
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
                             <picture>
                                 <source srcset="aether-website-assets/avif/BRANDwork-ProjectionMapping-OceanForge.avif" type="image/avif">
                                 <source srcset="aether-website-assets/webp/BRANDwork-ProjectionMapping-OceanForge.webp" type="image/webp">
                                 <img src="aether-website-assets/webp/BRANDwork-ProjectionMapping-OceanForge.webp" alt="Ocean Forge Projection" loading="lazy">
                             </picture>
                             <div class="gallery-caption">Ocean Forge</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/BRANDwork-ProjectionMapping-SciFi.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/BRANDwork-ProjectionMapping-SciFi.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/BRANDwork-ProjectionMapping-SciFi.webp" alt="Sci-Fi Projection" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Sci-Fi World</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                            <picture>
+                                <source srcset="aether-website-assets/avif/BRANDwork-ProjectionMapping-Vintage.avif" type="image/avif">
+                                <source srcset="aether-website-assets/webp/BRANDwork-ProjectionMapping-Vintage.webp" type="image/webp">
+                                <img src="aether-website-assets/webp/BRANDwork-ProjectionMapping-Vintage.webp" alt="Vintage Projection" loading="lazy">
+                            </picture>
+                            <div class="gallery-caption">Vintage Aesthetic</div>
                         </div>
                     </div>
                 </div>
