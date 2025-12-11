@@ -1,0 +1,1915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AETHER Knowledge Base | v1.0 | December 2025</title>
+    <style>
+        /* ═══════════════════════════════════════════════════════════════════
+           AETHER KNOWLEDGE BASE - v17 GENESIS STYLE TEMPLATE
+           Win95 + Glassmorphism Fusion Design System
+           ═══════════════════════════════════════════════════════════════════ */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
+        }
+
+        @font-face {
+            font-family: 'MS Sans Serif';
+            src: local('MS Sans Serif'), local('Microsoft Sans Serif'), local('sans-serif');
+        }
+
+        /* Import premium fonts for enhanced typography */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+        :root {
+            /* AETHER Brand Colors */
+            --aether-purple: #667eea;
+            --aether-purple-dark: #764ba2;
+            --aether-blue: #4a90e2;
+            --aether-blue-deep: #1a5fb4;
+            --aether-pink: #f093fb;
+            --aether-sky: #87CEEB;
+            --aether-sky-light: #E0F6FF;
+            --aether-gold: #ffd700;
+            --white: #ffffff;
+            --black: #2c3e50;
+            --win95-gray: #c0c0c0;
+            --win95-dark: #808080;
+
+            /* Typography */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-display: 'Space Grotesk', 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+            /* Text Colors */
+            --text-primary: #2c3e50;
+            --text-secondary: #5a6c7d;
+            --text-muted: #6b7280;
+            --accent-blue: #667eea;
+            --accent-purple: #764ba2;
+            --accent-success: #059669;
+            --accent-gold: #ffd700;
+
+            /* Surfaces */
+            --surface-elevated: rgba(255, 255, 255, 0.95);
+            --surface-glass: rgba(255, 255, 255, 0.25);
+
+            /* Shadows */
+            --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            --shadow-elevated: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 32px rgba(102, 126, 234, 0.2);
+        }
+
+        body {
+            font-size: 14px;
+            font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
+            background: #008080;
+            color: #000;
+            overflow: hidden;
+            min-height: 100vh;
+            position: relative;
+            cursor: default;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           SKY GLASS LAYER - Kinetic Background
+           ═══════════════════════════════════════════════════════════════════ */
+        .sky-glass-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            background:
+                radial-gradient(ellipse at 25% 25%, rgba(135, 206, 250, 0.6) 0%, transparent 50%),
+                radial-gradient(ellipse at 75% 75%, rgba(255, 182, 193, 0.5) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(230, 190, 255, 0.4) 0%, transparent 70%),
+                radial-gradient(ellipse at 10% 90%, rgba(102, 126, 234, 0.5) 0%, transparent 60%),
+                radial-gradient(ellipse at 90% 10%, rgba(240, 147, 251, 0.45) 0%, transparent 55%),
+                linear-gradient(180deg,
+                    rgba(135, 206, 250, 0.5) 0%,
+                    rgba(255, 255, 255, 0.35) 25%,
+                    rgba(173, 216, 230, 0.4) 45%,
+                    rgba(255, 182, 193, 0.35) 65%,
+                    rgba(147, 112, 219, 0.45) 85%,
+                    rgba(102, 126, 234, 0.5) 100%
+                );
+            animation: skyFlow 25s ease infinite;
+            overflow: hidden;
+        }
+
+        .sky-glass-layer::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 60% 60%, rgba(135, 206, 250, 0.35) 0%, transparent 45%),
+                radial-gradient(circle at 80% 20%, rgba(255, 182, 193, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(173, 216, 230, 0.3) 0%, transparent 40%);
+            animation: cloudDrift 40s linear infinite;
+            filter: blur(2px);
+        }
+
+        .sky-glass-layer::after {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background:
+                radial-gradient(ellipse at 30% 40%, rgba(255, 255, 255, 0.25) 0%, transparent 35%),
+                radial-gradient(ellipse at 70% 60%, rgba(135, 206, 250, 0.2) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 90%, rgba(230, 190, 255, 0.2) 0%, transparent 45%);
+            animation: cloudDrift 55s linear infinite reverse;
+            mix-blend-mode: screen;
+            filter: blur(1px);
+        }
+
+        @keyframes skyFlow {
+            0%, 100% {
+                filter: hue-rotate(0deg) brightness(1) contrast(1.1) saturate(1.1);
+                transform: scale(1) rotate(0deg);
+            }
+            20% {
+                filter: hue-rotate(30deg) brightness(1.1) contrast(1) saturate(1.2);
+                transform: scale(1.05) rotate(1deg);
+            }
+            40% {
+                filter: hue-rotate(-20deg) brightness(0.95) contrast(1.2) saturate(1);
+                transform: scale(1.02) rotate(-0.5deg);
+            }
+            60% {
+                filter: hue-rotate(15deg) brightness(1.05) contrast(1.05) saturate(1.15);
+                transform: scale(1.03) rotate(0.5deg);
+            }
+            80% {
+                filter: hue-rotate(-10deg) brightness(1) contrast(1.15) saturate(1.05);
+                transform: scale(1.01) rotate(-0.2deg);
+            }
+        }
+
+        @keyframes cloudDrift {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            25% { transform: translate(-20%, 10%) scale(1.1) rotate(2deg); }
+            50% { transform: translate(10%, -15%) scale(0.95) rotate(-1deg); }
+            75% { transform: translate(-10%, 5%) scale(1.05) rotate(1deg); }
+            100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           MATRIX CANVAS
+           ═══════════════════════════════════════════════════════════════════ */
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.45;
+            mix-blend-mode: screen;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           LOADING SCREEN - Premium Boot Experience
+           ═══════════════════════════════════════════════════════════════════ */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg,
+                #0a0a1a 0%,
+                #1a1a3a 25%,
+                #2a1a4a 50%,
+                #1a1a3a 75%,
+                #0a0a1a 100%);
+            background-size: 400% 400%;
+            animation: loadingBgShift 8s ease infinite;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            color: white;
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+
+        @keyframes loadingBgShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .loading-screen::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background:
+                radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.8), transparent),
+                radial-gradient(2px 2px at 40% 70%, rgba(102,126,234,0.8), transparent),
+                radial-gradient(1px 1px at 60% 20%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 80% 50%, rgba(118,75,162,0.8), transparent),
+                radial-gradient(1px 1px at 10% 80%, rgba(240,147,251,0.6), transparent),
+                radial-gradient(2px 2px at 70% 90%, rgba(102,126,234,0.6), transparent),
+                radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,0.5), transparent),
+                radial-gradient(1px 1px at 90% 40%, rgba(118,75,162,0.5), transparent);
+            background-size: 200px 200px;
+            animation: starFloat 60s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes starFloat {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-100px, 100px) rotate(360deg); }
+        }
+
+        .loading-screen::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle,
+                rgba(102, 126, 234, 0.3) 0%,
+                rgba(118, 75, 162, 0.2) 30%,
+                transparent 70%);
+            animation: glowPulse 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(1.05);
+        }
+
+        .boot-text {
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow:
+                0 0 20px rgba(102, 126, 234, 0.8),
+                0 0 40px rgba(118, 75, 162, 0.6);
+            animation: bootTextPulse 2s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes bootTextPulse {
+            0%, 100% {
+                opacity: 1;
+                text-shadow:
+                    0 0 20px rgba(102, 126, 234, 0.8),
+                    0 0 40px rgba(118, 75, 162, 0.6);
+            }
+            50% {
+                opacity: 0.7;
+                text-shadow:
+                    0 0 30px rgba(102, 126, 234, 1),
+                    0 0 60px rgba(118, 75, 162, 0.8),
+                    0 0 80px rgba(240, 147, 251, 0.4);
+            }
+        }
+
+        .alchemical-loader {
+            width: 120px;
+            height: 120px;
+            border: 4px solid rgba(102, 126, 234, 0.3);
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: loaderSpin 1.5s linear infinite;
+            position: relative;
+            z-index: 2;
+        }
+
+        .alchemical-loader::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 4px solid rgba(118, 75, 162, 0.3);
+            border-top-color: #764ba2;
+            border-radius: 50%;
+            animation: loaderSpin 1s linear infinite reverse;
+        }
+
+        .alchemical-loader::after {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            right: 25px;
+            bottom: 25px;
+            border: 4px solid rgba(240, 147, 251, 0.3);
+            border-top-color: #f093fb;
+            border-radius: 50%;
+            animation: loaderSpin 0.8s linear infinite;
+        }
+
+        @keyframes loaderSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           DESKTOP AREA
+           ═══════════════════════════════════════════════════════════════════ */
+        .desktop {
+            width: 100%;
+            height: calc(100vh - 50px);
+            position: relative;
+            padding: 30px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 30px;
+            overflow-y: auto;
+        }
+
+        /* Brand Header */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .brand-title {
+            font-family: var(--font-display);
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            filter: drop-shadow(0 4px 20px rgba(102, 126, 234, 0.4));
+            animation: titleFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes titleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .brand-subtitle {
+            font-family: var(--font-primary);
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            margin-top: 10px;
+            letter-spacing: 2px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           DESKTOP TILE BUTTONS - 12-Tile Grid
+           ═══════════════════════════════════════════════════════════════════ */
+        .tile-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            max-width: 1400px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .desktop-tile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 4px 16px rgba(102, 126, 234, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            min-height: 180px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .desktop-tile::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg,
+                rgba(102, 126, 234, 0.5),
+                rgba(118, 75, 162, 0.5),
+                rgba(240, 147, 251, 0.5),
+                rgba(102, 126, 234, 0.5));
+            background-size: 300% 300%;
+            border-radius: 18px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            animation: borderGlow 4s ease infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .desktop-tile:hover::before {
+            opacity: 1;
+        }
+
+        .desktop-tile::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent);
+            transition: left 0.6s ease;
+        }
+
+        .desktop-tile:hover::after {
+            left: 100%;
+        }
+
+        .desktop-tile:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow:
+                0 16px 48px rgba(0, 0, 0, 0.35),
+                0 8px 24px rgba(102, 126, 234, 0.25),
+                0 0 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .desktop-tile:active {
+            transform: translateY(-4px) scale(1.01);
+        }
+
+        .tile-icon {
+            font-size: 48px;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+            transition: all 0.4s ease;
+        }
+
+        .desktop-tile:hover .tile-icon {
+            transform: scale(1.15) translateY(-5px);
+            filter: drop-shadow(0 8px 20px rgba(102, 126, 234, 0.5));
+        }
+
+        .tile-label {
+            color: white;
+            font-family: var(--font-display);
+            font-size: 16px;
+            font-weight: 600;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+            text-align: center;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .desktop-tile:hover .tile-label {
+            text-shadow:
+                2px 2px 6px rgba(0, 0, 0, 0.8),
+                0 0 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .tile-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-family: var(--font-primary);
+            font-size: 12px;
+            text-align: center;
+            line-height: 1.4;
+            max-width: 200px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           WINDOWS - Win95 Style with Glassmorphism
+           ═══════════════════════════════════════════════════════════════════ */
+        .window {
+            position: absolute;
+            background: rgba(192, 192, 192, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            box-shadow:
+                2px 2px 10px rgba(0, 0, 0, 0.5),
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            display: none;
+            flex-direction: column;
+            min-width: 400px;
+            max-width: 90vw;
+            max-height: 85vh;
+            animation: windowFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes windowFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .window.active {
+            display: flex;
+        }
+
+        .window-header {
+            background: linear-gradient(135deg,
+                #667eea 0%,
+                #764ba2 50%,
+                #667eea 100%);
+            background-size: 200% 100%;
+            animation: headerGradientShift 8s ease infinite;
+            color: white;
+            padding: 4px 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: move;
+            user-select: none;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes headerGradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .window-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 200%; }
+        }
+
+        .window-title {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding-left: 4px;
+            font-family: var(--font-primary);
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 3px;
+        }
+
+        .window-button {
+            width: 18px;
+            height: 16px;
+            background: #c0c0c0;
+            border: 1px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+        }
+
+        .window-button:hover {
+            background: #d0d0d0;
+        }
+
+        .window-button:active {
+            border-color: #000000 #ffffff #ffffff #000000;
+        }
+
+        .window-content {
+            font-size: 15px;
+            line-height: 1.85;
+            color: var(--text-primary);
+            padding: 30px 35px;
+            background: linear-gradient(180deg,
+                rgba(255, 255, 255, 0.85) 0%,
+                rgba(248, 250, 255, 0.9) 50%,
+                rgba(255, 255, 255, 0.85) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            overflow-y: auto;
+            max-height: calc(85vh - 30px);
+            font-family: var(--font-primary);
+            font-weight: 400;
+        }
+
+        /* Window Content Typography */
+        .window-content h1 {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+            border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+            padding-bottom: 16px;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .window-content h2 {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 400;
+            margin-top: 36px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .window-content h3 {
+            font-family: var(--font-display);
+            font-size: 17px;
+            font-weight: 500;
+            margin-top: 24px;
+            margin-bottom: 14px;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .window-content p {
+            margin-bottom: 18px;
+            line-height: 1.85;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        .window-content ul {
+            margin-left: 24px;
+            margin-bottom: 18px;
+        }
+
+        .window-content li {
+            margin-bottom: 10px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+        }
+
+        .window-content li::marker {
+            color: var(--accent-blue);
+        }
+
+        .window-content strong {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           INFORMATION BOXES - Glassmorphism Style
+           ═══════════════════════════════════════════════════════════════════ */
+
+        /* Takeaway Box */
+        .takeaway-box {
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: 4px solid var(--accent-blue);
+            padding: 24px 28px;
+            margin: 24px 0;
+            box-shadow: var(--shadow-glass);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .takeaway-box:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            background: rgba(255, 255, 255, 0.45);
+        }
+
+        .takeaway-box p {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(102, 126, 234, 0.12));
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 215, 0, 0.35);
+            padding: 24px 28px;
+            margin: 24px 0;
+            box-shadow: 0 8px 32px rgba(255, 215, 0, 0.15);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.25);
+        }
+
+        /* Info Box */
+        .info-box {
+            background: rgba(135, 206, 235, 0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(135, 206, 235, 0.35);
+            padding: 24px 28px;
+            margin: 24px 0;
+            box-shadow: var(--shadow-glass);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
+            margin: 24px 0;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: var(--shadow-glass);
+            border-radius: 12px;
+            text-align: center;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .metric-card .number {
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 300;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .metric-card .label {
+            font-family: var(--font-primary);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* Timeline */
+        .timeline-step {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 3px solid;
+            border-color: rgba(255, 255, 255, 0.8) rgba(64, 64, 64, 0.9) rgba(64, 64, 64, 0.9) rgba(255, 255, 255, 0.8);
+            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.85);
+            padding: 18px 22px;
+            margin: 15px 0 15px 30px;
+            position: relative;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-step:hover {
+            transform: translateY(-3px);
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.9), 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-step::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.4);
+        }
+
+        .timeline-step strong {
+            display: block;
+            color: var(--accent-purple);
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .timeline-step p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 248, 255, 0.95));
+            backdrop-filter: blur(12px);
+            border: 3px solid;
+            border-color: rgba(255, 255, 255, 0.9) rgba(64, 64, 64, 0.8) rgba(64, 64, 64, 0.8) rgba(255, 255, 255, 0.9);
+            border-left: 5px solid #764ba2;
+            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.8);
+            padding: 20px 24px;
+            margin: 24px 0;
+            position: relative;
+        }
+
+        .quote-box p {
+            font-size: 16px;
+            font-style: italic;
+            font-weight: 500;
+            line-height: 1.9;
+            color: #1a1a1a;
+            margin: 0;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           SCROLLBAR STYLING
+           ═══════════════════════════════════════════════════════════════════ */
+        .window-content::-webkit-scrollbar {
+            width: 14px;
+            background: #d4d4d4;
+        }
+
+        .window-content::-webkit-scrollbar-track {
+            background: linear-gradient(90deg, #e8e8e8 0%, #d0d0d0 50%, #e8e8e8 100%);
+            border: 1px solid #a0a0a0;
+        }
+
+        .window-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            border: 2px solid #c0c0c0;
+            box-shadow: inset 1px 1px 0 rgba(255,255,255,0.4), inset -1px -1px 0 rgba(0,0,0,0.2);
+        }
+
+        .window-content::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #7b8ef0 0%, #8b5cb8 100%);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           TASKBAR
+           ═══════════════════════════════════════════════════════════════════ */
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 44px;
+            background: rgba(192, 192, 192, 0.95);
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border-top: 2px solid #ffffff;
+            box-shadow:
+                0 -4px 20px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            padding: 3px;
+            z-index: 9998;
+        }
+
+        .start-button {
+            background: linear-gradient(180deg, #e0e0e0 0%, #c0c0c0 50%, #a8a8a8 100%);
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            padding: 5px 12px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            min-width: 90px;
+            font-family: var(--font-primary);
+        }
+
+        .start-button:active {
+            border-color: #000000 #ffffff #ffffff #000000;
+        }
+
+        .taskbar-items {
+            flex: 1;
+            display: flex;
+            gap: 2px;
+            overflow-x: auto;
+        }
+
+        .task-button {
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            padding: 4px 10px;
+            cursor: pointer;
+            font-size: 11px;
+            white-space: nowrap;
+            min-width: 120px;
+            font-family: var(--font-primary);
+        }
+
+        .task-button:hover {
+            background: #d0d0d0;
+        }
+
+        .task-button.active {
+            border-color: #000000 #ffffff #ffffff #000000;
+            background: #e0e0e0;
+        }
+
+        .system-tray {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 12px;
+            border-left: 2px solid #808080;
+            font-size: 12px;
+            font-family: var(--font-mono);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           START MENU
+           ═══════════════════════════════════════════════════════════════════ */
+        .start-menu {
+            position: fixed;
+            bottom: 44px;
+            left: 0;
+            width: 280px;
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            display: none;
+            flex-direction: column;
+            z-index: 9999;
+            box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .start-menu.show {
+            display: flex;
+        }
+
+        .start-menu-header {
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            padding: 15px 10px;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            letter-spacing: 2px;
+            font-family: var(--font-display);
+        }
+
+        .start-menu-content {
+            display: flex;
+            flex: 1;
+        }
+
+        .menu-items {
+            flex: 1;
+            padding: 4px;
+        }
+
+        .menu-item {
+            padding: 8px 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            font-family: var(--font-primary);
+            transition: all 0.15s ease;
+        }
+
+        .menu-item:hover {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .menu-item-icon {
+            font-size: 18px;
+        }
+
+        .menu-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #808080, transparent);
+            margin: 4px 8px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           RESPONSIVE DESIGN
+           ═══════════════════════════════════════════════════════════════════ */
+        @media (max-width: 1200px) {
+            .tile-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .tile-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .brand-title {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .desktop {
+                padding: 15px;
+                gap: 20px;
+            }
+
+            .tile-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .desktop-tile {
+                min-height: 140px;
+                padding: 20px 15px;
+            }
+
+            .brand-title {
+                font-size: 28px;
+            }
+
+            .window {
+                width: 95% !important;
+                max-width: 95vw !important;
+                left: 2.5% !important;
+                top: 20px !important;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .loading-screen,
+            .taskbar,
+            .start-menu,
+            .sky-glass-layer,
+            #matrixCanvas {
+                display: none !important;
+            }
+
+            .window {
+                position: relative !important;
+                display: block !important;
+                max-height: none !important;
+                box-shadow: none !important;
+                page-break-inside: avoid;
+            }
+
+            .window-content {
+                max-height: none !important;
+                overflow: visible !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="boot-text">INITIALIZING AETHER KNOWLEDGE BASE...</div>
+        <div class="alchemical-loader"></div>
+    </div>
+
+    <!-- Sky Glass Background Layer -->
+    <div class="sky-glass-layer"></div>
+
+    <!-- Matrix Canvas -->
+    <canvas id="matrixCanvas"></canvas>
+
+    <!-- Desktop Area -->
+    <div class="desktop">
+        <!-- Brand Header -->
+        <div class="brand-header">
+            <h1 class="brand-title">AETHER KNOWLEDGE BASE</h1>
+            <p class="brand-subtitle">Phygital Experience Intelligence Platform</p>
+        </div>
+
+        <!-- Tile Container - 12 Tiles -->
+        <div class="tile-container">
+            <!-- Row 1 -->
+            <div class="desktop-tile" ondblclick="openWindow('overview')">
+                <span class="tile-icon">&#127919;</span>
+                <span class="tile-label">Overview</span>
+                <span class="tile-description">Company vision & mission</span>
+            </div>
+            <div class="desktop-tile" ondblclick="openWindow('platform')">
+                <span class="tile-icon">&#128187;</span>
+                <span class="tile-label">Platform</span>
+                <span class="tile-description">AETHER PXE Technology</span>
+            </div>
+            <div class="desktop-tile" ondblclick="openWindow('elias')">
+                <span class="tile-icon">&#128300;</span>
+                <span class="tile-label">E.L.I.A.S.</span>
+                <span class="tile-description">Framework pillars</span>
+            </div>
+            <div class="desktop-tile" ondblclick="openWindow('manufacturing')">
+                <span class="tile-icon">&#127981;</span>
+                <span class="tile-label">Manufacturing</span>
+                <span class="tile-description">Sedona facility</span>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="desktop-tile" ondblclick="openWindow('partnerships')">
+                <span class="tile-icon">&#129309;</span>
+                <span class="tile-label">Partnerships</span>
+                <span class="tile-description">Strategic alliances</span>
+            </div>
+            <div class="desktop-tile" ondblclick="openWindow('lucidia')">
+                <span class="tile-icon">&#128081;</span>
+                <span class="tile-label">Tales of Lucidia</span>
+                <span class="tile-description">Transmedia IP</span>
+            </div>
+            <div class="desktop-tile" ondblclick="openWindow('metrics')">
+                <span class="tile-icon">&#128200;</span>
+                <span class="tile-label">Metrics</span>
+                <span class="tile-description">Key performance data</span>
+            </div>
+            <div class="desktop-tile" ondblclick="openWindow('roadmap')">
+                <span class="tile-icon">&#128640;</span>
+                <span class="tile-label">Roadmap</span>
+                <span class="tile-description">2024-2035 timeline</span>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="desktop-tile" ondblclick="openWindow('team')">
+                <span class="tile-icon">&#128101;</span>
+                <span class="tile-label">Team</span>
+                <span class="tile-description">Leadership & workforce</span>
+            </div>
+            <div class="desktop-tile" ondblclick="openWindow('investment')">
+                <span class="tile-icon">&#128176;</span>
+                <span class="tile-label">Investment</span>
+                <span class="tile-description">Funding & valuation</span>
+            </div>
+            <div class="desktop-tile" ondblclick="openWindow('technology')">
+                <span class="tile-icon">&#9881;</span>
+                <span class="tile-label">Technology</span>
+                <span class="tile-description">Tech stack & IP</span>
+            </div>
+            <div class="desktop-tile" ondblclick="openWindow('about')">
+                <span class="tile-icon">&#8505;</span>
+                <span class="tile-label">About</span>
+                <span class="tile-description">System information</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Windows -->
+
+    <!-- Overview Window -->
+    <div class="window" id="window-overview" style="width: 700px; top: 80px; left: 100px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-overview')">
+            <span class="window-title">&#127919; Overview</span>
+            <div class="window-controls">
+                <button class="window-button" onclick="minimizeWindow('overview')">_</button>
+                <button class="window-button" onclick="closeWindow('overview')">X</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>AETHER Overview</h1>
+
+            <div class="takeaway-box">
+                <p><strong>Mission:</strong> Democratizing transformative experiences for underserved communities through phygital innovation.</p>
+            </div>
+
+            <h2>Vision Statement</h2>
+            <p>AETHER (Alchemist Atelier) is pioneering the future of physical reality through our revolutionary PXE (Physical Experience) Platform. We're building the "iOS for Physical Reality" - a comprehensive operating system that bridges digital intelligence with tangible experiences.</p>
+
+            <h2>Core Value Proposition</h2>
+            <ul>
+                <li><strong>Sub-10ms Response:</strong> Real-time physical interaction processing</li>
+                <li><strong>Phygital Integration:</strong> Seamless blend of physical and digital realms</li>
+                <li><strong>Democratized Access:</strong> Making premium experiences accessible to all</li>
+                <li><strong>Vertical Integration:</strong> End-to-end control from manufacturing to deployment</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h3>Target Valuation</h3>
+                <p><strong>$75 Billion by 2035</strong> - Positioned at the intersection of entertainment, technology, and experiential commerce.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Platform Window -->
+    <div class="window" id="window-platform" style="width: 700px; top: 100px; left: 150px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-platform')">
+            <span class="window-title">&#128187; AETHER PXE Platform</span>
+            <div class="window-controls">
+                <button class="window-button" onclick="minimizeWindow('platform')">_</button>
+                <button class="window-button" onclick="closeWindow('platform')">X</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>PXE Platform Architecture</h1>
+
+            <div class="takeaway-box">
+                <p><strong>Core Concept:</strong> The "iOS for Physical Reality" - an operating system that orchestrates real-world experiences with sub-10ms response times.</p>
+            </div>
+
+            <h2>Platform Capabilities</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="number">&lt;10ms</span>
+                    <span class="label">Response Time</span>
+                </div>
+                <div class="metric-card">
+                    <span class="number">153</span>
+                    <span class="label">Systems Capacity</span>
+                </div>
+                <div class="metric-card">
+                    <span class="number">24/7</span>
+                    <span class="label">Operation Ready</span>
+                </div>
+            </div>
+
+            <h2>Technical Architecture</h2>
+            <ul>
+                <li><strong>Sensory Integration Layer:</strong> Multi-modal input processing</li>
+                <li><strong>Experience Engine:</strong> Real-time narrative orchestration</li>
+                <li><strong>Physical Interface:</strong> Haptic and environmental control</li>
+                <li><strong>Analytics Core:</strong> Behavioral pattern recognition</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- E.L.I.A.S. Window -->
+    <div class="window" id="window-elias" style="width: 700px; top: 120px; left: 200px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-elias')">
+            <span class="window-title">&#128300; E.L.I.A.S. Framework</span>
+            <div class="window-controls">
+                <button class="window-button" onclick="minimizeWindow('elias')">_</button>
+                <button class="window-button" onclick="closeWindow('elias')">X</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>E.L.I.A.S. Framework</h1>
+
+            <div class="takeaway-box">
+                <p>The five pillars that define AETHER's approach to transformative experiences.</p>
+            </div>
+
+            <div class="timeline-step">
+                <strong>E - Experiential Equity</strong>
+                <p>Ensuring fair access to premium experiences across all demographics and communities.</p>
+            </div>
+
+            <div class="timeline-step">
+                <strong>L - Leisure Integration</strong>
+                <p>Seamlessly weaving entertainment into daily life through ambient and intentional experiences.</p>
+            </div>
+
+            <div class="timeline-step">
+                <strong>I - Imagination Activation</strong>
+                <p>Unlocking creative potential through immersive narrative and interactive storytelling.</p>
+            </div>
+
+            <div class="timeline-step">
+                <strong>A - Amusement Engineering</strong>
+                <p>Precision-crafted joy through advanced physical and digital integration.</p>
+            </div>
+
+            <div class="timeline-step">
+                <strong>S - Story-Commerce Integration</strong>
+                <p>Merging narrative engagement with commercial opportunities in ethical, value-driven ways.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Manufacturing Window -->
+    <div class="window" id="window-manufacturing" style="width: 700px; top: 80px; left: 250px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-manufacturing')">
+            <span class="window-title">&#127981; Manufacturing</span>
+            <div class="window-controls">
+                <button class="window-button" onclick="minimizeWindow('manufacturing')">_</button>
+                <button class="window-button" onclick="closeWindow('manufacturing')">X</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>Sedona Manufacturing Facility</h1>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="number">45,900</span>
+                    <span class="label">Square Feet</span>
+                </div>
+                <div class="metric-card">
+                    <span class="number">153</span>
+                    <span class="label">Systems Capacity</span>
+                </div>
+                <div class="metric-card">
+                    <span class="number">30/30/30+10</span>
+                    <span class="label">Workforce Model</span>
+                </div>
+            </div>
+
+            <h2>Facility Highlights</h2>
+            <ul>
+                <li>State-of-the-art production lines for PXE hardware</li>
+                <li>Integrated R&D laboratories</li>
+                <li>Quality assurance and testing facilities</li>
+                <li>Sustainable manufacturing practices</li>
+            </ul>
+
+            <div class="info-box">
+                <p><strong>Workforce Model:</strong> 30% full-time core team, 30% specialized contractors, 30% flexible talent, +10% AI-augmented systems.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Partnerships Window -->
+    <div class="window" id="window-partnerships" style="width: 700px; top: 100px; left: 300px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-partnerships')">
+            <span class="window-title">&#129309; Partnerships</span>
+            <div class="window-controls">
+                <button class="window-button" onclick="minimizeWindow('partnerships')">_</button>
+                <button class="window-button" onclick="closeWindow('partnerships')">X</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>Strategic Partnerships</h1>
+
+            <h2>Tier 1 - Technology Giants</h2>
+            <ul>
+                <li><strong>Apple:</strong> Hardware integration and ecosystem alignment</li>
+                <li><strong>PASQAL:</strong> Quantum computing capabilities</li>
+                <li><strong>Anthropic:</strong> AI safety and constitutional AI</li>
+            </ul>
+
+            <h2>Tier 2 - Entertainment</h2>
+            <ul>
+                <li><strong>Warner Bros:</strong> IP licensing and content development</li>
+                <li>Major theme park operators</li>
+                <li>Streaming platform integrations</li>
+            </ul>
+
+            <div class="quote-box">
+                <p>"Our partnerships are selected not just for capability, but for alignment with our mission of democratizing transformative experiences."</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tales of Lucidia Window -->
+    <div class="window" id="window-lucidia" style="width: 700px; top: 120px; left: 350px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-lucidia')">
+            <span class="window-title">&#128081; Tales of Lucidia</span>
+            <div class="window-controls">
+                <button class="window-button" onclick="minimizeWindow('lucidia')">_</button>
+                <button class="window-button" onclick="closeWindow('lucidia')">X</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>Tales of Lucidia</h1>
+
+            <div class="takeaway-box">
+                <p>AETHER's flagship transmedia IP featuring three Warrior Princesses in an expansive narrative universe.</p>
+            </div>
+
+            <h2>The Three Warrior Princesses</h2>
+            <p>Each princess represents a unique aspect of the human experience, designed to resonate across cultures and demographics.</p>
+
+            <h2>Transmedia Approach</h2>
+            <ul>
+                <li>Animated series and films</li>
+                <li>Interactive physical experiences</li>
+                <li>Gaming and digital content</li>
+                <li>Merchandise and consumer products</li>
+                <li>Educational programming</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>IP Strategy:</strong> Tales of Lucidia serves as the narrative backbone connecting all AETHER experiences, creating emotional resonance and brand loyalty.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Metrics Window -->
+    <div class="window" id="window-metrics" style="width: 700px; top: 80px; left: 120px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-metrics')">
+            <span class="window-title">&#128200; Key Metrics</span>
+            <div class="window-controls">
+                <button class="window-button" onclick="minimizeWindow('metrics')">_</button>
+                <button class="window-button" onclick="closeWindow('metrics')">X</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>Performance Metrics</h1>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="number">$75B</span>
+                    <span class="label">2035 Target Valuation</span>
+                </div>
+                <div class="metric-card">
+                    <span class="number">45,900</span>
+                    <span class="label">Sq Ft Facility</span>
+                </div>
+                <div class="metric-card">
+                    <span class="number">153</span>
+                    <span class="label">Systems Capacity</span>
+                </div>
+                <div class="metric-card">
+                    <span class="number">&lt;10ms</span>
+                    <span class="label">Response Time</span>
+                </div>
+            </div>
+
+            <h2>Growth Trajectory</h2>
+            <p>AETHER's growth strategy focuses on three key phases: Foundation (2024-2025), Expansion (2026-2030), and Global Scale (2031-2035).</p>
+        </div>
+    </div>
+
+    <!-- Roadmap Window -->
+    <div class="window" id="window-roadmap" style="width: 700px; top: 100px; left: 170px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-roadmap')">
+            <span class="window-title">&#128640; Roadmap</span>
+            <div class="window-controls">
+                <button class="window-button" onclick="minimizeWindow('roadmap')">_</button>
+                <button class="window-button" onclick="closeWindow('roadmap')">X</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>Strategic Roadmap</h1>
+
+            <div class="timeline-step">
+                <strong>Phase 1: Foundation (2024-2025)</strong>
+                <p>Platform development, Sedona facility buildout, initial partnerships, Tales of Lucidia IP development.</p>
+            </div>
+
+            <div class="timeline-step">
+                <strong>Phase 2: Launch (2026-2027)</strong>
+                <p>First commercial deployments, B2B partnerships, content library expansion.</p>
+            </div>
+
+            <div class="timeline-step">
+                <strong>Phase 3: Expansion (2028-2030)</strong>
+                <p>International rollout, consumer market entry, ecosystem growth.</p>
+            </div>
+
+            <div class="timeline-step">
+                <strong>Phase 4: Global Scale (2031-2035)</strong>
+                <p>Market leadership, platform ubiquity, $75B valuation target.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Window -->
+    <div class="window" id="window-team" style="width: 700px; top: 120px; left: 220px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-team')">
+            <span class="window-title">&#128101; Team</span>
+            <div class="window-controls">
+                <button class="window-button" onclick="minimizeWindow('team')">_</button>
+                <button class="window-button" onclick="closeWindow('team')">X</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>Leadership & Workforce</h1>
+
+            <h2>Workforce Model: 30/30/30+10</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="number">30%</span>
+                    <span class="label">Core Full-Time</span>
+                </div>
+                <div class="metric-card">
+                    <span class="number">30%</span>
+                    <span class="label">Specialists</span>
+                </div>
+                <div class="metric-card">
+                    <span class="number">30%</span>
+                    <span class="label">Flexible Talent</span>
+                </div>
+                <div class="metric-card">
+                    <span class="number">+10%</span>
+                    <span class="label">AI-Augmented</span>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <p>This innovative workforce structure enables rapid scaling while maintaining quality and agility.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Investment Window -->
+    <div class="window" id="window-investment" style="width: 700px; top: 80px; left: 270px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-investment')">
+            <span class="window-title">&#128176; Investment</span>
+            <div class="window-controls">
+                <button class="window-button" onclick="minimizeWindow('investment')">_</button>
+                <button class="window-button" onclick="closeWindow('investment')">X</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>Investment Opportunity</h1>
+
+            <div class="highlight-box">
+                <h3>Target: $75 Billion Valuation by 2035</h3>
+                <p>Positioned at the convergence of entertainment, technology, and experiential commerce.</p>
+            </div>
+
+            <h2>Investment Thesis</h2>
+            <ul>
+                <li>First-mover advantage in phygital experience platforms</li>
+                <li>Vertically integrated manufacturing and IP</li>
+                <li>Blue-chip partnership pipeline</li>
+                <li>Proven leadership team</li>
+                <li>Clear path to profitability</li>
+            </ul>
+
+            <div class="quote-box">
+                <p>"We're not just building a company - we're creating an entirely new category of human experience."</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technology Window -->
+    <div class="window" id="window-technology" style="width: 700px; top: 100px; left: 320px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-technology')">
+            <span class="window-title">&#9881; Technology</span>
+            <div class="window-controls">
+                <button class="window-button" onclick="minimizeWindow('technology')">_</button>
+                <button class="window-button" onclick="closeWindow('technology')">X</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>Technology Stack</h1>
+
+            <h2>Core Technologies</h2>
+            <ul>
+                <li><strong>PXE Engine:</strong> Proprietary experience orchestration system</li>
+                <li><strong>Quantum Integration:</strong> PASQAL partnership for next-gen computing</li>
+                <li><strong>AI/ML:</strong> Anthropic-powered constitutional AI systems</li>
+                <li><strong>Haptics:</strong> Custom-developed physical feedback systems</li>
+            </ul>
+
+            <h2>Intellectual Property</h2>
+            <p>AETHER maintains a growing portfolio of patents and trade secrets covering:</p>
+            <ul>
+                <li>Real-time experience rendering</li>
+                <li>Multi-sensory synchronization</li>
+                <li>Adaptive narrative systems</li>
+                <li>Physical-digital interface protocols</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- About Window -->
+    <div class="window" id="window-about" style="width: 500px; top: 120px; left: 370px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-about')">
+            <span class="window-title">&#8505; About</span>
+            <div class="window-controls">
+                <button class="window-button" onclick="minimizeWindow('about')">_</button>
+                <button class="window-button" onclick="closeWindow('about')">X</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>About This System</h1>
+
+            <p><strong>AETHER Knowledge Base</strong><br>
+            Version 1.0 | December 2025</p>
+
+            <p>This interactive knowledge base provides comprehensive information about AETHER/Alchemist Atelier and the AETHER PXE Platform.</p>
+
+            <div class="info-box">
+                <p><strong>Design System:</strong> AetherPunk v17 Genesis<br>
+                <strong>Interface:</strong> Win95 + Glassmorphism Fusion<br>
+                <strong>Build:</strong> Single-file HTML with embedded assets</p>
+            </div>
+
+            <p style="margin-top: 20px; font-size: 12px; color: var(--text-muted);">
+                &copy; 2025 Alchemist Atelier. All rights reserved.
+            </p>
+        </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <button class="start-button" onclick="toggleStartMenu()">
+            <span>&#127775;</span>
+            <span>Start</span>
+        </button>
+        <div class="taskbar-items" id="taskButtons"></div>
+        <div class="system-tray">
+            <span id="clock">12:00</span>
+        </div>
+    </div>
+
+    <!-- Start Menu -->
+    <div class="start-menu" id="startMenu">
+        <div class="start-menu-content">
+            <div class="start-menu-header">AETHER</div>
+            <div class="menu-items">
+                <div class="menu-item" onclick="openWindow('overview')">
+                    <span class="menu-item-icon">&#127919;</span>
+                    <span>Overview</span>
+                </div>
+                <div class="menu-item" onclick="openWindow('platform')">
+                    <span class="menu-item-icon">&#128187;</span>
+                    <span>Platform</span>
+                </div>
+                <div class="menu-item" onclick="openWindow('elias')">
+                    <span class="menu-item-icon">&#128300;</span>
+                    <span>E.L.I.A.S. Framework</span>
+                </div>
+                <div class="menu-divider"></div>
+                <div class="menu-item" onclick="openWindow('metrics')">
+                    <span class="menu-item-icon">&#128200;</span>
+                    <span>Metrics</span>
+                </div>
+                <div class="menu-item" onclick="openWindow('roadmap')">
+                    <span class="menu-item-icon">&#128640;</span>
+                    <span>Roadmap</span>
+                </div>
+                <div class="menu-divider"></div>
+                <div class="menu-item" onclick="openWindow('about')">
+                    <span class="menu-item-icon">&#8505;</span>
+                    <span>About</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════════
+        // MATRIX RAIN EFFECT
+        // ═══════════════════════════════════════════════════════════════════
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrixChars = 'AETHER10ΨΦΩαβγδε';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.random() * canvas.height / fontSize;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const randomChar = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                const colors = ['#00ff41', '#00ff00', '#33ff33', '#66ff66'];
+                ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+                ctx.fillText(randomChar, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.98) {
+                    drops[i] = 0;
+                }
+                drops[i] += 0.5 + Math.random() * 0.5;
+            }
+        }
+
+        setInterval(drawMatrix, 30);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // ═══════════════════════════════════════════════════════════════════
+        // WINDOW MANAGEMENT
+        // ═══════════════════════════════════════════════════════════════════
+        let windowZIndex = 100;
+        let activeWindows = new Set();
+        let isDragging = false;
+        let draggedWindow = null;
+        let offsetX, offsetY;
+
+        const windowNames = {
+            'overview': '&#127919; Overview',
+            'platform': '&#128187; Platform',
+            'elias': '&#128300; E.L.I.A.S.',
+            'manufacturing': '&#127981; Manufacturing',
+            'partnerships': '&#129309; Partnerships',
+            'lucidia': '&#128081; Lucidia',
+            'metrics': '&#128200; Metrics',
+            'roadmap': '&#128640; Roadmap',
+            'team': '&#128101; Team',
+            'investment': '&#128176; Investment',
+            'technology': '&#9881; Technology',
+            'about': '&#8505; About'
+        };
+
+        function openWindow(windowName) {
+            const win = document.getElementById(`window-${windowName}`);
+            if (!win) return;
+
+            win.classList.add('active');
+            win.style.zIndex = ++windowZIndex;
+
+            activeWindows.add(windowName);
+            updateTaskbar();
+
+            document.getElementById('startMenu').classList.remove('show');
+        }
+
+        function closeWindow(windowName) {
+            const win = document.getElementById(`window-${windowName}`);
+            if (!win) return;
+
+            win.classList.remove('active');
+            activeWindows.delete(windowName);
+            updateTaskbar();
+        }
+
+        function minimizeWindow(windowName) {
+            const win = document.getElementById(`window-${windowName}`);
+            if (!win) return;
+
+            win.classList.remove('active');
+            updateTaskbar();
+        }
+
+        function updateTaskbar() {
+            const taskButtons = document.getElementById('taskButtons');
+            taskButtons.innerHTML = '';
+
+            activeWindows.forEach(windowName => {
+                const button = document.createElement('button');
+                button.className = 'task-button';
+                button.innerHTML = windowNames[windowName] || windowName;
+
+                const win = document.getElementById(`window-${windowName}`);
+                if (win && win.classList.contains('active')) {
+                    button.classList.add('active');
+                }
+
+                button.onclick = () => {
+                    const win = document.getElementById(`window-${windowName}`);
+                    if (win.classList.contains('active')) {
+                        win.classList.remove('active');
+                    } else {
+                        win.classList.add('active');
+                        win.style.zIndex = ++windowZIndex;
+                    }
+                    updateTaskbar();
+                };
+                taskButtons.appendChild(button);
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // WINDOW DRAGGING
+        // ═══════════════════════════════════════════════════════════════════
+        function startDrag(e, windowId) {
+            e.preventDefault();
+            isDragging = true;
+            draggedWindow = document.getElementById(windowId);
+
+            const rect = draggedWindow.getBoundingClientRect();
+            offsetX = e.clientX - rect.left;
+            offsetY = e.clientY - rect.top;
+
+            draggedWindow.style.zIndex = ++windowZIndex;
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging || !draggedWindow) return;
+
+            const x = e.clientX - offsetX;
+            const y = e.clientY - offsetY;
+
+            draggedWindow.style.left = Math.max(0, Math.min(x, window.innerWidth - draggedWindow.offsetWidth)) + 'px';
+            draggedWindow.style.top = Math.max(0, Math.min(y, window.innerHeight - 50 - draggedWindow.offsetHeight)) + 'px';
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            draggedWindow = null;
+        });
+
+        // ═══════════════════════════════════════════════════════════════════
+        // START MENU
+        // ═══════════════════════════════════════════════════════════════════
+        function toggleStartMenu() {
+            document.getElementById('startMenu').classList.toggle('show');
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.start-button') && !e.target.closest('.start-menu')) {
+                document.getElementById('startMenu').classList.remove('show');
+            }
+        });
+
+        // ═══════════════════════════════════════════════════════════════════
+        // CLOCK
+        // ═══════════════════════════════════════════════════════════════════
+        function updateClock() {
+            const now = new Date();
+            const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('clock').textContent = time;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // ═══════════════════════════════════════════════════════════════════
+        // LOADING SCREEN
+        // ═══════════════════════════════════════════════════════════════════
+        setTimeout(() => {
+            document.getElementById('loadingScreen').classList.add('hidden');
+        }, 2500);
+    </script>
+</body>
+</html>
