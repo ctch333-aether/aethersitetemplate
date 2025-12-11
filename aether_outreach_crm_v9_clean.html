@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AETHER Outreach Intelligence v9.1 | Complete 144 Partner Database</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --aether-gold: #d4af37;
+            --aether-blue: #667eea;
+            --aether-purple: #764ba2;
+            --aether-pink: #f093fb;
+            --text-primary: #fff;
+            --text-secondary: #a0a0a0;
+            --bg-dark: #1a1a2e;
+            --bg-card: rgba(255,255,255,0.05);
+            --font-mono: 'Consolas', 'Monaco', 'Courier New', monospace;
+            --tier-1: #e74c3c; --tier-2: #f39c12; --tier-3: #3498db;
+            --status-pending: #f39c12; --status-sent: #3498db; --status-responded: #2ecc71;
+            --status-meeting: #9b59b6; --status-closed: #1abc9c; --status-active: #2ecc71; --status-proposal: #f39c12;
+            --ethos-color: #8e44ad; --pathos-color: #e74c3c; --logos-color: #3498db;
+            --score-hot: #e74c3c; --score-warm: #f39c12; --score-cool: #3498db; --score-cold: #95a5a6;
+            --win95-gray: #c0c0c0; --win95-dark: #808080; --win95-blue: #000080;
+        }
+        body {
+            font-family: 'MS Sans Serif', 'Microsoft Sans Serif', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: var(--text-primary);
+            padding: 15px;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        .window {
+            background: var(--win95-gray);
+            border: 2px solid;
+            border-color: #fff #000 #000 #fff;
+            box-shadow: 4px 4px 20px rgba(0,0,0,0.5);
+            max-width: 1920px;
+            margin: 0 auto;
+        }
+        .title-bar {
+            background: linear-gradient(180deg, #000080 0%, #1084d0 100%);
+            color: white;
+            padding: 5px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .title-bar-left { display: flex; align-items: center; gap: 10px; }
+        .version-badge {
+            background: var(--aether-gold);
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+        .partner-count-badge {
+            background: var(--score-hot);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+        .window-controls { display: flex; gap: 3px; }
+        .control-btn {
+            width: 18px; height: 18px;
+            border: 2px solid;
+            border-color: #fff #000 #000 #fff;
+            background: var(--win95-gray);
+            cursor: pointer;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #000;
+        }
+        .menu-bar {
+            background: var(--win95-gray);
+            border-bottom: 1px solid #fff;
+            padding: 3px 8px;
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+        }
+        .menu-item { cursor: pointer; padding: 2px 8px; color: #000; }
+        .menu-item:hover { background: var(--win95-blue); color: white; }
+        .tab-bar {
+            background: var(--win95-gray);
+            padding: 8px 8px 0 8px;
+            display: flex;
+            gap: 2px;
+            border-bottom: 2px solid var(--win95-dark);
+            flex-wrap: wrap;
+        }
+        .tab {
+            padding: 8px 14px;
+            background: var(--win95-gray);
+            border: 2px solid;
+            border-color: #fff #000 #000 #fff;
+            border-bottom: none;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: -2px;
+            transition: all 0.15s;
+            color: #000;
+        }
+        .tab:hover { background: #d4d4d4; }
+        .tab.active {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--aether-gold);
+            border-color: var(--aether-gold) #000 #1a1a2e #fff;
+            position: relative;
+            z-index: 1;
+        }
+        .tab.ethos-tab.active { border-top-color: var(--ethos-color); }
+        .tab.pathos-tab.active { border-top-color: var(--pathos-color); }
+        .tab.logos-tab.active { border-top-color: var(--logos-color); }
+        .content-area {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 25px;
+            min-height: 800px;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Stats */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .stat-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3); }
+        .stat-value { font-size: 24px; font-weight: bold; color: var(--aether-gold); }
+        .stat-label { font-size: 10px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
+        
+        /* Matrix */
+        .matrix-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+        .matrix-cell {
+            background: rgba(255,255,255,0.05);
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        .matrix-cell:hover { transform: translateY(-2px); }
+        .matrix-cell.hot { background: rgba(231, 76, 60, 0.2); border-color: var(--score-hot); }
+        .matrix-cell.warm { background: rgba(243, 156, 18, 0.2); border-color: var(--score-warm); }
+        .matrix-cell.cool { background: rgba(52, 152, 219, 0.2); border-color: var(--score-cool); }
+        .matrix-cell.cold { background: rgba(149, 165, 166, 0.2); border-color: var(--score-cold); }
+        .matrix-count { font-size: 28px; font-weight: bold; color: var(--aether-gold); }
+        .matrix-label { font-size: 10px; color: var(--text-secondary); text-transform: uppercase; margin-top: 5px; }
+        
+        /* Partner Cards */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 15px;
+        }
+        .partner-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 15px;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+        .partner-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            border-color: var(--aether-gold);
+        }
+        .partner-card.ethos-card { border-left: 4px solid var(--ethos-color); }
+        .partner-card.pathos-card { border-left: 4px solid var(--pathos-color); }
+        .partner-card.logos-card { border-left: 4px solid var(--logos-color); }
+        .partner-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+        .partner-name { font-weight: bold; font-size: 15px; color: var(--aether-gold); }
+        .partner-badges { display: flex; gap: 5px; flex-wrap: wrap; justify-content: flex-end; }
+        .partner-score {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .partner-score.hot { background: var(--score-hot); color: white; }
+        .partner-score.warm { background: var(--score-warm); color: white; }
+        .partner-score.cool { background: var(--score-cool); color: white; }
+        .partner-score.cold { background: var(--score-cold); color: white; }
+        .tier-badge { font-size: 9px; padding: 2px 6px; border-radius: 4px; font-weight: bold; }
+        .tier-badge.tier-1 { background: var(--tier-1); color: white; }
+        .tier-badge.tier-2 { background: var(--tier-2); color: white; }
+        .tier-badge.tier-3 { background: var(--tier-3); color: white; }
+        .rhetoric-badge { font-size: 8px; padding: 2px 6px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
+        .rhetoric-badge.ethos { background: var(--ethos-color); color: white; }
+        .rhetoric-badge.pathos { background: var(--pathos-color); color: white; }
+        .rhetoric-badge.logos { background: var(--logos-color); color: white; }
+        .category-tag { font-size: 10px; color: var(--text-secondary); margin-top: 2px; }
+        .partner-value { font-size: 18px; font-weight: bold; color: var(--aether-blue); margin: 8px 0; }
+        .partner-description { font-size: 11px; color: var(--text-secondary); margin-bottom: 10px; line-height: 1.5; }
+        .partner-metrics { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+        .metric { font-size: 9px; padding: 2px 6px; background: rgba(102, 126, 234, 0.2); border-radius: 10px; color: var(--aether-blue); }
+        .partner-contact { font-size: 10px; color: var(--text-secondary); margin-bottom: 6px; }
+        .outreach-status { display: inline-flex; align-items: center; gap: 5px; font-size: 9px; padding: 3px 8px; border-radius: 10px; background: rgba(0,0,0,0.3); }
+        .status-indicator { width: 6px; height: 6px; border-radius: 50%; }
+        .status-pending .status-indicator { background: var(--status-pending); }
+        .status-sent .status-indicator { background: var(--status-sent); }
+        .status-responded .status-indicator { background: var(--status-responded); }
+        .status-meeting .status-indicator { background: var(--status-meeting); }
+        .status-closed .status-indicator { background: var(--status-closed); }
+        .status-active .status-indicator { background: var(--status-active); }
+        .status-proposal .status-indicator { background: var(--status-proposal); }
+        
+        /* Search & Filters */
+        .search-filter-bar {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 8px 12px;
+            border: 2px solid;
+            border-color: var(--win95-dark) #fff #fff var(--win95-dark);
+            background: white;
+            font-family: inherit;
+            font-size: 12px;
+            color: #000;
+        }
+        .filter-btn {
+            padding: 6px 12px;
+            border: 2px solid;
+            border-color: #fff #000 #000 #fff;
+            background: var(--win95-gray);
+            cursor: pointer;
+            font-size: 10px;
+            font-family: inherit;
+            color: #000;
+            transition: all 0.15s;
+        }
+        .filter-btn:hover { background: #d4d4d4; }
+        .filter-btn:active, .filter-btn.active { border-color: #000 #fff #fff #000; background: var(--aether-blue); color: white; }
+        
+        /* Typography */
+        h2 { color: var(--aether-gold); font-size: 22px; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid var(--aether-gold); }
+        h3 { color: var(--aether-blue); font-size: 15px; margin: 20px 0 12px 0; }
+        p { margin-bottom: 10px; color: var(--text-secondary); font-size: 12px; }
+        
+        /* Rhetoric Header */
+        .rhetoric-header { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+        .rhetoric-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 18px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .rhetoric-card:hover { transform: translateY(-3px); }
+        .rhetoric-card.ethos { border-color: var(--ethos-color); }
+        .rhetoric-card.pathos { border-color: var(--pathos-color); }
+        .rhetoric-card.logos { border-color: var(--logos-color); }
+        .rhetoric-icon { font-size: 28px; margin-bottom: 8px; }
+        .rhetoric-title { font-size: 16px; font-weight: bold; margin-bottom: 4px; }
+        .rhetoric-card.ethos .rhetoric-title { color: var(--ethos-color); }
+        .rhetoric-card.pathos .rhetoric-title { color: var(--pathos-color); }
+        .rhetoric-card.logos .rhetoric-title { color: var(--logos-color); }
+        .rhetoric-subtitle { font-size: 10px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
+        .rhetoric-count { font-size: 26px; font-weight: bold; color: var(--aether-gold); margin-top: 8px; }
+        
+        /* Pipeline */
+        .pipeline-bar { display: flex; height: 35px; border-radius: 6px; overflow: hidden; margin: 15px 0; background: rgba(0,0,0,0.3); }
+        .pipeline-segment { display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: white; cursor: pointer; }
+        .pipeline-segment:hover { filter: brightness(1.2); }
+        .pipeline-pending { background: var(--status-pending); }
+        .pipeline-sent { background: var(--status-sent); }
+        .pipeline-responded { background: var(--status-responded); }
+        .pipeline-meeting { background: var(--status-meeting); }
+        .pipeline-closed { background: var(--status-closed); }
+        
+        /* Action Cards */
+        .action-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--aether-gold);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .action-card:hover { transform: translateX(5px); background: rgba(0,0,0,0.4); }
+        .action-card.urgent { border-left-color: var(--score-hot); }
+        .action-card.standard { border-left-color: var(--score-warm); }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+        .action-partner { font-weight: bold; color: var(--aether-gold); font-size: 13px; }
+        .action-urgency { font-size: 9px; padding: 2px 6px; border-radius: 10px; text-transform: uppercase; font-weight: bold; }
+        .action-urgency.urgent { background: var(--score-hot); color: white; }
+        .action-urgency.standard { background: var(--score-warm); color: white; }
+        .action-type { font-size: 11px; color: var(--text-secondary); }
+        .action-reason { font-size: 10px; color: var(--text-secondary); font-style: italic; margin-top: 4px; }
+        
+        /* Template Boxes */
+        .template-box { background: rgba(0,0,0,0.3); padding: 18px; border-radius: 8px; margin-bottom: 18px; border: 1px solid rgba(255,255,255,0.1); }
+        .template-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .template-title { font-size: 13px; color: var(--aether-gold); font-weight: bold; }
+        .template-content { font-size: 11px; line-height: 1.7; color: var(--text-secondary); white-space: pre-wrap; }
+        .copy-btn { padding: 5px 12px; border: 2px solid; border-color: #fff #000 #000 #fff; background: var(--win95-gray); cursor: pointer; font-size: 10px; color: #000; }
+        
+        /* Modal */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
+        .modal.active { display: flex; }
+        .modal-content { background: var(--win95-gray); border: 2px solid; border-color: #fff #000 #000 #fff; max-width: 700px; width: 100%; max-height: 85vh; overflow-y: auto; }
+        .modal-header { background: linear-gradient(180deg, #000080 0%, #1084d0 100%); color: white; padding: 6px 10px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 13px; }
+        .close-btn { background: var(--win95-gray); border: 2px solid; border-color: #fff #000 #000 #fff; width: 18px; height: 18px; cursor: pointer; font-weight: bold; font-size: 11px; }
+        .modal-body { padding: 18px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: var(--text-primary); }
+        .modal-section { margin-bottom: 15px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .modal-section:last-child { border-bottom: none; }
+        .modal-section h4 { color: var(--aether-gold); margin-bottom: 8px; font-size: 13px; }
+        
+        .no-results { text-align: center; padding: 40px; color: var(--text-secondary); font-size: 13px; }
+        .export-bar { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+        .export-btn { padding: 8px 16px; border: 2px solid; border-color: #fff #000 #000 #fff; background: var(--win95-gray); cursor: pointer; font-size: 11px; color: #000; display: flex; align-items: center; gap: 6px; }
+        .sidebar-panel { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 15px; margin-bottom: 15px; }
+        .sidebar-panel h4 { color: var(--aether-gold); font-size: 13px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        
+        @media (max-width: 768px) {
+            .tab { padding: 6px 10px; font-size: 9px; }
+            .partners-grid { grid-template-columns: 1fr; }
+            .matrix-grid { grid-template-columns: repeat(2, 1fr); }
+            .rhetoric-header { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="window">
+        <div class="title-bar">
+            <div class="title-bar-left">
+                <span>⚡ AETHER Outreach Intelligence v9.1</span>
+                <span class="version-badge">COMPLETE DATABASE</span>
+                <span class="partner-count-badge" id="totalBadge">144 PARTNERS</span>
+            </div>
+            <div class="window-controls">
+                <button class="control-btn">_</button>
+                <button class="control-btn">□</button>
+                <button class="control-btn">×</button>
+            </div>
+        </div>
+
+        <div class="menu-bar">
+            <span class="menu-item" onclick="exportToCSV()">📁 Export CSV</span>
+            <span class="menu-item" onclick="exportToJSON()">📋 Export JSON</span>
+            <span class="menu-item" onclick="showHotLeads()">🔥 Hot Leads</span>
+            <span class="menu-item" onclick="showTab('actions')">⏰ Actions</span>
+        </div>
+
+        <div class="tab-bar">
+            <button class="tab active" onclick="showTab('dashboard')">📊 Dashboard</button>
+            <button class="tab" onclick="showTab('partners')">👥 All Partners (<span id="partnerCountTab">144</span>)</button>
+            <button class="tab" onclick="showTab('actions')">⚡ Actions</button>
+            <button class="tab" onclick="showTab('investment')">💰 Investment (<span id="invTabCount">52</span>)</button>
+            <button class="tab" onclick="showTab('b2b')">🏢 B2B (<span id="b2bTabCount">48</span>)</button>
+            <button class="tab" onclick="showTab('creative')">🎨 Creative (<span id="creativeTabCount">44</span>)</button>
+            <button class="tab ethos-tab" onclick="showTab('ethos')">🏛️ Ethos</button>
+            <button class="tab pathos-tab" onclick="showTab('pathos')">❤️ Pathos</button>
+            <button class="tab logos-tab" onclick="showTab('logos')">📈 Logos</button>
+            <button class="tab" onclick="showTab('templates')">📝 Templates</button>
+        </div>
+
+        <div class="content-area">
+            <!-- DASHBOARD -->
+            <div id="dashboard" class="tab-content active">
+                <h2>📊 144 Strategic Partners Command Center</h2>
+                
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalPartners">144</div>
+                        <div class="stat-label">Total Partners</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="investmentCount">52</div>
+                        <div class="stat-label">Investment</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="b2bCount">48</div>
+                        <div class="stat-label">B2B</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="creativeCount">44</div>
+                        <div class="stat-label">Creative</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="activeDeals">8</div>
+                        <div class="stat-label">Active</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="avgScore">0</div>
+                        <div class="stat-label">Avg Score</div>
+                    </div>
+                </div>
+
+                <h3>🎯 Priority Matrix (Relationship Scores)</h3>
+                <div class="matrix-grid">
+                    <div class="matrix-cell hot" onclick="filterByScoreCategory('hot')">
+                        <div class="matrix-count" id="hotCount">0</div>
+                        <div class="matrix-label">🔥 Hot (80-100)</div>
+                    </div>
+                    <div class="matrix-cell warm" onclick="filterByScoreCategory('warm')">
+                        <div class="matrix-count" id="warmCount">0</div>
+                        <div class="matrix-label">☀️ Warm (60-79)</div>
+                    </div>
+                    <div class="matrix-cell cool" onclick="filterByScoreCategory('cool')">
+                        <div class="matrix-count" id="coolCount">0</div>
+                        <div class="matrix-label">❄️ Cool (40-59)</div>
+                    </div>
+                    <div class="matrix-cell cold" onclick="filterByScoreCategory('cold')">
+                        <div class="matrix-count" id="coldCount">0</div>
+                        <div class="matrix-label">🧊 Cold (0-39)</div>
+                    </div>
+                </div>
+
+                <div class="rhetoric-header">
+                    <div class="rhetoric-card ethos" onclick="showTab('ethos')">
+                        <div class="rhetoric-icon">🏛️</div>
+                        <div class="rhetoric-title">ETHOS</div>
+                        <div class="rhetoric-subtitle">Credibility</div>
+                        <div class="rhetoric-count" id="ethosCount">0</div>
+                    </div>
+                    <div class="rhetoric-card pathos" onclick="showTab('pathos')">
+                        <div class="rhetoric-icon">❤️</div>
+                        <div class="rhetoric-title">PATHOS</div>
+                        <div class="rhetoric-subtitle">Emotion</div>
+                        <div class="rhetoric-count" id="pathosCount">0</div>
+                    </div>
+                    <div class="rhetoric-card logos" onclick="showTab('logos')">
+                        <div class="rhetoric-icon">📈</div>
+                        <div class="rhetoric-title">LOGOS</div>
+                        <div class="rhetoric-subtitle">Logic</div>
+                        <div class="rhetoric-count" id="logosCount">0</div>
+                    </div>
+                </div>
+
+                <h3>📈 Pipeline Status</h3>
+                <div class="pipeline-bar" id="pipelineBar"></div>
+
+                <h3>🎯 Top Priority Partners (Sorted by Score)</h3>
+                <div class="partners-grid" id="priorityPartners"></div>
+            </div>
+
+            <!-- ALL PARTNERS -->
+            <div id="partners" class="tab-content">
+                <h2>👥 Complete Partner Database</h2>
+                
+                <div class="export-bar">
+                    <button class="export-btn" onclick="exportToCSV()">📁 Export All CSV</button>
+                    <button class="export-btn" onclick="exportToJSON()">📋 Export JSON</button>
+                    <button class="export-btn" onclick="exportHotLeadsCSV()">🔥 Hot Leads CSV</button>
+                </div>
+
+                <div class="search-filter-bar">
+                    <input type="text" class="search-input" id="partnerSearch" placeholder="🔍 Search all 144 partners..." oninput="filterPartners()">
+                    <button class="filter-btn active" data-filter="all" onclick="filterByCategory('all', this)">All</button>
+                    <button class="filter-btn" data-filter="investment" onclick="filterByCategory('investment', this)">Investment</button>
+                    <button class="filter-btn" data-filter="creative" onclick="filterByCategory('creative', this)">Creative</button>
+                    <button class="filter-btn" data-filter="hospitality" onclick="filterByCategory('hospitality', this)">Hospitality</button>
+                    <button class="filter-btn" data-filter="technology" onclick="filterByCategory('technology', this)">Technology</button>
+                    <button class="filter-btn" data-filter="entertainment" onclick="filterByCategory('entertainment', this)">Entertainment</button>
+                </div>
+
+                <div class="search-filter-bar">
+                    <span style="color: var(--text-secondary); font-size: 10px;">TIER:</span>
+                    <button class="filter-btn active" data-tier="all" onclick="filterByTier('all', this)">All</button>
+                    <button class="filter-btn" data-tier="1" onclick="filterByTier('1', this)">T1 (27)</button>
+                    <button class="filter-btn" data-tier="2" onclick="filterByTier('2', this)">T2 (27)</button>
+                    <button class="filter-btn" data-tier="3" onclick="filterByTier('3', this)">T3 (90)</button>
+                    <span style="color: var(--text-secondary); font-size: 10px; margin-left: 10px;">SCORE:</span>
+                    <button class="filter-btn" data-score="hot" onclick="filterByScore('hot', this)">🔥 Hot</button>
+                    <button class="filter-btn" data-score="warm" onclick="filterByScore('warm', this)">☀️ Warm</button>
+                </div>
+
+                <p id="filterStatus">Showing: <span id="displayCount">144</span> of 144 partners</p>
+                <div class="partners-grid" id="allPartnersGrid"></div>
+            </div>
+
+            <!-- ACTIONS -->
+            <div id="actions" class="tab-content">
+                <h2>⚡ Smart Actions Queue</h2>
+                <p>Prioritized by relationship score and timing. Urgent actions need immediate attention.</p>
+                
+                <div class="stats-row">
+                    <div class="stat-card" style="border: 2px solid var(--score-hot);">
+                        <div class="stat-value" id="urgentActions" style="color: var(--score-hot);">0</div>
+                        <div class="stat-label">Urgent</div>
+                    </div>
+                    <div class="stat-card" style="border: 2px solid var(--score-warm);">
+                        <div class="stat-value" id="standardActions" style="color: var(--score-warm);">0</div>
+                        <div class="stat-label">Standard</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="scheduledActions">0</div>
+                        <div class="stat-label">Scheduled</div>
+                    </div>
+                </div>
+
+                <h3>🔥 Urgent Actions (Do Now)</h3>
+                <div id="urgentActionsList"></div>
+
+                <h3>📋 Standard Queue (This Week)</h3>
+                <div id="standardActionsList"></div>
+            </div>
+
+            <!-- INVESTMENT -->
+            <div id="investment" class="tab-content">
+                <h2>💰 Investment Partners (52)</h2>
+                <p>BIPOC & Impact VCs, Strategic VCs, Family Offices, Global Capital, Sovereign Wealth</p>
+                <div class="search-filter-bar">
+                    <input type="text" class="search-input" placeholder="🔍 Search investors..." oninput="filterInvestment(this.value)">
+                </div>
+                <div class="partners-grid" id="investmentGrid"></div>
+            </div>
+
+            <!-- B2B -->
+            <div id="b2b" class="tab-content">
+                <h2>🏢 B2B Partners (48)</h2>
+                <p>Hospitality, Theme Parks, Technology Infrastructure, Architecture, Development</p>
+                <div class="search-filter-bar">
+                    <input type="text" class="search-input" placeholder="🔍 Search B2B partners..." oninput="filterB2B(this.value)">
+                </div>
+                <div class="partners-grid" id="b2bGrid"></div>
+            </div>
+
+            <!-- CREATIVE -->
+            <div id="creative" class="tab-content">
+                <h2>🎨 Creative Partners (44)</h2>
+                <p>Experiential Studios, Animation/VFX, Gaming, Couture Designers, IP Partners</p>
+                <div class="search-filter-bar">
+                    <input type="text" class="search-input" placeholder="🔍 Search creative partners..." oninput="filterCreative(this.value)">
+                </div>
+                <div class="partners-grid" id="creativeGrid"></div>
+            </div>
+
+            <!-- ETHOS -->
+            <div id="ethos" class="tab-content">
+                <h2 style="border-color: var(--ethos-color);">🏛️ ETHOS Partners</h2>
+                <p>Lead with <strong>credibility</strong>: Apple, MIT, PASQAL partnerships. Technical metrics. Industry validation.</p>
+                <div class="partners-grid" id="ethosGrid"></div>
+            </div>
+
+            <!-- PATHOS -->
+            <div id="pathos" class="tab-content">
+                <h2 style="border-color: var(--pathos-color);">❤️ PATHOS Partners</h2>
+                <p>Lead with <strong>emotion</strong>: Founding story, democratization mission, Ma'at philosophy, B Corp commitment.</p>
+                <div class="partners-grid" id="pathosGrid"></div>
+            </div>
+
+            <!-- LOGOS -->
+            <div id="logos" class="tab-content">
+                <h2 style="border-color: var(--logos-color);">📈 LOGOS Partners</h2>
+                <p>Lead with <strong>logic</strong>: 164% ROI, RevPAR lift, specific pricing tiers, timeline to results.</p>
+                <div class="partners-grid" id="logosGrid"></div>
+            </div>
+
+            <!-- TEMPLATES -->
+            <div id="templates" class="tab-content">
+                <h2>📝 Pitch Templates by Rhetoric</h2>
+                
+                <h3 style="color: var(--ethos-color);">🏛️ ETHOS: Technology & VCs</h3>
+                <div class="template-box">
+                    <div class="template-header">
+                        <span class="template-title">Strategic VC / Deep Tech Investors</span>
+                        <button class="copy-btn" onclick="copyTemplate('ethosVC')">📋 Copy</button>
+                    </div>
+                    <div class="template-content" id="ethosVC">Subject: AETHER — 164% ROI Platform for $2.3T Experience Economy
+
+[Partner Name],
+
+AETHER has built the operating system for physical experiences—iOS for physical reality.
+
+• 164% ROI in single-season deployments
+• 99.2% operational uptime across 168,000+ work hours
+• $234M Apple partnership (largest active)
+• 10-year exclusive with PASQAL (quantum computing, $45M)
+• MIT Media Lab, Cambridge University validation
+
+Targeting $75B valuation by 2035. $53.5M infrastructure creates replication barrier.
+
+Dynamic pricing ($27-$396) enables 85% population accessibility while maintaining margins.
+
+Worth 45 minutes to discuss Series A positioning?
+
+CTCH
+Founder & CEO, AETHER</div>
+                </div>
+
+                <h3 style="color: var(--pathos-color);">❤️ PATHOS: Impact Investors & Creative</h3>
+                <div class="template-box">
+                    <div class="template-header">
+                        <span class="template-title">BIPOC & Impact Investors</span>
+                        <button class="copy-btn" onclick="copyTemplate('pathosImpact')">📋 Copy</button>
+                    </div>
+                    <div class="template-content" id="pathosImpact">Subject: Democratizing Transformative Experiences — AETHER
+
+[Name],
+
+I grew up 7 minutes from Disneyland, watching families drive past to experiences we couldn't afford. That proximity without access shaped everything AETHER has become.
+
+We believe transformative experiences shouldn't be luxury goods. They should be birthright.
+
+Our dynamic pricing ($27-$396) enables 85% population accessibility. This isn't charity—it's market expansion into demographics systematically excluded from premium entertainment.
+
+[Fund name]'s commitment to [thesis] aligns with our Ma'at philosophy: justice as cosmic balance.
+
+We've built the infrastructure. Now we're scaling impact. B Corp certification in progress.
+
+Warmly,
+CTCH
+Founder & CEO, AETHER</div>
+                </div>
+
+                <h3 style="color: var(--logos-color);">📈 LOGOS: Hospitality & B2B</h3>
+                <div class="template-box">
+                    <div class="template-header">
+                        <span class="template-title">Hospitality Partnership</span>
+                        <button class="copy-btn" onclick="copyTemplate('logosHospitality')">📋 Copy</button>
+                    </div>
+                    <div class="template-content" id="logosHospitality">Subject: 15-20% RevPAR Lift Through Experiential Integration
+
+[Name],
+
+AETHER's phygital platform delivers measurable hospitality ROI:
+
+• 15-20% RevPAR increase at partner properties
+• 35% F&B revenue lift in experience-adjacent venues
+• 40% repeat visitation (vs. 15% industry average)
+• 18-24 month ROI timeline
+
+Pricing:
+- Signature Experiences: $75-$150/guest
+- Seasonal Activations: $500K-$2M
+- Permanent Integration: Revenue share
+
+99.2% uptime. Zero safety incidents (168,000+ hours).
+
+30-minute call to discuss fit with [property name]?
+
+CTCH
+Founder & CEO, AETHER</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal" id="partnerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="modalTitle">Partner Details</span>
+                <button class="close-btn" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== COMPLETE 144 PARTNER DATABASE ====================
+        const partners = [
+            // ===== TIER 1: HIGHEST PRIORITY (27) =====
+            
+            // PHYGITAL EXPERIENTIAL & CREATIVE STUDIOS (9) - Tier 1
+            { name: "teamLab", category: "Creative", subcategory: "Digital Art", tier: "1", rhetoric: "pathos", value: "$30M–$60M", status: "proposal", type: "Digital Art Partnership", description: "World's premier digital art collective. Borderless concept validates mass-market transformation appetite.", metrics: ["Global recognition", "Mass appeal", "Art + Tech"], contact: "Toshiyuki Inoko (Founder)", email: "", strategicFit: "high", segment: "creative" },
+            { name: "Seeper", category: "Technology", subcategory: "Interactive", tier: "1", rhetoric: "ethos", value: "Co-Development", status: "proposal", type: "Interactive Projection", description: "Sensor-driven installations align with AETHER platform. World-class projection mapping.", metrics: ["40% dwell time", "10ms response", "1,024 sensors"], contact: "Creative Director", email: "", strategicFit: "high", segment: "creative" },
+            { name: "Punchdrunk", category: "Entertainment", subcategory: "Immersive Theater", tier: "1", rhetoric: "pathos", value: "$15M–$30M", status: "proposal", type: "Immersive Theater", description: "Sleep No More production company. Revolutionary audience-performer interaction.", metrics: ["14 year run", "Non-linear narrative"], contact: "Felix Barrett (Artistic Director)", email: "", strategicFit: "high", segment: "creative" },
+            { name: "Lune Rouge / Zú", category: "Entertainment", subcategory: "Live Performance", tier: "1", rhetoric: "pathos", value: "$25M–$50M", status: "pending", type: "Joint Venture", description: "Cirque du Soleil spin-off, touring entertainment. Quebec creative hub.", metrics: ["95% satisfaction", "40% repeat", "30-50% premium"], contact: "CEO", email: "", strategicFit: "high", segment: "creative" },
+            { name: "Fortiche", category: "Creative", subcategory: "Animation/VFX", tier: "1", rhetoric: "pathos", value: "Strategic", status: "proposal", type: "Animation Partnership", description: "Arcane creators—premium animation & VFX. Worlds audiences want to inhabit.", metrics: ["Emmy winner", "Netflix partnership"], contact: "Executive Producer", email: "", strategicFit: "high", segment: "creative" },
+            { name: "Ironhead Studios", category: "Creative", subcategory: "Fabrication", tier: "1", rhetoric: "ethos", value: "Co-Development", status: "proposal", type: "Fabrication Partner", description: "Costume/prop fabrication for Marvel, DC. Industry-leading theatrical work.", metrics: ["Marvel", "DC", "Premium quality"], contact: "Jose Fernandez (Founder)", email: "", strategicFit: "high", segment: "creative" },
+            { name: "Moment Factory", category: "Creative", subcategory: "Immersive", tier: "1", rhetoric: "ethos", value: "Strategic", status: "proposal", type: "Experience Design", description: "Large-scale immersive experiences with proven global track record.", metrics: ["Global installations", "500+ employees", "20+ years"], contact: "Partner", email: "", strategicFit: "high", segment: "creative" },
+            { name: "Capsule Studios", category: "Technology", subcategory: "Gaming", tier: "1", rhetoric: "ethos", value: "Co-Development", status: "proposal", type: "Game Development", description: "Game development with experiential focus.", metrics: ["Experiential gaming", "Interactive narrative"], contact: "CEO", email: "", strategicFit: "medium", segment: "creative" },
+            { name: "Illogic Studios", category: "Technology", subcategory: "VR/AR", tier: "1", rhetoric: "ethos", value: "Co-Development", status: "proposal", type: "VR/AR Partnership", description: "VR/AR entertainment experiences.", metrics: ["VR expertise", "AR innovation"], contact: "Founder", email: "", strategicFit: "medium", segment: "creative" },
+
+            // BIPOC & IMPACT INVESTORS (9) - Tier 1
+            { name: "Backstage Capital", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic Investment", status: "pending", type: "Impact VC", description: "Arlan Hamilton. Leading BIPOC-focused VC aligned with democratization mission.", metrics: ["BIPOC-focused", "Mission aligned"], contact: "Arlan Hamilton (Founder)", email: "hello@backstagecapital.com", strategicFit: "high", segment: "investment" },
+            { name: "Collab Capital", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic Investment", status: "pending", type: "Black-Founded VC", description: "Black-founded startups focus.", metrics: ["Black-founded", "Tech focus"], contact: "Investment Team", email: "", strategicFit: "high", segment: "investment" },
+            { name: "Concrete Rose VC", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic Investment", status: "pending", type: "Diverse Founders VC", description: "Underrepresented founders in tech.", metrics: ["Diverse founders", "Tech portfolio"], contact: "Investment Team", email: "", strategicFit: "high", segment: "investment" },
+            { name: "Harlem Capital", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic Investment", status: "pending", type: "Diverse Founders VC", description: "Diverse founders with proven track record. 1000 founders goal.", metrics: ["1000 founders goal", "$150M AUM"], contact: "Investment Team", email: "info@harlem.capital", strategicFit: "high", segment: "investment" },
+            { name: "Impact America Fund", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic Investment", status: "pending", type: "Community Impact VC", description: "Underserved communities focus.", metrics: ["Community impact", "Underserved markets"], contact: "Investment Team", email: "", strategicFit: "high", segment: "investment" },
+            { name: "Colorwave Founders Program", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic", status: "pending", type: "BIPOC Founders Program", description: "BIPOC founders focus program.", metrics: ["BIPOC founders", "Founder support"], contact: "Program Team", email: "", strategicFit: "high", segment: "investment" },
+            { name: "New Majority Capital", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic Investment", status: "pending", type: "Diverse Founders VC", description: "Diverse founders focus.", metrics: ["Diverse founders", "Growth stage"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+            { name: "Bronze VC", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic Investment", status: "pending", type: "Diverse Tech VC", description: "Diverse technology founders.", metrics: ["Tech focus", "Diverse founders"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+            { name: "Cake VC", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic Investment", status: "pending", type: "Diverse Consumer VC", description: "Diverse consumer tech focus.", metrics: ["Consumer tech", "Diverse founders"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+
+            // HOSPITALITY & THEMED ENTERTAINMENT (9) - Tier 1
+            { name: "Ennismore (Accor)", category: "Hospitality", subcategory: "Lifestyle", tier: "1", rhetoric: "logos", value: "Strategic", status: "pending", type: "Lifestyle Hospitality", description: "14+ lifestyle brands, design-forward. 140 properties.", metrics: ["15-20% RevPAR", "140 properties", "14 brands"], contact: "Sharan Pasricha (Founder/Co-CEO)", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Wynn Resorts", category: "Hospitality", subcategory: "Gaming", tier: "1", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Premium Gaming", description: "Ultra-premium hospitality and gaming.", metrics: ["Premium positioning", "Las Vegas"], contact: "Craig Billings (CEO)", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Legendary Entertainment", category: "IP", subcategory: "Film/TV", tier: "1", rhetoric: "logos", value: "Revenue Share", status: "pending", type: "IP Licensing", description: "IP portfolio (Dune, Godzilla). Location-based entertainment.", metrics: ["$75-150/visitor", "3-5x film ROI"], contact: "Josh Grode (CEO)", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Fantawild", category: "Entertainment", subcategory: "Theme Parks", tier: "1", rhetoric: "logos", value: "$500K–$2M/park", status: "proposal", type: "Theme Park Tech", description: "China's largest theme park operator. 40 parks, 50M visitors.", metrics: ["40 parks", "50M visitors", "China market"], contact: "Business Development", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Six Flags", category: "Entertainment", subcategory: "Theme Parks", tier: "1", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Theme Park Innovation", description: "Regional parks seeking innovation. SIXXTHRILL opportunity.", metrics: ["Regional reach", "Innovation need"], contact: "Chief Experience Officer", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Accor", category: "Hospitality", subcategory: "Global", tier: "1", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Global Hospitality", description: "Global hospitality giant with 5,300+ properties.", metrics: ["5,300+ properties", "Global reach"], contact: "Sébastien Bazin (CEO)", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "DMB Development", category: "Real Estate", subcategory: "Mixed-Use", tier: "1", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Development", description: "Mixed-use development.", metrics: ["Mixed-use", "Scale"], contact: "Development Team", email: "", strategicFit: "medium", segment: "b2b" },
+
+            // ===== TIER 2: HIGH PRIORITY (27) =====
+            
+            // GAMING, VFX & IP (9) - Tier 2
+            { name: "Bad Robot Games", category: "Entertainment", subcategory: "Gaming", tier: "2", rhetoric: "ethos", value: "Strategic", status: "proposal", type: "Gaming Partnership", description: "JJ Abrams' gaming arm.", metrics: ["JJ Abrams", "Premium IP"], contact: "Business Development", email: "", strategicFit: "medium", segment: "creative" },
+            { name: "Crystal Dynamics", category: "Entertainment", subcategory: "Gaming", tier: "2", rhetoric: "ethos", value: "Strategic", status: "proposal", type: "AAA Gaming", description: "Tomb Raider IP, AAA development.", metrics: ["Tomb Raider", "AAA quality"], contact: "Business Development", email: "", strategicFit: "medium", segment: "creative" },
+            { name: "Plastic Studios", category: "Entertainment", subcategory: "Gaming", tier: "2", rhetoric: "ethos", value: "Co-Development", status: "proposal", type: "Indie Gaming", description: "Indie development focus.", metrics: ["Indie innovation", "Creative freedom"], contact: "Studio Head", email: "", strategicFit: "medium", segment: "creative" },
+            { name: "Onesal", category: "Technology", subcategory: "Digital", tier: "2", rhetoric: "ethos", value: "Co-Development", status: "proposal", type: "Digital Experience", description: "Digital experiences.", metrics: ["Digital native", "Experience design"], contact: "Founder", email: "", strategicFit: "medium", segment: "creative" },
+            { name: "Small Creative", category: "Creative", subcategory: "Boutique", tier: "2", rhetoric: "ethos", value: "Co-Development", status: "proposal", type: "Boutique Creative", description: "Boutique creative studio.", metrics: ["Boutique quality"], contact: "Creative Director", email: "", strategicFit: "medium", segment: "creative" },
+            { name: "iicombined (Korea)", category: "Entertainment", subcategory: "K-Content", tier: "2", rhetoric: "ethos", value: "Strategic", status: "proposal", type: "K-Content", description: "K-content experiences.", metrics: ["Korean market", "K-content"], contact: "Partnership Team", email: "", strategicFit: "medium", segment: "creative" },
+            { name: "MightyJaxx", category: "Creative", subcategory: "Collectibles", tier: "2", rhetoric: "ethos", value: "Strategic", status: "proposal", type: "Designer Toys", description: "Designer toys and collectibles.", metrics: ["Collectibles", "Collaborations"], contact: "Business Development", email: "", strategicFit: "low", segment: "creative" },
+            { name: "ArtiStory", category: "IP", subcategory: "Licensing", tier: "2", rhetoric: "ethos", value: "Strategic", status: "proposal", type: "Art Licensing", description: "Art licensing and IP.", metrics: ["Art licensing", "Cultural IP"], contact: "Licensing Team", email: "", strategicFit: "low", segment: "creative" },
+            { name: "United Artist Productions", category: "Entertainment", subcategory: "Production", tier: "2", rhetoric: "ethos", value: "Strategic", status: "proposal", type: "Production", description: "Theatrical production.", metrics: ["Production scale"], contact: "Producer", email: "", strategicFit: "medium", segment: "creative" },
+
+            // COUTURE DESIGNERS (9) - Tier 2
+            { name: "Iris Van Herpen", category: "Fashion", subcategory: "Haute Couture", tier: "2", rhetoric: "pathos", value: "Creative Collab", status: "proposal", type: "Tech-Couture", description: "Tech-couture pioneer, 3D printing fashion.", metrics: ["Tech-couture", "3D printing", "Avant-garde"], contact: "Atelier", email: "", strategicFit: "high", segment: "creative", city: "Amsterdam" },
+            { name: "Schiaparelli", category: "Fashion", subcategory: "Haute Couture", tier: "2", rhetoric: "pathos", value: "Creative Collab", status: "proposal", type: "Surrealist Fashion", description: "Surrealist theatrical fashion.", metrics: ["Surrealist", "Celebrity", "Iconic"], contact: "Creative Team", email: "", strategicFit: "high", segment: "creative", city: "Paris" },
+            { name: "Rahul Mishra", category: "Fashion", subcategory: "Sustainable Couture", tier: "2", rhetoric: "pathos", value: "Creative Collab", status: "proposal", type: "Sustainable Couture", description: "Sustainable Indian haute couture.", metrics: ["Sustainability", "Indian craft"], contact: "Atelier", email: "", strategicFit: "high", segment: "creative", city: "New Delhi" },
+            { name: "Guo Pei", category: "Fashion", subcategory: "Chinese Couture", tier: "2", rhetoric: "pathos", value: "Creative Collab", status: "proposal", type: "Chinese Couture", description: "Chinese haute couture master. Met Gala.", metrics: ["Chinese culture", "Met Gala"], contact: "Atelier", email: "", strategicFit: "high", segment: "creative", city: "Beijing" },
+            { name: "Robert Wun", category: "Fashion", subcategory: "Avant-Garde", tier: "2", rhetoric: "pathos", value: "Creative Collab", status: "proposal", type: "Avant-Garde", description: "Hong Kong avant-garde designer.", metrics: ["Avant-garde", "Emerging voice"], contact: "Studio", email: "", strategicFit: "medium", segment: "creative", city: "London" },
+            { name: "Heaven Gaia", category: "Fashion", subcategory: "Chinese Couture", tier: "2", rhetoric: "pathos", value: "Creative Collab", status: "proposal", type: "Chinese Traditional", description: "Chinese traditional meets contemporary.", metrics: ["Chinese tradition", "Contemporary fusion"], contact: "Studio", email: "", strategicFit: "medium", segment: "creative", city: "Beijing" },
+            { name: "Mugler", category: "Fashion", subcategory: "Theatrical", tier: "2", rhetoric: "pathos", value: "Creative Collab", status: "proposal", type: "Theatrical Fashion", description: "Theatrical fashion, Casey Cadwallader era.", metrics: ["Theatrical", "Body-positive"], contact: "Brand Partnership", email: "", strategicFit: "medium", segment: "creative", city: "Paris" },
+            { name: "Ashi Studio", category: "Fashion", subcategory: "Middle Eastern", tier: "2", rhetoric: "pathos", value: "Creative Collab", status: "proposal", type: "Middle Eastern Couture", description: "Saudi haute couture.", metrics: ["Middle Eastern", "Red carpet"], contact: "Atelier", email: "", strategicFit: "medium", segment: "creative", city: "Beirut" },
+            { name: "Margiela Artisanal", category: "Fashion", subcategory: "Conceptual", tier: "2", rhetoric: "pathos", value: "Creative Collab", status: "proposal", type: "Conceptual Fashion", description: "John Galliano conceptual fashion.", metrics: ["Conceptual", "Deconstructed"], contact: "Maison", email: "", strategicFit: "medium", segment: "creative", city: "Paris" },
+
+            // STRATEGIC VCs & FAMILY OFFICES (9) - Tier 2
+            { name: "Forerunner Ventures", category: "Investment", subcategory: "Consumer VC", tier: "2", rhetoric: "ethos", value: "Series A", status: "proposal", type: "Consumer Tech VC", description: "Consumer-focused venture. Glossier, Jet.com.", metrics: ["Consumer brands", "Portfolio success"], contact: "Investment Team", email: "investments@forerunnerventures.com", strategicFit: "medium", segment: "investment" },
+            { name: "M13", category: "Investment", subcategory: "Consumer VC", tier: "2", rhetoric: "ethos", value: "Series A", status: "proposal", type: "Consumer Brand VC", description: "Consumer brand builder.", metrics: ["Brand building", "Platform support"], contact: "Investment Team", email: "team@m13.co", strategicFit: "medium", segment: "investment" },
+            { name: "Felix Capital", category: "Investment", subcategory: "European VC", tier: "2", rhetoric: "ethos", value: "Series A", status: "proposal", type: "European Lifestyle VC", description: "European lifestyle and experience.", metrics: ["European focus", "Design-forward"], contact: "Investment Team", email: "info@felixcap.com", strategicFit: "medium", segment: "investment" },
+            { name: "First Round Capital", category: "Investment", subcategory: "Seed VC", tier: "2", rhetoric: "ethos", value: "Seed+", status: "proposal", type: "Premier Seed VC", description: "Premier seed investor. Uber, Square.", metrics: ["Uber, Square", "Platform resources"], contact: "Investment Team", email: "info@firstround.com", strategicFit: "medium", segment: "investment" },
+            { name: "Antler VC", category: "Investment", subcategory: "Global VC", tier: "2", rhetoric: "ethos", value: "Strategic", status: "proposal", type: "Global Venture", description: "Global venture platform.", metrics: ["Global reach", "Founder-friendly"], contact: "Investment Team", email: "", strategicFit: "low", segment: "investment" },
+            { name: "Foundation Capital", category: "Investment", subcategory: "Enterprise VC", tier: "2", rhetoric: "ethos", value: "Series A", status: "proposal", type: "Enterprise Tech VC", description: "Enterprise technology focus.", metrics: ["Enterprise", "Platform plays"], contact: "Investment Team", email: "info@foundationcapital.com", strategicFit: "medium", segment: "investment" },
+            { name: "Khosla Ventures", category: "Investment", subcategory: "Deep Tech VC", tier: "2", rhetoric: "ethos", value: "Series A", status: "proposal", type: "Deep Tech VC", description: "Deep tech and transformative focus.", metrics: ["Deep tech", "Ambitious bets"], contact: "Investment Team", email: "", strategicFit: "high", segment: "investment" },
+
+            // ===== TIER 3: STRATEGIC (90 Partners) =====
+            
+            // GLOBAL CAPITAL (9) - Tier 3
+            { name: "PIF (Saudi)", category: "Investment", subcategory: "Sovereign Wealth", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Sovereign Wealth", description: "Saudi sovereign wealth. Vision 2030 entertainment diversification.", metrics: ["$700B+ AUM", "Vision 2030", "Entertainment"], contact: "Entertainment Division", email: "", strategicFit: "high", segment: "investment", geography: "Saudi Arabia" },
+            { name: "Wanda Group", category: "Investment", subcategory: "Chinese Conglomerate", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Chinese Entertainment", description: "Chinese entertainment/real estate. Theme parks, cinemas.", metrics: ["Theme parks", "Cinema chains"], contact: "Entertainment Division", email: "", strategicFit: "medium", segment: "investment", geography: "China" },
+            { name: "Fosun Group", category: "Investment", subcategory: "Chinese Conglomerate", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Chinese Tourism", description: "Chinese tourism. Cirque du Soleil, Club Med.", metrics: ["Club Med", "Tourism assets"], contact: "Tourism Division", email: "", strategicFit: "medium", segment: "investment", geography: "China" },
+            { name: "IDG Capital", category: "Investment", subcategory: "Chinese VC", tier: "3", rhetoric: "logos", value: "Series A", status: "proposal", type: "Chinese VC", description: "Major Chinese venture firm.", metrics: ["China expertise", "Cross-border"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment", geography: "China" },
+            { name: "Al Hokair Group", category: "Hospitality", subcategory: "Middle East", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Saudi Entertainment", description: "Saudi entertainment and hospitality.", metrics: ["Saudi market", "Entertainment venues"], contact: "Business Development", email: "", strategicFit: "medium", segment: "b2b", geography: "Saudi Arabia" },
+            { name: "Huayi Brothers", category: "Entertainment", subcategory: "Chinese Media", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Chinese Media", description: "Chinese media conglomerate. Film, theme parks.", metrics: ["Chinese cinema", "Media assets"], contact: "Partnership Team", email: "", strategicFit: "low", segment: "b2b", geography: "China" },
+            { name: "L Catterton", category: "Investment", subcategory: "Consumer PE", tier: "3", rhetoric: "logos", value: "Growth Equity", status: "proposal", type: "Consumer PE", description: "LVMH-affiliated consumer PE.", metrics: ["LVMH connection", "Luxury consumer"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment", geography: "Global" },
+            { name: "Vista Equity Partners", category: "Investment", subcategory: "Software PE", tier: "3", rhetoric: "logos", value: "Growth Equity", status: "proposal", type: "Software PE", description: "Enterprise software focus.", metrics: ["Software operations", "Scale expertise"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment", geography: "US" },
+            { name: "JAB Holdings", category: "Investment", subcategory: "Consumer Holdings", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Consumer Holding", description: "Consumer holding company.", metrics: ["Consumer brands", "Long-term holds"], contact: "Investment Team", email: "", strategicFit: "low", segment: "investment", geography: "Europe" },
+
+            // ARCHITECTURE & DEVELOPMENT (9) - Tier 3
+            { name: "Patriarche", category: "Architecture", subcategory: "French", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "French Architecture", description: "Major French architecture firm. Sustainable design.", metrics: ["French market", "Sustainable"], contact: "Partner", email: "", strategicFit: "medium", segment: "b2b", geography: "France" },
+            { name: "MAD Architecture", category: "Architecture", subcategory: "Chinese", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Chinese Architecture", description: "Ma Yansong. Chinese experimental architecture.", metrics: ["Futuristic", "Cultural"], contact: "Studio", email: "", strategicFit: "high", segment: "b2b", geography: "Beijing" },
+            { name: "Studio Paolo Ferrari", category: "Architecture", subcategory: "Hospitality Design", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Hospitality Design", description: "Luxury hospitality interiors.", metrics: ["Hospitality focus", "Luxury"], contact: "Studio", email: "", strategicFit: "medium", segment: "b2b", geography: "Toronto" },
+            { name: "XL Muse China", category: "Architecture", subcategory: "Experience Design", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Chinese Experience Design", description: "Chinese experience architecture.", metrics: ["Experience design", "China market"], contact: "Studio", email: "", strategicFit: "medium", segment: "b2b", geography: "Shanghai" },
+            { name: "Uchronia", category: "Creative", subcategory: "Experience Design", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Experience Design", description: "Immersive architecture studio.", metrics: ["Experience design", "Creative strategy"], contact: "Creative Director", email: "", strategicFit: "medium", segment: "b2b", geography: "Paris" },
+            { name: "Adre Development", category: "Real Estate", subcategory: "Development", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Development", description: "Real estate development.", metrics: ["Development scale", "Mixed-use"], contact: "Development Team", email: "", strategicFit: "low", segment: "b2b" },
+            { name: "Saint Chaffrey", category: "Real Estate", subcategory: "Resort", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Resort Development", description: "Resort development. Mountain destinations.", metrics: ["Resort development"], contact: "Development Team", email: "", strategicFit: "low", segment: "b2b", geography: "France" },
+            { name: "Higher Ring", category: "Technology", subcategory: "PropTech", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "PropTech", description: "Property technology.", metrics: ["PropTech", "Innovation"], contact: "Business Development", email: "", strategicFit: "low", segment: "b2b" },
+            { name: "NVK", category: "Creative", subcategory: "Production", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Creative Production", description: "Creative production.", metrics: ["Production", "Creative services"], contact: "Producer", email: "", strategicFit: "low", segment: "creative" },
+
+            // TECH, IoT & FINTECH (9) - Tier 3 (includes ACTIVE)
+            { name: "Apple", category: "Technology", subcategory: "Platform", tier: "3", rhetoric: "ethos", value: "$234M", status: "active", type: "Platform Partnership", description: "Largest active partnership. Spatial computing integration.", metrics: ["$234M partnership", "Vision Pro"], contact: "Enterprise Partnership", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "MIT Media Lab", category: "Academic", subcategory: "Research", tier: "3", rhetoric: "ethos", value: "Research", status: "active", type: "Research Partnership", description: "Academic research partnership. Innovation validation.", metrics: ["Academic validation", "Research"], contact: "Research Director", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Cambridge University", category: "Academic", subcategory: "Research", tier: "3", rhetoric: "ethos", value: "Research", status: "active", type: "Research Partnership", description: "UK academic partnership.", metrics: ["UK validation", "Research depth"], contact: "Research Lead", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Popcorn", category: "Finance", subcategory: "FinTech", tier: "3", rhetoric: "ethos", value: "Strategic", status: "proposal", type: "FinTech", description: "IoT connectivity financial technology.", metrics: ["FinTech", "IoT"], contact: "Business Development", email: "", strategicFit: "low", segment: "b2b" },
+            { name: "Amalgamated Bank", category: "Finance", subcategory: "Banking", tier: "3", rhetoric: "ethos", value: "Strategic", status: "proposal", type: "Mission-Aligned Banking", description: "Values-aligned banking. B Corp.", metrics: ["B Corp", "Mission-aligned", "Union bank"], contact: "Business Banking", email: "", strategicFit: "medium", segment: "b2b" },
+            { name: "OneUnited Bank", category: "Finance", subcategory: "Banking", tier: "3", rhetoric: "ethos", value: "Strategic", status: "proposal", type: "Black-Owned Banking", description: "Largest Black-owned bank.", metrics: ["Black-owned", "Community focus"], contact: "Business Banking", email: "", strategicFit: "medium", segment: "b2b" },
+            { name: "Mayo Clinic", category: "Healthcare", subcategory: "Research", tier: "3", rhetoric: "ethos", value: "Validation", status: "active", type: "Wellness Validation", description: "Medical wellness methodology validation.", metrics: ["Medical validation", "FDA methodology"], contact: "Research Partnership", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Nelly Rodi", category: "Creative", subcategory: "Trend Forecasting", tier: "3", rhetoric: "ethos", value: "Strategic", status: "proposal", type: "Trend Forecasting", description: "French trend forecasting.", metrics: ["Trend forecasting", "Fashion intelligence"], contact: "Partnership Team", email: "", strategicFit: "low", segment: "creative", geography: "Paris" },
+            { name: "Round Room Live", category: "Entertainment", subcategory: "Live Events", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Live Entertainment", description: "Live entertainment production. Touring shows.", metrics: ["Live events", "Touring shows"], contact: "Producer", email: "", strategicFit: "medium", segment: "b2b" },
+
+            // ADDITIONAL ACTIVE PARTNERSHIPS
+            { name: "PASQAL", category: "Technology", subcategory: "Quantum", tier: "3", rhetoric: "ethos", value: "$45M", status: "active", type: "Quantum Computing Exclusive", description: "10-year quantum computing exclusive. 10,000x speedup.", metrics: ["10-year exclusive", "10,000x speedup", "$45M"], contact: "CEO", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Anthropic", category: "Technology", subcategory: "AI", tier: "3", rhetoric: "ethos", value: "$45M", status: "active", type: "AI Partnership", description: "L.I.L.L.I.A.N. emotional AI partnership. 92% accuracy.", metrics: ["92% emotion detection", "L.I.L.L.I.A.N. AI", "$45M"], contact: "Partnership Team", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "3M Industrial", category: "Manufacturing", subcategory: "Materials", tier: "3", rhetoric: "ethos", value: "$12M", status: "active", type: "Materials Partnership", description: "Industrial materials partnership.", metrics: ["$12M value", "Materials innovation"], contact: "Industrial Solutions", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Warner Bros", category: "Entertainment", subcategory: "IP", tier: "3", rhetoric: "logos", value: "Revenue Share", status: "active", type: "IP Integration", description: "Major IP integration partnership.", metrics: ["Major IPs", "Revenue share"], contact: "Business Affairs", email: "", strategicFit: "high", segment: "b2b" },
+
+            // ADDITIONAL INVESTORS TO REACH 52
+            { name: "Kapor Capital", category: "Investment", subcategory: "Impact VC", tier: "3", rhetoric: "pathos", value: "Strategic", status: "proposal", type: "Impact Tech VC", description: "Gap-closing tech startups.", metrics: ["Impact tech", "Gap-closing"], contact: "Investment Team", email: "", strategicFit: "high", segment: "investment" },
+            { name: "Cross Culture Ventures", category: "Investment", subcategory: "Impact VC", tier: "3", rhetoric: "pathos", value: "Strategic", status: "proposal", type: "Multicultural VC", description: "Multicultural founders focus.", metrics: ["Multicultural", "Consumer focus"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+            { name: "Precursor Ventures", category: "Investment", subcategory: "Seed VC", tier: "3", rhetoric: "pathos", value: "Seed", status: "proposal", type: "Pre-Seed VC", description: "Pre-seed diverse founders.", metrics: ["Pre-seed", "Diverse founders"], contact: "Charles Hudson", email: "", strategicFit: "medium", segment: "investment" },
+            { name: "Base10 Partners", category: "Investment", subcategory: "Impact VC", tier: "3", rhetoric: "pathos", value: "Series A", status: "proposal", type: "Advancement VC", description: "Automation benefiting real economy.", metrics: ["Real economy", "Advancement"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+            { name: "Lightspeed Venture Partners", category: "Investment", subcategory: "Mega VC", tier: "3", rhetoric: "ethos", value: "Series A+", status: "proposal", type: "Enterprise VC", description: "Enterprise and consumer.", metrics: ["Enterprise", "Consumer"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+            { name: "General Catalyst", category: "Investment", subcategory: "Mega VC", tier: "3", rhetoric: "ethos", value: "Series A+", status: "proposal", type: "Transformative VC", description: "Transformative company focus.", metrics: ["Transformative", "Platform"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+            { name: "NEA", category: "Investment", subcategory: "Mega VC", tier: "3", rhetoric: "ethos", value: "Series A+", status: "proposal", type: "Multi-Stage VC", description: "Multi-stage investments.", metrics: ["Multi-stage", "$25B+ AUM"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+            { name: "Greylock Partners", category: "Investment", subcategory: "Enterprise VC", tier: "3", rhetoric: "ethos", value: "Series A", status: "proposal", type: "Enterprise VC", description: "Enterprise-focused.", metrics: ["Enterprise", "Reid Hoffman"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+            { name: "Benchmark", category: "Investment", subcategory: "Elite VC", tier: "3", rhetoric: "ethos", value: "Series A", status: "proposal", type: "Elite Seed/A VC", description: "Small fund, big returns.", metrics: ["Elite returns", "Hands-on"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+            { name: "Index Ventures", category: "Investment", subcategory: "European VC", tier: "3", rhetoric: "ethos", value: "Series A+", status: "proposal", type: "European Elite VC", description: "European elite venture.", metrics: ["European", "Global portfolio"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+            { name: "Tiger Global", category: "Investment", subcategory: "Crossover", tier: "3", rhetoric: "logos", value: "Growth", status: "proposal", type: "Crossover Fund", description: "Crossover public/private.", metrics: ["Crossover", "Fast decisions"], contact: "Investment Team", email: "", strategicFit: "low", segment: "investment" },
+            { name: "Temasek Holdings", category: "Investment", subcategory: "Sovereign", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Singapore Sovereign", description: "Singapore sovereign wealth.", metrics: ["Singapore", "Long-term"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment", geography: "Singapore" },
+            { name: "GIC", category: "Investment", subcategory: "Sovereign", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Singapore Sovereign", description: "Singapore GIC.", metrics: ["Sovereign wealth", "Global reach"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment", geography: "Singapore" },
+            { name: "Mubadala", category: "Investment", subcategory: "Sovereign", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "UAE Sovereign", description: "UAE sovereign wealth.", metrics: ["UAE", "Entertainment interests"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment", geography: "UAE" },
+            { name: "ADIA", category: "Investment", subcategory: "Sovereign", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Abu Dhabi Sovereign", description: "Abu Dhabi Investment Authority.", metrics: ["Sovereign wealth", "Diversified"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment", geography: "UAE" },
+            { name: "QIA", category: "Investment", subcategory: "Sovereign", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Qatar Sovereign", description: "Qatar Investment Authority.", metrics: ["Qatar", "Entertainment"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment", geography: "Qatar" },
+
+            // ADDITIONAL B2B TO REACH 48
+            { name: "Marriott International", category: "Hospitality", subcategory: "Global", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Global Hospitality", description: "World's largest hotel company.", metrics: ["8,000+ properties", "Global reach"], contact: "Innovation Team", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "IHG", category: "Hospitality", subcategory: "Global", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Global Hospitality", description: "InterContinental Hotels Group.", metrics: ["6,000+ hotels", "17 brands"], contact: "Innovation Team", email: "", strategicFit: "medium", segment: "b2b" },
+            { name: "Mandarin Oriental", category: "Hospitality", subcategory: "Ultra-Luxury", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Ultra-Luxury", description: "Luxury Asian hospitality.", metrics: ["40+ properties", "Asia strength"], contact: "Innovation Team", email: "", strategicFit: "medium", segment: "b2b" },
+            { name: "Universal Parks", category: "Entertainment", subcategory: "Theme Parks", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Theme Park", description: "Universal Studios theme parks.", metrics: ["IP integration", "Innovation focus"], contact: "Strategic Partnerships", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Disney Parks", category: "Entertainment", subcategory: "Theme Parks", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Theme Park", description: "Disney theme park division.", metrics: ["Industry leader", "Global reach"], contact: "Strategic Partnerships", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Merlin Entertainments", category: "Entertainment", subcategory: "Theme Parks", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Attractions", description: "LEGOLAND, Madame Tussauds.", metrics: ["130+ attractions", "Europe strength"], contact: "Business Development", email: "", strategicFit: "medium", segment: "b2b" },
+            { name: "SeaWorld Parks", category: "Entertainment", subcategory: "Theme Parks", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Theme Park", description: "SeaWorld theme parks.", metrics: ["12 parks", "Innovation needs"], contact: "Business Development", email: "", strategicFit: "medium", segment: "b2b" },
+            { name: "Cedar Fair", category: "Entertainment", subcategory: "Theme Parks", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Regional Theme Parks", description: "Regional amusement parks.", metrics: ["13 parks", "Regional US"], contact: "Business Development", email: "", strategicFit: "medium", segment: "b2b" },
+
+            // ADDITIONAL CREATIVE TO REACH 44
+            { name: "A24 Films", category: "Entertainment", subcategory: "Film", tier: "3", rhetoric: "pathos", value: "IP Partnership", status: "proposal", type: "Film Studio", description: "Indie film powerhouse. Everything Everywhere.", metrics: ["Oscar winner", "Cultural cachet"], contact: "Business Development", email: "", strategicFit: "high", segment: "creative" },
+            { name: "Gentle Monster", category: "Creative", subcategory: "Retail Experience", tier: "3", rhetoric: "pathos", value: "Strategic", status: "proposal", type: "Experiential Retail", description: "Korean experiential eyewear. Store as art.", metrics: ["Korean design", "Experiential retail"], contact: "Business Development", email: "", strategicFit: "medium", segment: "creative" },
+            { name: "AREA15", category: "Creative", subcategory: "Experience Venue", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Experience Venue", description: "Las Vegas experience district.", metrics: ["Vegas venue", "Multiple tenants"], contact: "Business Development", email: "", strategicFit: "high", segment: "creative" },
+            // ADDITIONAL PARTNERS TO COMPLETE 144
+            { name: "Regent Hotels (IHG)", category: "Hospitality", subcategory: "Ultra-Luxury", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Luxury Hospitality", description: "IHG ultra-luxury brand. Asian heritage.", metrics: ["Ultra-luxury", "Asia strength"], contact: "Brand Partnership", email: "", strategicFit: "medium", segment: "b2b" },
+            ];
+
+        // ==================== RELATIONSHIP SCORE ALGORITHM ====================
+        function calculateRelationshipScore(partner) {
+            let score = 0;
+            const tierScores = { '1': 35, '2': 23, '3': 12 };
+            score += tierScores[partner.tier] || 10;
+            const statusScores = { 'active': 25, 'meeting': 22, 'responded': 20, 'sent': 15, 'pending': 12, 'proposal': 8 };
+            score += statusScores[partner.status] || 5;
+            const fitScores = { 'high': 20, 'medium': 12, 'low': 5 };
+            score += fitScores[partner.strategicFit] || 10;
+            // Engagement bonus
+            if (partner.status === 'active') score += 15;
+            return Math.min(score, 100);
+        }
+
+        function getScoreCategory(score) {
+            if (score >= 80) return 'hot';
+            if (score >= 60) return 'warm';
+            if (score >= 40) return 'cool';
+            return 'cold';
+        }
+
+        // ==================== STATE ====================
+        let currentSearch = '';
+        let currentCategoryFilter = 'all';
+        let currentTierFilter = 'all';
+        let currentScoreFilter = 'all';
+
+        // ==================== INITIALIZATION ====================
+        document.addEventListener('DOMContentLoaded', function() {
+            updateAllCounts();
+            renderPriorityPartners();
+            renderPipeline();
+            renderActions();
+            renderCategoryGrids();
+            renderRhetoricGrids();
+        });
+
+        function updateAllCounts() {
+            const total = partners.length;
+            document.getElementById('totalPartners').textContent = total;
+            document.getElementById('totalBadge').textContent = total + ' PARTNERS';
+            document.getElementById('partnerCountTab').textContent = total;
+            
+            // Segment counts
+            const invCount = partners.filter(p => p.segment === 'investment').length;
+            const b2bCount = partners.filter(p => p.segment === 'b2b').length;
+            const creativeCount = partners.filter(p => p.segment === 'creative').length;
+            document.getElementById('investmentCount').textContent = invCount;
+            document.getElementById('b2bCount').textContent = b2bCount;
+            document.getElementById('creativeCount').textContent = creativeCount;
+            document.getElementById('invTabCount').textContent = invCount;
+            document.getElementById('b2bTabCount').textContent = b2bCount;
+            document.getElementById('creativeTabCount').textContent = creativeCount;
+            
+            // Rhetoric counts
+            document.getElementById('ethosCount').textContent = partners.filter(p => p.rhetoric === 'ethos').length;
+            document.getElementById('pathosCount').textContent = partners.filter(p => p.rhetoric === 'pathos').length;
+            document.getElementById('logosCount').textContent = partners.filter(p => p.rhetoric === 'logos').length;
+            
+            // Active deals
+            document.getElementById('activeDeals').textContent = partners.filter(p => p.status === 'active').length;
+            
+            // Score categories
+            let hot = 0, warm = 0, cool = 0, cold = 0;
+            partners.forEach(p => {
+                const score = calculateRelationshipScore(p);
+                const category = getScoreCategory(score);
+                if (category === 'hot') hot++;
+                else if (category === 'warm') warm++;
+                else if (category === 'cool') cool++;
+                else cold++;
+            });
+            document.getElementById('hotCount').textContent = hot;
+            document.getElementById('warmCount').textContent = warm;
+            document.getElementById('coolCount').textContent = cool;
+            document.getElementById('coldCount').textContent = cold;
+            
+            // Average score
+            const avgScore = Math.round(partners.reduce((sum, p) => sum + calculateRelationshipScore(p), 0) / total);
+            document.getElementById('avgScore').textContent = avgScore;
+        }
+
+        // ==================== RENDER FUNCTIONS ====================
+        function renderPartnerCard(partner) {
+            const score = calculateRelationshipScore(partner);
+            const scoreCategory = getScoreCategory(score);
+            const rhetoricClass = partner.rhetoric ? `${partner.rhetoric}-card` : '';
+            
+            return `
+                <div class="partner-card ${rhetoricClass}" onclick="showPartnerDetails('${partner.name.replace(/'/g, "\\'")}')">
+                    <div class="partner-score ${scoreCategory}">${score}</div>
+                    <div class="partner-header">
+                        <div>
+                            <div class="partner-name">${partner.name}</div>
+                            <div class="category-tag">${partner.category}${partner.subcategory ? ' • ' + partner.subcategory : ''}</div>
+                        </div>
+                        <div class="partner-badges">
+                            ${partner.tier ? `<span class="tier-badge tier-${partner.tier}">T${partner.tier}</span>` : ''}
+                            ${partner.rhetoric ? `<span class="rhetoric-badge ${partner.rhetoric}">${partner.rhetoric.toUpperCase()}</span>` : ''}
+                        </div>
+                    </div>
+                    <div class="partner-value">${partner.value}</div>
+                    <p class="partner-description">${partner.description}</p>
+                    <div class="partner-metrics">
+                        ${partner.metrics.slice(0, 3).map(m => `<span class="metric">${m}</span>`).join('')}
+                    </div>
+                    ${partner.contact ? `<div class="partner-contact">📧 ${partner.contact}</div>` : ''}
+                    <span class="outreach-status status-${partner.status}">
+                        <span class="status-indicator"></span>
+                        ${partner.status.charAt(0).toUpperCase() + partner.status.slice(1)}
+                    </span>
+                </div>
+            `;
+        }
+
+        function renderPriorityPartners() {
+            const container = document.getElementById('priorityPartners');
+            if (!container) return;
+            const sorted = [...partners].sort((a, b) => calculateRelationshipScore(b) - calculateRelationshipScore(a)).slice(0, 12);
+            container.innerHTML = sorted.map(p => renderPartnerCard(p)).join('');
+        }
+
+        function renderPartners() {
+            const container = document.getElementById('allPartnersGrid');
+            if (!container) return;
+
+            let filtered = [...partners];
+            if (currentSearch) {
+                const search = currentSearch.toLowerCase();
+                filtered = filtered.filter(p => 
+                    p.name.toLowerCase().includes(search) ||
+                    p.category.toLowerCase().includes(search) ||
+                    p.description.toLowerCase().includes(search) ||
+                    (p.subcategory && p.subcategory.toLowerCase().includes(search))
+                );
+            }
+            if (currentCategoryFilter !== 'all') {
+                filtered = filtered.filter(p => p.category.toLowerCase() === currentCategoryFilter);
+            }
+            if (currentTierFilter !== 'all') {
+                filtered = filtered.filter(p => p.tier === currentTierFilter);
+            }
+            if (currentScoreFilter !== 'all') {
+                filtered = filtered.filter(p => getScoreCategory(calculateRelationshipScore(p)) === currentScoreFilter);
+            }
+            filtered.sort((a, b) => calculateRelationshipScore(b) - calculateRelationshipScore(a));
+
+            container.innerHTML = filtered.length > 0 
+                ? filtered.map(p => renderPartnerCard(p)).join('')
+                : '<div class="no-results">No partners match your filters.</div>';
+            document.getElementById('displayCount').textContent = filtered.length;
+        }
+
+        function renderCategoryGrids() {
+            const investmentGrid = document.getElementById('investmentGrid');
+            if (investmentGrid) {
+                const inv = partners.filter(p => p.segment === 'investment').sort((a, b) => calculateRelationshipScore(b) - calculateRelationshipScore(a));
+                investmentGrid.innerHTML = inv.map(p => renderPartnerCard(p)).join('');
+            }
+            const b2bGrid = document.getElementById('b2bGrid');
+            if (b2bGrid) {
+                const b2b = partners.filter(p => p.segment === 'b2b').sort((a, b) => calculateRelationshipScore(b) - calculateRelationshipScore(a));
+                b2bGrid.innerHTML = b2b.map(p => renderPartnerCard(p)).join('');
+            }
+            const creativeGrid = document.getElementById('creativeGrid');
+            if (creativeGrid) {
+                const creative = partners.filter(p => p.segment === 'creative').sort((a, b) => calculateRelationshipScore(b) - calculateRelationshipScore(a));
+                creativeGrid.innerHTML = creative.map(p => renderPartnerCard(p)).join('');
+            }
+        }
+
+        function renderRhetoricGrids() {
+            const ethosGrid = document.getElementById('ethosGrid');
+            if (ethosGrid) {
+                const ethos = partners.filter(p => p.rhetoric === 'ethos').sort((a, b) => calculateRelationshipScore(b) - calculateRelationshipScore(a));
+                ethosGrid.innerHTML = ethos.map(p => renderPartnerCard(p)).join('');
+            }
+            const pathosGrid = document.getElementById('pathosGrid');
+            if (pathosGrid) {
+                const pathos = partners.filter(p => p.rhetoric === 'pathos').sort((a, b) => calculateRelationshipScore(b) - calculateRelationshipScore(a));
+                pathosGrid.innerHTML = pathos.map(p => renderPartnerCard(p)).join('');
+            }
+            const logosGrid = document.getElementById('logosGrid');
+            if (logosGrid) {
+                const logos = partners.filter(p => p.rhetoric === 'logos').sort((a, b) => calculateRelationshipScore(b) - calculateRelationshipScore(a));
+                logosGrid.innerHTML = logos.map(p => renderPartnerCard(p)).join('');
+            }
+        }
+
+        function renderPipeline() {
+            const pipeline = document.getElementById('pipelineBar');
+            if (!pipeline) return;
+            const counts = {
+                pending: partners.filter(p => p.status === 'pending' || p.status === 'proposal').length,
+                sent: partners.filter(p => p.status === 'sent').length,
+                responded: partners.filter(p => p.status === 'responded').length,
+                meeting: partners.filter(p => p.status === 'meeting').length,
+                closed: partners.filter(p => p.status === 'closed' || p.status === 'active').length
+            };
+            const total = Object.values(counts).reduce((a, b) => a + b, 0);
+            pipeline.innerHTML = `
+                <div class="pipeline-segment pipeline-pending" style="width: ${(counts.pending / total) * 100}%">${counts.pending}</div>
+                <div class="pipeline-segment pipeline-sent" style="width: ${(counts.sent / total) * 100}%">${counts.sent || ''}</div>
+                <div class="pipeline-segment pipeline-responded" style="width: ${(counts.responded / total) * 100}%">${counts.responded || ''}</div>
+                <div class="pipeline-segment pipeline-meeting" style="width: ${(counts.meeting / total) * 100}%">${counts.meeting || ''}</div>
+                <div class="pipeline-segment pipeline-closed" style="width: ${(counts.closed / total) * 100}%">${counts.closed}</div>
+            `;
+        }
+
+        function renderActions() {
+            const urgent = partners.filter(p => p.tier === '1' && p.status !== 'active').sort((a, b) => calculateRelationshipScore(b) - calculateRelationshipScore(a)).slice(0, 10);
+            const standard = partners.filter(p => p.tier === '2' && p.status !== 'active').sort((a, b) => calculateRelationshipScore(b) - calculateRelationshipScore(a)).slice(0, 10);
+            
+            document.getElementById('urgentActions').textContent = urgent.length;
+            document.getElementById('standardActions').textContent = standard.length;
+            document.getElementById('scheduledActions').textContent = partners.filter(p => p.tier === '3' && p.status !== 'active').length;
+
+            document.getElementById('urgentActionsList').innerHTML = urgent.map(p => `
+                <div class="action-card urgent" onclick="showPartnerDetails('${p.name.replace(/'/g, "\\'")}')">
+                    <div class="action-header">
+                        <span class="action-partner">${p.name}</span>
+                        <span class="action-urgency urgent">Tier 1</span>
+                    </div>
+                    <div class="action-type">→ Send initial pitch (${p.rhetoric.toUpperCase()} approach)</div>
+                    <div class="action-reason">${p.type} • ${p.value}</div>
+                </div>
+            `).join('') || '<div class="no-results">All Tier 1 partners contacted!</div>';
+
+            document.getElementById('standardActionsList').innerHTML = standard.map(p => `
+                <div class="action-card standard" onclick="showPartnerDetails('${p.name.replace(/'/g, "\\'")}')">
+                    <div class="action-header">
+                        <span class="action-partner">${p.name}</span>
+                        <span class="action-urgency standard">Tier 2</span>
+                    </div>
+                    <div class="action-type">→ Research & prepare outreach</div>
+                </div>
+            `).join('') || '<div class="no-results">All Tier 2 partners in pipeline.</div>';
+        }
+
+        // ==================== MODAL ====================
+        function showPartnerDetails(partnerName) {
+            const partner = partners.find(p => p.name === partnerName);
+            if (!partner) return;
+            const score = calculateRelationshipScore(partner);
+            const scoreCategory = getScoreCategory(score);
+
+            const modal = document.getElementById('partnerModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+
+            modalTitle.textContent = partner.name;
+            modalBody.innerHTML = `
+                <div class="modal-section">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <div style="font-size: 20px; font-weight: bold; color: var(--aether-gold); margin-bottom: 5px;">${partner.name}</div>
+                            <div style="font-size: 11px; color: var(--text-secondary);">${partner.category} • ${partner.subcategory || 'General'} • Tier ${partner.tier}</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; background: var(--score-${scoreCategory}); color: white;">${score}</div>
+                            <div style="font-size: 9px; color: var(--text-secondary); text-transform: uppercase; margin-top: 3px;">${scoreCategory}</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 8px; margin-top: 12px;">
+                        <span class="rhetoric-badge ${partner.rhetoric}">${partner.rhetoric ? partner.rhetoric.toUpperCase() : ''}</span>
+                        <span class="outreach-status status-${partner.status}"><span class="status-indicator"></span>${partner.status}</span>
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <div style="font-size: 22px; font-weight: bold; color: var(--aether-blue); margin-bottom: 8px;">${partner.value}</div>
+                    <p style="margin-bottom: 8px;"><strong>${partner.type}</strong></p>
+                    <p style="line-height: 1.5;">${partner.description}</p>
+                    <div class="partner-metrics" style="margin-top: 12px;">
+                        ${partner.metrics.map(m => `<span class="metric">${m}</span>`).join('')}
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <h4>📋 Contact Information</h4>
+                    ${partner.contact ? `<p><strong>Contact:</strong> ${partner.contact}</p>` : '<p>Contact research needed</p>'}
+                    ${partner.email ? `<p><strong>Email:</strong> <a href="mailto:${partner.email}" style="color: var(--aether-blue);">${partner.email}</a></p>` : ''}
+                    ${partner.geography ? `<p><strong>Geography:</strong> ${partner.geography}</p>` : ''}
+                    ${partner.city ? `<p><strong>City:</strong> ${partner.city}</p>` : ''}
+                </div>
+                <div class="modal-section">
+                    <h4>🎯 Recommended Approach</h4>
+                    <p>Lead with <strong style="color: var(--${partner.rhetoric}-color);">${partner.rhetoric ? partner.rhetoric.toUpperCase() : 'ETHOS'}</strong> framework.</p>
+                    <p style="font-size: 11px; margin-top: 8px;">
+                    ${partner.rhetoric === 'ethos' ? 'Open with technical credibility. Reference Apple ($234M), PASQAL (quantum), MIT/Cambridge validation. Lead with 164% ROI and 99.2% uptime metrics.' : ''}
+                    ${partner.rhetoric === 'pathos' ? 'Lead with founding story (Disneyland proximity). Use democratization and transformation language. Reference Ma\'at philosophy and B Corp commitment.' : ''}
+                    ${partner.rhetoric === 'logos' ? 'Start with specific metrics: 15-20% RevPAR lift, 164% ROI, $27-$396 pricing tiers. Include clear timeline to results (18-24 months).' : ''}
+                    </p>
+                </div>
+            `;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('partnerModal').classList.remove('active');
+        }
+
+        // ==================== TAB NAVIGATION ====================
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+
+            if (tabId === 'partners') renderPartners();
+            else if (tabId === 'dashboard') { renderPriorityPartners(); renderPipeline(); }
+            else if (tabId === 'actions') renderActions();
+            else if (tabId === 'investment' || tabId === 'b2b' || tabId === 'creative') renderCategoryGrids();
+            else if (tabId === 'ethos' || tabId === 'pathos' || tabId === 'logos') renderRhetoricGrids();
+        }
+
+        // ==================== FILTERING ====================
+        function filterPartners() { currentSearch = document.getElementById('partnerSearch').value; renderPartners(); }
+        function filterByCategory(cat, btn) {
+            document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentCategoryFilter = cat;
+            renderPartners();
+        }
+        function filterByTier(tier, btn) {
+            document.querySelectorAll('[data-tier]').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentTierFilter = tier;
+            renderPartners();
+        }
+        function filterByScore(score, btn) {
+            document.querySelectorAll('[data-score]').forEach(b => b.classList.remove('active'));
+            if (currentScoreFilter === score) { currentScoreFilter = 'all'; }
+            else { btn.classList.add('active'); currentScoreFilter = score; }
+            renderPartners();
+        }
+        function filterByScoreCategory(cat) {
+            currentScoreFilter = cat;
+            showTab('partners');
+            setTimeout(() => {
+                document.querySelectorAll('[data-score]').forEach(b => { b.classList.remove('active'); if (b.dataset.score === cat) b.classList.add('active'); });
+                renderPartners();
+            }, 100);
+        }
+        function filterInvestment(val) {
+            const grid = document.getElementById('investmentGrid');
+            let filtered = partners.filter(p => p.segment === 'investment');
+            if (val) { const s = val.toLowerCase(); filtered = filtered.filter(p => p.name.toLowerCase().includes(s) || p.description.toLowerCase().includes(s)); }
+            filtered.sort((a, b) => calculateRelationshipScore(b) - calculateRelationshipScore(a));
+            grid.innerHTML = filtered.map(p => renderPartnerCard(p)).join('');
+        }
+        function filterB2B(val) {
+            const grid = document.getElementById('b2bGrid');
+            let filtered = partners.filter(p => p.segment === 'b2b');
+            if (val) { const s = val.toLowerCase(); filtered = filtered.filter(p => p.name.toLowerCase().includes(s) || p.description.toLowerCase().includes(s)); }
+            filtered.sort((a, b) => calculateRelationshipScore(b) - calculateRelationshipScore(a));
+            grid.innerHTML = filtered.map(p => renderPartnerCard(p)).join('');
+        }
+        function filterCreative(val) {
+            const grid = document.getElementById('creativeGrid');
+            let filtered = partners.filter(p => p.segment === 'creative');
+            if (val) { const s = val.toLowerCase(); filtered = filtered.filter(p => p.name.toLowerCase().includes(s) || p.description.toLowerCase().includes(s)); }
+            filtered.sort((a, b) => calculateRelationshipScore(b) - calculateRelationshipScore(a));
+            grid.innerHTML = filtered.map(p => renderPartnerCard(p)).join('');
+        }
+
+        // ==================== EXPORT ====================
+        function exportToCSV() {
+            const headers = ['Name','Category','Subcategory','Tier','Rhetoric','Segment','Value','Status','Type','Description','Contact','Email','Score','Strategic Fit'];
+            const rows = partners.map(p => [
+                p.name, p.category, p.subcategory || '', p.tier, p.rhetoric, p.segment, p.value, p.status, p.type,
+                `"${p.description.replace(/"/g, '""')}"`, p.contact || '', p.email || '', calculateRelationshipScore(p), p.strategicFit
+            ]);
+            const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+            downloadFile(csv, 'aether_144_partners.csv', 'text/csv');
+            alert('✅ All ' + partners.length + ' partners exported!');
+        }
+        function exportToJSON() {
+            const data = partners.map(p => ({ ...p, relationshipScore: calculateRelationshipScore(p), scoreCategory: getScoreCategory(calculateRelationshipScore(p)) }));
+            downloadFile(JSON.stringify(data, null, 2), 'aether_144_partners.json', 'application/json');
+            alert('✅ JSON exported!');
+        }
+        function exportHotLeadsCSV() {
+            const hot = partners.filter(p => getScoreCategory(calculateRelationshipScore(p)) === 'hot');
+            const headers = ['Name','Category','Tier','Rhetoric','Value','Status','Score','Contact','Email'];
+            const rows = hot.map(p => [p.name, p.category, p.tier, p.rhetoric, p.value, p.status, calculateRelationshipScore(p), p.contact || '', p.email || '']);
+            const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+            downloadFile(csv, 'aether_hot_leads.csv', 'text/csv');
+            alert('✅ ' + hot.length + ' hot leads exported!');
+        }
+        function downloadFile(content, filename, type) {
+            const blob = new Blob([content], { type });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = filename;
+            document.body.appendChild(a); a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        function showHotLeads() {
+            currentScoreFilter = 'hot';
+            showTab('partners');
+            setTimeout(() => {
+                document.querySelectorAll('[data-score]').forEach(b => { b.classList.remove('active'); if (b.dataset.score === 'hot') b.classList.add('active'); });
+                renderPartners();
+            }, 100);
+        }
+
+        // ==================== TEMPLATE ====================
+        function copyTemplate(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            navigator.clipboard.writeText(el.innerText).then(() => alert('✅ Template copied!')).catch(err => console.error(err));
+        }
+
+        // ==================== EVENTS ====================
+        document.getElementById('partnerModal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+    </script>
+</body>
+</html>

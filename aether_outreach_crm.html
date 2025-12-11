@@ -1,0 +1,2328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AETHER Strategic Outreach CRM v7.0</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --aether-gold: #d4af37;
+            --aether-blue: #667eea;
+            --aether-purple: #764ba2;
+            --aether-pink: #f093fb;
+            --text-primary: #fff;
+            --text-secondary: #a0a0a0;
+            --bg-dark: #1a1a2e;
+            --bg-card: rgba(255,255,255,0.05);
+            --font-mono: 'Consolas', 'Monaco', 'Courier New', monospace;
+            --tier-1: #e74c3c;
+            --tier-2: #f39c12;
+            --tier-3: #3498db;
+            --status-pending: #f39c12;
+            --status-sent: #3498db;
+            --status-responded: #2ecc71;
+            --status-meeting: #9b59b6;
+            --status-closed: #1abc9c;
+            --status-active: #2ecc71;
+            --status-proposal: #f39c12;
+            --win95-gray: #c0c0c0;
+            --win95-dark: #808080;
+            --win95-blue: #000080;
+        }
+
+        body {
+            font-family: 'MS Sans Serif', 'Microsoft Sans Serif', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: var(--text-primary);
+            padding: 15px;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* ========== WINDOW CHROME ========== */
+        .window {
+            background: var(--win95-gray);
+            border: 2px solid;
+            border-color: #fff #000 #000 #fff;
+            box-shadow: 4px 4px 20px rgba(0,0,0,0.5);
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .title-bar {
+            background: linear-gradient(180deg, #000080 0%, #1084d0 100%);
+            color: white;
+            padding: 5px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .title-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .title-bar-left img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 3px;
+        }
+
+        .control-btn {
+            width: 18px;
+            height: 18px;
+            border: 2px solid;
+            border-color: #fff #000 #000 #fff;
+            background: var(--win95-gray);
+            cursor: pointer;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .control-btn:active {
+            border-color: #000 #fff #fff #000;
+        }
+
+        /* ========== MENU BAR ========== */
+        .menu-bar {
+            background: var(--win95-gray);
+            border-bottom: 1px solid #fff;
+            padding: 3px 8px;
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+        }
+
+        .menu-item {
+            cursor: pointer;
+            padding: 2px 8px;
+            color: #000;
+        }
+
+        .menu-item:hover {
+            background: var(--win95-blue);
+            color: white;
+        }
+
+        /* ========== TAB NAVIGATION ========== */
+        .tab-bar {
+            background: var(--win95-gray);
+            padding: 8px 8px 0 8px;
+            display: flex;
+            gap: 2px;
+            border-bottom: 2px solid var(--win95-dark);
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 8px 18px;
+            background: var(--win95-gray);
+            border: 2px solid;
+            border-color: #fff #000 #000 #fff;
+            border-bottom: none;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: -2px;
+            transition: all 0.15s;
+            color: #000;
+        }
+
+        .tab:hover {
+            background: #d4d4d4;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--aether-gold);
+            border-color: var(--aether-gold) #000 #1a1a2e #fff;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ========== CONTENT AREA ========== */
+        .content-area {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 25px;
+            min-height: 750px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ========== SEARCH & FILTERS ========== */
+        .search-filter-bar {
+            background: rgba(0,0,0,0.3);
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 220px;
+            padding: 10px 15px;
+            border: 2px solid;
+            border-color: var(--win95-dark) #fff #fff var(--win95-dark);
+            background: white;
+            font-family: inherit;
+            font-size: 13px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid;
+            border-color: #fff #000 #000 #fff;
+            background: var(--win95-gray);
+            cursor: pointer;
+            font-size: 11px;
+            font-family: inherit;
+            color: #000;
+            transition: all 0.15s;
+        }
+
+        .filter-btn:hover {
+            background: #d4d4d4;
+        }
+
+        .filter-btn:active, .filter-btn.active {
+            border-color: #000 #fff #fff #000;
+            background: var(--aether-blue);
+            color: white;
+        }
+
+        /* ========== TYPOGRAPHY ========== */
+        h2 {
+            color: var(--aether-gold);
+            font-size: 26px;
+            margin-bottom: 22px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--aether-gold);
+        }
+
+        h3 {
+            color: var(--aether-blue);
+            font-size: 18px;
+            margin: 28px 0 18px 0;
+        }
+
+        h4 {
+            color: var(--aether-purple);
+            font-size: 15px;
+            margin: 18px 0 10px 0;
+        }
+
+        p {
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        /* ========== STATS DASHBOARD ========== */
+        .stats-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 15px;
+            margin-bottom: 28px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 18px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .stat-value {
+            font-size: 30px;
+            font-weight: bold;
+            color: var(--aether-gold);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ========== PIPELINE VISUALIZATION ========== */
+        .pipeline-bar {
+            display: flex;
+            height: 38px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 20px 0;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .pipeline-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            color: white;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .pipeline-segment:hover {
+            filter: brightness(1.2);
+        }
+
+        .pipeline-pending { background: var(--status-pending); }
+        .pipeline-sent { background: var(--status-sent); }
+        .pipeline-responded { background: var(--status-responded); }
+        .pipeline-meeting { background: var(--status-meeting); }
+        .pipeline-closed { background: var(--status-closed); }
+
+        .pipeline-legend {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-bottom: 22px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+        }
+
+        /* ========== PARTNER CARDS GRID ========== */
+        .partner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 22px;
+            margin: 22px 0;
+        }
+
+        .partner-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 22px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .partner-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--aether-blue), var(--aether-purple));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .partner-card:hover {
+            border-color: var(--aether-gold);
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .partner-card:hover::before {
+            opacity: 1;
+        }
+
+        .partner-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .partner-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--aether-gold);
+        }
+
+        .partner-badges {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .tier-badge {
+            padding: 3px 10px;
+            font-size: 9px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: bold;
+        }
+
+        .tier-badge.tier-1 { background: var(--tier-1); color: white; }
+        .tier-badge.tier-2 { background: var(--tier-2); color: white; }
+        .tier-badge.tier-3 { background: var(--tier-3); color: white; }
+
+        .category-tag {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.3);
+            color: var(--aether-blue);
+            padding: 3px 10px;
+            font-size: 10px;
+            border-radius: 3px;
+            margin-bottom: 10px;
+        }
+
+        .partner-value {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2ecc71;
+            margin: 8px 0;
+        }
+
+        .partner-description {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .partner-metrics {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+
+        .metric {
+            background: rgba(102, 126, 234, 0.15);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            padding: 4px 10px;
+            font-size: 10px;
+            border-radius: 4px;
+            color: var(--aether-blue);
+        }
+
+        .partner-details {
+            background: rgba(0,0,0,0.2);
+            padding: 12px;
+            border-radius: 6px;
+            margin: 12px 0;
+        }
+
+        .partner-details ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .partner-details li {
+            font-size: 11px;
+            margin-bottom: 6px;
+            color: #e0e0e0;
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .partner-details li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--aether-gold);
+        }
+
+        .partner-contact {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 11px;
+        }
+
+        .partner-contact strong {
+            color: var(--aether-gold);
+        }
+
+        .outreach-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 10px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-top: 8px;
+        }
+
+        .status-indicator {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .status-pending { background: rgba(243, 156, 18, 0.2); color: #f39c12; }
+        .status-pending .status-indicator { background: #f39c12; }
+        .status-sent { background: rgba(52, 152, 219, 0.2); color: #3498db; }
+        .status-sent .status-indicator { background: #3498db; }
+        .status-responded { background: rgba(46, 204, 113, 0.2); color: #2ecc71; }
+        .status-responded .status-indicator { background: #2ecc71; }
+        .status-meeting { background: rgba(155, 89, 182, 0.2); color: #9b59b6; }
+        .status-meeting .status-indicator { background: #9b59b6; }
+        .status-closed { background: rgba(26, 188, 156, 0.2); color: #1abc9c; }
+        .status-closed .status-indicator { background: #1abc9c; }
+        .status-active { background: rgba(46, 204, 113, 0.2); color: #2ecc71; }
+        .status-active .status-indicator { background: #2ecc71; }
+        .status-proposal { background: rgba(243, 156, 18, 0.2); color: #f39c12; }
+        .status-proposal .status-indicator { background: #f39c12; }
+
+        /* ========== EMAIL TEMPLATES ========== */
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+            gap: 22px;
+            margin: 22px 0;
+        }
+
+        .email-template {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .template-header {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+            padding: 14px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .template-title {
+            color: var(--aether-gold);
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .template-target {
+            font-size: 10px;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .template-body {
+            padding: 18px;
+        }
+
+        .email-content {
+            background: rgba(0,0,0,0.3);
+            padding: 18px;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            line-height: 1.8;
+            color: #e0e0e0;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        .email-content p {
+            margin-bottom: 10px;
+            color: #e0e0e0;
+            font-size: 11px;
+        }
+
+        .email-subject {
+            background: rgba(102, 126, 234, 0.2);
+            padding: 10px 14px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            font-size: 12px;
+            color: #fff;
+        }
+
+        .template-notes {
+            background: rgba(46, 204, 113, 0.1);
+            border-left: 3px solid #2ecc71;
+            padding: 12px;
+            margin-top: 14px;
+            font-size: 11px;
+        }
+
+        .template-notes h5 {
+            color: #2ecc71;
+            margin-bottom: 8px;
+        }
+
+        .template-notes ul {
+            padding-left: 18px;
+        }
+
+        .template-notes li {
+            margin-bottom: 5px;
+            color: var(--text-secondary);
+        }
+
+        .copy-btn {
+            padding: 7px 14px;
+            background: var(--aether-gold);
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 10px;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #e9c84a;
+            transform: scale(1.05);
+        }
+
+        /* ========== COMPARISON GRIDS ========== */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+            margin: 18px 0;
+        }
+
+        .comparison-item {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            padding: 18px;
+        }
+
+        .comparison-item h4 {
+            color: var(--aether-gold);
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .comparison-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .comparison-item li {
+            font-size: 12px;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .comparison-item li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--aether-blue);
+        }
+
+        /* ========== WEEKLY CADENCE ========== */
+        .weekly-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+            margin: 20px 0;
+        }
+
+        .day-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            padding: 16px;
+            transition: all 0.3s;
+        }
+
+        .day-card:hover {
+            border-color: var(--aether-blue);
+            transform: translateY(-2px);
+        }
+
+        .day-name {
+            color: var(--aether-gold);
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .day-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .day-card li {
+            font-size: 11px;
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+            padding-left: 12px;
+            position: relative;
+        }
+
+        .day-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--aether-blue);
+        }
+
+        /* ========== HIGHLIGHT & TAKEAWAY BOXES ========== */
+        .highlight-box {
+            background: rgba(212, 175, 55, 0.15);
+            border-left: 4px solid var(--aether-gold);
+            padding: 18px;
+            margin: 18px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .highlight-box p {
+            color: #fff;
+            margin-bottom: 0;
+            font-size: 13px;
+        }
+
+        .takeaway-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 22px;
+            margin: 22px 0;
+        }
+
+        .takeaway-box p {
+            color: #e0e0e0;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--aether-gold), transparent);
+            margin: 35px 0;
+        }
+
+        /* ========== MODAL ========== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--win95-gray);
+            border: 2px solid;
+            border-color: #fff #000 #000 #fff;
+            max-width: 700px;
+            width: 100%;
+            max-height: 85vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            background: linear-gradient(180deg, #000080 0%, #1084d0 100%);
+            color: white;
+            padding: 6px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--text-primary);
+        }
+
+        .close-btn {
+            width: 18px;
+            height: 18px;
+            border: 2px solid;
+            border-color: #fff #000 #000 #fff;
+            background: var(--win95-gray);
+            cursor: pointer;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .detail-section {
+            margin: 16px 0;
+            padding: 14px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 6px;
+        }
+
+        .detail-section h3 {
+            color: var(--aether-gold);
+            margin: 0 0 10px 0;
+            font-size: 14px;
+        }
+
+        .detail-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .detail-list li {
+            font-size: 12px;
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .detail-list li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--aether-blue);
+            font-size: 8px;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: var(--win95-gray);
+            padding: 6px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: #000;
+            border-top: 2px solid #fff;
+        }
+
+        .footer-status {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* ========== NO RESULTS ========== */
+        .no-results {
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .partner-grid {
+                grid-template-columns: 1fr;
+            }
+            .template-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-dashboard {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .tab {
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="window">
+        <!-- Title Bar -->
+        <div class="title-bar">
+            <div class="title-bar-left">
+                <span>🌟</span>
+                <span>AETHER Strategic Outreach CRM v7.0</span>
+            </div>
+            <div class="window-controls">
+                <div class="control-btn">_</div>
+                <div class="control-btn">□</div>
+                <div class="control-btn">X</div>
+            </div>
+        </div>
+
+        <!-- Menu Bar -->
+        <div class="menu-bar">
+            <div class="menu-item">File</div>
+            <div class="menu-item">View</div>
+            <div class="menu-item">Partners</div>
+            <div class="menu-item">Templates</div>
+            <div class="menu-item">Analytics</div>
+            <div class="menu-item">Export</div>
+            <div class="menu-item">Help</div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-bar">
+            <div class="tab active" onclick="showTab('dashboard')">📊 Dashboard</div>
+            <div class="tab" onclick="showTab('partners')">🤝 Partners CRM</div>
+            <div class="tab" onclick="showTab('outreach')">🎯 Outreach Queue</div>
+            <div class="tab" onclick="showTab('templates')">📧 Templates</div>
+            <div class="tab" onclick="showTab('weekly')">📅 Weekly Cadence</div>
+            <div class="tab" onclick="showTab('intelligence')">🔍 Intelligence</div>
+        </div>
+
+        <div class="content-area">
+            <!-- ===================== DASHBOARD TAB ===================== -->
+            <div id="dashboard" class="tab-content active">
+                <h2>📊 Strategic Command Dashboard</h2>
+                
+                <div class="stats-dashboard">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalPartners">0</div>
+                        <div class="stat-label">Total Partners</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">$11.01B</div>
+                        <div class="stat-label">Partnership Value</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="activeDeals">0</div>
+                        <div class="stat-label">Active Deals</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="outreachQueue">0</div>
+                        <div class="stat-label">Outreach Queue</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">$75B</div>
+                        <div class="stat-label">2035 Target</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">2.8x</div>
+                        <div class="stat-label">Portfolio ROI</div>
+                    </div>
+                </div>
+
+                <h3>🔄 Pipeline Status</h3>
+                <div class="pipeline-bar" id="pipelineBar">
+                    <!-- Dynamic pipeline visualization -->
+                </div>
+                <div class="pipeline-legend">
+                    <div class="legend-item"><div class="legend-dot" style="background: var(--status-pending);"></div> Pending</div>
+                    <div class="legend-item"><div class="legend-dot" style="background: var(--status-sent);"></div> Sent</div>
+                    <div class="legend-item"><div class="legend-dot" style="background: var(--status-responded);"></div> Responded</div>
+                    <div class="legend-item"><div class="legend-dot" style="background: var(--status-meeting);"></div> Meeting</div>
+                    <div class="legend-item"><div class="legend-dot" style="background: var(--status-closed);"></div> Closed</div>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>🎯 THIS WEEK'S FOCUS:</strong> Complete 20 strategic outreach emails, 10 thoughtful follow-ups, 5 warm introductions via network. Target: 3–5 intro meetings booked.</p>
+                </div>
+
+                <h3>🔥 Immediate Priority Targets</h3>
+                <div class="partner-grid" id="priorityPartners">
+                    <!-- Dynamically populated -->
+                </div>
+
+                <div class="section-divider"></div>
+
+                <h3>📈 This Month's Targets</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-item" style="border-left: 4px solid #e74c3c;">
+                        <h4>🎯 Outreach Volume</h4>
+                        <ul>
+                            <li><strong>20</strong> new strategic outreach emails</li>
+                            <li><strong>10</strong> thoughtful follow-ups</li>
+                            <li><strong>5</strong> warm introductions via network</li>
+                            <li><strong>3–5</strong> intro meetings booked</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item" style="border-left: 4px solid #f39c12;">
+                        <h4>📊 Quality Metrics</h4>
+                        <ul>
+                            <li><strong>>40%</strong> open rate maintained</li>
+                            <li><strong>>15%</strong> response rate achieved</li>
+                            <li><strong>>8%</strong> meeting conversion rate</li>
+                            <li><strong>30min</strong> minimum research per Tier 1</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item" style="border-left: 4px solid #2ecc71;">
+                        <h4>💰 Pipeline Value</h4>
+                        <ul>
+                            <li><strong>$50M+</strong> in active conversations</li>
+                            <li><strong>$150M+</strong> in qualified pipeline</li>
+                            <li><strong>3</strong> term sheets targeted</li>
+                            <li><strong>1</strong> strategic close this quarter</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===================== PARTNERS CRM TAB ===================== -->
+            <div id="partners" class="tab-content">
+                <h2>🤝 Strategic Partner CRM</h2>
+                
+                <div class="search-filter-bar">
+                    <input type="text" class="search-input" placeholder="Search partners by name, category, or keyword..." id="partnerSearch" onkeyup="filterPartners()">
+                    <button class="filter-btn active" data-filter="all" onclick="filterByCategory('all', this)">All</button>
+                    <button class="filter-btn" data-filter="Technology" onclick="filterByCategory('Technology', this)">Technology</button>
+                    <button class="filter-btn" data-filter="Entertainment" onclick="filterByCategory('Entertainment', this)">Entertainment</button>
+                    <button class="filter-btn" data-filter="Hospitality" onclick="filterByCategory('Hospitality', this)">Hospitality</button>
+                    <button class="filter-btn" data-filter="IP" onclick="filterByCategory('IP', this)">IP/Content</button>
+                    <button class="filter-btn" data-filter="Manufacturing" onclick="filterByCategory('Manufacturing', this)">Manufacturing</button>
+                    <button class="filter-btn" data-filter="Retail" onclick="filterByCategory('Retail', this)">Retail</button>
+                    <button class="filter-btn" data-filter="Investment" onclick="filterByCategory('Investment', this)">Investment</button>
+                </div>
+
+                <div class="search-filter-bar" style="margin-top: -15px; padding-top: 10px;">
+                    <span style="color: var(--text-secondary); font-size: 11px;">Status:</span>
+                    <button class="filter-btn" data-status="all" onclick="filterByStatus('all', this)">All Status</button>
+                    <button class="filter-btn" data-status="active" onclick="filterByStatus('active', this)">Active</button>
+                    <button class="filter-btn" data-status="proposal" onclick="filterByStatus('proposal', this)">Proposal</button>
+                    <button class="filter-btn" data-status="pending" onclick="filterByStatus('pending', this)">Pending</button>
+                    <button class="filter-btn" data-status="meeting" onclick="filterByStatus('meeting', this)">Meeting</button>
+                    <button class="filter-btn" data-status="closed" onclick="filterByStatus('closed', this)">Closed</button>
+                </div>
+
+                <div class="partner-grid" id="partnersGrid">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+
+            <!-- ===================== OUTREACH QUEUE TAB ===================== -->
+            <div id="outreach" class="tab-content">
+                <h2>🎯 Outreach Queue</h2>
+                
+                <div class="highlight-box">
+                    <p><strong>OUTREACH PHILOSOPHY:</strong> Every email is coalition-building. We're not pitching—we're inviting aligned partners into proven infrastructure. Confident without arrogance, specific without jargon, visionary without delusion.</p>
+                </div>
+
+                <h3>🔥 This Week's Priority Queue</h3>
+                <div class="partner-grid" id="outreachQueue">
+                    <!-- Dynamically populated with pending status -->
+                </div>
+
+                <div class="section-divider"></div>
+
+                <h3>📬 Recently Sent (Awaiting Response)</h3>
+                <div class="partner-grid" id="sentQueue">
+                    <!-- Dynamically populated with sent status -->
+                </div>
+
+                <div class="section-divider"></div>
+
+                <h3>✅ Responded (Follow-up Required)</h3>
+                <div class="partner-grid" id="respondedQueue">
+                    <!-- Dynamically populated with responded status -->
+                </div>
+            </div>
+
+            <!-- ===================== TEMPLATES TAB ===================== -->
+            <div id="templates" class="tab-content">
+                <h2>📧 Outreach Email Templates</h2>
+
+                <div class="template-grid">
+                    <!-- TIER 1 INVESTOR TEMPLATE -->
+                    <div class="email-template">
+                        <div class="template-header">
+                            <div>
+                                <div class="template-title">🎯 Tier 1 Investor</div>
+                                <div class="template-target">For: Backstage Capital, Kapor Capital, Impact VCs</div>
+                            </div>
+                            <button class="copy-btn" onclick="copyTemplate('tier1Investor')">Copy</button>
+                        </div>
+                        <div class="template-body">
+                            <div class="email-subject">Subject: AETHER: $75B Platform Creating Economic Equity Through Experience Design</div>
+                            <div class="email-content" id="tier1Investor">
+                                <p>Dear [Name],</p>
+                                <p>I've followed [their fund's] thesis on [specific investment theme] and believe AETHER represents the infrastructure to scale that vision exponentially.</p>
+                                <p>We're building the operating system for physical reality—a phygital experience platform that transforms how humans interact with spaces, stories, and each other. Our 227-partner ecosystem represents $11.01B in partnership value, with path to $75B by 2035.</p>
+                                <p><strong>What makes this different:</strong></p>
+                                <p>• Quantum computing exclusive (PASQAL): Sub-10ms response, 10,000x optimization speedup<br>
+                                • L.I.L.L.I.A.N. AI: 92% crowd prediction accuracy, 8,400 variables per guest<br>
+                                • Manufacturing moat: 45,900 sq ft facility, 153 specialized systems, $53.5M replication barrier<br>
+                                • Impact embedded: E.L.I.A.S. Framework makes transformative experiences accessible to underserved communities</p>
+                                <p>This isn't charity with business attached—it's business architecture that creates equity at scale.</p>
+                                <p>Would 20 minutes next week work to explore alignment?</p>
+                                <p>Best,<br>
+                                Christían Charles-Harris<br>
+                                Founder & CEO, AETHER<br>
+                                AETHER.World</p>
+                            </div>
+                            <div class="template-notes">
+                                <h5>✨ Personalization Points:</h5>
+                                <ul>
+                                    <li>Reference their specific investment thesis</li>
+                                    <li>Mention portfolio companies with synergy</li>
+                                    <li>Note any shared connections or values</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HOSPITALITY PARTNERSHIP TEMPLATE -->
+                    <div class="email-template">
+                        <div class="template-header">
+                            <div>
+                                <div class="template-title">🏨 Hospitality Partnership</div>
+                                <div class="template-target">For: Ennismore, Regent, Wynn, Luxury Hotels</div>
+                            </div>
+                            <button class="copy-btn" onclick="copyTemplate('hospitalityTemplate')">Copy</button>
+                        </div>
+                        <div class="template-body">
+                            <div class="email-subject">Subject: Transforming [Property/Brand] Guest Experience with Phygital Intelligence</div>
+                            <div class="email-content" id="hospitalityTemplate">
+                                <p>Dear [Name],</p>
+                                <p>[Personalized opening referencing recent initiative, expansion, or press]</p>
+                                <p>AETHER's phygital experience platform is delivering measurable transformation for hospitality partners:</p>
+                                <p>• <strong>10-15% RevPAR increase</strong> through anticipatory personalization<br>
+                                • <strong>12-18 NPS point improvement</strong> via seamless environment adaptation<br>
+                                • <strong>18-24 month ROI</strong> on technology integration</p>
+                                <p><strong>For [their specific brand/positioning]:</strong></p>
+                                <p>Our L.I.L.L.I.A.N. system enables predictive in-suite environment adaptation, sommelier and culinary recommendation engines calibrated to individual preferences, wellness journey personalization, and cross-property guest continuity.</p>
+                                <p>Models range from technology licensing ($150K-400K/property annually) to strategic equity partnerships for portfolio-wide transformation.</p>
+                                <p>Would a 20-minute call make sense to explore fit?</p>
+                                <p>Best,<br>
+                                Christían Charles-Harris<br>
+                                Founder & CEO, AETHER</p>
+                            </div>
+                            <div class="template-notes">
+                                <h5>✨ Personalization Points:</h5>
+                                <ul>
+                                    <li>Reference their brand positioning (luxury, lifestyle, etc.)</li>
+                                    <li>Mention specific properties or markets</li>
+                                    <li>Note competitive differentiation opportunity</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ENTERTAINMENT/IP TEMPLATE -->
+                    <div class="email-template">
+                        <div class="template-header">
+                            <div>
+                                <div class="template-title">🎬 Entertainment/IP Partnership</div>
+                                <div class="template-target">For: Legendary, A24, Lune Rouge, Studios</div>
+                            </div>
+                            <button class="copy-btn" onclick="copyTemplate('entertainmentTemplate')">Copy</button>
+                        </div>
+                        <div class="template-body">
+                            <div class="email-subject">Subject: Location-Based Experience Platform for [Their IP/Brand]</div>
+                            <div class="email-content" id="entertainmentTemplate">
+                                <p>Dear [Name],</p>
+                                <p>[Reference specific IP or recent project that demonstrates their vision]</p>
+                                <p>AETHER builds the infrastructure that transforms beloved IP into physical reality. Our phygital experience platform delivers:</p>
+                                <p>• <strong>3-5x film revenue</strong> through location-based experiences<br>
+                                • <strong>95% guest satisfaction</strong> with adaptive narrative systems<br>
+                                • <strong>40% return visitor rate</strong> via personalized story branches</p>
+                                <p><strong>For [specific IP]:</strong></p>
+                                <p>We're deploying quantum-powered experience design that creates $75-150 per visitor experiences with real-time collective audience emotion detection, adaptive narrative responding to crowd energy, and individual-within-collective orchestration.</p>
+                                <p>Our technology transforms passive audiences into active participants within worlds they've only imagined.</p>
+                                <p>Would 20 minutes work to explore how [their IP] could come to life?</p>
+                                <p>Best,<br>
+                                Christían Charles-Harris<br>
+                                Founder & CEO, AETHER</p>
+                            </div>
+                            <div class="template-notes">
+                                <h5>✨ Personalization Points:</h5>
+                                <ul>
+                                    <li>Reference specific IP with enthusiasm</li>
+                                    <li>Note world-building elements perfect for phygital</li>
+                                    <li>Connect to their expansion strategy</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TECHNOLOGY PARTNERSHIP TEMPLATE -->
+                    <div class="email-template">
+                        <div class="template-header">
+                            <div>
+                                <div class="template-title">💻 Technology Partnership</div>
+                                <div class="template-target">For: Seeper, teamLab, Tech Studios</div>
+                            </div>
+                            <button class="copy-btn" onclick="copyTemplate('techTemplate')">Copy</button>
+                        </div>
+                        <div class="template-body">
+                            <div class="email-subject">Subject: Co-Development Partnership: [Their Capability] + AETHER PXE Platform</div>
+                            <div class="email-content" id="techTemplate">
+                                <p>Dear [Name],</p>
+                                <p>I've been following [their company's] work on [specific project] and see extraordinary potential for collaboration.</p>
+                                <p>AETHER has built the Physical Experience Engine (PXE)—the operating system for experiential environments. Our platform brings:</p>
+                                <p>• <strong>Real-time sensing mesh:</strong> 1,024 sensors per 100m², 10ms response<br>
+                                • <strong>Quantum processing:</strong> 10,000x optimization through PASQAL partnership<br>
+                                • <strong>Emotion detection:</strong> 92% accuracy with 8,400 variables per guest<br>
+                                • <strong>Modular infrastructure:</strong> Touring-ready for rapid deployment</p>
+                                <p><strong>Partnership models:</strong></p>
+                                <p>• Joint R&D: Integrate capabilities into unified platform<br>
+                                • Co-branded installations: Touring phygital experiences<br>
+                                • Platform licensing: Deploy AETHER PXE with your creative vision<br>
+                                • Revenue share: Aligned long-term incentives</p>
+                                <p>Would exploring technical synergies make sense?</p>
+                                <p>Best,<br>
+                                Christían Charles-Harris<br>
+                                Founder & CEO, AETHER</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QUEBEC/CULTURAL TEMPLATE -->
+                    <div class="email-template">
+                        <div class="template-header">
+                            <div>
+                                <div class="template-title">🇨🇦 Quebec/Cultural Bridge</div>
+                                <div class="template-target">For: Zú, Lune Rouge, Quebec Partners</div>
+                            </div>
+                            <button class="copy-btn" onclick="copyTemplate('quebecTemplate')">Copy</button>
+                        </div>
+                        <div class="template-body">
+                            <div class="email-subject">Subject: From a Beausoleil to Quebec's Innovation Community</div>
+                            <div class="email-content" id="quebecTemplate">
+                                <p>Bonjour [Name],</p>
+                                <p>My name is Christían Charles-Harris, and the Beausoleil heritage in my family has always connected me to Quebec's extraordinary creative spirit.</p>
+                                <p>I'm building AETHER—a phygital experience platform that transforms how humans interact with spaces and stories. Our technology creates what we call "cathedrals with bigger doors"—transformative experiences accessible to everyone, not just those who can afford theme park prices.</p>
+                                <p><strong>Why Quebec matters:</strong></p>
+                                <p>Your province's legacy in theatrical innovation (Cirque du Soleil), multimedia artistry (Moment Factory), and creative entrepreneurship represents exactly the vision we're scaling globally. The intersection of artistic excellence and technological innovation that defines Quebec culture is the DNA of what we're building.</p>
+                                <p>I would be honored to explore how AETHER might contribute to Quebec's next chapter of creative innovation.</p>
+                                <p>Avec respect,<br>
+                                Christían Charles-Harris<br>
+                                Founder & CEO, AETHER</p>
+                            </div>
+                            <div class="template-notes">
+                                <h5>✨ Cultural Authenticity:</h5>
+                                <ul>
+                                    <li>Beausoleil heritage creates authentic bridge</li>
+                                    <li>Reference Quebec creative ecosystem specifically</li>
+                                    <li>Honor the province's innovation legacy</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FOLLOW-UP SEQUENCE -->
+                    <div class="email-template">
+                        <div class="template-header">
+                            <div>
+                                <div class="template-title">🔄 Follow-Up Sequence</div>
+                                <div class="template-target">Day 4, Day 8, Day 14 Cadence</div>
+                            </div>
+                            <button class="copy-btn" onclick="copyTemplate('followupTemplate')">Copy</button>
+                        </div>
+                        <div class="template-body">
+                            <div class="email-content" id="followupTemplate">
+                                <p><strong>DAY 4 — Value-Add Follow-up:</strong></p>
+                                <p>Subject: Quick thought on [their company's] experiential opportunity</p>
+                                <p>"[Name], wanted to share a brief insight on how [relevant industry trend] aligns with what we're building. [One specific, valuable observation]. Happy to elaborate if useful."</p>
+                                <p style="margin-top: 16px;"><strong>DAY 8 — Social Proof Follow-up:</strong></p>
+                                <p>Subject: Re: [Original subject]</p>
+                                <p>"[Name], quick update—we just [recent milestone: partnership signed, technology deployed, recognition received]. Thought this might inform our conversation about [original topic]. Still interested in connecting?"</p>
+                                <p style="margin-top: 16px;"><strong>DAY 14 — Final Soft Touch:</strong></p>
+                                <p>Subject: Timing might be off</p>
+                                <p>"[Name], I know timing is everything. If now isn't right for exploring [partnership type], I completely understand. Our door remains open, and I'd welcome the chance to connect when the moment feels right. Wishing [their company] continued success with [specific initiative]."</p>
+                            </div>
+                            <div class="template-notes">
+                                <h5>⚠️ Follow-up Rules:</h5>
+                                <ul>
+                                    <li>Never more than 3 follow-ups total</li>
+                                    <li>Each follow-up adds NEW value</li>
+                                    <li>Final touch is graceful exit, not pressure</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===================== WEEKLY CADENCE TAB ===================== -->
+            <div id="weekly" class="tab-content">
+                <h2>📅 Weekly Outreach Cadence</h2>
+
+                <div class="highlight-box">
+                    <p><strong>THE 5-3-2 RULE:</strong> Each week aim for 5 new strategic conversations, 3 meaningful follow-ups, and 2 warm introductions through existing network.</p>
+                </div>
+
+                <div class="weekly-grid">
+                    <div class="day-card">
+                        <div class="day-name">📅 Monday</div>
+                        <ul>
+                            <li>Review pipeline status</li>
+                            <li>Prioritize week's targets</li>
+                            <li>Research Tier 1 contacts</li>
+                            <li>Draft 3-5 personalized emails</li>
+                        </ul>
+                    </div>
+                    <div class="day-card">
+                        <div class="day-name">📅 Tuesday</div>
+                        <ul>
+                            <li>Send morning outreach (9-10 AM)</li>
+                            <li>Follow up on pending responses</li>
+                            <li>Research Tier 2 contacts</li>
+                            <li>LinkedIn engagement</li>
+                        </ul>
+                    </div>
+                    <div class="day-card">
+                        <div class="day-name">📅 Wednesday</div>
+                        <ul>
+                            <li>Send afternoon outreach (2-3 PM)</li>
+                            <li>Schedule intro meetings</li>
+                            <li>Warm intro requests to network</li>
+                            <li>Update CRM status</li>
+                        </ul>
+                    </div>
+                    <div class="day-card">
+                        <div class="day-name">📅 Thursday</div>
+                        <ul>
+                            <li>Day 4 follow-ups</li>
+                            <li>Research for next week</li>
+                            <li>Prepare meeting materials</li>
+                            <li>Content creation for touchpoints</li>
+                        </ul>
+                    </div>
+                    <div class="day-card">
+                        <div class="day-name">📅 Friday</div>
+                        <ul>
+                            <li>Week review & metrics</li>
+                            <li>Update partner records</li>
+                            <li>Analyze response patterns</li>
+                            <li>Prepare Monday research list</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <h3>⏰ Optimal Send Times</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h4>📧 Email Timing</h4>
+                        <ul>
+                            <li><strong>Best:</strong> Tuesday-Thursday, 9-10 AM recipient time</li>
+                            <li><strong>Good:</strong> Monday-Friday, 2-3 PM recipient time</li>
+                            <li><strong>Avoid:</strong> Monday morning, Friday afternoon</li>
+                            <li><strong>Never:</strong> Weekends (unless relationship established)</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>🔄 Follow-up Cadence</h4>
+                        <ul>
+                            <li><strong>Day 4:</strong> Value-add follow-up</li>
+                            <li><strong>Day 8:</strong> Social proof follow-up</li>
+                            <li><strong>Day 14:</strong> Final soft touch</li>
+                            <li><strong>Then:</strong> Move to quarterly nurture</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>📊 Weekly Targets</h4>
+                        <ul>
+                            <li><strong>New outreach:</strong> 20 emails</li>
+                            <li><strong>Follow-ups:</strong> 10 emails</li>
+                            <li><strong>Warm intros:</strong> 5 requests</li>
+                            <li><strong>Meetings booked:</strong> 3-5</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===================== INTELLIGENCE TAB ===================== -->
+            <div id="intelligence" class="tab-content">
+                <h2>🔍 Intelligence Gathering & Research Tools</h2>
+
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h4>📧 Email Intelligence</h4>
+                        <ul>
+                            <li><strong>Apollo.io</strong> — Verified emails + LinkedIn sync</li>
+                            <li><strong>Hunter.io</strong> — Email finder by domain</li>
+                            <li><strong>LinkedIn Sales Navigator</strong> — Entertainment/VC intel</li>
+                            <li><strong>ZoomInfo</strong> — Enterprise contact database</li>
+                            <li><strong>Clearbit</strong> — Company enrichment data</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>🏢 Company Intelligence</h4>
+                        <ul>
+                            <li><strong>Crunchbase Pro</strong> — Funding rounds, investor intel</li>
+                            <li><strong>PitchBook</strong> — Private market data, LP/GP info</li>
+                            <li><strong>AngelList</strong> — Startup ecosystem mapping</li>
+                            <li><strong>Built In</strong> — Cultural intel, company values</li>
+                            <li><strong>Owler</strong> — Competitive intelligence</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>✅ Email Verification</h4>
+                        <ul>
+                            <li><strong>Hunter Email Verifier</strong> — 50 free/month</li>
+                            <li><strong>ZeroBounce</strong> — Batch verification</li>
+                            <li><strong>NeverBounce</strong> — Real-time verification</li>
+                            <li><strong>Email Verifier App</strong> — Simple, accurate</li>
+                            <li>⚠️ <strong>Never send unverified</strong> — Protects domain</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>📬 Common Email Patterns</h4>
+                        <ul>
+                            <li><strong>first@company.com</strong> (40%)</li>
+                            <li><strong>first.last@company.com</strong> (30%)</li>
+                            <li><strong>flast@company.com</strong> (20%)</li>
+                            <li><strong>firstl@company.com</strong> (10%)</li>
+                            <li>Always verify before sending</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <h3>🔍 Pre-Outreach Research Protocol</h3>
+
+                <div class="highlight-box">
+                    <p><strong>Minimum 30 minutes research per Tier 1 contact. Every email should demonstrate specific knowledge.</strong></p>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h4>👤 Person Research</h4>
+                        <ul>
+                            <li><strong>LinkedIn:</strong> Recent posts, shared connections, career trajectory</li>
+                            <li><strong>Twitter/X:</strong> Current interests, takes, engagement style</li>
+                            <li><strong>Speaking:</strong> Conference talks, podcast appearances</li>
+                            <li><strong>Publications:</strong> Articles, interviews, op-eds</li>
+                            <li><strong>Philanthropy:</strong> Board seats, causes they support</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>🏢 Company Research</h4>
+                        <ul>
+                            <li><strong>Recent news:</strong> Funding, launches, leadership changes</li>
+                            <li><strong>Strategy:</strong> Annual reports, investor presentations</li>
+                            <li><strong>Culture:</strong> Glassdoor, Built In, company blog</li>
+                            <li><strong>Competition:</strong> Market positioning, differentiators</li>
+                            <li><strong>Timing:</strong> Fiscal calendar, planning cycles</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>🔗 Connection Mapping</h4>
+                        <ul>
+                            <li><strong>Mutual connections:</strong> Who can make warm intro?</li>
+                            <li><strong>Portfolio overlap:</strong> Shared investors or partners</li>
+                            <li><strong>Event overlap:</strong> Conferences you both attend</li>
+                            <li><strong>Advisor network:</strong> Who do they trust?</li>
+                            <li><strong>Alumni networks:</strong> School, previous company</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>🎯 Personalization Hooks</h4>
+                        <ul>
+                            <li><strong>Recent wins:</strong> Congratulate on specific achievement</li>
+                            <li><strong>Shared values:</strong> Mission alignment evidence</li>
+                            <li><strong>Technical respect:</strong> Specific work you admire</li>
+                            <li><strong>Cultural bridges:</strong> Heritage, community ties</li>
+                            <li><strong>Future vision:</strong> Where they're headed</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="takeaway-box" style="margin-top: 30px;">
+                    <p><strong>🔥 THE OUTREACH PHILOSOPHY: INVITATIONS, NOT PITCHES</strong></p>
+                    <p>Every email is coalition-building. We're not pitching—we're inviting aligned partners into proven infrastructure. The language reflects this: <strong>confident without arrogance</strong> (227 partners, $11.01B partnership value), <strong>specific without jargon</strong> (concrete metrics and applications), <strong>visionary without delusion</strong> (Mayo Clinic validation, FDA methodology, quantum computing exclusive).</p>
+                    <p style="margin-top: 15px;">We lead with mission because mission attracts missionaries. We follow with metrics because metrics attract investors. We close with action because action respects their time. These aren't cold emails—these are invitations to build cathedrals together. The infrastructure exists. The technology works. The community is ready. <em>The only variable is them.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-status">
+                <span>Ready</span>
+                <span id="filterStatus">Showing: All Partners</span>
+            </div>
+            <div>
+                <span id="displayCount">0</span> partners displayed | AETHER Strategic Outreach CRM v7.0 | December 2025
+            </div>
+        </div>
+    </div>
+
+    <!-- Partner Detail Modal -->
+    <div class="modal" id="partnerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="modalTitle">Partner Details</span>
+                <button class="close-btn" onclick="closeModal()">X</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Details populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== PARTNER DATA ====================
+        const partners = [
+            // TECHNOLOGY PARTNERS
+            {
+                name: "PASQAL",
+                category: "Technology",
+                tier: "1",
+                value: "$45M",
+                status: "active",
+                type: "Strategic Partnership - 10-year exclusive",
+                description: "Quantum computing integration for experience design. Deploying quantum processors for real-time optimization.",
+                metrics: ["10,000x speedup", "10ms response", "200+ atoms"],
+                contact: "Georges-Olivier Reymond (CEO)",
+                details: {
+                    overview: "Exclusive partnership bringing quantum computing from laboratory to practical application in experience design.",
+                    capabilities: [
+                        "Crowd Flow Optimization - 45% capacity increase",
+                        "Experience Personalization - 67% satisfaction increase",
+                        "Dynamic Pricing - Perfect price discovery",
+                        "Narrative Superposition - 89% return rate"
+                    ],
+                    commitment: "10-year exclusive partnership"
+                }
+            },
+            {
+                name: "Anthropic",
+                category: "Technology",
+                tier: "1",
+                value: "$45M",
+                status: "active",
+                type: "AI Partnership",
+                description: "Advanced AI integration for L.I.L.L.I.A.N. human amplification system and E.L.I.A.S. Framework.",
+                metrics: ["92% accuracy", "8,400 variables", "Real-time"],
+                contact: "Dario Amodei (CEO)",
+                details: {
+                    overview: "Partnership for advanced AI capabilities powering AETHER's human amplification and equity frameworks.",
+                    capabilities: [
+                        "L.I.L.L.I.A.N AI for crowd prediction (92% accuracy 72hr ahead)",
+                        "E.L.I.A.S. Framework for economic accessibility",
+                        "Personalization engine with 8,400 variables per guest",
+                        "Real-time emotion detection and response"
+                    ]
+                }
+            },
+            {
+                name: "Apple",
+                category: "Technology",
+                tier: "1",
+                value: "$234M",
+                status: "active",
+                type: "Strategic Technology Partnership",
+                description: "Integration of Apple technology ecosystem into AETHER platform experiences.",
+                metrics: ["Largest partnership", "Global reach", "Premium tech"],
+                contact: "Business Development",
+                details: {
+                    overview: "Major technology partnership integrating Apple's ecosystem into AETHER's phygital experiences.",
+                    capabilities: [
+                        "Seamless device integration",
+                        "Advanced sensor technology",
+                        "Premium user experience",
+                        "Global scale deployment"
+                    ]
+                }
+            },
+            {
+                name: "Seeper",
+                category: "Technology",
+                tier: "2",
+                value: "Co-Development",
+                status: "proposal",
+                type: "Interactive Projection Partnership",
+                description: "World-class projection mapping expertise. Co-development of interactive projection and sensing-driven experiences.",
+                metrics: ["40% dwell time", "10ms response", "1,024 sensors"],
+                contact: "Evan Grant (Founder)",
+                details: {
+                    overview: "Leading creative technology studio specializing in immersive projection and sensor-driven installations.",
+                    collaboration: [
+                        "Joint R&D: Integrate AETHER sensing mesh with Seeper projection",
+                        "Co-branded Installations: Touring phygital experiences",
+                        "Platform Licensing: Seeper deploys AETHER PXE",
+                        "Revenue Share Model: Aligned long-term incentives"
+                    ]
+                }
+            },
+            {
+                name: "teamLab",
+                category: "Technology",
+                tier: "1",
+                value: "$30M–$60M",
+                status: "proposal",
+                type: "Digital Art Partnership",
+                description: "World's premier digital art collective. Borderless concept validates mass-market appetite for transformation.",
+                metrics: ["Global recognition", "Mass appeal", "Art + Tech"],
+                contact: "Toshiyuki Inoko (Founder/CEO)",
+                details: {
+                    overview: "Partnership opportunity with world's leading digital art collective for phygital experience integration.",
+                    capabilities: [
+                        "Proven immersive art experiences",
+                        "Global brand recognition",
+                        "Mass market validation",
+                        "Technology-art integration"
+                    ]
+                }
+            },
+            // HOSPITALITY PARTNERS
+            {
+                name: "3M Industrial",
+                category: "Manufacturing",
+                tier: "2",
+                value: "$12M",
+                status: "active",
+                type: "Materials Partnership",
+                description: "Advanced materials technology partnership delivering cutting-edge materials for immersive experiences.",
+                metrics: ["60% efficiency", "2-3x lifespan", "35% cost reduction"],
+                contact: "Partnership Team",
+                details: {
+                    overview: "Industrial materials partnership for experiential manufacturing.",
+                    capabilities: [
+                        "Proprietary sensory materials (Novec, Thinsulate)",
+                        "Advanced HVAC systems at 60% efficiency improvement",
+                        "Durable coatings extending lifespan by 2-3x"
+                    ],
+                    savings: "$2.1M annually with 35% maintenance reduction"
+                }
+            },
+            {
+                name: "Regent Hotels (IHG)",
+                category: "Hospitality",
+                tier: "1",
+                value: "$20M–$40M",
+                status: "proposal",
+                type: "Strategic Partnership & Equity",
+                description: "Ultra-luxury hospitality phygital IP integration. Anticipatory service intelligence for butler/concierge teams.",
+                metrics: ["10-15% RevPAR", "12-18 NPS points", "18-24mo ROI"],
+                contact: "IHG Business Development",
+                details: {
+                    overview: "Partnership with IHG's revitalized ultra-luxury Regent brand for phygital hospitality transformation.",
+                    models: [
+                        "Technology Licensing: $150K-400K per property annually",
+                        "IHG Equity Partnership: $20M-40M for 12-18% equity stake",
+                        "Co-Development Partnership: Joint IP ownership 70/30",
+                        "Joint Venture: 50/50 ownership in 'Regent x AETHER Intelligent Luxury'"
+                    ],
+                    capabilities: [
+                        "Predictive in-suite environment adaptation",
+                        "Sommelier and culinary recommendation engines",
+                        "Wellness journey personalization",
+                        "Cross-property guest continuity"
+                    ],
+                    timeline: "Q2 2026 → Q4 2027 (Pilot to portfolio rollout)"
+                }
+            },
+            {
+                name: "Ennismore (Accor)",
+                category: "Hospitality",
+                tier: "1",
+                value: "Strategic",
+                status: "pending",
+                type: "Lifestyle Hospitality Partnership",
+                description: "14 lifestyle brands including The Hoxton, Delano, SLS, Mondrian. 140 properties across trendsetting markets.",
+                metrics: ["15-20% RevPAR", "140 properties", "14 brands"],
+                contact: "Sharan Pasricha (Founder)",
+                details: {
+                    overview: "Partnership with Accor's innovation-focused lifestyle hospitality division across 14 brands.",
+                    brands: [
+                        "The Hoxton, Gleneagles, Delano, SLS",
+                        "Mondrian, Hyde, Mama Shelter, 25hours",
+                        "Tribe, Working From_, Jo&Joe"
+                    ],
+                    capabilities: [
+                        "Adaptive lobby and common spaces",
+                        "Personalized room environments",
+                        "F&B integration with culinary engines",
+                        "Local discovery powered by AI"
+                    ],
+                    commercials: "$100K-250K per property annually + 2-4% revenue share"
+                }
+            },
+            {
+                name: "Wynn Resorts",
+                category: "Hospitality",
+                tier: "1",
+                value: "Strategic",
+                status: "proposal",
+                type: "Gaming & Entertainment Partnership",
+                description: "Integration of AETHER phygital platform into premium gaming and entertainment experiences.",
+                metrics: ["Premium positioning", "Gaming + Entertainment", "Las Vegas"],
+                contact: "Wynn Business Development",
+                details: {
+                    overview: "Partnership opportunity with premium gaming and entertainment operator.",
+                    focus: [
+                        "Gaming floor optimization",
+                        "Entertainment venue enhancement",
+                        "Premium dining experiences",
+                        "High-roller personalization"
+                    ]
+                }
+            },
+            // ENTERTAINMENT PARTNERS
+            {
+                name: "Lune Rouge / Zú",
+                category: "Entertainment",
+                tier: "1",
+                value: "$25M–$50M",
+                status: "pending",
+                type: "Joint Venture - Phygital Entertainment",
+                description: "Quebec's premier creative innovation hub. Real-time collective audience emotion detection. Beausoleil heritage creates authentic cultural bridge.",
+                metrics: ["95% satisfaction", "40% repeat rate", "30-50% premium"],
+                contact: "Isabelle Dussault (CEO, Zú)",
+                details: {
+                    overview: "Co-development partnership with world's premier live entertainment innovator.",
+                    models: [
+                        "Technology Licensing: $150K-400K per production annually",
+                        "Co-Development: Joint IP ownership on responsive performance",
+                        "Joint Venture: 50/50 'Lune Rouge x AETHER Live' entity",
+                        "Strategic Investment: $15M-25M for 12-18% equity"
+                    ],
+                    capabilities: [
+                        "Real-time collective audience emotion detection",
+                        "Adaptive narrative responding to crowd energy",
+                        "Performer augmentation systems",
+                        "Individual-within-collective orchestration"
+                    ],
+                    exclusivity: "5-year category exclusivity for live theatrical performances"
+                }
+            },
+            {
+                name: "Legendary Entertainment",
+                category: "IP",
+                tier: "1",
+                value: "Revenue Share",
+                status: "pending",
+                type: "IP Licensing Partnership",
+                description: "Location-based entertainment for Dune, Monsterverse (Godzilla/Kong), Warcraft, Pacific Rim franchises.",
+                metrics: ["$75-150/visitor", "3-5x film ROI", "Multiple IPs"],
+                contact: "Joshua Grode (CEO)",
+                details: {
+                    overview: "Partnership for premium IP deployment in location-based entertainment.",
+                    ips: [
+                        "Dune Universe: Arrakis environment, Spice harvesting ($120-180/visitor)",
+                        "Monsterverse: Skull Island expedition, Titan encounters ($85-140/visitor)",
+                        "Warcraft: Azeroth immersion, faction-based experiences ($75-120/visitor)"
+                    ],
+                    models: [
+                        "IP Licensing: Standard licensing + revenue share",
+                        "Co-Development: Joint IP ownership for LBE-specific content",
+                        "Production Partnership: Legendary produces show content"
+                    ]
+                }
+            },
+            {
+                name: "Punchdrunk",
+                category: "Entertainment",
+                tier: "1",
+                value: "$15M–$30M",
+                status: "proposal",
+                type: "Immersive Theater Partnership",
+                description: "Pioneers of immersive theater (Sleep No More). Revolutionary audience-performer interaction methodology.",
+                metrics: ["14 year run", "Mask-wearing", "Non-linear narrative"],
+                contact: "Felix Barrett (Artistic Director)",
+                details: {
+                    overview: "Partnership with pioneers of immersive theatrical experiences.",
+                    capabilities: [
+                        "Sleep No More (NYC 2011–present, Shanghai 2016–present)",
+                        "Mask-wearing audience, non-linear narrative, 1:1 performer encounters",
+                        "14th year—proving sustainable economics",
+                        "L.I.L.L.I.A.N. sensing could enable adaptive narrative branching"
+                    ]
+                }
+            },
+            {
+                name: "A24 Films",
+                category: "IP",
+                tier: "2",
+                value: "Strategic / Co-Development",
+                status: "proposal",
+                type: "Prestige IP Partnership",
+                description: "The defining indie studio of our era. Films create worlds audiences want to inhabit—natural bridge to experiential IP extension.",
+                metrics: ["Brand power", "Artistic integrity", "Commercial viability"],
+                contact: "Daniel Katz, David Fenkel (Founders)",
+                details: {
+                    overview: "Partnership opportunity with prestige film studio for experiential IP.",
+                    potential: [
+                        "Everything Everywhere multiverse experience",
+                        "Hereditary horror immersion",
+                        "Moonlight journey experience",
+                        "Attracts prestige-seeking audiences underserved by theme parks"
+                    ]
+                }
+            },
+            {
+                name: "FantaWild Holdings",
+                category: "Entertainment",
+                tier: "1",
+                value: "$500K–$2M/park",
+                status: "proposal",
+                type: "Theme Park Technology Partnership",
+                description: "China's largest theme park operator with 40 parks and 50M annual visitors. Entry point to Asian entertainment markets.",
+                metrics: ["40 parks", "50M visitors", "1.4B population"],
+                contact: "Business Development",
+                details: {
+                    overview: "Entry point to Asian entertainment markets with massive scale validation.",
+                    capabilities: [
+                        "L.I.L.L.I.A.N. crowd prediction (92% accuracy)",
+                        "Dynamic pricing ($67–$351)",
+                        "Predictive maintenance (97% uptime)"
+                    ],
+                    models: [
+                        "Tech licensing",
+                        "Joint R&D",
+                        "Manufacturing partnership (Shenzhen facility)",
+                        "Equity stake"
+                    ]
+                }
+            },
+            // INVESTMENT PARTNERS
+            {
+                name: "Backstage Capital",
+                category: "Investment",
+                tier: "1",
+                value: "Strategic Investment",
+                status: "pending",
+                type: "Impact VC Partnership",
+                description: "Leading BIPOC-focused VC. Arlan Hamilton's thesis perfectly aligns with democratization mission.",
+                metrics: ["BIPOC-focused", "Mission aligned", "Impact investing"],
+                contact: "Arlan Hamilton (Founder)",
+                details: {
+                    overview: "Leading BIPOC-focused venture capital firm aligned with AETHER's democratization mission.",
+                    alignment: [
+                        "Mission alignment with underserved communities",
+                        "Experience in entertainment technology",
+                        "Network of impact-focused investors",
+                        "Portfolio synergies"
+                    ]
+                }
+            },
+            {
+                name: "Kapor Capital",
+                category: "Investment",
+                tier: "1",
+                value: "Strategic Investment",
+                status: "proposal",
+                type: "Impact Technology VC",
+                description: "Founders' Fund for social impact technology. Gap-closing, diversity-focused investment thesis.",
+                metrics: ["Impact focus", "Gap-closing", "Diversity-focused"],
+                contact: "Investment Team",
+                details: {
+                    overview: "Impact-focused venture fund with social technology investment thesis.",
+                    thesis: [
+                        "Gap-closing technology focus",
+                        "Diversity-focused portfolio",
+                        "Social impact measurement",
+                        "Community benefit requirements"
+                    ]
+                }
+            },
+            // RETAIL PARTNERS
+            {
+                name: "Gentle Monster / iicombined",
+                category: "Retail",
+                tier: "2",
+                value: "Technology Exchange",
+                status: "proposal",
+                type: "Story-Commerce Partnership",
+                description: "Luxury retail adaptive environments. Proven story-commerce methodology with 247% transaction premium.",
+                metrics: ["247% premium", "76% attach rate", "340% social"],
+                contact: "Partnership Team",
+                details: {
+                    overview: "Partnership with retail's most innovative experiential brand for story-commerce refinement.",
+                    proven_results: [
+                        "Average Transaction: $132 vs $38 industry (247% premium)",
+                        "Attach Rate: 76% vs 42% industry (81% increase)",
+                        "Dwell Time: 25-40% increase through experiential design",
+                        "Social Sharing: 340% increase vs standard retail"
+                    ]
+                }
+            },
+            // MANUFACTURING
+            {
+                name: "Alchemist Atelier TECHNO-FABRIQUE",
+                category: "Manufacturing",
+                tier: "1",
+                value: "$71.1M+ annually",
+                status: "active",
+                type: "Internal Manufacturing Facility",
+                description: "45,900 sq ft Sedona facility with 153 specialized systems. $53.5M replication barrier.",
+                metrics: ["45,900 sq ft", "153 systems", "97% uptime"],
+                contact: "Internal Operations",
+                details: {
+                    overview: "AETHER's proprietary manufacturing and R&D facility.",
+                    output: "$71.1M+ annually",
+                    budget: "$50.3M annually (9.5% R&D - 40% above industry)",
+                    methodology: {
+                        dream: "Weeks 1-2: Cross-disciplinary ideation, rapid prototyping",
+                        create: "Weeks 3-6: Integrated design-engineering, simulation",
+                        build: "Weeks 7-8: Parallel production, robotic precision assembly"
+                    },
+                    competitive_moat: [
+                        "Capital barrier: $53.5M minimum",
+                        "Time barrier: 3-5 years to operational competency",
+                        "Knowledge barrier: 5,000 hours accumulated wisdom",
+                        "Technology barrier: 16 granted patents, 11 pending",
+                        "Replication probability: 4.3%"
+                    ]
+                }
+            }
+        ];
+
+        // ==================== STATE MANAGEMENT ====================
+        let currentCategoryFilter = 'all';
+        let currentStatusFilter = 'all';
+        let currentSearch = '';
+
+        // ==================== RENDERING FUNCTIONS ====================
+        function renderPartners(containerId = 'partnersGrid', filterFn = null) {
+            const grid = document.getElementById(containerId);
+            if (!grid) return;
+
+            let filtered = partners;
+
+            // Apply category filter
+            if (currentCategoryFilter !== 'all') {
+                filtered = filtered.filter(p => p.category === currentCategoryFilter);
+            }
+
+            // Apply status filter
+            if (currentStatusFilter !== 'all') {
+                filtered = filtered.filter(p => p.status === currentStatusFilter);
+            }
+
+            // Apply search
+            if (currentSearch) {
+                const search = currentSearch.toLowerCase();
+                filtered = filtered.filter(p =>
+                    p.name.toLowerCase().includes(search) ||
+                    p.description.toLowerCase().includes(search) ||
+                    p.category.toLowerCase().includes(search) ||
+                    (p.contact && p.contact.toLowerCase().includes(search))
+                );
+            }
+
+            // Apply custom filter function
+            if (filterFn) {
+                filtered = filtered.filter(filterFn);
+            }
+
+            // Update display count
+            const displayCount = document.getElementById('displayCount');
+            if (displayCount) displayCount.textContent = filtered.length;
+
+            const filterStatus = document.getElementById('filterStatus');
+            if (filterStatus) {
+                let status = 'Showing: ';
+                if (currentCategoryFilter !== 'all') status += currentCategoryFilter;
+                else status += 'All Partners';
+                if (currentStatusFilter !== 'all') status += ` (${currentStatusFilter})`;
+                filterStatus.textContent = status;
+            }
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="no-results">No partners found matching your criteria.</div>';
+                return;
+            }
+
+            grid.innerHTML = filtered.map(partner => `
+                <div class="partner-card" onclick="showPartnerDetails('${partner.name}')">
+                    <div class="partner-header">
+                        <div>
+                            <div class="partner-name">${partner.name}</div>
+                            <div class="category-tag">${partner.category}${partner.tier ? ' • Tier ' + partner.tier : ''}</div>
+                        </div>
+                        <div class="partner-badges">
+                            ${partner.tier ? `<span class="tier-badge tier-${partner.tier}">Tier ${partner.tier}</span>` : ''}
+                        </div>
+                    </div>
+                    <div class="partner-value">${partner.value}</div>
+                    <div class="partner-description">${partner.description}</div>
+                    <div class="partner-metrics">
+                        ${partner.metrics.map(m => `<span class="metric">${m}</span>`).join('')}
+                    </div>
+                    ${partner.contact ? `
+                        <div class="partner-contact">
+                            <strong>Contact:</strong> ${partner.contact}
+                        </div>
+                    ` : ''}
+                    <span class="outreach-status status-${partner.status}">
+                        <span class="status-indicator"></span>
+                        ${partner.status.charAt(0).toUpperCase() + partner.status.slice(1)}
+                    </span>
+                </div>
+            `).join('');
+        }
+
+        function renderPriorityPartners() {
+            const grid = document.getElementById('priorityPartners');
+            if (!grid) return;
+
+            const priority = partners.filter(p => p.tier === '1' && (p.status === 'pending' || p.status === 'proposal')).slice(0, 4);
+            
+            grid.innerHTML = priority.map(partner => `
+                <div class="partner-card" onclick="showPartnerDetails('${partner.name}')">
+                    <div class="partner-header">
+                        <div>
+                            <div class="partner-name">${partner.name}</div>
+                            <div class="category-tag">${partner.category}</div>
+                        </div>
+                        <span class="tier-badge tier-1">Tier 1</span>
+                    </div>
+                    <div class="partner-value">${partner.value}</div>
+                    <div class="partner-description">${partner.description}</div>
+                    <div class="partner-contact">
+                        <strong>Contact:</strong> ${partner.contact || 'Research Required'}
+                    </div>
+                    <span class="outreach-status status-pending">
+                        <span class="status-indicator"></span>
+                        Ready for Outreach
+                    </span>
+                </div>
+            `).join('');
+        }
+
+        function renderOutreachQueues() {
+            // Pending queue
+            const pendingQueue = document.getElementById('outreachQueue');
+            if (pendingQueue) {
+                const pending = partners.filter(p => p.status === 'pending');
+                pendingQueue.innerHTML = pending.map(partner => `
+                    <div class="partner-card" onclick="showPartnerDetails('${partner.name}')">
+                        <div class="partner-header">
+                            <div>
+                                <div class="partner-name">${partner.name}</div>
+                                <div class="category-tag">${partner.category}</div>
+                            </div>
+                            ${partner.tier ? `<span class="tier-badge tier-${partner.tier}">Tier ${partner.tier}</span>` : ''}
+                        </div>
+                        <div class="partner-value">${partner.value}</div>
+                        <div class="partner-description">${partner.description}</div>
+                        <span class="outreach-status status-pending">
+                            <span class="status-indicator"></span>
+                            Ready for Outreach
+                        </span>
+                    </div>
+                `).join('') || '<div class="no-results">No partners in pending queue.</div>';
+            }
+
+            // Sent queue
+            const sentQueue = document.getElementById('sentQueue');
+            if (sentQueue) {
+                const sent = partners.filter(p => p.status === 'sent');
+                sentQueue.innerHTML = sent.map(partner => `
+                    <div class="partner-card" onclick="showPartnerDetails('${partner.name}')">
+                        <div class="partner-header">
+                            <div>
+                                <div class="partner-name">${partner.name}</div>
+                                <div class="category-tag">${partner.category}</div>
+                            </div>
+                        </div>
+                        <div class="partner-value">${partner.value}</div>
+                        <span class="outreach-status status-sent">
+                            <span class="status-indicator"></span>
+                            Awaiting Response
+                        </span>
+                    </div>
+                `).join('') || '<div class="no-results">No emails currently awaiting response.</div>';
+            }
+
+            // Responded queue
+            const respondedQueue = document.getElementById('respondedQueue');
+            if (respondedQueue) {
+                const responded = partners.filter(p => p.status === 'responded');
+                respondedQueue.innerHTML = responded.map(partner => `
+                    <div class="partner-card" onclick="showPartnerDetails('${partner.name}')">
+                        <div class="partner-header">
+                            <div>
+                                <div class="partner-name">${partner.name}</div>
+                                <div class="category-tag">${partner.category}</div>
+                            </div>
+                        </div>
+                        <div class="partner-value">${partner.value}</div>
+                        <span class="outreach-status status-responded">
+                            <span class="status-indicator"></span>
+                            Follow-up Required
+                        </span>
+                    </div>
+                `).join('') || '<div class="no-results">No responses requiring follow-up.</div>';
+            }
+        }
+
+        function renderPipeline() {
+            const pipeline = document.getElementById('pipelineBar');
+            if (!pipeline) return;
+
+            const counts = {
+                pending: partners.filter(p => p.status === 'pending' || p.status === 'proposal').length,
+                sent: partners.filter(p => p.status === 'sent').length,
+                responded: partners.filter(p => p.status === 'responded').length,
+                meeting: partners.filter(p => p.status === 'meeting').length,
+                closed: partners.filter(p => p.status === 'closed' || p.status === 'active').length
+            };
+
+            const total = Object.values(counts).reduce((a, b) => a + b, 0);
+
+            pipeline.innerHTML = `
+                <div class="pipeline-segment pipeline-pending" style="width: ${(counts.pending / total) * 100}%">${counts.pending > 0 ? counts.pending : ''}</div>
+                <div class="pipeline-segment pipeline-sent" style="width: ${(counts.sent / total) * 100}%">${counts.sent > 0 ? counts.sent : ''}</div>
+                <div class="pipeline-segment pipeline-responded" style="width: ${(counts.responded / total) * 100}%">${counts.responded > 0 ? counts.responded : ''}</div>
+                <div class="pipeline-segment pipeline-meeting" style="width: ${(counts.meeting / total) * 100}%">${counts.meeting > 0 ? counts.meeting : ''}</div>
+                <div class="pipeline-segment pipeline-closed" style="width: ${(counts.closed / total) * 100}%">${counts.closed > 0 ? counts.closed : ''}</div>
+            `;
+        }
+
+        function updateStats() {
+            document.getElementById('totalPartners').textContent = partners.length;
+            document.getElementById('activeDeals').textContent = partners.filter(p => p.status === 'active').length;
+            document.getElementById('outreachQueue').textContent = partners.filter(p => p.status === 'pending' || p.status === 'proposal').length;
+        }
+
+        // ==================== MODAL ====================
+        function showPartnerDetails(partnerName) {
+            const partner = partners.find(p => p.name === partnerName);
+            if (!partner) return;
+
+            const modal = document.getElementById('partnerModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+
+            modalTitle.textContent = partner.name;
+
+            let detailsHTML = `
+                <div class="partner-header" style="margin-bottom: 15px;">
+                    <div>
+                        <div class="partner-name" style="font-size: 22px;">${partner.name}</div>
+                        <div class="category-tag">${partner.category}${partner.tier ? ' • Tier ' + partner.tier : ''}</div>
+                    </div>
+                    <span class="outreach-status status-${partner.status}">
+                        <span class="status-indicator"></span>
+                        ${partner.status.charAt(0).toUpperCase() + partner.status.slice(1)}
+                    </span>
+                </div>
+                <div class="partner-value" style="font-size: 26px;">${partner.value}</div>
+                <p style="margin: 15px 0;"><strong>${partner.type}</strong></p>
+                <p style="margin: 15px 0;">${partner.description}</p>
+                <div class="partner-metrics" style="margin: 15px 0;">
+                    ${partner.metrics.map(m => `<span class="metric">${m}</span>`).join('')}
+                </div>
+                ${partner.contact ? `<p><strong>Contact:</strong> ${partner.contact}</p>` : ''}
+            `;
+
+            if (partner.details) {
+                const d = partner.details;
+
+                if (d.overview) {
+                    detailsHTML += `
+                        <div class="detail-section">
+                            <h3>Overview</h3>
+                            <p style="font-size: 12px; color: var(--text-secondary);">${d.overview}</p>
+                        </div>
+                    `;
+                }
+
+                if (d.capabilities) {
+                    detailsHTML += `
+                        <div class="detail-section">
+                            <h3>Key Capabilities</h3>
+                            <ul class="detail-list">
+                                ${d.capabilities.map(c => `<li>${c}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                if (d.models) {
+                    detailsHTML += `
+                        <div class="detail-section">
+                            <h3>Partnership Models</h3>
+                            <ul class="detail-list">
+                                ${d.models.map(m => `<li>${m}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                if (d.ips) {
+                    detailsHTML += `
+                        <div class="detail-section">
+                            <h3>Available IP</h3>
+                            <ul class="detail-list">
+                                ${d.ips.map(ip => `<li>${ip}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                if (d.collaboration) {
+                    detailsHTML += `
+                        <div class="detail-section">
+                            <h3>Collaboration Opportunities</h3>
+                            <ul class="detail-list">
+                                ${d.collaboration.map(c => `<li>${c}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                if (d.competitive_moat) {
+                    detailsHTML += `
+                        <div class="detail-section">
+                            <h3>Competitive Moat</h3>
+                            <ul class="detail-list">
+                                ${d.competitive_moat.map(m => `<li>${m}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+            }
+
+            modalBody.innerHTML = detailsHTML;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('partnerModal').classList.remove('active');
+        }
+
+        // ==================== TAB NAVIGATION ====================
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+
+            // Re-render content for specific tabs
+            if (tabId === 'partners') {
+                renderPartners();
+            } else if (tabId === 'outreach') {
+                renderOutreachQueues();
+            } else if (tabId === 'dashboard') {
+                renderPriorityPartners();
+                renderPipeline();
+            }
+        }
+
+        // ==================== FILTERING ====================
+        function filterPartners() {
+            currentSearch = document.getElementById('partnerSearch').value;
+            renderPartners();
+        }
+
+        function filterByCategory(category, btn) {
+            document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentCategoryFilter = category;
+            renderPartners();
+        }
+
+        function filterByStatus(status, btn) {
+            document.querySelectorAll('[data-status]').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentStatusFilter = status;
+            renderPartners();
+        }
+
+        // ==================== TEMPLATE COPYING ====================
+        function copyTemplate(templateId) {
+            const templateEl = document.getElementById(templateId);
+            if (!templateEl) return;
+
+            const text = templateEl.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Template copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        // ==================== EVENT LISTENERS ====================
+        document.getElementById('partnerModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // ==================== INITIALIZATION ====================
+        function init() {
+            updateStats();
+            renderPipeline();
+            renderPriorityPartners();
+            renderPartners();
+        }
+
+        init();
+    </script>
+</body>
+</html>
