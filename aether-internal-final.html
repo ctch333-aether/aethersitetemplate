@@ -7,6 +7,10 @@
     <meta name="description" content="AETHER Phygital Experience Platform - Internal Operations & Strategy Portal">
     <meta name="theme-color" content="#667eea">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="aether-website-assets/webp/aether-brand-logo-main.webp">
+    <link rel="apple-touch-icon" href="aether-website-assets/png-fallback/aether-brand-logo-main.png">
+
     <!-- Preload Critical Assets -->
     <link rel="preload" href="aether-website-assets/webp/aether-brand-logo-main.webp" as="image" type="image/webp">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" as="style">
@@ -16,8 +20,9 @@
 
     <style>
         /* ========================================
-           AETHER INTERNAL PLATFORM - FINAL v1.0
+           AETHER INTERNAL PLATFORM - FINAL v1.1
            December 2025 | Alchemist Atelier
+           AETHERPUNK EDITION - Enhanced UX & A11y
            ======================================== */
 
         * {
@@ -1092,6 +1097,142 @@
             height: 100px;
         }
 
+        /* Start Menu Dropdown */
+        .start-menu {
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            width: 280px;
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+            display: none;
+            flex-direction: column;
+            margin-bottom: 2px;
+            z-index: 10001;
+        }
+
+        .start-menu.active {
+            display: flex;
+        }
+
+        .start-menu-header {
+            background: linear-gradient(180deg, var(--aether-purple), var(--aether-purple-dark));
+            color: white;
+            padding: 10px;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-weight: bold;
+            font-size: 18px;
+            letter-spacing: 2px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .start-menu-items {
+            margin-left: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .start-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 15px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            font-family: var(--font-primary);
+            font-size: 13px;
+            text-align: left;
+            transition: background 0.15s ease;
+        }
+
+        .start-menu-item:hover {
+            background: var(--aether-purple);
+            color: white;
+        }
+
+        .start-menu-item .menu-icon {
+            font-size: 20px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .start-menu-divider {
+            height: 2px;
+            background: linear-gradient(to right, #808080, #ffffff, #808080);
+            margin: 4px 10px;
+        }
+
+        /* Focus states for accessibility */
+        .main-desktop-button:focus-visible,
+        .window-button:focus-visible,
+        .start-button:focus-visible,
+        .start-menu-item:focus-visible,
+        .taskbar-item:focus-visible {
+            outline: 3px solid var(--aether-gold);
+            outline-offset: 2px;
+        }
+
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--aether-purple);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 0 0 8px 8px;
+            z-index: 100000;
+            transition: top 0.3s ease;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Loading Progress Bar */
+        .loading-progress {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .loading-progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--aether-purple), var(--aether-pink), var(--aether-gold));
+            background-size: 200% 100%;
+            animation: progressShimmer 1s linear infinite, progressFill 2s ease-out forwards;
+            border-radius: 2px;
+        }
+
+        @keyframes progressShimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        @keyframes progressFill {
+            0% { width: 0%; }
+            30% { width: 30%; }
+            60% { width: 60%; }
+            90% { width: 90%; }
+            100% { width: 100%; }
+        }
+
         /* Chromatic Aberration on Logo */
         .brand-logo-container img {
             position: relative;
@@ -1192,10 +1333,16 @@
             <div style="animation-delay: 1s;">&gt; Phygital bridge established...</div>
             <div style="animation-delay: 1.5s;">&gt; Alchemical processes ready...</div>
         </div>
+        <div class="loading-progress" role="progressbar" aria-label="Loading progress">
+            <div class="loading-progress-bar"></div>
+        </div>
     </div>
 
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Desktop -->
-    <div class="desktop">
+    <main class="desktop" id="main-content" role="main">
         <!-- Brand Logo -->
         <div class="brand-logo-container">
             <picture>
@@ -1244,11 +1391,11 @@
                 <img src="aether-website-assets/png-fallback/aether-brand-ctch-logotype.png" alt="CTCH Logotype" style="height: 40px; width: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));">
             </picture>
         </div>
-    </div>
+    </main>
 
     <!-- ========== ETHOS Window ========== -->
     <div class="window" id="window-ethos" style="top: 60px; left: 80px; width: 900px;">
-        <div class="window-header" onmousedown="startDrag(event, 'window-ethos')">
+        <div class="window-header" onmousedown="startDrag(event, 'window-ethos')" ontouchstart="startDrag(event, 'window-ethos')" role="heading" aria-level="2">
             <div class="window-title">
                 <span>🏛️</span>
                 <span>ETHOS - Industry Authority & Leadership</span>
@@ -1371,7 +1518,7 @@
 
     <!-- ========== PATHOS Window ========== -->
     <div class="window" id="window-pathos" style="top: 90px; left: 120px; width: 900px;">
-        <div class="window-header" onmousedown="startDrag(event, 'window-pathos')">
+        <div class="window-header" onmousedown="startDrag(event, 'window-pathos')" ontouchstart="startDrag(event, 'window-pathos')" role="heading" aria-level="2">
             <div class="window-title">
                 <span>❤️</span>
                 <span>PATHOS - Mission & Human Impact</span>
@@ -1477,7 +1624,7 @@
 
     <!-- ========== LOGOS Window ========== -->
     <div class="window" id="window-logos" style="top: 120px; left: 160px; width: 900px;">
-        <div class="window-header" onmousedown="startDrag(event, 'window-logos')">
+        <div class="window-header" onmousedown="startDrag(event, 'window-logos')" ontouchstart="startDrag(event, 'window-logos')" role="heading" aria-level="2">
             <div class="window-title">
                 <span>🧠</span>
                 <span>LOGOS - Technology & Architecture</span>
@@ -1576,7 +1723,7 @@
 
     <!-- ========== PORTFOLIO Window ========== -->
     <div class="window" id="window-portfolio" style="top: 70px; left: 100px; width: 950px;">
-        <div class="window-header" onmousedown="startDrag(event, 'window-portfolio')">
+        <div class="window-header" onmousedown="startDrag(event, 'window-portfolio')" ontouchstart="startDrag(event, 'window-portfolio')" role="heading" aria-level="2">
             <div class="window-title">
                 <span>🎨</span>
                 <span>PORTFOLIO - Work Showcase</span>
@@ -1877,17 +2024,46 @@
     </div>
 
     <!-- Taskbar -->
-    <div class="taskbar">
-        <button class="start-button" onclick="toggleStartMenu()">
-            <span>⚗️</span>
-            <span>Start</span>
-        </button>
-        <div class="taskbar-divider"></div>
-        <div class="taskbar-items" id="taskbarItems">
+    <nav class="taskbar" role="navigation" aria-label="System taskbar">
+        <div style="position: relative;">
+            <button class="start-button" onclick="toggleStartMenu()" aria-haspopup="true" aria-expanded="false" aria-controls="startMenu">
+                <span aria-hidden="true">⚗️</span>
+                <span>Start</span>
+            </button>
+            <!-- Start Menu Dropdown -->
+            <div class="start-menu" id="startMenu" role="menu" aria-label="Start menu">
+                <div class="start-menu-header" aria-hidden="true">AETHER</div>
+                <div class="start-menu-items">
+                    <button class="start-menu-item" onclick="openWindow('ethos'); closeStartMenu();" role="menuitem">
+                        <span class="menu-icon" aria-hidden="true">🏛️</span>
+                        <span>ETHOS - Leadership</span>
+                    </button>
+                    <button class="start-menu-item" onclick="openWindow('pathos'); closeStartMenu();" role="menuitem">
+                        <span class="menu-icon" aria-hidden="true">❤️</span>
+                        <span>PATHOS - Mission</span>
+                    </button>
+                    <button class="start-menu-item" onclick="openWindow('logos'); closeStartMenu();" role="menuitem">
+                        <span class="menu-icon" aria-hidden="true">🧠</span>
+                        <span>LOGOS - Technology</span>
+                    </button>
+                    <button class="start-menu-item" onclick="openWindow('portfolio'); closeStartMenu();" role="menuitem">
+                        <span class="menu-icon" aria-hidden="true">🎨</span>
+                        <span>PORTFOLIO - Showcase</span>
+                    </button>
+                    <div class="start-menu-divider" role="separator"></div>
+                    <button class="start-menu-item" onclick="openAllWindows(); closeStartMenu();" role="menuitem">
+                        <span class="menu-icon" aria-hidden="true">📂</span>
+                        <span>Open All Windows</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="taskbar-divider" aria-hidden="true"></div>
+        <div class="taskbar-items" id="taskbarItems" role="tablist" aria-label="Open windows">
             <!-- Dynamic taskbar items -->
         </div>
-        <div class="taskbar-clock" id="clock">12:00 PM</div>
-    </div>
+        <div class="taskbar-clock" id="clock" role="timer" aria-live="polite" aria-label="Current time">12:00 PM</div>
+    </nav>
 
     <!-- JavaScript -->
     <script>
@@ -1900,14 +2076,22 @@
             }, 2000);
         });
 
-        // Update clock
+        // Update clock with date
         function updateClock() {
             const now = new Date();
             const hours = now.getHours();
             const minutes = now.getMinutes().toString().padStart(2, '0');
             const ampm = hours >= 12 ? 'PM' : 'AM';
             const displayHours = hours % 12 || 12;
-            document.getElementById('clock').textContent = `${displayHours}:${minutes} ${ampm}`;
+
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const month = months[now.getMonth()];
+            const day = now.getDate();
+
+            document.getElementById('clock').innerHTML = `
+                <span style="margin-right: 8px;">${month} ${day}</span>
+                <span>${displayHours}:${minutes} ${ampm}</span>
+            `;
         }
         updateClock();
         setInterval(updateClock, 1000);
@@ -1917,17 +2101,23 @@
         const canvas = document.getElementById('matrixCanvas');
         const ctx = canvas.getContext('2d');
 
+        const chars = 'AETHER0123456789PHYGITAL@#$%^&*BELIEVE';
+        const fontSize = 14;
+        let columns = 0;
+        let drops = [];
+
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+            // Recalculate columns on resize
+            const newColumns = Math.floor(canvas.width / fontSize);
+            if (newColumns !== columns) {
+                columns = newColumns;
+                drops = Array(columns).fill(1);
+            }
         }
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
-
-        const chars = 'AETHER0123456789PHYGITAL@#$%^&*BELIEVE';
-        const fontSize = 14;
-        const columns = Math.floor(canvas.width / fontSize);
-        const drops = Array(columns).fill(1);
 
         function drawMatrix() {
             ctx.fillStyle = 'rgba(0, 128, 128, 0.05)';
@@ -1990,20 +2180,32 @@
         }
 
         function startDrag(e, windowId) {
+            e.preventDefault();
             dragWindow = document.getElementById(windowId);
             const rect = dragWindow.getBoundingClientRect();
-            dragOffset.x = e.clientX - rect.left;
-            dragOffset.y = e.clientY - rect.top;
+
+            // Support both mouse and touch events
+            const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+            const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+
+            dragOffset.x = clientX - rect.left;
+            dragOffset.y = clientY - rect.top;
             dragWindow.style.zIndex = ++zIndex;
 
             document.addEventListener('mousemove', onDrag);
             document.addEventListener('mouseup', stopDrag);
+            document.addEventListener('touchmove', onDrag, { passive: false });
+            document.addEventListener('touchend', stopDrag);
         }
 
         function onDrag(e) {
             if (dragWindow) {
-                const x = Math.max(0, Math.min(e.clientX - dragOffset.x, window.innerWidth - 100));
-                const y = Math.max(0, Math.min(e.clientY - dragOffset.y, window.innerHeight - 100));
+                e.preventDefault();
+                const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+                const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+
+                const x = Math.max(0, Math.min(clientX - dragOffset.x, window.innerWidth - 100));
+                const y = Math.max(0, Math.min(clientY - dragOffset.y, window.innerHeight - 100));
                 dragWindow.style.left = x + 'px';
                 dragWindow.style.top = y + 'px';
             }
@@ -2013,6 +2215,8 @@
             dragWindow = null;
             document.removeEventListener('mousemove', onDrag);
             document.removeEventListener('mouseup', stopDrag);
+            document.removeEventListener('touchmove', onDrag);
+            document.removeEventListener('touchend', stopDrag);
         }
 
         // ========== TASKBAR ==========
@@ -2031,17 +2235,45 @@
                 const item = document.createElement('div');
                 item.className = 'taskbar-item active';
                 item.textContent = windowNames[id] || id;
-                item.onclick = () => focusWindow('window-' + id);
+                item.onclick = () => focusWindow(id);
                 container.appendChild(item);
             });
         }
 
         function toggleStartMenu() {
-            // Simple start menu - opens all windows
+            const menu = document.getElementById('startMenu');
+            const button = document.querySelector('.start-button');
+            const isOpen = menu.classList.contains('active');
+
+            if (isOpen) {
+                closeStartMenu();
+            } else {
+                menu.classList.add('active');
+                button.setAttribute('aria-expanded', 'true');
+            }
+        }
+
+        function closeStartMenu() {
+            const menu = document.getElementById('startMenu');
+            const button = document.querySelector('.start-button');
+            menu.classList.remove('active');
+            button.setAttribute('aria-expanded', 'false');
+        }
+
+        function openAllWindows() {
             ['ethos', 'pathos', 'logos', 'portfolio'].forEach((id, i) => {
                 setTimeout(() => openWindow(id), i * 100);
             });
         }
+
+        // Close start menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('startMenu');
+            const button = document.querySelector('.start-button');
+            if (!menu.contains(e.target) && !button.contains(e.target)) {
+                closeStartMenu();
+            }
+        });
 
         // ========== KEYBOARD SHORTCUTS ==========
 
@@ -2129,10 +2361,11 @@
         };
 
         // Console welcome message
-        console.log('%c⚗️ AETHER Internal Platform v1.0', 'font-size: 16px; font-weight: bold; color: #667eea;');
-        console.log('%c✧ AETHERPUNK EDITION ✧', 'font-size: 14px; font-weight: bold; color: #f093fb;');
+        console.log('%c⚗️ AETHER Internal Platform v1.1', 'font-size: 16px; font-weight: bold; color: #667eea;');
+        console.log('%c✧ AETHERPUNK EDITION - Enhanced UX & A11y ✧', 'font-size: 14px; font-weight: bold; color: #f093fb;');
         console.log('%cKeyboard Shortcuts: 1-4 Open Windows, ESC Close All', 'font-size: 12px; color: #764ba2;');
         console.log('%cAlchemical symbols guide your journey...', 'font-size: 11px; font-style: italic; color: #ffd700;');
+        console.log('%c🔮 Touch & Mobile Supported', 'font-size: 11px; color: #87CEEB;');
     </script>
 </body>
 </html>
