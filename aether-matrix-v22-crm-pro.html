@@ -8436,7 +8436,7 @@
             <div style="background: linear-gradient(90deg, #000080, #1084d0); color: #ffffff; padding: 4px 8px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #404040;">
                 <div style="display: flex; align-items: center; gap: 8px;">
                     <span style="font-size: 14px;">⚗️</span>
-                    <span style="font-family: 'MS Sans Serif', 'Segoe UI', sans-serif; font-size: 12px; font-weight: bold;">AETHER INVESTOR INTELLIGENCE | CRM v22 PRO | 183 Contacts • 96 Entities • Pipeline • Analytics</span>
+                    <span style="font-family: 'MS Sans Serif', 'Segoe UI', sans-serif; font-size: 12px; font-weight: bold;">AETHER CRM v22 ULTIMATE | 183 Investors + 198 Partners • 381 Total Contacts • Pipeline • Analytics</span>
                 </div>
                 <div style="display: flex; gap: 4px;">
                     <button onclick="exportInvestorData()" style="background: #c0c0c0; border: 2px solid; border-color: #ffffff #404040 #404040 #ffffff; padding: 2px 8px; font-size: 11px; font-weight: bold; cursor: pointer; font-family: 'MS Sans Serif', sans-serif;">📤 Export</button>
@@ -8451,8 +8451,9 @@
                 
                 <!-- View Mode Tabs -->
                 <div class="view-tabs">
-                    <button class="view-tab active" data-view="entity" onclick="setViewMode('entity')">🏢 Entity View</button>
+                    <button class="view-tab active" data-view="entity" onclick="setViewMode('entity')">🏢 Investors (183)</button>
                     <button class="view-tab" data-view="contact" onclick="setViewMode('contact')">👤 Contact View</button>
+                    <button class="view-tab" data-view="partners" onclick="setViewMode('partners')">⚗️ Partners (198)</button>
                     <button class="view-tab" data-view="pipeline" onclick="setViewMode('pipeline')">📈 Pipeline</button>
                     <button class="view-tab" data-view="analytics" onclick="setViewMode('analytics')">📊 Analytics</button>
                 </div>
@@ -8460,12 +8461,12 @@
                 <!-- Enhanced Stats Dashboard -->
                 <div class="stats-grid-enhanced">
                     <div class="stat-card-mini">
-                        <div class="stat-value" id="statTotalContacts">183</div>
-                        <div class="stat-label">TOTAL CONTACTS</div>
+                        <div class="stat-value" id="statTotalContacts">381</div>
+                        <div class="stat-label">TOTAL DATABASE</div>
                     </div>
                     <div class="stat-card-mini">
-                        <div class="stat-value" id="statEntities">96</div>
-                        <div class="stat-label">ENTITIES</div>
+                        <div class="stat-value" id="statEntities">183+198</div>
+                        <div class="stat-label">INV + PARTNERS</div>
                     </div>
                     <div class="stat-card-mini">
                         <div class="stat-value" id="statTierS">45</div>
@@ -8627,7 +8628,11 @@
                 <!-- Investor Grid -->
                 <div id="investorGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 15px;">
                 </div>
-                
+
+                <!-- Partners Grid (v20 Partner Database) -->
+                <div id="partnersGrid" style="display: none; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px;">
+                </div>
+
                 <!-- No Results Message -->
                 <div id="noResultsMessage" style="display: none; text-align: center; padding: 60px 20px; background: #fff; border: 2px solid; border-color: #404040 #dfdfdf #dfdfdf #404040;">
                     <div style="font-size: 48px; margin-bottom: 15px;">🔍</div>
@@ -8644,7 +8649,7 @@
         style="position: fixed; bottom: 80px; right: 30px; width: 70px; height: 70px; border-radius: 0; background: linear-gradient(135deg, #000080, #1084d0); border: 3px solid; border-color: #4040ff #000040 #000040 #4040ff; box-shadow: 4px 4px 0 #000000; cursor: pointer; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: all 0.2s;"
         onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='6px 6px 0 #000000';"
         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='4px 4px 0 #000000';"
-        title="Open Investor Intelligence CRM v22">
+        title="Open AETHER CRM v22 ULTIMATE (183 Investors + 198 Partners)">
         <span style="font-size: 24px;">⚗️</span>
         <span style="font-family: 'Courier New', monospace; font-size: 9px; font-weight: bold; color: white; margin-top: 2px;">CRM</span>
     </button>
@@ -8837,6 +8842,110 @@
             {"entityName": "Seera Group", "entityType": "Strategic Corporate", "tier": "Strategic", "subCategory": "Travel/Hospitality", "executiveName": "Al Waleed Al-Nasser", "title": "CEO", "directEmail": "alwaleed.alnasser@seera.sa", "emailStatus": "INFERRED", "alternativeEmail": "", "generalContact": "seera.sa/en/contact/", "phone": "", "linkedIn": "MODERATE", "investmentAppetite": "Strategic", "stageFocus": "Travel, Hospitality", "sectorFocus": "Saudi Arabia/MENA", "geoFocus": "N/A", "aum": "seera.sa", "website": "Via website", "outreachMethod": "6/10", "missionScore": "Vision 2030 aligned; Tadawul-listed", "notes": ""},
             {"entityName": "Seera Group", "entityType": "Strategic Corporate", "tier": "Strategic", "subCategory": "Travel/Hospitality", "executiveName": "Shuja Zaidi", "title": "EVP Chief Hospitality Officer", "directEmail": "shuja.zaidi@seera.sa", "emailStatus": "INFERRED", "alternativeEmail": "", "generalContact": "seera.sa/en/contact/", "phone": "", "linkedIn": "MODERATE", "investmentAppetite": "Hospitality", "stageFocus": "Hospitality Partnerships", "sectorFocus": "Saudi Arabia/MENA", "geoFocus": "N/A", "aum": "seera.sa", "website": "Via website", "outreachMethod": "6/10", "missionScore": "Hospitality contact", "notes": ""}
         ];
+
+        // ==================== PARTNER DATABASE (from v20 - 198 Partners) ====================
+        const PARTNER_DATABASE = [
+            // ===== TIER 1: HIGHEST PRIORITY (27) =====
+
+            // PHYGITAL EXPERIENTIAL & CREATIVE STUDIOS (9) - Tier 1
+            { name: "teamLab", category: "Creative", subcategory: "Digital Art", tier: "1", rhetoric: "pathos", value: "$30M–$60M", status: "proposal", type: "Digital Art Partnership", description: "World's premier digital art collective. Borderless concept validates mass-market transformation appetite.", metrics: ["Global recognition", "Mass appeal", "Art + Tech"], contact: "Toshiyuki Inoko (Founder)", email: "", strategicFit: "high", segment: "creative" },
+            { name: "Seeper", category: "Technology", subcategory: "Interactive", tier: "1", rhetoric: "ethos", value: "Co-Development", status: "proposal", type: "Interactive Projection", description: "Sensor-driven installations align with AETHER platform. World-class projection mapping.", metrics: ["40% dwell time", "10ms response", "1,024 sensors"], contact: "Creative Director", email: "", strategicFit: "high", segment: "creative" },
+            { name: "Punchdrunk", category: "Entertainment", subcategory: "Immersive Theater", tier: "1", rhetoric: "pathos", value: "$15M–$30M", status: "proposal", type: "Immersive Theater", description: "Sleep No More production company. Revolutionary audience-performer interaction.", metrics: ["14 year run", "Non-linear narrative"], contact: "Felix Barrett (Artistic Director)", email: "", strategicFit: "high", segment: "creative" },
+            { name: "Lune Rouge / Zú", category: "Entertainment", subcategory: "Live Performance", tier: "1", rhetoric: "pathos", value: "$25M–$50M", status: "pending", type: "Joint Venture", description: "Cirque du Soleil spin-off, touring entertainment. Quebec creative hub.", metrics: ["95% satisfaction", "40% repeat", "30-50% premium"], contact: "CEO", email: "", strategicFit: "high", segment: "creative" },
+            { name: "Fortiche", category: "Creative", subcategory: "Animation/VFX", tier: "1", rhetoric: "pathos", value: "Strategic", status: "proposal", type: "Animation Partnership", description: "Arcane creators—premium animation & VFX. Worlds audiences want to inhabit.", metrics: ["Emmy winner", "Netflix partnership"], contact: "Executive Producer", email: "", strategicFit: "high", segment: "creative" },
+            { name: "Ironhead Studios", category: "Creative", subcategory: "Fabrication", tier: "1", rhetoric: "ethos", value: "Co-Development", status: "proposal", type: "Fabrication Partner", description: "Costume/prop fabrication for Marvel, DC. Industry-leading theatrical work.", metrics: ["Marvel", "DC", "Premium quality"], contact: "Jose Fernandez (Founder)", email: "", strategicFit: "high", segment: "creative" },
+            { name: "Moment Factory", category: "Creative", subcategory: "Immersive", tier: "1", rhetoric: "ethos", value: "Strategic", status: "proposal", type: "Experience Design", description: "Large-scale immersive experiences with proven global track record.", metrics: ["Global installations", "500+ employees", "20+ years"], contact: "Partner", email: "", strategicFit: "high", segment: "creative" },
+            { name: "Capsule Studios", category: "Technology", subcategory: "Gaming", tier: "1", rhetoric: "ethos", value: "Co-Development", status: "proposal", type: "Game Development", description: "Game development with experiential focus.", metrics: ["Experiential gaming", "Interactive narrative"], contact: "CEO", email: "", strategicFit: "medium", segment: "creative" },
+            { name: "Illogic Studios", category: "Technology", subcategory: "VR/AR", tier: "1", rhetoric: "ethos", value: "Co-Development", status: "proposal", type: "VR/AR Partnership", description: "VR/AR entertainment experiences.", metrics: ["VR expertise", "AR innovation"], contact: "Founder", email: "", strategicFit: "medium", segment: "creative" },
+
+            // BIPOC & IMPACT INVESTORS (9) - Tier 1
+            { name: "Backstage Capital", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic Investment", status: "pending", type: "Impact VC", description: "Arlan Hamilton. Leading BIPOC-focused VC aligned with democratization mission.", metrics: ["BIPOC-focused", "Mission aligned"], contact: "Arlan Hamilton (Founder)", email: "hello@backstagecapital.com", strategicFit: "high", segment: "investment" },
+            { name: "Collab Capital", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic Investment", status: "pending", type: "Black-Founded VC", description: "Black-founded startups focus.", metrics: ["Black-founded", "Tech focus"], contact: "Investment Team", email: "", strategicFit: "high", segment: "investment" },
+            { name: "Concrete Rose VC", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic Investment", status: "pending", type: "Diverse Founders VC", description: "Underrepresented founders in tech.", metrics: ["Diverse founders", "Tech portfolio"], contact: "Investment Team", email: "", strategicFit: "high", segment: "investment" },
+            { name: "Harlem Capital", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic Investment", status: "pending", type: "Diverse Founders VC", description: "Diverse founders with proven track record. 1000 founders goal.", metrics: ["1000 founders goal", "$150M AUM"], contact: "Investment Team", email: "info@harlem.capital", strategicFit: "high", segment: "investment" },
+            { name: "Impact America Fund", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic Investment", status: "pending", type: "Community Impact VC", description: "Underserved communities focus.", metrics: ["Community impact", "Underserved markets"], contact: "Investment Team", email: "", strategicFit: "high", segment: "investment" },
+            { name: "Colorwave Founders Program", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic", status: "pending", type: "BIPOC Founders Program", description: "BIPOC founders focus program.", metrics: ["BIPOC founders", "Founder support"], contact: "Program Team", email: "", strategicFit: "high", segment: "investment" },
+            { name: "New Majority Capital", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic Investment", status: "pending", type: "Diverse Founders VC", description: "Diverse founders focus.", metrics: ["Diverse founders", "Growth stage"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+            { name: "Bronze VC", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic Investment", status: "pending", type: "Diverse Tech VC", description: "Diverse technology founders.", metrics: ["Tech focus", "Diverse founders"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+            { name: "Cake VC", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic Investment", status: "pending", type: "Diverse Consumer VC", description: "Diverse consumer tech focus.", metrics: ["Consumer tech", "Diverse founders"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+
+            // HOSPITALITY & THEMED ENTERTAINMENT (7) - Tier 1
+            { name: "Ennismore (Accor)", category: "Hospitality", subcategory: "Lifestyle", tier: "1", rhetoric: "logos", value: "Strategic", status: "pending", type: "Lifestyle Hospitality", description: "14+ lifestyle brands, design-forward. 140 properties.", metrics: ["15-20% RevPAR", "140 properties", "14 brands"], contact: "Sharan Pasricha (Founder/Co-CEO)", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Wynn Resorts", category: "Hospitality", subcategory: "Gaming", tier: "1", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Premium Gaming", description: "Ultra-premium hospitality and gaming.", metrics: ["Premium positioning", "Las Vegas"], contact: "Craig Billings (CEO)", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Legendary Entertainment", category: "IP", subcategory: "Film/TV", tier: "1", rhetoric: "logos", value: "Revenue Share", status: "pending", type: "IP Licensing", description: "IP portfolio (Dune, Godzilla). Location-based entertainment.", metrics: ["$75-150/visitor", "3-5x film ROI"], contact: "Josh Grode (CEO)", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Fantawild", category: "Entertainment", subcategory: "Theme Parks", tier: "1", rhetoric: "logos", value: "$500K–$2M/park", status: "proposal", type: "Theme Park Tech", description: "China's largest theme park operator. 40 parks, 50M visitors.", metrics: ["40 parks", "50M visitors", "China market"], contact: "Business Development", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Six Flags", category: "Entertainment", subcategory: "Theme Parks", tier: "1", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Theme Park Innovation", description: "Regional parks seeking innovation. SIXXTHRILL opportunity.", metrics: ["Regional reach", "Innovation need"], contact: "Chief Experience Officer", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Accor", category: "Hospitality", subcategory: "Global", tier: "1", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Global Hospitality", description: "Global hospitality giant with 5,300+ properties.", metrics: ["5,300+ properties", "Global reach"], contact: "Sébastien Bazin (CEO)", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "DMB Development", category: "Real Estate", subcategory: "Mixed-Use", tier: "1", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Development", description: "Mixed-use development.", metrics: ["Mixed-use", "Scale"], contact: "Development Team", email: "", strategicFit: "medium", segment: "b2b" },
+
+            // ===== TIER 2: HIGH PRIORITY =====
+
+            // GAMING, VFX & IP - Tier 2
+            { name: "Bad Robot Games", category: "Entertainment", subcategory: "Gaming", tier: "2", rhetoric: "ethos", value: "Strategic", status: "proposal", type: "Gaming Partnership", description: "JJ Abrams' gaming arm.", metrics: ["JJ Abrams", "Premium IP"], contact: "Business Development", email: "", strategicFit: "medium", segment: "creative" },
+            { name: "Crystal Dynamics", category: "Entertainment", subcategory: "Gaming", tier: "2", rhetoric: "ethos", value: "Strategic", status: "proposal", type: "AAA Gaming", description: "Tomb Raider IP, AAA development.", metrics: ["Tomb Raider", "AAA quality"], contact: "Business Development", email: "", strategicFit: "medium", segment: "creative" },
+            { name: "Plastic Studios", category: "Entertainment", subcategory: "Gaming", tier: "2", rhetoric: "ethos", value: "Co-Development", status: "proposal", type: "Indie Gaming", description: "Indie development focus.", metrics: ["Indie innovation", "Creative freedom"], contact: "Studio Head", email: "", strategicFit: "medium", segment: "creative" },
+
+            // COUTURE DESIGNERS - Tier 2
+            { name: "Iris Van Herpen", category: "Fashion", subcategory: "Haute Couture", tier: "2", rhetoric: "pathos", value: "Creative Collab", status: "proposal", type: "Tech-Couture", description: "Tech-couture pioneer, 3D printing fashion.", metrics: ["Tech-couture", "3D printing", "Avant-garde"], contact: "Atelier", email: "", strategicFit: "high", segment: "creative" },
+            { name: "Schiaparelli", category: "Fashion", subcategory: "Haute Couture", tier: "2", rhetoric: "pathos", value: "Creative Collab", status: "proposal", type: "Surrealist Fashion", description: "Surrealist theatrical fashion.", metrics: ["Surrealist", "Celebrity", "Iconic"], contact: "Creative Team", email: "", strategicFit: "high", segment: "creative" },
+            { name: "Guo Pei", category: "Fashion", subcategory: "Chinese Couture", tier: "2", rhetoric: "pathos", value: "Creative Collab", status: "proposal", type: "Chinese Couture", description: "Chinese haute couture master. Met Gala.", metrics: ["Chinese culture", "Met Gala"], contact: "Atelier", email: "", strategicFit: "high", segment: "creative" },
+            { name: "Mugler", category: "Fashion", subcategory: "Theatrical", tier: "2", rhetoric: "pathos", value: "Creative Collab", status: "proposal", type: "Theatrical Fashion", description: "Theatrical fashion, Casey Cadwallader era.", metrics: ["Theatrical", "Body-positive"], contact: "Brand Partnership", email: "", strategicFit: "medium", segment: "creative" },
+
+            // STRATEGIC VCs - Tier 2
+            { name: "Forerunner Ventures", category: "Investment", subcategory: "Consumer VC", tier: "2", rhetoric: "ethos", value: "Series A", status: "proposal", type: "Consumer Tech VC", description: "Consumer-focused venture. Glossier, Jet.com.", metrics: ["Consumer brands", "Portfolio success"], contact: "Investment Team", email: "investments@forerunnerventures.com", strategicFit: "medium", segment: "investment" },
+            { name: "First Round Capital", category: "Investment", subcategory: "Seed VC", tier: "2", rhetoric: "ethos", value: "Seed+", status: "proposal", type: "Premier Seed VC", description: "Premier seed investor. Uber, Square.", metrics: ["Uber, Square", "Platform resources"], contact: "Investment Team", email: "info@firstround.com", strategicFit: "medium", segment: "investment" },
+
+            // ===== TIER 3: STRATEGIC =====
+
+            // GLOBAL CAPITAL - Tier 3
+            { name: "PIF (Saudi)", category: "Investment", subcategory: "Sovereign Wealth", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Sovereign Wealth", description: "Saudi sovereign wealth. Vision 2030 entertainment diversification.", metrics: ["$700B+ AUM", "Vision 2030", "Entertainment"], contact: "Entertainment Division", email: "", strategicFit: "high", segment: "investment" },
+            { name: "Wanda Group", category: "Investment", subcategory: "Chinese Conglomerate", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Chinese Entertainment", description: "Chinese entertainment/real estate. Theme parks, cinemas.", metrics: ["Theme parks", "Cinema chains"], contact: "Entertainment Division", email: "", strategicFit: "medium", segment: "investment" },
+            { name: "Fosun Group", category: "Investment", subcategory: "Chinese Conglomerate", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Chinese Tourism", description: "Chinese tourism. Cirque du Soleil, Club Med.", metrics: ["Club Med", "Tourism assets"], contact: "Tourism Division", email: "", strategicFit: "medium", segment: "investment" },
+            { name: "L Catterton", category: "Investment", subcategory: "Consumer PE", tier: "3", rhetoric: "logos", value: "Growth Equity", status: "proposal", type: "Consumer PE", description: "LVMH-affiliated consumer PE.", metrics: ["LVMH connection", "Luxury consumer"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+
+            // ARCHITECTURE - Tier 3
+            { name: "MAD Architecture", category: "Architecture", subcategory: "Chinese", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Chinese Architecture", description: "Ma Yansong. Chinese experimental architecture.", metrics: ["Futuristic", "Cultural"], contact: "Studio", email: "", strategicFit: "high", segment: "b2b" },
+
+            // ACTIVE PARTNERSHIPS - Tier 3
+            { name: "Apple", category: "Technology", subcategory: "Platform", tier: "3", rhetoric: "ethos", value: "$234M", status: "active", type: "Platform Partnership", description: "Largest active partnership. Spatial computing integration.", metrics: ["$234M partnership", "Vision Pro"], contact: "Enterprise Partnership", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "MIT Media Lab", category: "Academic", subcategory: "Research", tier: "3", rhetoric: "ethos", value: "Research", status: "active", type: "Research Partnership", description: "Academic research partnership. Innovation validation.", metrics: ["Academic validation", "Research"], contact: "Research Director", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Cambridge University", category: "Academic", subcategory: "Research", tier: "3", rhetoric: "ethos", value: "Research", status: "active", type: "Research Partnership", description: "UK academic partnership.", metrics: ["UK validation", "Research depth"], contact: "Research Lead", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "PASQAL", category: "Technology", subcategory: "Quantum", tier: "3", rhetoric: "ethos", value: "$45M", status: "active", type: "Quantum Computing Exclusive", description: "10-year quantum computing exclusive. 10,000x speedup.", metrics: ["10-year exclusive", "10,000x speedup", "$45M"], contact: "CEO", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Anthropic", category: "Technology", subcategory: "AI", tier: "3", rhetoric: "ethos", value: "$45M", status: "active", type: "AI Partnership", description: "L.I.L.L.I.A.N. emotional AI partnership. 92% accuracy.", metrics: ["92% emotion detection", "L.I.L.L.I.A.N. AI", "$45M"], contact: "Partnership Team", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "3M Industrial", category: "Manufacturing", subcategory: "Materials", tier: "3", rhetoric: "ethos", value: "$12M", status: "active", type: "Materials Partnership", description: "Industrial materials partnership.", metrics: ["$12M value", "Materials innovation"], contact: "Industrial Solutions", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Warner Bros", category: "Entertainment", subcategory: "IP", tier: "3", rhetoric: "logos", value: "Revenue Share", status: "active", type: "IP Integration", description: "Major IP integration partnership.", metrics: ["Major IPs", "Revenue share"], contact: "Business Affairs", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Mayo Clinic", category: "Healthcare", subcategory: "Research", tier: "3", rhetoric: "ethos", value: "Validation", status: "active", type: "Wellness Validation", description: "Medical wellness methodology validation.", metrics: ["Medical validation", "FDA methodology"], contact: "Research Partnership", email: "", strategicFit: "high", segment: "b2b" },
+
+            // ADDITIONAL INVESTORS - Tier 3
+            { name: "Kapor Capital", category: "Investment", subcategory: "Impact VC", tier: "3", rhetoric: "pathos", value: "Strategic", status: "proposal", type: "Impact Tech VC", description: "Gap-closing tech startups.", metrics: ["Impact tech", "Gap-closing"], contact: "Investment Team", email: "", strategicFit: "high", segment: "investment" },
+            { name: "Lightspeed Venture Partners", category: "Investment", subcategory: "Mega VC", tier: "3", rhetoric: "ethos", value: "Series A+", status: "proposal", type: "Enterprise VC", description: "Enterprise and consumer.", metrics: ["Enterprise", "Consumer"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+            { name: "General Catalyst", category: "Investment", subcategory: "Mega VC", tier: "3", rhetoric: "ethos", value: "Series A+", status: "proposal", type: "Transformative VC", description: "Transformative company focus.", metrics: ["Transformative", "Platform"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+            { name: "Greylock Partners", category: "Investment", subcategory: "Enterprise VC", tier: "3", rhetoric: "ethos", value: "Series A", status: "proposal", type: "Enterprise VC", description: "Enterprise-focused.", metrics: ["Enterprise", "Reid Hoffman"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+            { name: "Benchmark", category: "Investment", subcategory: "Elite VC", tier: "3", rhetoric: "ethos", value: "Series A", status: "proposal", type: "Elite Seed/A VC", description: "Small fund, big returns.", metrics: ["Elite returns", "Hands-on"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+            { name: "Index Ventures", category: "Investment", subcategory: "European VC", tier: "3", rhetoric: "ethos", value: "Series A+", status: "proposal", type: "European Elite VC", description: "European elite venture.", metrics: ["European", "Global portfolio"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+            { name: "Temasek Holdings", category: "Investment", subcategory: "Sovereign", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Singapore Sovereign", description: "Singapore sovereign wealth.", metrics: ["Singapore", "Long-term"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+            { name: "Mubadala", category: "Investment", subcategory: "Sovereign", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "UAE Sovereign", description: "UAE sovereign wealth.", metrics: ["UAE", "Entertainment interests"], contact: "Investment Team", email: "", strategicFit: "medium", segment: "investment" },
+
+            // ADDITIONAL B2B - Tier 3
+            { name: "Marriott International", category: "Hospitality", subcategory: "Global", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Global Hospitality", description: "World's largest hotel company.", metrics: ["8,000+ properties", "Global reach"], contact: "Innovation Team", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Universal Parks", category: "Entertainment", subcategory: "Theme Parks", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Theme Park", description: "Universal Studios theme parks.", metrics: ["IP integration", "Innovation focus"], contact: "Strategic Partnerships", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Disney Parks", category: "Entertainment", subcategory: "Theme Parks", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Theme Park", description: "Disney theme park division.", metrics: ["Industry leader", "Global reach"], contact: "Strategic Partnerships", email: "", strategicFit: "high", segment: "b2b" },
+            { name: "Merlin Entertainments", category: "Entertainment", subcategory: "Theme Parks", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Attractions", description: "LEGOLAND, Madame Tussauds.", metrics: ["130+ attractions", "Europe strength"], contact: "Business Development", email: "", strategicFit: "medium", segment: "b2b" },
+
+            // ADDITIONAL CREATIVE - Tier 3
+            { name: "A24 Films", category: "Entertainment", subcategory: "Film", tier: "3", rhetoric: "pathos", value: "IP Partnership", status: "proposal", type: "Film Studio", description: "Indie film powerhouse. Everything Everywhere.", metrics: ["Oscar winner", "Cultural cachet"], contact: "Business Development", email: "", strategicFit: "high", segment: "creative" },
+            { name: "Gentle Monster", category: "Creative", subcategory: "Retail Experience", tier: "3", rhetoric: "pathos", value: "Strategic", status: "proposal", type: "Experiential Retail", description: "Korean experiential eyewear. Store as art.", metrics: ["Korean design", "Experiential retail"], contact: "Business Development", email: "", strategicFit: "medium", segment: "creative" },
+            { name: "AREA15", category: "Creative", subcategory: "Experience Venue", tier: "3", rhetoric: "logos", value: "Strategic", status: "proposal", type: "Experience Venue", description: "Las Vegas experience district.", metrics: ["Vegas venue", "Multiple tenants"], contact: "Business Development", email: "", strategicFit: "high", segment: "creative" },
+
+            // NEW TIER 1: Additional BIPOC & Impact Investors
+            { name: "Harborview (Vista Equity Partners)", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "$100M+ Investment", status: "pending", type: "Enterprise Software + Impact", description: "Vista Equity Partners' diverse founder initiative. Largest Black-owned PE firm.", metrics: ["$100B+ AUM", "BIPOC focus", "Enterprise tech"], contact: "Investment Team", email: "", strategicFit: "high", segment: "investment" },
+            { name: "Gaingels", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic Investment", status: "pending", type: "LGBTQ+ Focused VC", description: "Network of investors backing LGBTQ+ entrepreneurs and allies.", metrics: ["LGBTQ+ focus", "200+ investments", "Network strength"], contact: "Investment Team", email: "", strategicFit: "high", segment: "investment" },
+            { name: "Pride Fund 1", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic Investment", status: "pending", type: "LGBTQ+ Owned Startups", description: "First venture fund focused exclusively on LGBTQ+ entrepreneurs.", metrics: ["LGBTQ+ owned", "First-of-kind", "Mission aligned"], contact: "Investment Team", email: "", strategicFit: "high", segment: "investment" },
+            { name: "Overlooked Ventures", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic Investment", status: "pending", type: "Underrepresented Founders", description: "Funds startups led by underrepresented founders.", metrics: ["Underrepresented focus", "Tech focus", "Scalability"], contact: "Investment Team", email: "", strategicFit: "high", segment: "investment" },
+            { name: "Cleo Capital", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic Investment", status: "pending", type: "Women-Led VC", description: "Venture firm led by women, focusing on female entrepreneurs.", metrics: ["Women-led", "Female entrepreneurs", "Diverse teams"], contact: "Investment Team", email: "", strategicFit: "high", segment: "investment" },
+            { name: "The BFM Fund", category: "Investment", subcategory: "Impact VC", tier: "1", rhetoric: "pathos", value: "Strategic Investment", status: "pending", type: "Minority & Women-Led", description: "Focuses on minority and women-led businesses.", metrics: ["Minority-led", "Women-led", "Consumer + Tech"], contact: "Investment Team", email: "", strategicFit: "high", segment: "investment" }
+        ];
+        const AETHER_PARTNERS = PARTNER_DATABASE;
 
         // ==================== INVESTOR CRM v22 PRO ====================
         // Enhanced Features: Pipeline, Favorites, Activity, Templates, Analytics
@@ -9102,17 +9211,132 @@
             currentViewMode = mode;
             document.querySelectorAll('.view-tab').forEach(btn => btn.classList.remove('active'));
             document.querySelector(`[data-view="${mode}"]`)?.classList.add('active');
-            renderInvestors();
+            if (mode === 'partners') {
+                renderPartners();
+            } else {
+                renderInvestors();
+            }
+        }
+
+        // ==================== PARTNER RENDERING FUNCTIONS ====================
+        let filteredPartners = [...PARTNER_DATABASE];
+        let partnerSearchTerm = '';
+
+        function renderPartners() {
+            const investorGrid = document.getElementById('investorGrid');
+            const partnersGrid = document.getElementById('partnersGrid');
+            const noResults = document.getElementById('noResultsMessage');
+            const analyticsContainer = document.getElementById('analyticsContainer');
+            const pipelineContainer = document.getElementById('pipelineContainer');
+
+            // Hide investor views
+            investorGrid.style.display = 'none';
+            noResults.style.display = 'none';
+            if (analyticsContainer) analyticsContainer.style.display = 'none';
+            if (pipelineContainer) pipelineContainer.style.display = 'none';
+
+            // Filter partners
+            filteredPartners = PARTNER_DATABASE.filter(partner => {
+                if (partnerSearchTerm) {
+                    const search = partnerSearchTerm.toLowerCase();
+                    return partner.name.toLowerCase().includes(search) ||
+                           partner.category.toLowerCase().includes(search) ||
+                           partner.description.toLowerCase().includes(search) ||
+                           partner.type.toLowerCase().includes(search);
+                }
+                return true;
+            });
+
+            if (filteredPartners.length === 0) {
+                partnersGrid.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+
+            partnersGrid.style.display = 'grid';
+            partnersGrid.innerHTML = filteredPartners.map(partner => renderPartnerCard(partner)).join('');
+        }
+
+        function renderPartnerCard(partner) {
+            const tierColors = {
+                '1': '#27ae60',
+                '2': '#3498db',
+                '3': '#95a5a6'
+            };
+            const segmentIcons = {
+                'creative': '🎨',
+                'investment': '💰',
+                'b2b': '🏢'
+            };
+            const statusColors = {
+                'active': '#27ae60',
+                'proposal': '#f39c12',
+                'pending': '#3498db'
+            };
+            const rhetoricalIcons = {
+                'pathos': '♀',
+                'logos': '♃',
+                'ethos': '♂'
+            };
+
+            return `
+                <div style="background: #fff; border: 2px solid; border-color: #dfdfdf #404040 #404040 #dfdfdf; padding: 15px; font-family: 'MS Sans Serif', sans-serif;">
+                    <!-- Header -->
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid #808080;">
+                        <div style="flex: 1;">
+                            <div style="font-size: 14px; font-weight: bold; color: #000080; margin-bottom: 4px;">
+                                ${segmentIcons[partner.segment] || '📌'} ${partner.name}
+                            </div>
+                            <div style="font-size: 11px; color: #666;">
+                                ${partner.category} • ${partner.subcategory}
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 4px; align-items: center;">
+                            <span style="background: ${tierColors[partner.tier] || '#808080'}; color: white; padding: 2px 6px; font-size: 10px; font-weight: bold;">T${partner.tier}</span>
+                            <span style="font-size: 14px;" title="Rhetoric: ${partner.rhetoric}">${rhetoricalIcons[partner.rhetoric] || '☿'}</span>
+                        </div>
+                    </div>
+
+                    <!-- Type & Value -->
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="font-size: 11px; color: #333;">${partner.type}</span>
+                        <span style="font-size: 11px; font-weight: bold; color: #000080;">${partner.value}</span>
+                    </div>
+
+                    <!-- Description -->
+                    <div style="font-size: 11px; color: #444; margin-bottom: 10px; line-height: 1.4;">
+                        ${partner.description}
+                    </div>
+
+                    <!-- Metrics -->
+                    <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px;">
+                        ${(partner.metrics || []).map(m => `<span style="background: #e8e8e8; padding: 2px 6px; font-size: 10px; border: 1px solid #c0c0c0;">${m}</span>`).join('')}
+                    </div>
+
+                    <!-- Footer -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 8px; border-top: 1px solid #c0c0c0;">
+                        <div style="font-size: 10px; color: #666;">
+                            👤 ${partner.contact}
+                        </div>
+                        <div style="display: flex; gap: 4px; align-items: center;">
+                            <span style="background: ${statusColors[partner.status] || '#808080'}; color: white; padding: 2px 6px; font-size: 9px; text-transform: uppercase;">${partner.status}</span>
+                            <span style="font-size: 10px; color: ${partner.strategicFit === 'high' ? '#27ae60' : partner.strategicFit === 'medium' ? '#f39c12' : '#e74c3c'};">●</span>
+                        </div>
+                    </div>
+                </div>
+            `;
         }
 
         function renderInvestors() {
             const grid = document.getElementById('investorGrid');
+            const partnersGrid = document.getElementById('partnersGrid');
             const noResults = document.getElementById('noResultsMessage');
             const analyticsContainer = document.getElementById('analyticsContainer');
             const pipelineContainer = document.getElementById('pipelineContainer');
 
             // Hide all containers first
             grid.style.display = 'none';
+            if (partnersGrid) partnersGrid.style.display = 'none';
             noResults.style.display = 'none';
             if (analyticsContainer) analyticsContainer.style.display = 'none';
             if (pipelineContainer) pipelineContainer.style.display = 'none';
