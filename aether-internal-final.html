@@ -719,6 +719,406 @@
             height: 16px;
         }
 
+        /* ========================================
+           AETHERPUNK ENHANCEMENTS
+           ======================================== */
+
+        /* CRT Scanline Effect */
+        .crt-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.03) 0px,
+                rgba(0, 0, 0, 0.03) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+            animation: scanlineFlicker 0.1s infinite;
+        }
+
+        .crt-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                ellipse at center,
+                transparent 0%,
+                rgba(0, 0, 0, 0.15) 90%,
+                rgba(0, 0, 0, 0.3) 100%
+            );
+        }
+
+        @keyframes scanlineFlicker {
+            0%, 100% { opacity: 0.97; }
+            50% { opacity: 1; }
+        }
+
+        /* Glitch Effect Layer */
+        .glitch-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0;
+            animation: glitchAppear 8s ease-in-out infinite;
+        }
+
+        @keyframes glitchAppear {
+            0%, 95%, 100% { opacity: 0; }
+            96% { opacity: 0.03; transform: translateX(-2px); }
+            97% { opacity: 0.05; transform: translateX(2px); }
+            98% { opacity: 0; transform: translateX(0); }
+        }
+
+        /* Alchemical Symbols Floating */
+        .alchemical-symbols {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .alchemical-symbol {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.15;
+            color: var(--aether-gold);
+            animation: symbolFloat 20s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            filter: blur(0.5px);
+        }
+
+        .alchemical-symbol:nth-child(1) { left: 5%; top: 15%; animation-delay: 0s; animation-duration: 25s; }
+        .alchemical-symbol:nth-child(2) { left: 15%; top: 60%; animation-delay: -5s; animation-duration: 22s; }
+        .alchemical-symbol:nth-child(3) { left: 25%; top: 30%; animation-delay: -10s; animation-duration: 28s; }
+        .alchemical-symbol:nth-child(4) { left: 40%; top: 80%; animation-delay: -3s; animation-duration: 24s; }
+        .alchemical-symbol:nth-child(5) { left: 55%; top: 20%; animation-delay: -8s; animation-duration: 26s; }
+        .alchemical-symbol:nth-child(6) { left: 70%; top: 50%; animation-delay: -12s; animation-duration: 23s; }
+        .alchemical-symbol:nth-child(7) { left: 85%; top: 70%; animation-delay: -6s; animation-duration: 27s; }
+        .alchemical-symbol:nth-child(8) { left: 90%; top: 25%; animation-delay: -15s; animation-duration: 21s; }
+
+        @keyframes symbolFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 0.15;
+            }
+            25% {
+                transform: translateY(-30px) rotate(90deg) scale(1.2);
+                opacity: 0.25;
+            }
+            50% {
+                transform: translateY(-15px) rotate(180deg) scale(0.9);
+                opacity: 0.1;
+            }
+            75% {
+                transform: translateY(-40px) rotate(270deg) scale(1.1);
+                opacity: 0.2;
+            }
+        }
+
+        /* Particle System */
+        .particle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--aether-purple);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleRise 15s linear infinite;
+            box-shadow:
+                0 0 6px var(--aether-purple),
+                0 0 12px var(--aether-pink);
+        }
+
+        .particle:nth-child(odd) {
+            background: var(--aether-gold);
+            box-shadow:
+                0 0 6px var(--aether-gold),
+                0 0 12px rgba(255, 215, 0, 0.5);
+        }
+
+        @keyframes particleRise {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(1.5);
+            }
+        }
+
+        /* Neon Glow Pulse for headers */
+        .window-content h1 {
+            position: relative;
+            animation: neonPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes neonPulse {
+            0%, 100% {
+                text-shadow:
+                    0 0 5px rgba(102, 126, 234, 0.3),
+                    0 0 10px rgba(102, 126, 234, 0.2);
+            }
+            50% {
+                text-shadow:
+                    0 0 10px rgba(102, 126, 234, 0.5),
+                    0 0 20px rgba(102, 126, 234, 0.3),
+                    0 0 30px rgba(240, 147, 251, 0.2);
+            }
+        }
+
+        /* Enhanced Loading Screen - Mystical Circle */
+        .loading-circle {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 50%;
+            animation: loadingRotate 10s linear infinite;
+        }
+
+        .loading-circle::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 2px solid transparent;
+            border-top-color: var(--aether-gold);
+            border-radius: 50%;
+            animation: loadingRotate 3s linear infinite reverse;
+        }
+
+        .loading-circle::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px dashed rgba(240, 147, 251, 0.4);
+            border-radius: 50%;
+            animation: loadingRotate 8s linear infinite;
+        }
+
+        @keyframes loadingRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Triquetra Symbol in Loading */
+        .triquetra-symbol {
+            font-size: 48px;
+            margin-top: 30px;
+            animation: triquetaPulse 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+        }
+
+        @keyframes triquetaPulse {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+            }
+            50% {
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.9));
+            }
+        }
+
+        /* Enhanced Window Glass Effect */
+        .window {
+            backdrop-filter: blur(5px);
+            box-shadow:
+                2px 2px 10px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(102, 126, 234, 0.1),
+                inset 0 0 20px rgba(255, 255, 255, 0.05);
+        }
+
+        .window::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.1) 0%,
+                transparent 50%,
+                rgba(0, 0, 0, 0.1) 100%
+            );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Holographic Border Effect */
+        .main-desktop-button::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(
+                45deg,
+                transparent 0%,
+                rgba(102, 126, 234, 0.2) 25%,
+                rgba(240, 147, 251, 0.3) 50%,
+                rgba(255, 215, 0, 0.2) 75%,
+                transparent 100%
+            );
+            background-size: 400% 400%;
+            border-radius: 26px;
+            z-index: -2;
+            animation: holographicShift 6s ease infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes holographicShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Data Stream Effect on Stats */
+        .stat-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 200%;
+            background: linear-gradient(
+                0deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 100%
+            );
+            animation: dataStream 3s linear infinite;
+        }
+
+        @keyframes dataStream {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50%); }
+        }
+
+        /* Cyber Grid Background for IP Cards */
+        .ip-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(102, 126, 234, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(102, 126, 234, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .ip-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Enhanced Start Button Glow */
+        .start-button {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .start-button:hover {
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.5);
+        }
+
+        .start-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.3), transparent);
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .start-button:hover::before {
+            width: 100px;
+            height: 100px;
+        }
+
+        /* Chromatic Aberration on Logo */
+        .brand-logo-container img {
+            position: relative;
+        }
+
+        .brand-logo-container:hover img {
+            animation: chromaticPulse 0.5s ease;
+        }
+
+        @keyframes chromaticPulse {
+            0%, 100% {
+                filter: drop-shadow(0 10px 30px rgba(102, 126, 234, 0.6));
+            }
+            25% {
+                filter:
+                    drop-shadow(0 10px 30px rgba(102, 126, 234, 0.6))
+                    drop-shadow(-3px 0 0 rgba(255, 0, 0, 0.3))
+                    drop-shadow(3px 0 0 rgba(0, 255, 255, 0.3));
+            }
+            75% {
+                filter:
+                    drop-shadow(0 10px 30px rgba(102, 126, 234, 0.6))
+                    drop-shadow(2px 0 0 rgba(255, 0, 255, 0.3))
+                    drop-shadow(-2px 0 0 rgba(0, 255, 0, 0.3));
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .desktop {
@@ -753,14 +1153,45 @@
     <!-- Matrix Rain Canvas -->
     <canvas id="matrixCanvas"></canvas>
 
+    <!-- CRT Scanline Overlay -->
+    <div class="crt-overlay"></div>
+
+    <!-- Glitch Effect Layer -->
+    <div class="glitch-layer"></div>
+
+    <!-- Alchemical Symbols -->
+    <div class="alchemical-symbols">
+        <div class="alchemical-symbol">&#x2609;</div><!-- Sun -->
+        <div class="alchemical-symbol">&#x263D;</div><!-- Moon -->
+        <div class="alchemical-symbol">&#x2641;</div><!-- Earth -->
+        <div class="alchemical-symbol">&#x2644;</div><!-- Saturn -->
+        <div class="alchemical-symbol">&#x2640;</div><!-- Venus -->
+        <div class="alchemical-symbol">&#x2642;</div><!-- Mars -->
+        <div class="alchemical-symbol">&#x263F;</div><!-- Mercury -->
+        <div class="alchemical-symbol">&#x2643;</div><!-- Jupiter -->
+    </div>
+
+    <!-- Particle System -->
+    <div class="particle-container" id="particleContainer">
+        <!-- Particles generated by JS -->
+    </div>
+
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
+        <div class="loading-circle"></div>
         <div class="boot-text">AETHER PXE v6.0 Initializing...</div>
         <picture>
             <source srcset="aether-website-assets/avif/aether-brand-logo-main.avif" type="image/avif">
             <source srcset="aether-website-assets/webp/aether-brand-logo-main.webp" type="image/webp">
             <img src="aether-website-assets/png-fallback/aether-brand-logo-main.png" alt="AETHER Logo" class="loading-logo">
         </picture>
+        <div class="triquetra-symbol">&#x269B;</div>
+        <div class="boot-sequence" id="bootSequence" style="font-family: var(--font-mono); font-size: 11px; margin-top: 20px; color: rgba(255,255,255,0.7); text-align: left; width: 300px;">
+            <div>&gt; Quantum cores online...</div>
+            <div style="animation-delay: 0.5s;">&gt; L.I.L.L.I.A.N. awakening...</div>
+            <div style="animation-delay: 1s;">&gt; Phygital bridge established...</div>
+            <div style="animation-delay: 1.5s;">&gt; Alchemical processes ready...</div>
+        </div>
     </div>
 
     <!-- Desktop -->
@@ -803,6 +1234,15 @@
                 <div class="button-label">PORTFOLIO</div>
                 <div class="button-subtitle">Work Showcase & Case Studies</div>
             </div>
+        </div>
+
+        <!-- Brand Signature -->
+        <div class="brand-signature" style="position: absolute; bottom: 70px; right: 20px; opacity: 0.6; transition: opacity 0.3s ease;">
+            <picture>
+                <source srcset="aether-website-assets/avif/aether-brand-ctch-logotype.avif" type="image/avif">
+                <source srcset="aether-website-assets/webp/aether-brand-ctch-logotype.webp" type="image/webp">
+                <img src="aether-website-assets/png-fallback/aether-brand-ctch-logotype.png" alt="CTCH Logotype" style="height: 40px; width: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));">
+            </picture>
         </div>
     </div>
 
@@ -847,7 +1287,11 @@
                         <img src="aether-website-assets/png-fallback/aether-team-cofounder-shaxinwei.png" alt="Dr. Sha Xin Wei - Co-Founder" loading="lazy">
                     </picture>
                     <div class="info">
-                        <div class="name">Dr. Sha Xin Wei</div>
+                        <picture style="display: block; margin-bottom: 8px;">
+                            <source srcset="aether-website-assets/avif/BRANDAsset-Typography3D-ShaXinWei.avif" type="image/avif">
+                            <source srcset="aether-website-assets/webp/BRANDAsset-Typography3D-ShaXinWei.webp" type="image/webp">
+                            <img src="aether-website-assets/png-fallback/BRANDAsset-Typography3D-ShaXinWei.png" alt="Dr. Sha Xin Wei" loading="lazy" style="height: 28px; width: auto;">
+                        </picture>
                         <div class="role">Co-Founder & Chief Science Officer</div>
                     </div>
                 </div>
@@ -858,10 +1302,25 @@
                         <img src="aether-website-assets/png-fallback/aether-team-cofounder-vangelis.png" alt="Dr. Vangelis Lympouridis - Co-Founder" loading="lazy">
                     </picture>
                     <div class="info">
-                        <div class="name">Dr. Vangelis Lympouridis</div>
+                        <picture style="display: block; margin-bottom: 8px;">
+                            <source srcset="aether-website-assets/avif/BRANDAsset-Typography3D-VangelisLympouridis.avif" type="image/avif">
+                            <source srcset="aether-website-assets/webp/BRANDAsset-Typography3D-VangelisLympouridis.webp" type="image/webp">
+                            <img src="aether-website-assets/png-fallback/BRANDAsset-Typography3D-VangelisLympouridis.png" alt="Dr. Vangelis Lympouridis" loading="lazy" style="height: 28px; width: auto;">
+                        </picture>
                         <div class="role">Co-Founder & Chief Experience Officer</div>
                     </div>
                 </div>
+            </div>
+
+            <h2>The Alchemist Atelier</h2>
+
+            <div class="info-box" style="text-align: center; padding: 30px;">
+                <picture>
+                    <source srcset="aether-website-assets/avif/BRANDAsset-Typography3D-AlchemicalArtisans.avif" type="image/avif">
+                    <source srcset="aether-website-assets/webp/BRANDAsset-Typography3D-AlchemicalArtisans.webp" type="image/webp">
+                    <img src="aether-website-assets/png-fallback/BRANDAsset-Typography3D-AlchemicalArtisans.png" alt="Alchemical Artisans Typography" loading="lazy" style="max-width: 400px; height: auto; filter: drop-shadow(0 4px 15px rgba(102, 126, 234, 0.3));">
+                </picture>
+                <p style="margin-top: 15px; font-style: italic; color: var(--aether-purple);">Transmuting imagination into reality since 2018</p>
             </div>
 
             <h2>Industry Recognition</h2>
@@ -1297,6 +1756,14 @@
                     </picture>
                     <div class="caption">Warrior Princess - Character Concept Art</div>
                 </div>
+                <div class="gallery-item">
+                    <picture>
+                        <source srcset="aether-website-assets/avif/BRANDAsset-WarriorPrincess-Render51.avif" type="image/avif">
+                        <source srcset="aether-website-assets/webp/BRANDAsset-WarriorPrincess-Render51.webp" type="image/webp">
+                        <img src="aether-website-assets/png-fallback/BRANDAsset-WarriorPrincess-Render51.png" alt="Warrior Princess - 3D Render" loading="lazy">
+                    </picture>
+                    <div class="caption">Warrior Princess - Hero 3D Render</div>
+                </div>
             </div>
 
             <h2>Concert & Venue Design</h2>
@@ -1354,6 +1821,14 @@
                         <img src="aether-website-assets/png-fallback/BRANDwork-EnchantSite-Collage7.png" alt="Enchant Site Collage 7" loading="lazy">
                     </picture>
                     <div class="caption">Enchant - Night Display</div>
+                </div>
+                <div class="gallery-item">
+                    <picture>
+                        <source srcset="aether-website-assets/avif/BRANDwork-EnchantSite-Collage8.avif" type="image/avif">
+                        <source srcset="aether-website-assets/webp/BRANDwork-EnchantSite-Collage8.webp" type="image/webp">
+                        <img src="aether-website-assets/png-fallback/BRANDwork-EnchantSite-Collage8.png" alt="Enchant Site Collage 8" loading="lazy">
+                    </picture>
+                    <div class="caption">Enchant - Holiday Magic Collage</div>
                 </div>
             </div>
 
@@ -1580,9 +2055,84 @@
             if (e.key === '4') openWindow('portfolio');
         });
 
+        // ========== PARTICLE SYSTEM ==========
+
+        function createParticles() {
+            const container = document.getElementById('particleContainer');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // ========== BOOT SEQUENCE ANIMATION ==========
+
+        function animateBootSequence() {
+            const bootLines = document.querySelectorAll('#bootSequence div');
+            bootLines.forEach((line, index) => {
+                line.style.opacity = '0';
+                line.style.transform = 'translateX(-10px)';
+                line.style.transition = 'all 0.5s ease';
+
+                setTimeout(() => {
+                    line.style.opacity = '1';
+                    line.style.transform = 'translateX(0)';
+                }, index * 400);
+            });
+        }
+        animateBootSequence();
+
+        // ========== ENHANCED VISUAL EFFECTS ==========
+
+        // Random glitch effect on logo hover
+        document.querySelector('.brand-logo-container')?.addEventListener('mouseenter', function() {
+            this.style.animation = 'none';
+            setTimeout(() => {
+                this.style.animation = 'logoFloat 4s ease-in-out infinite';
+            }, 50);
+        });
+
+        // Occasional screen flicker for cyberpunk feel
+        function randomFlicker() {
+            const overlay = document.querySelector('.crt-overlay');
+            if (overlay && Math.random() > 0.95) {
+                overlay.style.opacity = '0.5';
+                setTimeout(() => {
+                    overlay.style.opacity = '1';
+                }, 50);
+            }
+            setTimeout(randomFlicker, 2000 + Math.random() * 5000);
+        }
+        randomFlicker();
+
+        // Add typing effect to window titles when opened
+        const originalOpenWindow = openWindow;
+        openWindow = function(id) {
+            originalOpenWindow(id);
+            const win = document.getElementById('window-' + id);
+            if (win) {
+                win.style.transform = 'scale(0.95)';
+                win.style.opacity = '0.8';
+                setTimeout(() => {
+                    win.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+                    win.style.transform = 'scale(1)';
+                    win.style.opacity = '1';
+                }, 10);
+            }
+        };
+
         // Console welcome message
         console.log('%c⚗️ AETHER Internal Platform v1.0', 'font-size: 16px; font-weight: bold; color: #667eea;');
+        console.log('%c✧ AETHERPUNK EDITION ✧', 'font-size: 14px; font-weight: bold; color: #f093fb;');
         console.log('%cKeyboard Shortcuts: 1-4 Open Windows, ESC Close All', 'font-size: 12px; color: #764ba2;');
+        console.log('%cAlchemical symbols guide your journey...', 'font-size: 11px; font-style: italic; color: #ffd700;');
     </script>
 </body>
 </html>
