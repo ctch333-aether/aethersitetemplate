@@ -9326,6 +9326,17 @@
         // ==================== PARTNER RENDERING FUNCTIONS ====================
         let filteredPartners = [...PARTNER_DATABASE];
         let partnerSearchTerm = '';
+        let partnerTierFilter = 'all';
+        let partnerSegmentFilter = 'all';
+        let partnerFitFilter = 'all';
+
+        function filterPartners() {
+            partnerSearchTerm = document.getElementById('partnerSearchInput')?.value || '';
+            partnerTierFilter = document.getElementById('tierFilter')?.value || 'all';
+            partnerSegmentFilter = document.getElementById('segmentFilter')?.value || 'all';
+            partnerFitFilter = document.getElementById('strategicFitFilter')?.value || 'all';
+            renderPartners();
+        }
 
         function renderPartners() {
             const investorGrid = document.getElementById('investorGrid');
@@ -9342,14 +9353,26 @@
 
             // Filter partners
             filteredPartners = PARTNER_DATABASE.filter(partner => {
+                // Search filter
+                let matchesSearch = true;
                 if (partnerSearchTerm) {
                     const search = partnerSearchTerm.toLowerCase();
-                    return partner.name.toLowerCase().includes(search) ||
+                    matchesSearch = partner.name.toLowerCase().includes(search) ||
                            partner.category.toLowerCase().includes(search) ||
                            partner.description.toLowerCase().includes(search) ||
                            partner.type.toLowerCase().includes(search);
                 }
-                return true;
+
+                // Tier filter
+                const matchesTier = partnerTierFilter === 'all' || partner.tier === partnerTierFilter;
+
+                // Segment filter
+                const matchesSegment = partnerSegmentFilter === 'all' || partner.segment === partnerSegmentFilter;
+
+                // Strategic fit filter
+                const matchesFit = partnerFitFilter === 'all' || partner.strategicFit === partnerFitFilter;
+
+                return matchesSearch && matchesTier && matchesSegment && matchesFit;
             });
 
             if (filteredPartners.length === 0) {
