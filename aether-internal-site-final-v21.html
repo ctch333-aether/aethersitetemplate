@@ -21,19 +21,23 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            image-rendering: auto;
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
         }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           OFFLINE-READY FONTS - No External Dependencies
+           Uses system fonts with proper fallbacks for offline use
+           ═══════════════════════════════════════════════════════════════════ */
 
         @font-face {
             font-family: 'MS Sans Serif';
-            src: local('MS Sans Serif'), local('Microsoft Sans Serif'), local('sans-serif');
+            src: local('MS Sans Serif'), local('Microsoft Sans Serif'), local('Segoe UI'), local('sans-serif');
         }
 
-        /* Premium Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
-
         :root {
-            /* AETHER Brand Colors */
+            /* AETHER Brand Colors - Exact v20 Match */
             --aether-purple: #667eea;
             --aether-purple-dark: #764ba2;
             --aether-blue: #4a90e2;
@@ -47,10 +51,10 @@
             --win95-gray: #c0c0c0;
             --win95-dark: #808080;
 
-            /* Typography */
-            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            --font-display: 'Space Grotesk', 'Inter', sans-serif;
-            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+            /* Typography - System Fonts Only (Offline Compatible) */
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            --font-display: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            --font-mono: 'Courier New', 'Monaco', 'Consolas', 'Liberation Mono', monospace;
 
             /* Text Colors */
             --text-primary: #2c3e50;
@@ -73,7 +77,7 @@
 
         body {
             font-size: 14px;
-            font-family: var(--font-primary);
+            font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
             background: #008080;
             color: #000;
             overflow: hidden;
@@ -83,6 +87,7 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             line-height: 1.6;
+            font-weight: 500;
         }
 
         /* ===== KINETIC SKY BACKGROUND ===== */
@@ -121,17 +126,49 @@
             background:
                 radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 40%),
                 radial-gradient(circle at 60% 60%, rgba(135, 206, 250, 0.35) 0%, transparent 45%),
-                radial-gradient(circle at 80% 20%, rgba(255, 182, 193, 0.3) 0%, transparent 50%);
+                radial-gradient(circle at 80% 20%, rgba(255, 182, 193, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(173, 216, 230, 0.3) 0%, transparent 40%);
             animation: cloudDrift 40s linear infinite;
             filter: blur(2px);
         }
 
+        .sky-glass-layer::after {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background:
+                radial-gradient(ellipse at 30% 40%, rgba(255, 255, 255, 0.25) 0%, transparent 35%),
+                radial-gradient(ellipse at 70% 60%, rgba(135, 206, 250, 0.2) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 90%, rgba(230, 190, 255, 0.2) 0%, transparent 45%);
+            animation: cloudDrift 55s linear infinite reverse;
+            mix-blend-mode: screen;
+            filter: blur(1px);
+        }
+
         @keyframes skyFlow {
-            0%, 100% { filter: hue-rotate(0deg) brightness(1) contrast(1.1) saturate(1.1); }
-            20% { filter: hue-rotate(30deg) brightness(1.1) contrast(1) saturate(1.2); }
-            40% { filter: hue-rotate(-20deg) brightness(0.95) contrast(1.2) saturate(1); }
-            60% { filter: hue-rotate(15deg) brightness(1.05) contrast(1.05) saturate(1.15); }
-            80% { filter: hue-rotate(-10deg) brightness(1) contrast(1.15) saturate(1.05); }
+            0%, 100% {
+                filter: hue-rotate(0deg) brightness(1) contrast(1.1) saturate(1.1);
+                transform: scale(1) rotate(0deg);
+            }
+            20% {
+                filter: hue-rotate(30deg) brightness(1.1) contrast(1) saturate(1.2);
+                transform: scale(1.05) rotate(1deg);
+            }
+            40% {
+                filter: hue-rotate(-20deg) brightness(0.95) contrast(1.2) saturate(1);
+                transform: scale(1.02) rotate(-0.5deg);
+            }
+            60% {
+                filter: hue-rotate(15deg) brightness(1.05) contrast(1.05) saturate(1.15);
+                transform: scale(1.03) rotate(0.5deg);
+            }
+            80% {
+                filter: hue-rotate(-10deg) brightness(1) contrast(1.15) saturate(1.05);
+                transform: scale(1.01) rotate(-0.2deg);
+            }
         }
 
         @keyframes cloudDrift {
@@ -150,7 +187,7 @@
             width: 100%;
             height: 100%;
             z-index: -2;
-            opacity: 0.4;
+            opacity: 0.45;
             mix-blend-mode: screen;
         }
 
@@ -1170,12 +1207,12 @@
     <div class="window" id="window-ethos" style="top: 50px; left: 50px; width: 900px;">
         <div class="window-header" onmousedown="startDrag(event, 'window-ethos')">
             <div class="window-title">
-                <span>📜</span>
-                <span>ETHOS - The Genesis of AETHER</span>
+                <span>🛡️</span>
+                <span>ETHOS - The AETHER Vision: Credibility & Authority</span>
             </div>
             <div class="window-controls">
                 <button class="window-button" onclick="minimizeWindow('ethos')">_</button>
-                <button class="window-button" onclick="closeWindow('ethos')">×</button>
+                <button class="window-button" onclick="closeWindow('ethos')">✕</button>
             </div>
         </div>
         <div class="window-content">
@@ -1270,7 +1307,7 @@
             </div>
             <div class="window-controls">
                 <button class="window-button" onclick="minimizeWindow('pathos')">_</button>
-                <button class="window-button" onclick="closeWindow('pathos')">×</button>
+                <button class="window-button" onclick="closeWindow('pathos')">✕</button>
             </div>
         </div>
         <div class="window-content">
@@ -1405,7 +1442,7 @@
             </div>
             <div class="window-controls">
                 <button class="window-button" onclick="minimizeWindow('logos')">_</button>
-                <button class="window-button" onclick="closeWindow('logos')">×</button>
+                <button class="window-button" onclick="closeWindow('logos')">✕</button>
             </div>
         </div>
         <div class="window-content">
@@ -1488,7 +1525,7 @@
             </div>
             <div class="window-controls">
                 <button class="window-button" onclick="minimizeWindow('about')">_</button>
-                <button class="window-button" onclick="closeWindow('about')">×</button>
+                <button class="window-button" onclick="closeWindow('about')">✕</button>
             </div>
         </div>
         <div class="window-content">
