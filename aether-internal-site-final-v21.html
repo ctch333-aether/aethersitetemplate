@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AETHER PXE Platform - Alchemist Atelier Internal Portal">
+    <meta name="theme-color" content="#667eea">
+    <title>ALCHEMIST ATELIER | AETHER PXE Platform | Final Internal Site | December 2025</title>
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href="aether-website-assets/webp/aether-brand-logo-main.webp" as="image">
+    <link rel="preload" href="aether-website-assets/webp/aether-team-founder-ctch.webp" as="image">
+
+    <style>
+        /* ═══════════════════════════════════════════════════════════════════
+           AETHER INTERNAL SITE FINAL v21.0 - COMPREHENSIVE BRAND INTEGRATION
+           December 2025 | Alchemist Atelier
+           ═══════════════════════════════════════════════════════════════════ */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           OFFLINE-READY FONTS - No External Dependencies
+           Uses system fonts with proper fallbacks for offline use
+           ═══════════════════════════════════════════════════════════════════ */
+
+        @font-face {
+            font-family: 'MS Sans Serif';
+            src: local('MS Sans Serif'), local('Microsoft Sans Serif'), local('Segoe UI'), local('sans-serif');
+        }
+
+        :root {
+            /* AETHER Brand Colors - Exact v20 Match */
+            --aether-purple: #667eea;
+            --aether-purple-dark: #764ba2;
+            --aether-blue: #4a90e2;
+            --aether-blue-deep: #1a5fb4;
+            --aether-pink: #f093fb;
+            --aether-sky: #87CEEB;
+            --aether-sky-light: #E0F6FF;
+            --aether-gold: #ffd700;
+            --white: #ffffff;
+            --black: #2c3e50;
+            --win95-gray: #c0c0c0;
+            --win95-dark: #808080;
+
+            /* Typography - System Fonts Only (Offline Compatible) */
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            --font-display: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            --font-mono: 'Courier New', 'Monaco', 'Consolas', 'Liberation Mono', monospace;
+
+            /* Text Colors */
+            --text-primary: #2c3e50;
+            --text-secondary: #5a6c7d;
+            --text-muted: #6b7280;
+            --accent-blue: #667eea;
+            --accent-purple: #764ba2;
+            --accent-success: #059669;
+            --accent-gold: #ffd700;
+
+            /* Surfaces */
+            --surface-elevated: rgba(255, 255, 255, 0.95);
+            --surface-glass: rgba(255, 255, 255, 0.25);
+
+            /* Shadows */
+            --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            --shadow-elevated: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 32px rgba(102, 126, 234, 0.2);
+        }
+
+        body {
+            font-size: 14px;
+            font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
+            background: #008080;
+            color: #000;
+            overflow: hidden;
+            min-height: 100vh;
+            position: relative;
+            cursor: default;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* ===== KINETIC SKY BACKGROUND ===== */
+        .sky-glass-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            background:
+                radial-gradient(ellipse at 25% 25%, rgba(135, 206, 250, 0.6) 0%, transparent 50%),
+                radial-gradient(ellipse at 75% 75%, rgba(255, 182, 193, 0.5) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(230, 190, 255, 0.4) 0%, transparent 70%),
+                radial-gradient(ellipse at 10% 90%, rgba(102, 126, 234, 0.5) 0%, transparent 60%),
+                radial-gradient(ellipse at 90% 10%, rgba(240, 147, 251, 0.45) 0%, transparent 55%),
+                linear-gradient(180deg,
+                    rgba(135, 206, 250, 0.5) 0%,
+                    rgba(255, 255, 255, 0.35) 25%,
+                    rgba(173, 216, 230, 0.4) 45%,
+                    rgba(255, 182, 193, 0.35) 65%,
+                    rgba(147, 112, 219, 0.45) 85%,
+                    rgba(102, 126, 234, 0.5) 100%
+                );
+            animation: skyFlow 25s ease infinite;
+            overflow: hidden;
+        }
+
+        .sky-glass-layer::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 60% 60%, rgba(135, 206, 250, 0.35) 0%, transparent 45%),
+                radial-gradient(circle at 80% 20%, rgba(255, 182, 193, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(173, 216, 230, 0.3) 0%, transparent 40%);
+            animation: cloudDrift 40s linear infinite;
+            filter: blur(2px);
+        }
+
+        .sky-glass-layer::after {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background:
+                radial-gradient(ellipse at 30% 40%, rgba(255, 255, 255, 0.25) 0%, transparent 35%),
+                radial-gradient(ellipse at 70% 60%, rgba(135, 206, 250, 0.2) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 90%, rgba(230, 190, 255, 0.2) 0%, transparent 45%);
+            animation: cloudDrift 55s linear infinite reverse;
+            mix-blend-mode: screen;
+            filter: blur(1px);
+        }
+
+        @keyframes skyFlow {
+            0%, 100% {
+                filter: hue-rotate(0deg) brightness(1) contrast(1.1) saturate(1.1);
+                transform: scale(1) rotate(0deg);
+            }
+            20% {
+                filter: hue-rotate(30deg) brightness(1.1) contrast(1) saturate(1.2);
+                transform: scale(1.05) rotate(1deg);
+            }
+            40% {
+                filter: hue-rotate(-20deg) brightness(0.95) contrast(1.2) saturate(1);
+                transform: scale(1.02) rotate(-0.5deg);
+            }
+            60% {
+                filter: hue-rotate(15deg) brightness(1.05) contrast(1.05) saturate(1.15);
+                transform: scale(1.03) rotate(0.5deg);
+            }
+            80% {
+                filter: hue-rotate(-10deg) brightness(1) contrast(1.15) saturate(1.05);
+                transform: scale(1.01) rotate(-0.2deg);
+            }
+        }
+
+        @keyframes cloudDrift {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            25% { transform: translate(-20%, 10%) scale(1.1) rotate(2deg); }
+            50% { transform: translate(10%, -15%) scale(0.95) rotate(-1deg); }
+            75% { transform: translate(-10%, 5%) scale(1.05) rotate(1deg); }
+            100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+        }
+
+        /* Matrix Canvas */
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.45;
+            mix-blend-mode: screen;
+        }
+
+        /* ===== LOADING SCREEN ===== */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 25%, #2a1a4a 50%, #1a1a3a 75%, #0a0a1a 100%);
+            background-size: 400% 400%;
+            animation: loadingBgShift 8s ease infinite;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            color: white;
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+
+        @keyframes loadingBgShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .loading-screen::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background:
+                radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.8), transparent),
+                radial-gradient(2px 2px at 40% 70%, rgba(102,126,234,0.8), transparent),
+                radial-gradient(1px 1px at 60% 20%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 80% 50%, rgba(118,75,162,0.8), transparent);
+            background-size: 200px 200px;
+            animation: starFloat 60s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes starFloat {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-100px, 100px) rotate(360deg); }
+        }
+
+        .loading-screen::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.2) 30%, transparent 70%);
+            animation: glowPulse 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(1.05);
+        }
+
+        .boot-text {
+            font-family: var(--font-mono);
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 0 20px rgba(102, 126, 234, 0.8), 0 0 40px rgba(118, 75, 162, 0.6);
+            animation: bootTextPulse 2s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes bootTextPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .alchemical-loader {
+            max-width: 350px;
+            width: 80%;
+            height: auto;
+            animation: logoSpinEnhanced 5s ease-in-out infinite;
+            filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.9));
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes logoSpinEnhanced {
+            0%, 100% { transform: rotate(0deg) scale(1); filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.9)); }
+            25% { transform: rotate(90deg) scale(1.05); filter: drop-shadow(0 0 40px rgba(102, 126, 234, 1)); }
+            50% { transform: rotate(180deg) scale(1.1); filter: drop-shadow(0 0 50px rgba(118, 75, 162, 1)); }
+            75% { transform: rotate(270deg) scale(1.05); filter: drop-shadow(0 0 40px rgba(240, 147, 251, 1)); }
+        }
+
+        /* ===== DESKTOP ===== */
+        .desktop {
+            width: 100%;
+            height: calc(100vh - 120px);
+            position: relative;
+            padding: 30px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .brand-logo-container {
+            animation: logoFloat 4s ease-in-out infinite;
+            filter: drop-shadow(0 10px 30px rgba(102, 126, 234, 0.6));
+        }
+
+        .brand-logo-container img {
+            max-width: 600px;
+            width: 90%;
+            height: auto;
+            display: block;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        /* ===== MAIN NAVIGATION BUTTONS ===== */
+        .main-button-container {
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1600px;
+        }
+
+        .main-desktop-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            cursor: pointer;
+            padding: 45px 35px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 12px 50px rgba(0, 0, 0, 0.4), 0 4px 20px rgba(102, 126, 234, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            min-width: 380px;
+            max-width: 420px;
+            min-height: 400px;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-desktop-button::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.5), rgba(118, 75, 162, 0.5), rgba(240, 147, 251, 0.5), rgba(102, 126, 234, 0.5));
+            background-size: 300% 300%;
+            border-radius: 26px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            animation: borderGlow 4s ease infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .main-desktop-button:hover::before {
+            opacity: 1;
+        }
+
+        .main-desktop-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .main-desktop-button:hover::after {
+            left: 100%;
+        }
+
+        .main-desktop-button:hover {
+            transform: translateY(-12px) scale(1.03);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45), 0 8px 30px rgba(102, 126, 234, 0.3), 0 0 60px rgba(102, 126, 234, 0.25);
+        }
+
+        .button-icon {
+            filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
+            animation: iconFloat 3s ease-in-out infinite;
+            width: 100%;
+            max-width: 340px;
+            height: auto;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .main-desktop-button:hover .button-icon {
+            filter: drop-shadow(0 8px 25px rgba(102, 126, 234, 0.6)) drop-shadow(0 0 40px rgba(118, 75, 162, 0.4));
+            transform: scale(1.08) translateY(-5px);
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .button-label {
+            color: white;
+            font-size: 28px;
+            font-weight: 900;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9), 0 0 30px rgba(102, 126, 234, 0.5);
+            letter-spacing: 4px;
+            text-align: center;
+            text-transform: uppercase;
+            margin-top: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .main-desktop-button:hover .button-label {
+            letter-spacing: 6px;
+        }
+
+        .button-subtitle {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 14px;
+            font-weight: 600;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+            text-align: center;
+            font-style: italic;
+            line-height: 1.6;
+            max-width: 320px;
+        }
+
+        /* ===== WINDOWS ===== */
+        .window {
+            position: absolute;
+            background: rgba(192, 192, 192, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5), 0 8px 32px rgba(0, 0, 0, 0.3);
+            display: none;
+            flex-direction: column;
+            min-width: 400px;
+            max-width: 90vw;
+            max-height: 85vh;
+            animation: windowFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes windowFadeIn {
+            from { opacity: 0; transform: scale(0.95) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .window.active {
+            display: flex;
+        }
+
+        .window-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+            background-size: 200% 100%;
+            animation: headerGradientShift 8s ease infinite;
+            color: white;
+            padding: 3px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 11px;
+            cursor: move;
+            user-select: none;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes headerGradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .window-title {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding-left: 3px;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 2px;
+        }
+
+        .window-button {
+            width: 16px;
+            height: 14px;
+            background: #c0c0c0;
+            border: 1px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            font-weight: bold;
+        }
+
+        .window-button:active {
+            border-color: #000000 #ffffff #ffffff #000000;
+        }
+
+        .window-content {
+            font-size: 15px;
+            line-height: 1.85;
+            color: var(--text-primary);
+            padding: 36px 40px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(248, 250, 255, 0.9) 50%, rgba(255, 255, 255, 0.85) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            overflow-y: auto;
+            max-height: calc(85vh - 30px);
+            font-family: var(--font-primary);
+            font-weight: 400;
+        }
+
+        .window-content h1 {
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 300;
+            margin-bottom: 28px;
+            margin-top: 12px;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 50%, var(--aether-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+            padding-bottom: 18px;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .window-content h2 {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 500;
+            margin-top: 45px;
+            margin-bottom: 24px;
+            color: var(--accent-purple);
+            border-left: 4px solid var(--accent-blue);
+            padding-left: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .window-content h3 {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 28px;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .window-content p {
+            margin-bottom: 18px;
+            line-height: 1.85;
+            font-weight: 400;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        .window-content ul {
+            margin-left: 24px;
+            margin-bottom: 18px;
+        }
+
+        .window-content li {
+            margin-bottom: 12px;
+            line-height: 1.8;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .window-content li::marker {
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        .window-content strong {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* ===== GLASSMORPHISM BOXES ===== */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(102, 126, 234, 0.12));
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 215, 0, 0.35);
+            padding: 28px 32px;
+            margin: 28px 0;
+            box-shadow: var(--shadow-glass);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.25);
+        }
+
+        .takeaway-box {
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: 4px solid var(--accent-blue);
+            padding: 24px 28px;
+            margin: 24px 0;
+            box-shadow: var(--shadow-glass);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .takeaway-box:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .info-box {
+            background: rgba(135, 206, 235, 0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(135, 206, 235, 0.35);
+            padding: 24px 28px;
+            margin: 24px 0;
+            box-shadow: var(--shadow-glass);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== LEADERSHIP CARDS ===== */
+        .leadership-card {
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: 4px solid var(--accent-purple);
+            padding: 26px 30px;
+            margin: 26px 0;
+            box-shadow: var(--shadow-glass);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .leadership-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .leadership-header {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .leadership-image-container {
+            flex-shrink: 0;
+            width: 180px;
+            height: 180px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border: 3px solid rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .leadership-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.4s ease;
+        }
+
+        .leadership-card:hover .leadership-image {
+            transform: scale(1.05);
+        }
+
+        .leadership-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .leadership-info h3 {
+            margin: 0 0 8px 0 !important;
+            font-size: 24px !important;
+            font-weight: 600 !important;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding: 0 !important;
+            border: none !important;
+            text-transform: none !important;
+        }
+
+        .leadership-info .title {
+            font-size: 15px !important;
+            line-height: 1.5;
+            color: var(--text-secondary) !important;
+            margin-bottom: 0 !important;
+        }
+
+        /* ===== PORTFOLIO GALLERY ===== */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 28px 0;
+        }
+
+        .portfolio-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: var(--shadow-glass);
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .portfolio-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-card-content {
+            padding: 20px;
+        }
+
+        .portfolio-card h4 {
+            font-family: var(--font-display);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .portfolio-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* ===== IP SHOWCASE ===== */
+        .ip-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+            margin: 28px 0;
+        }
+
+        .ip-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(248, 250, 255, 0.35));
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: var(--shadow-glass);
+            transition: all 0.3s ease;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .ip-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .ip-card img {
+            max-width: 100%;
+            height: 180px;
+            object-fit: contain;
+            margin-bottom: 16px;
+            transition: transform 0.4s ease;
+        }
+
+        .ip-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .ip-card h4 {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--accent-purple);
+            margin-bottom: 12px;
+        }
+
+        .ip-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* ===== METRICS GRID ===== */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
+            margin: 24px 0;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: var(--shadow-glass);
+            border-radius: 12px;
+            text-align: center;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .metric-card .number {
+            font-family: var(--font-display);
+            font-size: 36px;
+            font-weight: 300;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .metric-card .label {
+            font-family: var(--font-primary);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* ===== SECTION DIVIDER ===== */
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, rgba(102, 126, 234, 0.4) 25%, rgba(118, 75, 162, 0.4) 50%, rgba(102, 126, 234, 0.4) 75%, transparent 100%);
+            margin: 50px 0;
+            position: relative;
+        }
+
+        .section-divider::before {
+            content: '◆';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 14px;
+            padding: 0 15px;
+        }
+
+        /* ===== TASKBAR ===== */
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 44px;
+            background: rgba(192, 192, 192, 0.95);
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border-top: 2px solid #ffffff;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            padding: 3px;
+            z-index: 1000;
+        }
+
+        .start-button {
+            background: linear-gradient(180deg, #e0e0e0 0%, #c0c0c0 50%, #a8a8a8 100%);
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            padding: 5px 12px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            min-width: 100px;
+        }
+
+        .start-button-logo {
+            width: 24px;
+            height: auto;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .start-button:active {
+            border-color: #000000 #ffffff #ffffff #000000;
+        }
+
+        .taskbar-items {
+            flex: 1;
+            display: flex;
+            gap: 2px;
+            overflow-x: auto;
+        }
+
+        .task-button {
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            padding: 4px 8px;
+            cursor: pointer;
+            font-size: 11px;
+            white-space: nowrap;
+            min-width: 100px;
+        }
+
+        .task-button:hover {
+            background: #d0d0d0;
+        }
+
+        .system-tray {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 8px;
+            border-left: 2px solid #808080;
+            font-size: 11px;
+        }
+
+        /* ===== START MENU ===== */
+        .start-menu {
+            position: fixed;
+            bottom: 44px;
+            left: 0;
+            width: 280px;
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            display: none;
+            flex-direction: column;
+            z-index: 2000;
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .start-menu.show {
+            display: flex;
+        }
+
+        .menu-header {
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            padding: 15px 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+        }
+
+        .menu-header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+        }
+
+        .menu-header-text {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .menu-items {
+            padding: 4px;
+        }
+
+        .menu-item {
+            padding: 8px 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .menu-item:hover {
+            background: #000080;
+            color: white;
+        }
+
+        .menu-item img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .menu-divider {
+            height: 1px;
+            background: #808080;
+            margin: 4px 8px;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        .window-content::-webkit-scrollbar {
+            width: 14px;
+            background: #d4d4d4;
+        }
+
+        .window-content::-webkit-scrollbar-track {
+            background: linear-gradient(90deg, #e8e8e8 0%, #d0d0d0 50%, #e8e8e8 100%);
+            border: 1px solid #a0a0a0;
+        }
+
+        .window-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            border: 2px solid #c0c0c0;
+        }
+
+        .window-content::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #7b8ef0 0%, #8b5cb8 100%);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1200px) {
+            .main-desktop-button {
+                min-width: 280px;
+                max-width: 320px;
+                min-height: 320px;
+                padding: 35px 25px;
+            }
+
+            .button-icon {
+                max-width: 240px;
+            }
+
+            .button-label {
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .desktop {
+                padding: 15px;
+                gap: 25px;
+            }
+
+            .brand-logo-container img {
+                max-width: 280px;
+            }
+
+            .main-button-container {
+                gap: 20px;
+            }
+
+            .main-desktop-button {
+                min-width: 260px;
+                max-width: 300px;
+                min-height: 280px;
+                padding: 30px 20px;
+            }
+
+            .button-icon {
+                max-width: 200px;
+            }
+
+            .button-label {
+                font-size: 20px;
+            }
+
+            .window {
+                width: 95% !important;
+                max-width: 95vw !important;
+                left: 2.5% !important;
+                top: 20px !important;
+            }
+
+            .leadership-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .leadership-image-container {
+                width: 150px;
+                height: 150px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== ACCESSIBILITY ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        :focus-visible {
+            outline: 3px solid rgba(102, 126, 234, 0.5);
+            outline-offset: 2px;
+        }
+
+        ::selection {
+            background: rgba(102, 126, 234, 0.3);
+            color: #000080;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sky Glass Background Layer -->
+    <div class="sky-glass-layer"></div>
+
+    <!-- Matrix Canvas -->
+    <canvas id="matrixCanvas"></canvas>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="boot-text">AETHER PXE Platform v21.0</div>
+        <img src="aether-website-assets/webp/aether-brand-logo-main.webp" alt="AETHER Logo" class="alchemical-loader">
+    </div>
+
+    <!-- Desktop -->
+    <div class="desktop">
+        <!-- Brand Logo -->
+        <div class="brand-logo-container">
+            <img src="aether-website-assets/webp/aether-brand-logo-main.webp" alt="AETHER - Alchemist Atelier">
+        </div>
+
+        <!-- Main Navigation Buttons -->
+        <div class="main-button-container">
+            <!-- ETHOS Button -->
+            <div class="main-desktop-button" onclick="openWindow('ethos')">
+                <img src="aether-website-assets/webp/aether-team-founder-ctch.webp" alt="ETHOS" class="button-icon" style="border-radius: 50%; object-fit: cover; max-width: 280px; max-height: 280px;">
+                <span class="button-label">ETHOS</span>
+                <span class="button-subtitle">The Genesis & Vision<br>Our Founding Principles</span>
+            </div>
+
+            <!-- PATHOS Button -->
+            <div class="main-desktop-button" onclick="openWindow('pathos')">
+                <img src="aether-website-assets/webp/BRANDwork-EnchantSite-Collage2.webp" alt="PATHOS" class="button-icon" style="border-radius: 16px; object-fit: cover; max-width: 300px; max-height: 280px;">
+                <span class="button-label">PATHOS</span>
+                <span class="button-subtitle">Portfolio & Experience<br>Our Creative Journey</span>
+            </div>
+
+            <!-- LOGOS Button -->
+            <div class="main-desktop-button" onclick="openWindow('logos')">
+                <img src="aether-website-assets/webp/aether-ip-tales-of-lucidia.webp" alt="LOGOS" class="button-icon" style="border-radius: 16px; object-fit: contain; max-width: 300px; max-height: 280px;">
+                <span class="button-label">LOGOS</span>
+                <span class="button-subtitle">Intellectual Properties<br>Our Creative Universe</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ETHOS Window -->
+    <div class="window" id="window-ethos" style="top: 50px; left: 50px; width: 900px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-ethos')">
+            <div class="window-title">
+                <span>🛡️</span>
+                <span>ETHOS - The AETHER Vision: Credibility & Authority</span>
+            </div>
+            <div class="window-controls">
+                <button class="window-button" onclick="minimizeWindow('ethos')">_</button>
+                <button class="window-button" onclick="closeWindow('ethos')">✕</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>The Genesis of AETHER</h1>
+
+            <div class="highlight-box">
+                <h3>Our Core Philosophy</h3>
+                <p><strong>AETHER</strong> represents the fifth element in classical philosophy—the quintessence that permeates all creation. We embody this transformative essence, bridging the gap between imagination and reality through immersive experiential design.</p>
+            </div>
+
+            <h2>Our Mission</h2>
+            <p>To architect unforgettable phygital experiences that transcend traditional boundaries, merging physical and digital realms into cohesive, emotionally resonant journeys. We are <strong>Alchemists of Experience</strong>—transforming base concepts into golden moments.</p>
+
+            <div class="section-divider"></div>
+
+            <h2>Leadership & Founders</h2>
+
+            <div class="leadership-card">
+                <div class="leadership-header">
+                    <div class="leadership-image-container">
+                        <img src="aether-website-assets/webp/aether-team-founder-ctch.webp" alt="CTCH - Founder" class="leadership-image">
+                    </div>
+                    <div class="leadership-info">
+                        <h3>CTCH</h3>
+                        <p class="title">Founder & Creative Director</p>
+                    </div>
+                </div>
+                <p>A visionary experience architect with deep expertise in projection mapping, experiential design, and brand storytelling. CTCH leads AETHER's creative vision, orchestrating seamless fusions of technology and artistry to create transformative phygital experiences.</p>
+            </div>
+
+            <div class="leadership-card">
+                <div class="leadership-header">
+                    <div class="leadership-image-container">
+                        <img src="aether-website-assets/webp/aether-team-cofounder-vangelis.webp" alt="Vangelis Lympouridis" class="leadership-image">
+                    </div>
+                    <div class="leadership-info">
+                        <h3>Vangelis Lympouridis</h3>
+                        <p class="title">Co-Founder & Technology Director</p>
+                    </div>
+                </div>
+                <p>An expert in emerging technologies and interactive systems, Vangelis brings deep technical knowledge in XR, spatial computing, and immersive media. He ensures AETHER's experiences are powered by cutting-edge innovation.</p>
+            </div>
+
+            <div class="leadership-card">
+                <div class="leadership-header">
+                    <div class="leadership-image-container">
+                        <img src="aether-website-assets/webp/aether-team-cofounder-shaxinwei.webp" alt="Sha Xin Wei" class="leadership-image">
+                    </div>
+                    <div class="leadership-info">
+                        <h3>Sha Xin Wei</h3>
+                        <p class="title">Co-Founder & Strategic Advisor</p>
+                    </div>
+                </div>
+                <p>A renowned scholar and researcher in computational media and responsive environments. Sha brings decades of academic leadership and artistic innovation, guiding AETHER's philosophical and experimental foundations.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <h2>Core Values</h2>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="number">✨</span>
+                    <span class="label">Innovation</span>
+                </div>
+                <div class="metric-card">
+                    <span class="number">🎭</span>
+                    <span class="label">Artistry</span>
+                </div>
+                <div class="metric-card">
+                    <span class="number">🤝</span>
+                    <span class="label">Collaboration</span>
+                </div>
+                <div class="metric-card">
+                    <span class="number">💫</span>
+                    <span class="label">Transformation</span>
+                </div>
+            </div>
+
+            <div class="takeaway-box">
+                <p><strong>Our Promise:</strong> Every experience we create is a journey—meticulously crafted to evoke emotion, inspire wonder, and leave lasting impressions. We don't just design experiences; we alchemize moments into memories.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PATHOS Window -->
+    <div class="window" id="window-pathos" style="top: 80px; left: 120px; width: 950px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-pathos')">
+            <div class="window-title">
+                <span>🎨</span>
+                <span>PATHOS - Portfolio & Experience</span>
+            </div>
+            <div class="window-controls">
+                <button class="window-button" onclick="minimizeWindow('pathos')">_</button>
+                <button class="window-button" onclick="closeWindow('pathos')">✕</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>Portfolio & Experience</h1>
+
+            <div class="highlight-box">
+                <p><strong>Over a decade of transformative experiences</strong>—from intimate brand activations to massive public installations. Our portfolio showcases the breadth and depth of AETHER's creative alchemy.</p>
+            </div>
+
+            <h2>Featured Projects</h2>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <img src="aether-website-assets/webp/BRANDwork-EnchantSite-Collage2.webp" alt="Enchant Experience">
+                    <div class="portfolio-card-content">
+                        <h4>Enchant Christmas</h4>
+                        <p>Massive-scale holiday experience featuring projection mapping, light installations, and immersive environments.</p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <img src="aether-website-assets/webp/BRANDwork-EnchantSite-Collage4.webp" alt="Enchant Lights">
+                    <div class="portfolio-card-content">
+                        <h4>Light Maze Journey</h4>
+                        <p>Interactive light maze with responsive environments and audio-reactive elements.</p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <img src="aether-website-assets/webp/BRANDwork-EnchantSite-Collage6.webp" alt="Enchant Village">
+                    <div class="portfolio-card-content">
+                        <h4>Enchanted Village</h4>
+                        <p>Themed retail and experience zones with architectural projection mapping.</p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <img src="aether-website-assets/webp/aether-portfolio-killmove-01.webp" alt="Kill Move Paradise">
+                    <div class="portfolio-card-content">
+                        <h4>Kill Move Paradise</h4>
+                        <p>Award-winning theatrical production with immersive projection and spatial audio design.</p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <img src="aether-website-assets/webp/aether-portfolio-killmove-02.webp" alt="Kill Move Paradise Production">
+                    <div class="portfolio-card-content">
+                        <h4>Stage Production Design</h4>
+                        <p>Full-spectrum production design integrating set, projection, and lighting.</p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <img src="aether-website-assets/webp/aether-portfolio-batb-setdesign.webp" alt="Beauty and the Beast">
+                    <div class="portfolio-card-content">
+                        <h4>Beauty & The Beast</h4>
+                        <p>Theatrical set design with dynamic projection and environmental storytelling.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <h2>Projection Mapping Expertise</h2>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <img src="aether-website-assets/webp/BRANDwork-ProjectionMapping-CosmicEye.webp" alt="Cosmic Eye Projection">
+                    <div class="portfolio-card-content">
+                        <h4>Cosmic Eye</h4>
+                        <p>Immersive dome projection creating cosmic environments.</p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <img src="aether-website-assets/webp/BRANDwork-ProjectionMapping-GridMatrix.webp" alt="Grid Matrix">
+                    <div class="portfolio-card-content">
+                        <h4>Grid Matrix</h4>
+                        <p>Architectural projection with geometric precision.</p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <img src="aether-website-assets/webp/BRANDwork-ProjectionMapping-OceanForge.webp" alt="Ocean Forge">
+                    <div class="portfolio-card-content">
+                        <h4>Ocean Forge</h4>
+                        <p>Organic fluid simulations in projection art.</p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <img src="aether-website-assets/webp/BRANDwork-ProjectionMapping-CircuitNeuron.webp" alt="Circuit Neuron">
+                    <div class="portfolio-card-content">
+                        <h4>Circuit Neuron</h4>
+                        <p>Bio-digital fusion in immersive visualization.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <h2>Warrior Princess of Oz</h2>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <img src="aether-website-assets/webp/BRANDwork-WarriorPrincessOz-StageSet.webp" alt="Warrior Princess Stage">
+                    <div class="portfolio-card-content">
+                        <h4>Stage Set Design</h4>
+                        <p>Immersive theatrical environment for Warrior Princess of Oz production.</p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <img src="aether-website-assets/webp/BRANDwork-WarriorPrincessOz-EmeraldCrystals.webp" alt="Emerald Crystals">
+                    <div class="portfolio-card-content">
+                        <h4>Emerald City Crystals</h4>
+                        <p>Custom scenic elements with integrated lighting.</p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <img src="aether-website-assets/webp/BRANDwork-WarriorPrincessOz-ArenaLayout.webp" alt="Arena Layout">
+                    <div class="portfolio-card-content">
+                        <h4>Arena Experience</h4>
+                        <p>Large-scale arena design for theatrical productions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="takeaway-box">
+                <p><strong>Impact:</strong> Our projects have reached millions of visitors, created hundreds of memorable moments, and pushed the boundaries of what's possible in experiential design.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGOS Window -->
+    <div class="window" id="window-logos" style="top: 110px; left: 190px; width: 920px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-logos')">
+            <div class="window-title">
+                <span>💎</span>
+                <span>LOGOS - Intellectual Properties</span>
+            </div>
+            <div class="window-controls">
+                <button class="window-button" onclick="minimizeWindow('logos')">_</button>
+                <button class="window-button" onclick="closeWindow('logos')">✕</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>Intellectual Properties</h1>
+
+            <div class="highlight-box">
+                <p><strong>AETHER's Creative Universe</strong>—A constellation of original intellectual properties spanning games, experiences, and immersive narratives. Each IP represents years of creative development and world-building.</p>
+            </div>
+
+            <h2>Core IP Portfolio</h2>
+
+            <div class="ip-grid">
+                <div class="ip-card">
+                    <img src="aether-website-assets/webp/aether-ip-tales-of-lucidia.webp" alt="Tales of Lucidia">
+                    <h4>Tales of Lucidia</h4>
+                    <p>An epic fantasy RPG universe featuring rich lore, memorable characters, and expansive world-building. A transmedia property designed for games, animation, and immersive experiences.</p>
+                </div>
+                <div class="ip-card">
+                    <img src="aether-website-assets/webp/aether-ip-metamorphasis-apothecary.webp" alt="Metamorphasis Apothecary">
+                    <h4>Metamorphasis Apothecary</h4>
+                    <p>A whimsical crafting and simulation IP centered around magical alchemy, potion-making, and botanical wonders. Perfect for cozy gaming and retail experiences.</p>
+                </div>
+                <div class="ip-card">
+                    <img src="aether-website-assets/webp/aether-ip-maryjane-mainframe.webp" alt="MaryJane Mainframe">
+                    <h4>MaryJane Mainframe</h4>
+                    <p>A cyberpunk narrative IP exploring themes of consciousness, technology, and human connection in a neon-soaked future.</p>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <h2>Phygital IP Concepts</h2>
+
+            <div class="ip-grid">
+                <div class="ip-card">
+                    <img src="aether-website-assets/webp/BRANDAsset-PhygitalIP-Port51Confectionarium.webp" alt="Port 51 Confectionarium">
+                    <h4>Port 51 Confectionarium</h4>
+                    <p>A fantastical candy factory experience merging physical retail with digital gamification. Visitors become candy alchemists in an immersive confectionery adventure.</p>
+                </div>
+                <div class="ip-card">
+                    <img src="aether-website-assets/webp/BRANDAsset-PhygitalIP-BroussardBayouBBQ.webp" alt="Broussard Bayou BBQ">
+                    <h4>Broussard Bayou BBQ</h4>
+                    <p>A Southern culinary experience concept blending authentic bayou culture with immersive theming and interactive dining elements.</p>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <h2>Character & World Design</h2>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <img src="aether-website-assets/webp/BRANDAsset-WarriorPrincess-CharacterConcept.webp" alt="Warrior Princess Character">
+                    <div class="portfolio-card-content">
+                        <h4>Character Concepts</h4>
+                        <p>Original character designs for our IP universe.</p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <img src="aether-website-assets/webp/BRANDAsset-WarriorPrincess-Render51.webp" alt="3D Render">
+                    <div class="portfolio-card-content">
+                        <h4>3D Development</h4>
+                        <p>High-fidelity 3D character and asset development.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="takeaway-box">
+                <p><strong>IP Strategy:</strong> Our intellectual properties are designed as transmedia franchises—capable of spanning games, experiences, merchandise, animation, and beyond. Each represents a universe of storytelling potential.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Window -->
+    <div class="window" id="window-about" style="top: 140px; left: 260px; width: 700px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-about')">
+            <div class="window-title">
+                <span>ℹ️</span>
+                <span>About AETHER</span>
+            </div>
+            <div class="window-controls">
+                <button class="window-button" onclick="minimizeWindow('about')">_</button>
+                <button class="window-button" onclick="closeWindow('about')">✕</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h1>About AETHER</h1>
+
+            <div class="info-box">
+                <p><strong>AETHER Internal Platform</strong><br>
+                Version 21.0 | December 2025<br>
+                Alchemist Atelier - Experience Design Studio</p>
+            </div>
+
+            <h2>Company Overview</h2>
+            <p>AETHER is an experience design studio specializing in phygital experiences—seamless fusions of physical and digital realms. We create immersive environments, projection mapping installations, theatrical productions, and original intellectual properties.</p>
+
+            <h2>Contact Information</h2>
+            <div class="takeaway-box">
+                <p><strong>Inquiries:</strong> hello@alchemistatelier.com<br>
+                <strong>Website:</strong> alchemistatelier.com<br>
+                <strong>Location:</strong> Los Angeles, CA</p>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="number">10+</span>
+                    <span class="label">Years Experience</span>
+                </div>
+                <div class="metric-card">
+                    <span class="number">50+</span>
+                    <span class="label">Projects Completed</span>
+                </div>
+                <div class="metric-card">
+                    <span class="number">5M+</span>
+                    <span class="label">Visitors Reached</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <button class="start-button" onclick="toggleStartMenu()">
+            <img src="aether-website-assets/webp/aether-brand-logo-main.webp" alt="Start" class="start-button-logo">
+            <span>Start</span>
+        </button>
+        <div class="taskbar-items" id="taskbarItems"></div>
+        <div class="system-tray">
+            <span id="clock"></span>
+        </div>
+    </div>
+
+    <!-- Start Menu -->
+    <div class="start-menu" id="startMenu">
+        <div class="menu-header">
+            <img src="aether-website-assets/webp/aether-brand-logo-main.webp" alt="AETHER">
+            <span class="menu-header-text">AETHER PXE</span>
+        </div>
+        <div class="menu-items">
+            <div class="menu-item" onclick="openWindow('ethos'); toggleStartMenu();">
+                <span>📜</span>
+                <span>ETHOS - Genesis</span>
+            </div>
+            <div class="menu-item" onclick="openWindow('pathos'); toggleStartMenu();">
+                <span>🎨</span>
+                <span>PATHOS - Portfolio</span>
+            </div>
+            <div class="menu-item" onclick="openWindow('logos'); toggleStartMenu();">
+                <span>💎</span>
+                <span>LOGOS - IP</span>
+            </div>
+            <div class="menu-divider"></div>
+            <div class="menu-item" onclick="openWindow('about'); toggleStartMenu();">
+                <span>ℹ️</span>
+                <span>About AETHER</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== LOADING SCREEN =====
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+            }, 2500);
+        });
+
+        // ===== MATRIX RAIN =====
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const alchemicalSymbols = '☿♀♁♂♃♄♅♆⊕☉☽★✧✦◇◆△▽○●⬡⬢∞∆∇⊗⊙☯✺✹✸✷✶✵';
+        const chars = alchemicalSymbols.split('');
+        const fontSize = 16;
+        let columns = Math.floor(canvas.width / fontSize);
+        let drops = Array(columns).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 128, 128, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = 'rgba(102, 126, 234, 0.8)';
+            ctx.font = `${fontSize}px monospace`;
+
+            for (let i = 0; i < drops.length; i++) {
+                const char = chars[Math.floor(Math.random() * chars.length)];
+                const x = i * fontSize;
+                const y = drops[i] * fontSize;
+
+                // Gradient effect
+                const gradient = ctx.createLinearGradient(x, y - fontSize, x, y);
+                gradient.addColorStop(0, 'rgba(102, 126, 234, 0.1)');
+                gradient.addColorStop(1, 'rgba(118, 75, 162, 0.9)');
+                ctx.fillStyle = gradient;
+
+                ctx.fillText(char, x, y);
+
+                if (y > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 50);
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            columns = Math.floor(canvas.width / fontSize);
+            drops = Array(columns).fill(1);
+        });
+
+        // ===== WINDOW MANAGEMENT =====
+        function openWindow(windowName) {
+            document.querySelectorAll('.window').forEach(w => w.classList.remove('active'));
+            const win = document.getElementById(`window-${windowName}`);
+            if (win) {
+                win.classList.add('active');
+                win.style.zIndex = Date.now();
+                updateTaskbar();
+            }
+        }
+
+        function closeWindow(windowName) {
+            const win = document.getElementById(`window-${windowName}`);
+            if (win) {
+                win.classList.remove('active');
+                updateTaskbar();
+            }
+        }
+
+        function minimizeWindow(windowName) {
+            const win = document.getElementById(`window-${windowName}`);
+            if (win) {
+                win.classList.remove('active');
+                updateTaskbar();
+            }
+        }
+
+        function updateTaskbar() {
+            const taskbar = document.getElementById('taskbarItems');
+            taskbar.innerHTML = '';
+
+            document.querySelectorAll('.window.active').forEach(win => {
+                const name = win.id.replace('window-', '');
+                const title = win.querySelector('.window-title span:last-child').textContent;
+                const btn = document.createElement('button');
+                btn.className = 'task-button';
+                btn.textContent = title.substring(0, 20);
+                btn.onclick = () => {
+                    win.style.zIndex = Date.now();
+                };
+                taskbar.appendChild(btn);
+            });
+        }
+
+        // ===== WINDOW DRAGGING =====
+        let isDragging = false;
+        let dragTarget = null;
+        let offsetX = 0;
+        let offsetY = 0;
+
+        function startDrag(e, windowId) {
+            isDragging = true;
+            dragTarget = document.getElementById(windowId);
+            offsetX = e.clientX - dragTarget.offsetLeft;
+            offsetY = e.clientY - dragTarget.offsetTop;
+            dragTarget.style.zIndex = Date.now();
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging && dragTarget) {
+                const x = Math.max(0, Math.min(window.innerWidth - 100, e.clientX - offsetX));
+                const y = Math.max(0, Math.min(window.innerHeight - 100, e.clientY - offsetY));
+                dragTarget.style.left = `${x}px`;
+                dragTarget.style.top = `${y}px`;
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            dragTarget = null;
+        });
+
+        // ===== START MENU =====
+        function toggleStartMenu() {
+            document.getElementById('startMenu').classList.toggle('show');
+        }
+
+        document.addEventListener('click', (e) => {
+            const startMenu = document.getElementById('startMenu');
+            const startButton = document.querySelector('.start-button');
+            if (!startMenu.contains(e.target) && !startButton.contains(e.target)) {
+                startMenu.classList.remove('show');
+            }
+        });
+
+        // ===== CLOCK =====
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours() % 12 || 12;
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
+            document.getElementById('clock').textContent = `${hours}:${minutes} ${ampm}`;
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
