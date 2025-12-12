@@ -8,6 +8,10 @@
     <meta name="robots" content="noindex, nofollow">
     <title>ALCHEMIST ATELIER | AETHER PXE Platform | Final Internal Site v22 | December 2025</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="aether-website-assets/webp/aether-brand-logo-main.webp">
+    <link rel="apple-touch-icon" href="aether-website-assets/webp/aether-brand-logo-main.webp">
+
     <!-- Preload critical assets -->
     <link rel="preload" href="aether-website-assets/webp/aether-brand-logo-main.webp" as="image">
     <link rel="preload" href="aether-website-assets/webp/aether-team-founder-ctch.webp" as="image">
@@ -1188,6 +1192,140 @@
             background: rgba(102, 126, 234, 0.3);
             color: #000080;
         }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100000;
+            cursor: zoom-out;
+            animation: lightboxFadeIn 0.3s ease;
+        }
+
+        @keyframes lightboxFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: lightboxZoom 0.3s ease;
+        }
+
+        @keyframes lightboxZoom {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+            z-index: 100001;
+        }
+
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-family: var(--font-primary);
+            font-size: 14px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        /* Make gallery images clickable */
+        .gallery-item img,
+        .portfolio-card img,
+        .ip-card img {
+            cursor: zoom-in;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .gallery-item img:hover,
+        .portfolio-card img:hover,
+        .ip-card img:hover {
+            filter: brightness(1.1);
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            .sky-glass-layer,
+            #matrixCanvas,
+            .loading-screen,
+            .taskbar,
+            .start-menu,
+            .lightbox,
+            .window-controls {
+                display: none !important;
+            }
+
+            body {
+                background: white !important;
+                overflow: visible !important;
+            }
+
+            .desktop {
+                display: none !important;
+            }
+
+            .window {
+                position: relative !important;
+                display: block !important;
+                page-break-inside: avoid;
+                margin: 20px 0 !important;
+                max-width: 100% !important;
+                max-height: none !important;
+                box-shadow: none !important;
+                border: 1px solid #ccc !important;
+            }
+
+            .window-content {
+                max-height: none !important;
+                overflow: visible !important;
+            }
+
+            .portfolio-grid,
+            .gallery-grid,
+            .ip-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            img {
+                max-width: 100% !important;
+                page-break-inside: avoid;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1994,12 +2132,25 @@
         </div>
     </div>
 
+    <!-- Lightbox for Image Viewing -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="" alt="Full size image">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+
     <script>
         // ===== LOADING SCREEN =====
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('loadingScreen').classList.add('hidden');
             }, 2500);
+
+            // Initialize lazy loading for images
+            initLazyLoading();
+
+            // Initialize lightbox for gallery images
+            initLightbox();
         });
 
         // ===== MATRIX RAIN =====
@@ -2044,7 +2195,6 @@
                 drops[i]++;
             }
         }
-        setInterval(drawMatrix, 50);
 
         window.addEventListener('resize', () => {
             resizeCanvas();
@@ -2156,7 +2306,33 @@
         // ===== KEYBOARD NAVIGATION =====
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
+                // Close lightbox first
+                const lightbox = document.getElementById('lightbox');
+                if (lightbox.classList.contains('active')) {
+                    closeLightbox();
+                    return;
+                }
+
+                // Close start menu
                 document.getElementById('startMenu').classList.remove('show');
+
+                // Close topmost active window
+                const activeWindows = document.querySelectorAll('.window.active');
+                if (activeWindows.length > 0) {
+                    let topWindow = null;
+                    let topZ = 0;
+                    activeWindows.forEach(win => {
+                        const z = parseInt(win.style.zIndex) || 0;
+                        if (z >= topZ) {
+                            topZ = z;
+                            topWindow = win;
+                        }
+                    });
+                    if (topWindow) {
+                        topWindow.classList.remove('active');
+                        updateTaskbar();
+                    }
+                }
             }
         });
 
@@ -2169,6 +2345,155 @@
                 }
             });
         });
+
+        // ===== TOUCH SUPPORT FOR WINDOW DRAGGING =====
+        function startDragTouch(e, windowId) {
+            if (e.touches.length === 1) {
+                const touch = e.touches[0];
+                isDragging = true;
+                dragTarget = document.getElementById(windowId);
+                offsetX = touch.clientX - dragTarget.offsetLeft;
+                offsetY = touch.clientY - dragTarget.offsetTop;
+                highestZIndex++;
+                dragTarget.style.zIndex = highestZIndex;
+                e.preventDefault();
+            }
+        }
+
+        document.addEventListener('touchmove', (e) => {
+            if (isDragging && dragTarget && e.touches.length === 1) {
+                const touch = e.touches[0];
+                const x = Math.max(0, Math.min(window.innerWidth - 100, touch.clientX - offsetX));
+                const y = Math.max(0, Math.min(window.innerHeight - 100, touch.clientY - offsetY));
+                dragTarget.style.left = x + 'px';
+                dragTarget.style.top = y + 'px';
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        document.addEventListener('touchend', () => {
+            isDragging = false;
+            dragTarget = null;
+        });
+
+        // Add touch events to window headers
+        document.querySelectorAll('.window-header').forEach(header => {
+            const windowId = header.closest('.window').id;
+            header.addEventListener('touchstart', (e) => startDragTouch(e, windowId), { passive: false });
+        });
+
+        // ===== LIGHTBOX FUNCTIONS =====
+        function initLightbox() {
+            const clickableImages = document.querySelectorAll('.gallery-item img, .portfolio-card img, .ip-card img');
+            clickableImages.forEach(img => {
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openLightbox(img.src, img.alt);
+                });
+            });
+        }
+
+        function openLightbox(src, alt) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+
+            lightboxImg.src = src;
+            lightboxImg.alt = alt;
+            lightboxCaption.textContent = alt;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // ===== LAZY LOADING =====
+        function initLazyLoading() {
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            if (img.dataset.src) {
+                                img.src = img.dataset.src;
+                                img.removeAttribute('data-src');
+                            }
+                            observer.unobserve(img);
+                        }
+                    });
+                }, {
+                    rootMargin: '50px 0px',
+                    threshold: 0.01
+                });
+
+                // Observe all images with data-src attribute
+                document.querySelectorAll('img[data-src]').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+        }
+
+        // ===== WINDOW MAXIMIZE =====
+        function maximizeWindow(windowName) {
+            const win = document.getElementById('window-' + windowName);
+            if (win) {
+                if (win.dataset.maximized === 'true') {
+                    // Restore
+                    win.style.top = win.dataset.originalTop;
+                    win.style.left = win.dataset.originalLeft;
+                    win.style.width = win.dataset.originalWidth;
+                    win.style.height = '';
+                    win.dataset.maximized = 'false';
+                } else {
+                    // Maximize
+                    win.dataset.originalTop = win.style.top;
+                    win.dataset.originalLeft = win.style.left;
+                    win.dataset.originalWidth = win.style.width;
+                    win.style.top = '0';
+                    win.style.left = '0';
+                    win.style.width = '100vw';
+                    win.style.height = 'calc(100vh - 44px)';
+                    win.dataset.maximized = 'true';
+                }
+            }
+        }
+
+        // Double-click header to maximize
+        document.querySelectorAll('.window-header').forEach(header => {
+            header.addEventListener('dblclick', () => {
+                const windowId = header.closest('.window').id.replace('window-', '');
+                maximizeWindow(windowId);
+            });
+        });
+
+        // ===== PERFORMANCE: Throttle matrix animation when tab not visible =====
+        let matrixInterval;
+        function startMatrix() {
+            if (!matrixInterval) {
+                matrixInterval = setInterval(drawMatrix, 50);
+            }
+        }
+        function stopMatrix() {
+            if (matrixInterval) {
+                clearInterval(matrixInterval);
+                matrixInterval = null;
+            }
+        }
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopMatrix();
+            } else {
+                startMatrix();
+            }
+        });
+
+        // Initialize matrix (replace setInterval above)
+        startMatrix();
     </script>
 </body>
 </html>
