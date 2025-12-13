@@ -1,0 +1,2800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AETHER | Partner Knowledge Base Glossary | aRtGaRDErN TECHNO-FABRIQUE | v2.0</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+        :root {
+            --aether-purple: #667eea;
+            --aether-purple-dark: #764ba2;
+            --aether-blue: #4a90e2;
+            --aether-blue-deep: #1a5fb4;
+            --aether-pink: #f093fb;
+            --aether-sky: #87CEEB;
+            --aether-gold: #ffd700;
+            --white: #ffffff;
+            --black: #2c3e50;
+            --win95-gray: #c0c0c0;
+            --win95-dark: #808080;
+            
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-display: 'Space Grotesk', 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+            
+            --text-primary: #2c3e50;
+            --text-secondary: #5a6c7d;
+            --accent-success: #059669;
+            --surface-elevated: rgba(255, 255, 255, 0.95);
+        }
+
+        body {
+            font-size: 14px;
+            font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
+            background: #008080;
+            color: #000;
+            min-height: 100vh;
+            position: relative;
+            cursor: default;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .sky-glass-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            background: 
+                radial-gradient(ellipse at 25% 25%, rgba(135, 206, 250, 0.6) 0%, transparent 50%),
+                radial-gradient(ellipse at 75% 75%, rgba(255, 182, 193, 0.5) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(230, 190, 255, 0.4) 0%, transparent 70%),
+                radial-gradient(ellipse at 10% 90%, rgba(102, 126, 234, 0.5) 0%, transparent 60%),
+                radial-gradient(ellipse at 90% 10%, rgba(240, 147, 251, 0.45) 0%, transparent 55%),
+                linear-gradient(180deg,
+                    rgba(135, 206, 250, 0.5) 0%,
+                    rgba(255, 255, 255, 0.35) 25%,
+                    rgba(173, 216, 230, 0.4) 45%,
+                    rgba(255, 182, 193, 0.35) 65%,
+                    rgba(147, 112, 219, 0.45) 85%,
+                    rgba(102, 126, 234, 0.5) 100%
+                );
+            animation: skyFlow 25s ease infinite;
+        }
+
+        @keyframes skyFlow {
+            0%, 100% { filter: hue-rotate(0deg) brightness(1) saturate(1.1); }
+            50% { filter: hue-rotate(15deg) brightness(1.05) saturate(1.2); }
+        }
+
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.35;
+            mix-blend-mode: screen;
+        }
+
+        .main-container {
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .window {
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .window-header {
+            background: linear-gradient(135deg, 
+                var(--aether-purple) 0%, 
+                var(--aether-blue) 50%, 
+                var(--aether-purple-dark) 100%);
+            color: white;
+            padding: 4px 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: default;
+            user-select: none;
+        }
+
+        .window-title {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .window-icon { font-size: 14px; }
+
+        .window-controls {
+            display: flex;
+            gap: 2px;
+        }
+
+        .window-button {
+            width: 16px;
+            height: 14px;
+            background: #c0c0c0;
+            border: 1px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            font-weight: bold;
+        }
+
+        .window-button:active {
+            border-color: #000000 #ffffff #ffffff #000000;
+        }
+
+        .window-content {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-primary);
+            padding: 20px 24px;
+            background: linear-gradient(180deg, 
+                rgba(255, 255, 255, 0.92) 0%, 
+                rgba(248, 250, 255, 0.95) 100%);
+            font-family: var(--font-primary);
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .page-header h1 {
+            font-family: var(--font-display);
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .page-header .subtitle {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .page-header .meta-info {
+            font-size: 10px;
+            color: #666;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .meta-badge {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+            padding: 3px 10px;
+            border-radius: 12px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            font-weight: 600;
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 6px;
+            padding: 10px 14px;
+            background: #dfdfdf;
+            border-bottom: 2px solid;
+            border-color: #808080 #ffffff #ffffff #808080;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-label {
+            font-weight: bold;
+            font-size: 11px;
+            color: #333;
+        }
+
+        .filter-btn {
+            padding: 3px 8px;
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            font-size: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.1s;
+        }
+
+        .filter-btn:hover { background: #d4d4d4; }
+
+        .filter-btn:active,
+        .filter-btn.active {
+            border-color: #000000 #ffffff #ffffff #000000;
+            background: #a0a0a0;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 180px;
+            padding: 3px 8px;
+            border: 2px solid;
+            border-color: #808080 #ffffff #ffffff #808080;
+            background: white;
+            font-family: inherit;
+            font-size: 11px;
+        }
+
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 12px;
+            padding: 14px;
+        }
+
+        .partner-card {
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            background: linear-gradient(90deg, #000080 0%, #1084d0 100%);
+            color: white;
+            padding: 5px 8px;
+            font-weight: bold;
+            font-size: 11px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-header.strategic { background: linear-gradient(90deg, var(--aether-purple) 0%, var(--aether-purple-dark) 100%); }
+        .card-header.vendor { background: linear-gradient(90deg, #2e7d32 0%, #4caf50 100%); }
+        .card-header.certification { background: linear-gradient(90deg, #f57c00 0%, #ffb74d 100%); color: #333; }
+        .card-header.academic { background: linear-gradient(90deg, #1565c0 0%, #42a5f5 100%); }
+        .card-header.fabrication { background: linear-gradient(90deg, #6a1b9a 0%, #ab47bc 100%); }
+        .card-header.creative { background: linear-gradient(90deg, #c2185b 0%, #f06292 100%); }
+        .card-header.hospitality { background: linear-gradient(90deg, #00695c 0%, #4db6ac 100%); }
+        .card-header.robotics { background: linear-gradient(90deg, #37474f 0%, #78909c 100%); }
+        .card-header.fnb { background: linear-gradient(90deg, #bf360c 0%, #ff8a65 100%); }
+        .card-header.water { background: linear-gradient(90deg, #0277bd 0%, #4fc3f7 100%); }
+        .card-header.finance { background: linear-gradient(90deg, #1b5e20 0%, #66bb6a 100%); }
+        .card-header.software { background: linear-gradient(90deg, #4527a0 0%, #9575cd 100%); }
+        .card-header.talent { background: linear-gradient(90deg, #ad1457 0%, #f48fb1 100%); }
+        .card-header.ops { background: linear-gradient(90deg, #455a64 0%, #90a4ae 100%); }
+
+        .partner-type-badge {
+            font-size: 8px;
+            padding: 2px 5px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-body {
+            padding: 10px;
+            background: white;
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        .card-body p {
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .card-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed #ccc;
+        }
+
+        .metric-item {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08));
+            padding: 4px 6px;
+            border-radius: 3px;
+            border-left: 2px solid var(--aether-purple);
+        }
+
+        .metric-label {
+            font-size: 9px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-value {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--aether-purple-dark);
+            font-family: var(--font-mono);
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+            margin-top: 8px;
+        }
+
+        .tag {
+            font-size: 9px;
+            padding: 2px 5px;
+            background: #e8e8e8;
+            border: 1px solid #bbb;
+            border-radius: 2px;
+            color: #555;
+        }
+
+        .tag.highlight {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 215, 0, 0.15));
+            border-color: #daa520;
+            color: #8b6914;
+            font-weight: 600;
+        }
+
+        .stats-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.12) 0%, rgba(118, 75, 162, 0.12) 100%);
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            padding: 8px 12px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--aether-purple);
+            font-family: var(--font-display);
+        }
+
+        .stat-label {
+            font-size: 9px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+
+        .section-header {
+            background: linear-gradient(90deg, #c0c0c0, #e0e0e0);
+            padding: 6px 14px;
+            margin: 0 -24px;
+            border-top: 2px solid #808080;
+            border-bottom: 2px solid #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-display);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #333;
+            margin: 0;
+        }
+
+        .section-icon { font-size: 14px; }
+
+        .section-count {
+            font-size: 10px;
+            background: var(--aether-purple);
+            color: white;
+            padding: 1px 6px;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        .terminal-output {
+            background: #1a1a2e;
+            color: #00ff88;
+            font-family: 'Courier New', monospace;
+            padding: 10px 14px;
+            margin: 12px 0;
+            border: 2px solid;
+            border-color: #000000 #ffffff #ffffff #000000;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .terminal-output::before {
+            content: 'C:\\AETHER\\PARTNERS> ';
+            color: #888;
+        }
+
+        .terminal-line {
+            display: block;
+            padding-left: 0;
+            margin-top: 3px;
+        }
+
+        .terminal-success { color: #00ff88; }
+        .terminal-value { color: #00bfff; font-weight: 600; }
+        .terminal-warning { color: #ffcc00; }
+
+        .footer-bar {
+            background: #c0c0c0;
+            border-top: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            padding: 5px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10px;
+            color: #333;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .footer-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            background: #00ff00;
+            border-radius: 50%;
+            box-shadow: 0 0 4px #00ff00;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .ilfi-compliance-box {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.15), rgba(139, 195, 74, 0.15));
+            border: 2px solid #4caf50;
+            padding: 12px 16px;
+            margin: 16px 0;
+            border-radius: 4px;
+        }
+
+        .ilfi-compliance-box h3 {
+            font-size: 13px;
+            color: #2e7d32;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 8px;
+        }
+
+        .compliance-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+        }
+
+        .compliance-check {
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .scaling-model {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border: 2px solid var(--aether-purple);
+            padding: 12px 16px;
+            margin: 16px 0;
+            border-radius: 4px;
+        }
+
+        .scaling-model h3 {
+            font-size: 13px;
+            color: var(--aether-purple-dark);
+            margin-bottom: 8px;
+        }
+
+        .scaling-phases {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-family: var(--font-mono);
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .scaling-arrow {
+            color: var(--aether-purple);
+        }
+
+        @media (max-width: 768px) {
+            .glossary-grid { grid-template-columns: 1fr; }
+            .filter-bar { flex-direction: column; align-items: stretch; }
+            .search-input { width: 100%; }
+        }
+
+        ::-webkit-scrollbar { width: 16px; height: 16px; }
+        ::-webkit-scrollbar-track { background: #c0c0c0; border: 1px solid #808080; }
+        ::-webkit-scrollbar-thumb { background: #c0c0c0; border: 2px solid; border-color: #ffffff #000000 #000000 #ffffff; }
+        ::-webkit-scrollbar-thumb:hover { background: #a0a0a0; }
+        ::-webkit-scrollbar-corner { background: #c0c0c0; }
+
+        @media print {
+            .sky-glass-layer, #matrixCanvas { display: none; }
+            body { background: white; }
+            .window { box-shadow: none; border: 1px solid #ccc; }
+        }
+    </style>
+</head>
+<body>
+    <div class="sky-glass-layer"></div>
+    <canvas id="matrixCanvas"></canvas>
+
+    <div class="main-container">
+        <div class="window">
+            <div class="window-header">
+                <div class="window-title">
+                    <span class="window-icon">📚</span>
+                    <span>AETHER Partner Knowledge Base Glossary v2.0 — aRtGaRDErN TECHNO-FABRIQUE</span>
+                </div>
+                <div class="window-controls">
+                    <button class="window-button">_</button>
+                    <button class="window-button">□</button>
+                    <button class="window-button">×</button>
+                </div>
+            </div>
+
+            <div class="window-content">
+                <div class="page-header">
+                    <h1>🔮 Partner • Investor • Vendor Glossary</h1>
+                    <div class="subtitle">ALCHEMIST ATELIER | 333 Schnebly Hill Road, Sedona, Arizona | 45,900 sq ft | 153 Systems</div>
+                    <div class="meta-info">
+                        <span class="meta-badge">📊 $27.3M+ Annual Partnership Value</span>
+                        <span class="meta-badge">🤝 227 Active Partners</span>
+                        <span class="meta-badge">🏭 $71.1M Annual Output</span>
+                        <span class="meta-badge">👥 9 → 45 → 81 Scaling Model</span>
+                        <span class="meta-badge">📅 December 2025</span>
+                    </div>
+                </div>
+
+                <div class="stats-summary">
+                    <div class="stat-box">
+                        <div class="stat-value">8</div>
+                        <div class="stat-label">Strategic Partners</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">18</div>
+                        <div class="stat-label">Creative Studios</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">16</div>
+                        <div class="stat-label">Tech Vendors</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">Robotics/IoT</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">8</div>
+                        <div class="stat-label">Education</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">6</div>
+                        <div class="stat-label">Water Brands</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">7</div>
+                        <div class="stat-label">Certifications</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">6</div>
+                        <div class="stat-label">F&B Partners</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Fabrication</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">9</div>
+                        <div class="stat-label">Software/Tools</div>
+                    </div>
+                </div>
+
+                <!-- Scaling Model -->
+                <div class="scaling-model">
+                    <h3>🚀 AETHER Scaling Model</h3>
+                    <div class="scaling-phases">
+                        <span>9</span>
+                        <span class="scaling-arrow">→</span>
+                        <span>45</span>
+                        <span class="scaling-arrow">→</span>
+                        <span>81</span>
+                        <span style="font-size: 12px; font-weight: 400; margin-left: 8px;">Personnel</span>
+                    </div>
+                </div>
+
+                <!-- ILFI Compliance -->
+                <div class="ilfi-compliance-box">
+                    <h3>✅ ILFI Equity Standards Compliance</h3>
+                    <div class="compliance-grid">
+                        <div class="compliance-item"><span class="compliance-check">✅</span> Living Wage: All positions exceed ILFI living wage for Sedona region</div>
+                        <div class="compliance-item"><span class="compliance-check">✅</span> Pay Equity Ratio: 3.125:1 (Executive to Base) — Within ILFI 5:1 max</div>
+                        <div class="compliance-item"><span class="compliance-check">✅</span> Geographic Adjustment: Sedona cost-of-living factored (115% of Phoenix)</div>
+                        <div class="compliance-item"><span class="compliance-check">✅</span> Benefits Inclusion: Full benefits package adds 35% value</div>
+                        <div class="compliance-item"><span class="compliance-check">✅</span> Transparent Structure: Clear progression and pay bands</div>
+                    </div>
+                </div>
+
+                <div class="terminal-output">
+                    PARTNER_DATABASE_v2.0_LOAD [OK]
+                    <span class="terminal-line">├─ Strategic Partnerships: <span class="terminal-value">$27.3M</span> annual equivalent value</span>
+                    <span class="terminal-line">├─ Combined B2B Network: <span class="terminal-value">$11.01B</span> aggregate partnership value</span>
+                    <span class="terminal-line">├─ Partner Satisfaction: <span class="terminal-value">91-95%</span> across all tiers</span>
+                    <span class="terminal-line">├─ Average ROI: <span class="terminal-value">2.8×</span> within 18 months</span>
+                    <span class="terminal-line">├─ Total Entries: <span class="terminal-value">100+</span> partners, vendors, resources</span>
+                    <span class="terminal-line">└─ Competitive Moat: <span class="terminal-warning">4.3%</span> replication probability</span>
+                </div>
+            </div>
+
+            <div class="filter-bar">
+                <span class="filter-label">🔍 FILTER:</span>
+                <button class="filter-btn active" onclick="filterCards('all')">ALL</button>
+                <button class="filter-btn" onclick="filterCards('strategic')">STRATEGIC</button>
+                <button class="filter-btn" onclick="filterCards('creative')">CREATIVE</button>
+                <button class="filter-btn" onclick="filterCards('vendor')">TECH</button>
+                <button class="filter-btn" onclick="filterCards('robotics')">ROBOTICS</button>
+                <button class="filter-btn" onclick="filterCards('academic')">EDUCATION</button>
+                <button class="filter-btn" onclick="filterCards('certification')">CERTS</button>
+                <button class="filter-btn" onclick="filterCards('fnb')">F&B</button>
+                <button class="filter-btn" onclick="filterCards('water')">WATER</button>
+                <button class="filter-btn" onclick="filterCards('finance')">FINANCE</button>
+                <button class="filter-btn" onclick="filterCards('software')">SOFTWARE</button>
+                <button class="filter-btn" onclick="filterCards('talent')">TALENT</button>
+                <button class="filter-btn" onclick="filterCards('ops')">OPS</button>
+                <input type="text" class="search-input" placeholder="Search partners, vendors, certifications..." id="searchInput" onkeyup="searchCards()">
+            </div>
+
+            <div class="window-content" style="padding-top: 0;">
+
+                <!-- ============ STRATEGIC PARTNERSHIPS ============ -->
+                <div class="section-header">
+                    <span class="section-icon">⭐</span>
+                    <h2>Strategic Partnerships</h2>
+                    <span class="section-count">8</span>
+                </div>
+
+                <div class="glossary-grid">
+                    <!-- Lune Rouge -->
+                    <div class="partner-card" data-category="strategic" data-name="lune rouge guy laliberte cirque">
+                        <div class="card-header strategic">
+                            <span>🌙 Lune Rouge</span>
+                            <span class="partner-type-badge">Entertainment</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Founded by Guy Laliberté (Cirque du Soleil creator). Multi-disciplinary entertainment and content creation company spanning live experiences, digital media, and social impact initiatives.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Cirque Heritage</span>
+                                <span class="tag">Live Entertainment</span>
+                                <span class="tag">Content Creation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fantawild -->
+                    <div class="partner-card" data-category="strategic" data-name="fantawild china theme parks">
+                        <div class="card-header strategic">
+                            <span>🎢 Fantawild</span>
+                            <span class="partner-type-badge">Theme Parks</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Leading Chinese theme park developer and operator with 30+ parks across China. Pioneer in technology-driven attractions and integrated resort development.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">30+ Parks</span>
+                                <span class="tag">China Market</span>
+                                <span class="tag">Tech Attractions</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ennismore -->
+                    <div class="partner-card" data-category="strategic" data-name="ennismore hospitality lifestyle hotels">
+                        <div class="card-header strategic">
+                            <span>🏨 Ennismore</span>
+                            <span class="partner-type-badge">Hospitality</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Lifestyle hospitality company with Accor partnership. Portfolio includes The Hoxton, Gleneagles, SLS, Mondrian, and emerging lifestyle brands redefining guest experiences.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Accor Partnership</span>
+                                <span class="tag">Lifestyle Hotels</span>
+                                <span class="tag">Global Portfolio</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- iicombined -->
+                    <div class="partner-card" data-category="strategic" data-name="iicombined korea immersive technology">
+                        <div class="card-header strategic">
+                            <span>🇰🇷 iicombined</span>
+                            <span class="partner-type-badge">South Korea</span>
+                        </div>
+                        <div class="card-body">
+                            <p>South Korean immersive technology and experience design company. Specializes in digital art installations, interactive environments, and phygital entertainment solutions.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Korea Market</span>
+                                <span class="tag">Immersive Tech</span>
+                                <span class="tag">Digital Art</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TeamLab -->
+                    <div class="partner-card" data-category="strategic" data-name="teamlab digital art collective japan borderless">
+                        <div class="card-header strategic">
+                            <span>🎨 TeamLab</span>
+                            <span class="partner-type-badge">Digital Art</span>
+                        </div>
+                        <div class="card-body">
+                            <p>International art collective integrating art, science, technology, and nature. Famous for TeamLab Borderless museums in Tokyo, Shanghai, and Abu Dhabi with infinite digital art spaces.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Borderless Museums</span>
+                                <span class="tag">Digital Art</span>
+                                <span class="tag">Japan</span>
+                                <span class="tag">Immersive</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Legendary -->
+                    <div class="partner-card" data-category="strategic" data-name="legendary entertainment dune godzilla pacific rim">
+                        <div class="card-header strategic">
+                            <span>🎬 Legendary Entertainment</span>
+                            <span class="partner-type-badge">Film/IP</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Major film production company (Dune, Godzilla, Pacific Rim, The Dark Knight trilogy). Consortium partner for entertainment transformation and IP integration.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Major Studio</span>
+                                <span class="tag">IP Portfolio</span>
+                                <span class="tag">Consortium</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bad Robot -->
+                    <div class="partner-card" data-category="strategic" data-name="bad robot jj abrams production immersive">
+                        <div class="card-header strategic">
+                            <span>🤖 Bad Robot</span>
+                            <span class="partner-type-badge">Production</span>
+                        </div>
+                        <div class="card-body">
+                            <p>J.J. Abrams' production company known for innovative storytelling across film, TV, and immersive. Creative collaborations for immersive storytelling experiences.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">J.J. Abrams</span>
+                                <span class="tag">Storytelling</span>
+                                <span class="tag">Immersive</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- UAP -->
+                    <div class="partner-card" data-category="strategic" data-name="united artist productions uap entertainment">
+                        <div class="card-header strategic">
+                            <span>🎭 United Artist Productions (UAP)</span>
+                            <span class="partner-type-badge">Production</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Entertainment production company specializing in live experiences, theatrical productions, and branded entertainment integration.</p>
+                            <div class="card-tags">
+                                <span class="tag">Live Production</span>
+                                <span class="tag">Theatrical</span>
+                                <span class="tag">Branded Entertainment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ TECHNOLOGY PARTNERSHIPS ============ -->
+                <div class="section-header">
+                    <span class="section-icon">⚡</span>
+                    <h2>Core Technology Partners</h2>
+                    <span class="section-count">5</span>
+                </div>
+
+                <div class="glossary-grid">
+                    <!-- MIT Media Lab -->
+                    <div class="partner-card" data-category="strategic" data-name="mit media lab research responsive environments">
+                        <div class="card-header strategic">
+                            <span>🏛️ MIT Media Lab</span>
+                            <span class="partner-type-badge">Research</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Premier research collaboration: responsive environments, object-based media, programmable acoustics, gestural control, bio-responsive surfaces. 3-5 year technology advantage.</p>
+                            <div class="card-metrics">
+                                <div class="metric-item">
+                                    <div class="metric-label">Annual Value</div>
+                                    <div class="metric-value">$8.5M</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-label">Research Access</div>
+                                    <div class="metric-value">$45M</div>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag highlight">Responsive Environments</span>
+                                <span class="tag">Bio-Responsive</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dyson -->
+                    <div class="partner-card" data-category="vendor" data-name="dyson innovation air effects hvac motors">
+                        <div class="card-header vendor">
+                            <span>🌀 Dyson Innovation</span>
+                            <span class="partner-type-badge">Technology</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Precision air effects (90% energy reduction), compact actuation (3× power density), advanced HVAC (60% efficiency), durable coatings (2-3× lifespan).</p>
+                            <div class="card-metrics">
+                                <div class="metric-item">
+                                    <div class="metric-label">Annual Savings</div>
+                                    <div class="metric-value">$2.1M</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-label">Maintenance</div>
+                                    <div class="metric-value">-35%</div>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag highlight">Air Effects</span>
+                                <span class="tag">HVAC</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PASQAL -->
+                    <div class="partner-card" data-category="strategic" data-name="pasqal quantum computing exclusive">
+                        <div class="card-header strategic">
+                            <span>⚛️ PASQAL Quantum Computing</span>
+                            <span class="partner-type-badge">Exclusive</span>
+                        </div>
+                        <div class="card-body">
+                            <p>10-year global exclusive in experiential entertainment. 10,000× computational advantage for guest flow, dynamic pricing, predictive maintenance.</p>
+                            <div class="card-metrics">
+                                <div class="metric-item">
+                                    <div class="metric-label">Partnership</div>
+                                    <div class="metric-value">10-Year</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-label">Computing</div>
+                                    <div class="metric-value">10,000×</div>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag highlight">Quantum</span>
+                                <span class="tag highlight">Exclusive</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Apple -->
+                    <div class="partner-card" data-category="strategic" data-name="apple inc aetheros arkit metal vision pro">
+                        <div class="card-header strategic">
+                            <span>🍎 Apple Inc.</span>
+                            <span class="partner-type-badge">Ecosystem</span>
+                        </div>
+                        <div class="card-body">
+                            <p>AetherOS ecosystem integration: ARKit, Metal 4, Vision Pro SDK. World-class infrastructure foundation for phygital experience delivery.</p>
+                            <div class="card-metrics">
+                                <div class="metric-item">
+                                    <div class="metric-label">Annual Value</div>
+                                    <div class="metric-value">$234M</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-label">Platform</div>
+                                    <div class="metric-value">Vision Pro</div>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag highlight">AetherOS</span>
+                                <span class="tag">ARKit</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Anthropic -->
+                    <div class="partner-card" data-category="strategic" data-name="anthropic claude ai lillian">
+                        <div class="card-header strategic">
+                            <span>🤖 Anthropic (Claude AI)</span>
+                            <span class="partner-type-badge">AI Foundation</span>
+                        </div>
+                        <div class="card-body">
+                            <p>L.I.L.L.I.A.N. AI framework: Longevity Intelligence Living Learning Intuitive Alchemy Neuroplasticity. Human amplification, 98% retention.</p>
+                            <div class="card-metrics">
+                                <div class="metric-item">
+                                    <div class="metric-label">5-Year Value</div>
+                                    <div class="metric-value">$45M</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-label">Overhead</div>
+                                    <div class="metric-value">-45%</div>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag highlight">L.I.L.L.I.A.N.</span>
+                                <span class="tag">Human Amplification</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ CREATIVE & DESIGN STUDIOS ============ -->
+                <div class="section-header">
+                    <span class="section-icon">🎨</span>
+                    <h2>Creative & Design Studios</h2>
+                    <span class="section-count">18</span>
+                </div>
+
+                <div class="glossary-grid">
+                    <!-- ArtiStory -->
+                    <div class="partner-card" data-category="creative" data-name="artistory brand licensing consumer products">
+                        <div class="card-header creative">
+                            <span>🏷️ ArtiStory</span>
+                            <span class="partner-type-badge">Licensing</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Brand licensing and consumer products agency specializing in cultural IP, museum partnerships, and heritage brand activation across global markets.</p>
+                            <div class="card-tags">
+                                <span class="tag">Brand Licensing</span>
+                                <span class="tag">Consumer Products</span>
+                                <span class="tag">Cultural IP</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Italdesign -->
+                    <div class="partner-card" data-category="creative" data-name="italdesign giugiaro automotive industrial design">
+                        <div class="card-header creative">
+                            <span>🚗 Italdesign</span>
+                            <span class="partner-type-badge">Industrial Design</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Legendary Italian design firm (Giugiaro heritage). Automotive, industrial, and transportation design expertise for venue and experience elements.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Giugiaro</span>
+                                <span class="tag">Automotive</span>
+                                <span class="tag">Industrial</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Adulte Adulte -->
+                    <div class="partner-card" data-category="creative" data-name="adulte adulte creative agency design">
+                        <div class="card-header creative">
+                            <span>🎯 Adulte Adulte</span>
+                            <span class="partner-type-badge">Creative Agency</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Creative agency specializing in brand identity, experiential design, and cultural strategy for contemporary entertainment and lifestyle brands.</p>
+                            <div class="card-tags">
+                                <span class="tag">Brand Identity</span>
+                                <span class="tag">Experiential</span>
+                                <span class="tag">Cultural Strategy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spline FR -->
+                    <div class="partner-card" data-category="creative" data-name="spline fr 3d design motion graphics">
+                        <div class="card-header creative">
+                            <span>🌐 Spline FR</span>
+                            <span class="partner-type-badge">3D Design</span>
+                        </div>
+                        <div class="card-body">
+                            <p>French 3D design and motion graphics studio specializing in real-time 3D experiences, interactive content, and digital production.</p>
+                            <div class="card-tags">
+                                <span class="tag">3D Design</span>
+                                <span class="tag">Motion Graphics</span>
+                                <span class="tag">Real-Time</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FARM LEAGUE -->
+                    <div class="partner-card" data-category="creative" data-name="farm league production content sports">
+                        <div class="card-header creative">
+                            <span>🎬 FARM LEAGUE</span>
+                            <span class="partner-type-badge">Production</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Creative production company specializing in branded content, documentary, and commercial work for sports, lifestyle, and entertainment brands.</p>
+                            <div class="card-tags">
+                                <span class="tag">Branded Content</span>
+                                <span class="tag">Documentary</span>
+                                <span class="tag">Sports</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NDA Paris -->
+                    <div class="partner-card" data-category="creative" data-name="nda paris design agency france">
+                        <div class="card-header creative">
+                            <span>🗼 NDA Paris</span>
+                            <span class="partner-type-badge">Design Agency</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Parisian design agency known for sophisticated visual identity, luxury brand experiences, and haute design aesthetic.</p>
+                            <div class="card-tags">
+                                <span class="tag">Paris</span>
+                                <span class="tag">Luxury</span>
+                                <span class="tag">Visual Identity</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ironhead Studios -->
+                    <div class="partner-card" data-category="creative" data-name="ironhead studios costume armor marvel dc superhero">
+                        <div class="card-header creative">
+                            <span>🦸 Ironhead Studios</span>
+                            <span class="partner-type-badge">Costumes</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Premier superhero costume and armor fabrication (Marvel, DC films). Hero costumes, armor systems, high-detail character fabrication.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Marvel/DC</span>
+                                <span class="tag">Superhero</span>
+                                <span class="tag">Armor</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Onesal -->
+                    <div class="partner-card" data-category="creative" data-name="onesal creative studio design">
+                        <div class="card-header creative">
+                            <span>✨ Onesal</span>
+                            <span class="partner-type-badge">Creative</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Creative studio specializing in experiential design, brand activation, and immersive content creation.</p>
+                            <div class="card-tags">
+                                <span class="tag">Experiential</span>
+                                <span class="tag">Brand Activation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Capsule Studio -->
+                    <div class="partner-card" data-category="creative" data-name="capsule studio design experience">
+                        <div class="card-header creative">
+                            <span>💊 Capsule Studio</span>
+                            <span class="partner-type-badge">Design</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Multidisciplinary design studio focused on spatial experiences, exhibition design, and brand environments.</p>
+                            <div class="card-tags">
+                                <span class="tag">Spatial Design</span>
+                                <span class="tag">Exhibition</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Illogic Studios -->
+                    <div class="partner-card" data-category="creative" data-name="illogic studios animation vfx">
+                        <div class="card-header creative">
+                            <span>🎮 Illogic Studios</span>
+                            <span class="partner-type-badge">VFX</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Animation and visual effects studio for immersive content, real-time graphics, and experiential media production.</p>
+                            <div class="card-tags">
+                                <span class="tag">Animation</span>
+                                <span class="tag">VFX</span>
+                                <span class="tag">Real-Time</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Small Creative -->
+                    <div class="partner-card" data-category="creative" data-name="small creative agency boutique">
+                        <div class="card-header creative">
+                            <span>🔮 Small Creative</span>
+                            <span class="partner-type-badge">Boutique</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Boutique creative agency specializing in brand strategy, visual identity, and experiential marketing.</p>
+                            <div class="card-tags">
+                                <span class="tag">Boutique</span>
+                                <span class="tag">Brand Strategy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Plastic Studios -->
+                    <div class="partner-card" data-category="creative" data-name="plastic studios digital experience">
+                        <div class="card-header creative">
+                            <span>💎 Plastic Studios</span>
+                            <span class="partner-type-badge">Digital</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Digital experience studio creating interactive installations, web experiences, and technology-driven brand activations.</p>
+                            <div class="card-tags">
+                                <span class="tag">Digital</span>
+                                <span class="tag">Interactive</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Saint Chaffrey -->
+                    <div class="partner-card" data-category="creative" data-name="saint chaffrey craft artisan">
+                        <div class="card-header creative">
+                            <span>⛷️ Saint Chaffrey</span>
+                            <span class="partner-type-badge">Craft</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Artisan craft studio specializing in traditional techniques merged with contemporary design applications.</p>
+                            <div class="card-tags">
+                                <span class="tag">Artisan</span>
+                                <span class="tag">Traditional Craft</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Atelier Montex -->
+                    <div class="partner-card" data-category="creative" data-name="atelier montex haute couture embroidery chanel">
+                        <div class="card-header creative">
+                            <span>👗 Atelier Montex Haute Couture</span>
+                            <span class="partner-type-badge">Haute Couture</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Legendary Parisian embroidery house (Chanel Métiers d'Art). Master embroiderers for costume detailing and luxury textile elements.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Chanel Métiers d'Art</span>
+                                <span class="tag">Embroidery</span>
+                                <span class="tag">Haute Couture</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Studio Paolo Ferrari -->
+                    <div class="partner-card" data-category="creative" data-name="studio paolo ferrari interior design photography">
+                        <div class="card-header creative">
+                            <span>📸 Studio Paolo Ferrari</span>
+                            <span class="partner-type-badge">Interiors</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Interior design and photography studio known for sophisticated spatial narratives and editorial-quality visual storytelling.</p>
+                            <div class="card-tags">
+                                <span class="tag">Interior Design</span>
+                                <span class="tag">Photography</span>
+                                <span class="tag">Editorial</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MAD Architecture -->
+                    <div class="partner-card" data-category="creative" data-name="mad architecture ma yansong china futuristic">
+                        <div class="card-header creative">
+                            <span>🏗️ MAD Architecture</span>
+                            <span class="partner-type-badge">Architecture</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Ma Yansong's Beijing-based firm known for futuristic, organic architecture. Lucas Museum, Harbin Opera House, Absolute Towers.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Ma Yansong</span>
+                                <span class="tag">Futuristic</span>
+                                <span class="tag">China</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- XL Muse -->
+                    <div class="partner-card" data-category="creative" data-name="xl muse china architecture design">
+                        <div class="card-header creative">
+                            <span>🇨🇳 XL Muse China</span>
+                            <span class="partner-type-badge">Architecture</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Shanghai-based architecture and interior design firm specializing in hospitality, retail, and experiential environments.</p>
+                            <div class="card-tags">
+                                <span class="tag">Shanghai</span>
+                                <span class="tag">Hospitality</span>
+                                <span class="tag">Retail</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Uchronia -->
+                    <div class="partner-card" data-category="creative" data-name="uchronia design creative temporal">
+                        <div class="card-header creative">
+                            <span>⏳ Uchronia</span>
+                            <span class="partner-type-badge">Creative</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Creative studio exploring alternate timelines and speculative design. Concept development and worldbuilding for immersive narratives.</p>
+                            <div class="card-tags">
+                                <span class="tag">Speculative Design</span>
+                                <span class="tag">Worldbuilding</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ ARCHITECTURE & DEVELOPMENT ============ -->
+                <div class="section-header">
+                    <span class="section-icon">🏛️</span>
+                    <h2>Architecture & Development</h2>
+                    <span class="section-count">4</span>
+                </div>
+
+                <div class="glossary-grid">
+                    <!-- Adre Development -->
+                    <div class="partner-card" data-category="creative" data-name="adre development real estate">
+                        <div class="card-header creative">
+                            <span>🏢 Adre Development</span>
+                            <span class="partner-type-badge">Development</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Real estate development partner for experiential venue sites and mixed-use entertainment destination projects.</p>
+                            <div class="card-tags">
+                                <span class="tag">Real Estate</span>
+                                <span class="tag">Mixed-Use</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Patriarche -->
+                    <div class="partner-card" data-category="creative" data-name="patriarche architecture france sustainable">
+                        <div class="card-header creative">
+                            <span>🏗️ Patriarche</span>
+                            <span class="partner-type-badge">Architecture</span>
+                        </div>
+                        <div class="card-body">
+                            <p>French architecture firm specializing in sustainable design, cultural venues, and experiential spaces with environmental responsibility.</p>
+                            <div class="card-tags">
+                                <span class="tag">Sustainable</span>
+                                <span class="tag">France</span>
+                                <span class="tag">Cultural</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chandos -->
+                    <div class="partner-card" data-category="creative" data-name="chandos construction building">
+                        <div class="card-header creative">
+                            <span>🔨 Chandos</span>
+                            <span class="partner-type-badge">Construction</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Construction partner for venue buildouts, specialized entertainment facilities, and complex technical installations.</p>
+                            <div class="card-tags">
+                                <span class="tag">Construction</span>
+                                <span class="tag">Venues</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kerakoll -->
+                    <div class="partner-card" data-category="vendor" data-name="kerakoll green building materials sustainable">
+                        <div class="card-header vendor">
+                            <span>🌿 Kerakoll</span>
+                            <span class="partner-type-badge">Materials</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Green building materials company specializing in sustainable construction products, adhesives, and eco-friendly building solutions.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Green Building</span>
+                                <span class="tag">Sustainable</span>
+                                <span class="tag">Materials</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ TECHNOLOGY VENDORS ============ -->
+                <div class="section-header">
+                    <span class="section-icon">🔧</span>
+                    <h2>Technology Vendors</h2>
+                    <span class="section-count">11</span>
+                </div>
+
+                <div class="glossary-grid">
+                    <!-- Hisense -->
+                    <div class="partner-card" data-category="vendor" data-name="hisense displays electronics china">
+                        <div class="card-header vendor">
+                            <span>📺 Hisense</span>
+                            <span class="partner-type-badge">Displays</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Global electronics manufacturer providing LED displays, commercial signage, and large-format visual solutions for venue deployments.</p>
+                            <div class="card-tags">
+                                <span class="tag">LED Displays</span>
+                                <span class="tag">Signage</span>
+                                <span class="tag">Commercial</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROBE Lighting -->
+                    <div class="partner-card" data-category="vendor" data-name="robe lighting theatrical ip65 broadway">
+                        <div class="card-header vendor">
+                            <span>💡 ROBE Lighting</span>
+                            <span class="partner-type-badge">Lighting</span>
+                        </div>
+                        <div class="card-body">
+                            <p>IP65-rated theatrical lighting deployed on world tours and Broadway. 50 fixtures: miniPOINTE, FOOTSIE2, Tarrantula.</p>
+                            <div class="card-metrics">
+                                <div class="metric-item">
+                                    <div class="metric-label">Investment</div>
+                                    <div class="metric-value">$414K</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-label">Fixtures</div>
+                                    <div class="metric-value">50</div>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag highlight">IP65</span>
+                                <span class="tag">Broadway</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- High End Systems -->
+                    <div class="partner-card" data-category="vendor" data-name="high end systems lighting automated">
+                        <div class="card-header vendor">
+                            <span>🔦 High End Systems</span>
+                            <span class="partner-type-badge">Lighting</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Automated lighting systems for theatrical and entertainment applications. Professional-grade moving lights and control systems.</p>
+                            <div class="card-tags">
+                                <span class="tag">Automated</span>
+                                <span class="tag">Moving Lights</span>
+                                <span class="tag">Professional</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Christie Digital -->
+                    <div class="partner-card" data-category="vendor" data-name="christie digital rgb laser projection griffyn">
+                        <div class="card-header vendor">
+                            <span>🎬 Christie Digital</span>
+                            <span class="partner-type-badge">Projection</span>
+                        </div>
+                        <div class="card-body">
+                            <p>RGB laser projection illuminating world's most demanding venues. Griffyn 4K35-RGB and M 4K25 RGB units.</p>
+                            <div class="card-metrics">
+                                <div class="metric-item">
+                                    <div class="metric-label">Investment</div>
+                                    <div class="metric-value">$346K</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-label">Units</div>
+                                    <div class="metric-value">8</div>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag">RGB Laser</span>
+                                <span class="tag">4K</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tineco -->
+                    <div class="partner-card" data-category="vendor" data-name="tineco floor cleaning smart home">
+                        <div class="card-header vendor">
+                            <span>🧹 Tineco</span>
+                            <span class="partner-type-badge">Smart Home</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Smart floor cleaning technology for venue maintenance. Automated cleaning solutions for operational efficiency.</p>
+                            <div class="card-tags">
+                                <span class="tag">Smart Cleaning</span>
+                                <span class="tag">Automated</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Showven (SPARKULAR) -->
+                    <div class="partner-card" data-category="vendor" data-name="showven sparkular cold spark pyrotechnics ldi">
+                        <div class="card-header vendor">
+                            <span>✨ Showven (SPARKULAR)</span>
+                            <span class="partner-type-badge">SFX</span>
+                        </div>
+                        <div class="card-body">
+                            <p>LDI 'Best Debut Product Award' winner. Cold-spark pyrotechnic systems safe for indoor use near guests, costumes, sets. 24 units.</p>
+                            <div class="card-metrics">
+                                <div class="metric-item">
+                                    <div class="metric-label">Investment</div>
+                                    <div class="metric-value">$432K</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-label">Award</div>
+                                    <div class="metric-value">LDI 2016</div>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag highlight">LDI Award</span>
+                                <span class="tag">Cold Spark</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AIVOX Litiz -->
+                    <div class="partner-card" data-category="vendor" data-name="aivox litiz audio systems entertainment">
+                        <div class="card-header vendor">
+                            <span>🔊 AIVOX Litiz</span>
+                            <span class="partner-type-badge">Audio</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Professional audio systems and touring equipment for large-scale entertainment productions and venue installations.</p>
+                            <div class="card-tags">
+                                <span class="tag">Professional Audio</span>
+                                <span class="tag">Touring</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- mielle -->
+                    <div class="partner-card" data-category="vendor" data-name="mielle haircare beauty products">
+                        <div class="card-header vendor">
+                            <span>💇 mielle</span>
+                            <span class="partner-type-badge">Beauty</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Natural haircare and beauty products brand. Potential integration for guest services and retail experiences.</p>
+                            <div class="card-tags">
+                                <span class="tag">Haircare</span>
+                                <span class="tag">Natural</span>
+                                <span class="tag">Beauty</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COLBAR CF5 -->
+                    <div class="partner-card" data-category="vendor" data-name="colbar cineflare cf5 fog machine handheld">
+                        <div class="card-header vendor">
+                            <span>🌫️ COLBAR CineFlare CF5</span>
+                            <span class="partner-type-badge">SFX</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Handheld fog machine for theatrical and production applications. Portable atmospheric effects for immersive environments.</p>
+                            <div class="card-tags">
+                                <span class="tag">Handheld Fog</span>
+                                <span class="tag">Portable</span>
+                                <span class="tag">Theatrical</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Samhwa Paints -->
+                    <div class="partner-card" data-category="vendor" data-name="samhwa paints korea coatings">
+                        <div class="card-header vendor">
+                            <span>🎨 Samhwa Paints</span>
+                            <span class="partner-type-badge">Coatings</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Korean paint and coatings manufacturer. Specialty finishes and theatrical coatings for venue surfaces.</p>
+                            <div class="card-tags">
+                                <span class="tag">Paints</span>
+                                <span class="tag">Coatings</span>
+                                <span class="tag">Korea</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GoodHome -->
+                    <div class="partner-card" data-category="vendor" data-name="goodhome shelby barbecue appliances">
+                        <div class="card-header vendor">
+                            <span>🔥 GoodHome Shelby</span>
+                            <span class="partner-type-badge">Appliances</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Compact gas barbecue and outdoor cooking solutions for F&B operations and experiential dining activations.</p>
+                            <div class="card-tags">
+                                <span class="tag">Outdoor Cooking</span>
+                                <span class="tag">Compact</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ ROBOTICS & IoT ============ -->
+                <div class="section-header">
+                    <span class="section-icon">🤖</span>
+                    <h2>Robotics & IoT</h2>
+                    <span class="section-count">12</span>
+                </div>
+
+                <div class="glossary-grid">
+                    <!-- Moley Robotics -->
+                    <div class="partner-card" data-category="robotics" data-name="moley robotics kitchen chef automation">
+                        <div class="card-header robotics">
+                            <span>🍳 Moley Robotics</span>
+                            <span class="partner-type-badge">Kitchen</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Robotic kitchen systems with automated chef capabilities. Future integration for experiential dining and F&B automation.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Robot Chef</span>
+                                <span class="tag">Kitchen Automation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Siasun -->
+                    <div class="partner-card" data-category="robotics" data-name="siasun robotics china industrial">
+                        <div class="card-header robotics">
+                            <span>🏭 Siasun</span>
+                            <span class="partner-type-badge">Industrial</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Leading Chinese robotics manufacturer. Industrial automation and collaborative robots for manufacturing operations.</p>
+                            <div class="card-tags">
+                                <span class="tag">Industrial</span>
+                                <span class="tag">China</span>
+                                <span class="tag">Collaborative</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Boston Dynamics -->
+                    <div class="partner-card" data-category="robotics" data-name="boston dynamics spot atlas mobile robots">
+                        <div class="card-header robotics">
+                            <span>🐕 Boston Dynamics</span>
+                            <span class="partner-type-badge">Mobile Robots</span>
+                        </div>
+                        <div class="card-body">
+                            <p>World-leading mobile robotics company. Spot and Atlas robots for experiential activations and operational applications.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Spot</span>
+                                <span class="tag highlight">Atlas</span>
+                                <span class="tag">Mobile</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mytra Robotics -->
+                    <div class="partner-card" data-category="robotics" data-name="mytra robotics automation warehouse">
+                        <div class="card-header robotics">
+                            <span>📦 Mytra Robotics</span>
+                            <span class="partner-type-badge">Automation</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Warehouse and logistics automation robotics. Supply chain optimization for manufacturing operations.</p>
+                            <div class="card-tags">
+                                <span class="tag">Warehouse</span>
+                                <span class="tag">Logistics</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Avidbots -->
+                    <div class="partner-card" data-category="robotics" data-name="avidbots kas neo floor cleaning autonomous">
+                        <div class="card-header robotics">
+                            <span>🧹 Avidbots (Kas/Neo)</span>
+                            <span class="partner-type-badge">Cleaning</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Fully autonomous floor cleaning robots. Venue maintenance automation for operational efficiency.</p>
+                            <div class="card-tags">
+                                <span class="tag">Autonomous</span>
+                                <span class="tag">Floor Cleaning</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Markforged -->
+                    <div class="partner-card" data-category="robotics" data-name="markforged fx10 3d printing manufacturing">
+                        <div class="card-header robotics">
+                            <span>🖨️ Markforged FX10</span>
+                            <span class="partner-type-badge">3D Printing</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Industrial 3D printing systems for manufacturing. Composite and metal printing for on-demand component fabrication.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Industrial 3D</span>
+                                <span class="tag">Composite</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Yarbo -->
+                    <div class="partner-card" data-category="robotics" data-name="yarbo yard robot autonomous outdoor">
+                        <div class="card-header robotics">
+                            <span>🌿 Yarbo 4-in-1</span>
+                            <span class="partner-type-badge">Outdoor</span>
+                        </div>
+                        <div class="card-body">
+                            <p>4-in-1 yard robot for outdoor maintenance: mowing, snow blowing, leaf blowing, line marking.</p>
+                            <div class="card-tags">
+                                <span class="tag">4-in-1</span>
+                                <span class="tag">Yard Maintenance</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alto Robotics -->
+                    <div class="partner-card" data-category="robotics" data-name="alto robotics node amr collaborative mobile">
+                        <div class="card-header robotics">
+                            <span>🚚 Alto Robotics (Node)</span>
+                            <span class="partner-type-badge">AMR</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Collaborative mobile autonomous robots for material handling and logistics in manufacturing environments.</p>
+                            <div class="card-tags">
+                                <span class="tag">AMR</span>
+                                <span class="tag">Collaborative</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TactileLink -->
+                    <div class="partner-card" data-category="robotics" data-name="tactilelink tactile graphics blind accessibility">
+                        <div class="card-header robotics">
+                            <span>👆 TactileLink</span>
+                            <span class="partner-type-badge">Accessibility</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Tactile graphic education platform for the Blind. Accessibility technology for inclusive experience design.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Accessibility</span>
+                                <span class="tag">Tactile</span>
+                                <span class="tag">Inclusive</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Whirl -->
+                    <div class="partner-card" data-category="robotics" data-name="whirl home green energy generator sustainable">
+                        <div class="card-header robotics">
+                            <span>🌬️ Whirl</span>
+                            <span class="partner-type-badge">Green Energy</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Home green energy generator. Sustainable power solutions for off-grid and mobile venue applications.</p>
+                            <div class="card-tags">
+                                <span class="tag">Green Energy</span>
+                                <span class="tag">Generator</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Popcorn Space -->
+                    <div class="partner-card" data-category="robotics" data-name="popcorn space iot connectivity platform">
+                        <div class="card-header robotics">
+                            <span>🍿 Popcorn (popcorn.space)</span>
+                            <span class="partner-type-badge">IoT</span>
+                        </div>
+                        <div class="card-body">
+                            <p>IoT connectivity platform for experiential environments. Device orchestration and real-time data integration.</p>
+                            <div class="card-tags">
+                                <span class="tag">IoT Platform</span>
+                                <span class="tag">Connectivity</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KAIST -->
+                    <div class="partner-card" data-category="robotics" data-name="kaist korea research technology university">
+                        <div class="card-header robotics">
+                            <span>🔬 KAIST</span>
+                            <span class="partner-type-badge">Research</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Korea Advanced Institute of Science and Technology. Robotics and technology research partnership.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Research</span>
+                                <span class="tag">Korea</span>
+                                <span class="tag">Technology</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ FOOD & BEVERAGE ============ -->
+                <div class="section-header">
+                    <span class="section-icon">🍽️</span>
+                    <h2>Food & Beverage Partners</h2>
+                    <span class="section-count">6</span>
+                </div>
+
+                <div class="glossary-grid">
+                    <!-- Amorino -->
+                    <div class="partner-card" data-category="fnb" data-name="amorino gelato italian artisan">
+                        <div class="card-header fnb">
+                            <span>🍨 Amorino</span>
+                            <span class="partner-type-badge">Gelato</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Italian artisan gelato brand known for flower-shaped servings. Premium F&B integration for guest experiences.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Italian Gelato</span>
+                                <span class="tag">Artisan</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Super Producteur -->
+                    <div class="partner-card" data-category="fnb" data-name="super producteur local sourcing france">
+                        <div class="card-header fnb">
+                            <span>🥬 Super Producteur</span>
+                            <span class="partner-type-badge">Sourcing</span>
+                        </div>
+                        <div class="card-body">
+                            <p>French local food sourcing platform connecting venues with regional producers. Farm-to-table supply chain.</p>
+                            <div class="card-tags">
+                                <span class="tag">Local Sourcing</span>
+                                <span class="tag">Farm-to-Table</span>
+                                <span class="tag">France</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Erewhon -->
+                    <div class="partner-card" data-category="fnb" data-name="erewhon market organic wellness los angeles">
+                        <div class="card-header fnb">
+                            <span>🥗 Erewhon</span>
+                            <span class="partner-type-badge">Wellness Market</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Los Angeles organic wellness market known for premium curated products and celebrity smoothie collaborations. Retail and F&B integration.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">LA Wellness</span>
+                                <span class="tag">Organic</span>
+                                <span class="tag">Premium</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- House of Gatsby -->
+                    <div class="partner-card" data-category="fnb" data-name="house of gatsby alcohol spirits premium">
+                        <div class="card-header fnb">
+                            <span>🥂 House of Gatsby</span>
+                            <span class="partner-type-badge">Spirits</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Premium alcohol and spirits brand. Beverage partnership for VIP experiences and experiential bar concepts.</p>
+                            <div class="card-tags">
+                                <span class="tag">Premium Spirits</span>
+                                <span class="tag">VIP</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KOI Vodka -->
+                    <div class="partner-card" data-category="fnb" data-name="koi vodka japanese craft ultra premium">
+                        <div class="card-header fnb">
+                            <span>🍶 KOI</span>
+                            <span class="partner-type-badge">Craft Vodka</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Ultra-premium Japanese-style craft vodka. "A tribute to contrasts" — sophisticated beverage for elevated experiences.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Japanese Style</span>
+                                <span class="tag">Ultra Premium</span>
+                                <span class="tag">Craft</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Electrolux -->
+                    <div class="partner-card" data-category="fnb" data-name="electrolux kitchen appliances commercial">
+                        <div class="card-header fnb">
+                            <span>🍴 Electrolux Professional</span>
+                            <span class="partner-type-badge">Kitchen</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Commercial kitchen appliances including Easy Wash, Power Wash, Ultra Wash systems for F&B operations.</p>
+                            <div class="card-tags">
+                                <span class="tag">Commercial Kitchen</span>
+                                <span class="tag">Appliances</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ WATER BRANDS ============ -->
+                <div class="section-header">
+                    <span class="section-icon">💧</span>
+                    <h2>Premium Water Brands</h2>
+                    <span class="section-count">6</span>
+                </div>
+
+                <div class="glossary-grid">
+                    <!-- Menehune -->
+                    <div class="partner-card" data-category="water" data-name="menehune hawaii water premium">
+                        <div class="card-header water">
+                            <span>🌺 Menehune</span>
+                            <span class="partner-type-badge">Hawaii</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Hawaiian premium water brand. Island-sourced hydration for guest experiences.</p>
+                            <div class="card-tags">
+                                <span class="tag">Hawaii</span>
+                                <span class="tag">Premium</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hawaiian Springs -->
+                    <div class="partner-card" data-category="water" data-name="hawaiian springs water natural">
+                        <div class="card-header water">
+                            <span>🌴 Hawaiian Springs</span>
+                            <span class="partner-type-badge">Natural</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Natural Hawaiian spring water. Pristine volcanic filtration for premium hydration.</p>
+                            <div class="card-tags">
+                                <span class="tag">Spring Water</span>
+                                <span class="tag">Natural</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sedona Water -->
+                    <div class="partner-card" data-category="water" data-name="sedona water arizona local vortex">
+                        <div class="card-header water">
+                            <span>🏜️ Sedona Water</span>
+                            <span class="partner-type-badge">Local</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Local Sedona-sourced water. Perfect alignment with AETHER's Sedona headquarters and sustainability mission.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Local Sedona</span>
+                                <span class="tag">Arizona</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Antipodes -->
+                    <div class="partner-card" data-category="water" data-name="antipodes new zealand artesian premium">
+                        <div class="card-header water">
+                            <span>🇳🇿 Antipodes</span>
+                            <span class="partner-type-badge">New Zealand</span>
+                        </div>
+                        <div class="card-body">
+                            <p>New Zealand artesian water from 300m-deep aquifer. Carbon-neutral certified premium water.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Carbon Neutral</span>
+                                <span class="tag">Artesian</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VOSS -->
+                    <div class="partner-card" data-category="water" data-name="voss norway artesian premium luxury">
+                        <div class="card-header water">
+                            <span>🇳🇴 VOSS</span>
+                            <span class="partner-type-badge">Norway</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Norwegian artesian water in iconic cylindrical bottle. Luxury hospitality standard.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Luxury</span>
+                                <span class="tag">Norway</span>
+                                <span class="tag">Iconic Design</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BERG -->
+                    <div class="partner-card" data-category="water" data-name="berg iceberg water canada premium">
+                        <div class="card-header water">
+                            <span>🧊 BERG</span>
+                            <span class="partner-type-badge">Canada</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Canadian iceberg water harvested from 12,000-year-old glaciers. Ultra-premium rarity.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Iceberg</span>
+                                <span class="tag">Ultra Premium</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ EDUCATION ============ -->
+                <div class="section-header">
+                    <span class="section-icon">🎓</span>
+                    <h2>Education Partners</h2>
+                    <span class="section-count">8</span>
+                </div>
+
+                <div class="glossary-grid">
+                    <!-- Saint Heron -->
+                    <div class="partner-card" data-category="academic" data-name="saint heron solange knowles creative cultural">
+                        <div class="card-header academic">
+                            <span>🌟 Saint Heron</span>
+                            <span class="partner-type-badge">Creative</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Solange Knowles' creative agency and cultural platform. Multidisciplinary arts education and community engagement.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Solange</span>
+                                <span class="tag">Cultural Platform</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cambridge University -->
+                    <div class="partner-card" data-category="academic" data-name="cambridge university education research 10 year">
+                        <div class="card-header academic">
+                            <span>🏫 Cambridge University</span>
+                            <span class="partner-type-badge">Education</span>
+                        </div>
+                        <div class="card-body">
+                            <p>10-year education partnership. Research-validated methodologies, 100% employment rate for program graduates.</p>
+                            <div class="card-metrics">
+                                <div class="metric-item">
+                                    <div class="metric-label">Partnership</div>
+                                    <div class="metric-value">10-Year</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-label">Employment</div>
+                                    <div class="metric-value">100%</div>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag highlight">10-Year</span>
+                                <span class="tag">100% Employment</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cambridge Materials -->
+                    <div class="partner-card" data-category="academic" data-name="cambridge materials science engineering research">
+                        <div class="card-header academic">
+                            <span>🔬 Cambridge Materials</span>
+                            <span class="partner-type-badge">Materials Science</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Materials science and engineering research partnership. Advanced material development for venue applications.</p>
+                            <div class="card-tags">
+                                <span class="tag">Materials Science</span>
+                                <span class="tag">Research</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ishikawa -->
+                    <div class="partner-card" data-category="academic" data-name="ishikawa japan craft traditional artisan">
+                        <div class="card-header academic">
+                            <span>🇯🇵 Ishikawa</span>
+                            <span class="partner-type-badge">Craft</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Japanese traditional craft education and artisan training. Preserving and applying centuries-old techniques.</p>
+                            <div class="card-tags">
+                                <span class="tag">Japan</span>
+                                <span class="tag">Traditional Craft</span>
+                                <span class="tag">Artisan</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SuperHi -->
+                    <div class="partner-card" data-category="academic" data-name="superhi steam education creative coding design">
+                        <div class="card-header academic">
+                            <span>🚀 SuperHi</span>
+                            <span class="partner-type-badge">STEAM</span>
+                        </div>
+                        <div class="card-body">
+                            <p>STEAM education platform for creative professionals. Coding, design, and digital skills training.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">STEAM</span>
+                                <span class="tag">Creative Coding</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Jacobs Institute -->
+                    <div class="partner-card" data-category="academic" data-name="jacobs institute design innovation berkeley">
+                        <div class="card-header academic">
+                            <span>🎨 Jacobs Institute for Design Innovation</span>
+                            <span class="partner-type-badge">Berkeley</span>
+                        </div>
+                        <div class="card-body">
+                            <p>UC Berkeley's interdisciplinary design innovation hub. Human-centered design education and prototyping.</p>
+                            <div class="card-tags">
+                                <span class="tag">Berkeley</span>
+                                <span class="tag">Design Innovation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mayo Clinic -->
+                    <div class="partner-card" data-category="academic" data-name="mayo clinic wellness validation cortisol health">
+                        <div class="card-header academic">
+                            <span>🏥 Mayo Clinic</span>
+                            <span class="partner-type-badge">Wellness</span>
+                        </div>
+                        <div class="card-body">
+                            <p>$122M wellness validation: 30% cortisol reduction, 67% improved wellbeing. Clinical proof for health claims.</p>
+                            <div class="card-metrics">
+                                <div class="metric-item">
+                                    <div class="metric-label">Partnership</div>
+                                    <div class="metric-value">$122M</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-label">Cortisol</div>
+                                    <div class="metric-value">-30%</div>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag highlight">Clinical</span>
+                                <span class="tag">Wellness</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ASU -->
+                    <div class="partner-card" data-category="academic" data-name="arizona state university asu talent pipeline phoenix">
+                        <div class="card-header academic">
+                            <span>🌵 Arizona State University</span>
+                            <span class="partner-type-badge">Talent</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Innovation pipeline: engineers, designers, researchers. ASU proximity enables direct talent recruitment.</p>
+                            <div class="card-tags">
+                                <span class="tag">Talent Pipeline</span>
+                                <span class="tag">Phoenix</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ CERTIFICATIONS ============ -->
+                <div class="section-header">
+                    <span class="section-icon">📜</span>
+                    <h2>Certifications & Standards</h2>
+                    <span class="section-count">7</span>
+                </div>
+
+                <div class="glossary-grid">
+                    <!-- B Corporation -->
+                    <div class="partner-card" data-category="certification" data-name="b corporation certified benefit esg">
+                        <div class="card-header certification">
+                            <span>🌱 B Corporation Certified</span>
+                            <span class="partner-type-badge">ESG</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Legally binding commitment to balance profit with purpose. 18% community investment, $45/hr minimum wage.</p>
+                            <div class="card-metrics">
+                                <div class="metric-item">
+                                    <div class="metric-label">Community</div>
+                                    <div class="metric-value">18%</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-label">Min Wage</div>
+                                    <div class="metric-value">$45/hr</div>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag highlight">B Corp</span>
+                                <span class="tag">Living Wage</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ILFI -->
+                    <div class="partner-card" data-category="certification" data-name="ilfi living future just declare living product challenge">
+                        <div class="card-header certification">
+                            <span>🌿 ILFI Living Future</span>
+                            <span class="partner-type-badge">Regenerative</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Three-certification pathway: Just (social equity), Declare (transparency), Living Product Challenge (regenerative).</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Just</span>
+                                <span class="tag highlight">Declare</span>
+                                <span class="tag">LPC</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Declare -->
+                    <div class="partner-card" data-category="certification" data-name="declare label transparency materials ingredients">
+                        <div class="card-header certification">
+                            <span>📋 Declare Label</span>
+                            <span class="partner-type-badge">Transparency</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Material transparency certification disclosing product ingredients. Red List free verification for healthy materials.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Transparency</span>
+                                <span class="tag">Red List Free</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LEED AP -->
+                    <div class="partner-card" data-category="certification" data-name="leed ap sustainable building green">
+                        <div class="card-header certification">
+                            <span>🏢 LEED AP</span>
+                            <span class="partner-type-badge">Sustainability</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Leadership in Energy and Environmental Design. 85% carbon reduction, 75% waste reduction targets.</p>
+                            <div class="card-metrics">
+                                <div class="metric-item">
+                                    <div class="metric-label">Carbon</div>
+                                    <div class="metric-value">-85%</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-label">Waste</div>
+                                    <div class="metric-value">-75%</div>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag">LEED</span>
+                                <span class="tag">Green Building</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- OSHA -->
+                    <div class="partner-card" data-category="certification" data-name="osha safety 10 30 100 nccer">
+                        <div class="card-header certification">
+                            <span>⚠️ OSHA Certifications</span>
+                            <span class="partner-type-badge">Safety</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Complete safety suite: OSHA 10, 30, 100 + NCCER Safety 100. Comprehensive workplace safety compliance.</p>
+                            <div class="card-tags">
+                                <span class="tag">OSHA 10/30/100</span>
+                                <span class="tag">NCCER</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BICSI RCDD -->
+                    <div class="partner-card" data-category="certification" data-name="bicsi rcdd communications distribution">
+                        <div class="card-header certification">
+                            <span>📡 BICSI RCDD</span>
+                            <span class="partner-type-badge">Technical</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Registered Communications Distribution Designer. Network infrastructure design certification.</p>
+                            <div class="card-tags">
+                                <span class="tag">RCDD</span>
+                                <span class="tag">Networks</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Electrical -->
+                    <div class="partner-card" data-category="certification" data-name="electrical contractor inspector master">
+                        <div class="card-header certification">
+                            <span>⚡ Electrical Certifications</span>
+                            <span class="partner-type-badge">Trade</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Licensed Contractor, Inspector, Master Inspector & Plans Examiner. Complete electrical licensing suite.</p>
+                            <div class="card-tags">
+                                <span class="tag">Contractor</span>
+                                <span class="tag">Inspector</span>
+                                <span class="tag">Master</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ FINANCE ============ -->
+                <div class="section-header">
+                    <span class="section-icon">💰</span>
+                    <h2>Finance Partners</h2>
+                    <span class="section-count">2</span>
+                </div>
+
+                <div class="glossary-grid">
+                    <!-- Amalgamated Bank -->
+                    <div class="partner-card" data-category="finance" data-name="amalgamated bank sustainable mission driven">
+                        <div class="card-header finance">
+                            <span>🏦 Amalgamated Bank</span>
+                            <span class="partner-type-badge">Mission-Driven</span>
+                        </div>
+                        <div class="card-body">
+                            <p>America's largest union-owned bank. Mission-driven banking aligned with AETHER's social impact and equity values.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Mission-Driven</span>
+                                <span class="tag">Union-Owned</span>
+                                <span class="tag">Sustainable</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- OneUnited Bank -->
+                    <div class="partner-card" data-category="finance" data-name="oneunited bank black owned largest">
+                        <div class="card-header finance">
+                            <span>🏦 OneUnited Bank</span>
+                            <span class="partner-type-badge">BIPOC</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Largest Black-owned bank in America. Aligned with AETHER's commitment to BIPOC economic empowerment. (AetherPay integration)</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Black-Owned</span>
+                                <span class="tag highlight">AetherPay</span>
+                                <span class="tag">Equity</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ PHYGITAL OPS ============ -->
+                <div class="section-header">
+                    <span class="section-icon">⚙️</span>
+                    <h2>Phygital Ops Contractors</h2>
+                    <span class="section-count">2</span>
+                </div>
+
+                <div class="glossary-grid">
+                    <!-- Higher Ring -->
+                    <div class="partner-card" data-category="ops" data-name="higher ring operations management">
+                        <div class="card-header ops">
+                            <span>🔺 Higher Ring</span>
+                            <span class="partner-type-badge">Operations</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Phygital operations contractor specializing in venue management, experience delivery, and operational excellence.</p>
+                            <div class="card-tags">
+                                <span class="tag">Operations</span>
+                                <span class="tag">Venue Management</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NVK -->
+                    <div class="partner-card" data-category="ops" data-name="nvk operations contractor phygital">
+                        <div class="card-header ops">
+                            <span>🔧 NVK</span>
+                            <span class="partner-type-badge">Contractor</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Phygital operations contractor for venue deployment, technical operations, and experience infrastructure.</p>
+                            <div class="card-tags">
+                                <span class="tag">Contractor</span>
+                                <span class="tag">Technical Ops</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ TALENT & ARTISTS ============ -->
+                <div class="section-header">
+                    <span class="section-icon">💄</span>
+                    <h2>Talent & Makeup Artists</h2>
+                    <span class="section-count">2</span>
+                </div>
+
+                <div class="glossary-grid">
+                    <!-- Sir John -->
+                    <div class="partner-card" data-category="talent" data-name="sir john makeup artist beyonce celebrity">
+                        <div class="card-header talent">
+                            <span>✨ Sir John</span>
+                            <span class="partner-type-badge">Makeup Artist</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Celebrity makeup artist (Beyoncé's personal artist). Beauty direction for experiential productions and talent.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Beyoncé</span>
+                                <span class="tag">Celebrity</span>
+                                <span class="tag">Beauty Direction</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pat McGrath -->
+                    <div class="partner-card" data-category="talent" data-name="pat mcgrath makeup legendary labs cosmetics">
+                        <div class="card-header talent">
+                            <span>👑 Pat McGrath</span>
+                            <span class="partner-type-badge">Legendary</span>
+                        </div>
+                        <div class="card-body">
+                            <p>"Mother of Makeup." Legendary makeup artist and Pat McGrath Labs founder. Fashion and experiential beauty direction.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Legendary</span>
+                                <span class="tag">Pat McGrath Labs</span>
+                                <span class="tag">Fashion</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ SOFTWARE & TOOLS ============ -->
+                <div class="section-header">
+                    <span class="section-icon">💻</span>
+                    <h2>Software & Creative Tools</h2>
+                    <span class="section-count">6</span>
+                </div>
+
+                <div class="glossary-grid">
+                    <!-- DesignDeck -->
+                    <div class="partner-card" data-category="software" data-name="designdeck assets resources design">
+                        <div class="card-header software">
+                            <span>🎨 DesignDeck Assets</span>
+                            <span class="partner-type-badge">Resources</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Design asset library for creative production. Templates, graphics, and design resources.</p>
+                            <div class="card-tags">
+                                <span class="tag">Design Assets</span>
+                                <span class="tag">Templates</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Death to Stock -->
+                    <div class="partner-card" data-category="software" data-name="death to stock photography authentic">
+                        <div class="card-header software">
+                            <span>📷 Death to Stock</span>
+                            <span class="partner-type-badge">Photography</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Authentic stock photography alternative. Curated creative photography for marketing and content.</p>
+                            <div class="card-tags">
+                                <span class="tag">Authentic Photo</span>
+                                <span class="tag">Creative</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- OffType -->
+                    <div class="partner-card" data-category="software" data-name="offtype fonts typography off-beat">
+                        <div class="card-header software">
+                            <span>🔤 OffType</span>
+                            <span class="partner-type-badge">Fonts</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Off-beat font foundry. Distinctive typography for brand identity and experiential design.</p>
+                            <div class="card-tags">
+                                <span class="tag">Off-Beat Fonts</span>
+                                <span class="tag">Typography</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ZBrush -->
+                    <div class="partner-card" data-category="software" data-name="zbrush pixologic 3d sculpting digital">
+                        <div class="card-header software">
+                            <span>🗿 ZBrush</span>
+                            <span class="partner-type-badge">3D Sculpting</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Industry-standard digital sculpting software. Character and prop design for fabrication.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Industry Standard</span>
+                                <span class="tag">Digital Sculpt</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spline -->
+                    <div class="partner-card" data-category="software" data-name="spline 3d design web realtime">
+                        <div class="card-header software">
+                            <span>🌐 Spline</span>
+                            <span class="partner-type-badge">3D Design</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Real-time 3D design tool for web experiences. Interactive 3D content creation.</p>
+                            <div class="card-tags">
+                                <span class="tag">Real-Time 3D</span>
+                                <span class="tag">Web</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VizCom -->
+                    <div class="partner-card" data-category="software" data-name="vizcom ai visualization design rendering">
+                        <div class="card-header software">
+                            <span>🖼️ VizCom</span>
+                            <span class="partner-type-badge">AI Design</span>
+                        </div>
+                        <div class="card-body">
+                            <p>AI-powered design visualization and rendering. Rapid concept development and iteration.</p>
+                            <div class="card-tags">
+                                <span class="tag">AI Rendering</span>
+                                <span class="tag">Visualization</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visune -->
+                    <div class="partner-card" data-category="software" data-name="visune visual design creative tool">
+                        <div class="card-header software">
+                            <span>👁️ Visune</span>
+                            <span class="partner-type-badge">Visual Design</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Visual design and creative production tool. Streamlined design workflow for experiential content creation.</p>
+                            <div class="card-tags">
+                                <span class="tag">Visual Design</span>
+                                <span class="tag">Creative Tool</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ FABRICATION PARTNERS ============ -->
+                <div class="section-header">
+                    <span class="section-icon">🔨</span>
+                    <h2>Fabrication Partners</h2>
+                    <span class="section-count">3</span>
+                </div>
+
+                <div class="glossary-grid">
+                    <!-- WETA Workshop -->
+                    <div class="partner-card" data-category="fabrication" data-name="weta workshop lotr avatar practical effects">
+                        <div class="card-header fabrication">
+                            <span>🎭 WETA Workshop</span>
+                            <span class="partner-type-badge">Practical FX</span>
+                        </div>
+                        <div class="card-body">
+                            <p>World-renowned practical effects studio (Lord of the Rings, Avatar). Creature design, prosthetics, armor, props at the highest cinematic level.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">LOTR</span>
+                                <span class="tag highlight">Avatar</span>
+                                <span class="tag">Practical FX</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KONIKU -->
+                    <div class="partner-card" data-category="fabrication" data-name="koniku bioelectric sensors neurons silicon">
+                        <div class="card-header fabrication">
+                            <span>🧬 KONIKU</span>
+                            <span class="partner-type-badge">Bio-Sensors</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Bio-electric sensor technology merging biological neurons with silicon. Revolutionary scent and environmental sensing capabilities.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Bio-Electric</span>
+                                <span class="tag">Neurons + Silicon</span>
+                                <span class="tag">Scent Sensing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AETHER FX Proprietary -->
+                    <div class="partner-card" data-category="fabrication" data-name="aether fx proprietary sustainable effects">
+                        <div class="card-header fabrication">
+                            <span>✨ AETHER FX Proprietary</span>
+                            <span class="partner-type-badge">Proprietary</span>
+                        </div>
+                        <div class="card-body">
+                            <p>In-house 3-in-1 effects system: cold spark + cryo + flame integration. 85% sustainable materials, 7 units deployed.</p>
+                            <div class="card-metrics">
+                                <div class="metric-item">
+                                    <div class="metric-label">Investment</div>
+                                    <div class="metric-value">$542K</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-label">Sustainable</div>
+                                    <div class="metric-value">85%</div>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag highlight">3-in-1</span>
+                                <span class="tag">Sustainable</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ HOUSEHOLD & ENVIRONMENTAL ============ -->
+                <div class="section-header">
+                    <span class="section-icon">🏠</span>
+                    <h2>Household & Environmental Products</h2>
+                    <span class="section-count">5</span>
+                </div>
+
+                <div class="glossary-grid">
+                    <!-- Water Tree -->
+                    <div class="partner-card" data-category="vendor" data-name="water tree environmental purification">
+                        <div class="card-header vendor">
+                            <span>🌳 Water Tree</span>
+                            <span class="partner-type-badge">Environmental</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Environmental water products and purification solutions. Sustainable water management for venue operations.</p>
+                            <div class="card-tags">
+                                <span class="tag">Water Purification</span>
+                                <span class="tag">Environmental</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- heirei -->
+                    <div class="partner-card" data-category="vendor" data-name="heirei design products">
+                        <div class="card-header vendor">
+                            <span>🎋 heirei</span>
+                            <span class="partner-type-badge">Design</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Design-forward household and environmental products with Japanese-influenced aesthetic sensibility.</p>
+                            <div class="card-tags">
+                                <span class="tag">Design Products</span>
+                                <span class="tag">Japanese Aesthetic</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PYD66 -->
+                    <div class="partner-card" data-category="vendor" data-name="pyd66 integrated kitchen center appliance">
+                        <div class="card-header vendor">
+                            <span>🍳 PYD66</span>
+                            <span class="partner-type-badge">Kitchen</span>
+                        </div>
+                        <div class="card-body">
+                            <p>High-end integrated kitchen center. Premium kitchen appliance system for experiential F&B environments.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">High-End</span>
+                                <span class="tag">Integrated Center</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Yuhan-Kimberly -->
+                    <div class="partner-card" data-category="vendor" data-name="yuhan kimberly wet wipes packaging design">
+                        <div class="card-header vendor">
+                            <span>📦 Yuhan-Kimberly</span>
+                            <span class="partner-type-badge">Consumer</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Household products with innovative packaging design (Wet Wipes Slide Cap). Consumer product design excellence.</p>
+                            <div class="card-tags">
+                                <span class="tag">Packaging Design</span>
+                                <span class="tag">Consumer Products</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mineral Water Purifier -->
+                    <div class="partner-card" data-category="vendor" data-name="mineral water purifier hydration">
+                        <div class="card-header vendor">
+                            <span>💧 Mineral Water Purifier</span>
+                            <span class="partner-type-badge">Hydration</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Advanced water purification systems for premium hydration. Guest-facing water service solutions.</p>
+                            <div class="card-tags">
+                                <span class="tag">Water Purification</span>
+                                <span class="tag">Premium</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ INSPIRATION PLATFORMS ============ -->
+                <div class="section-header">
+                    <span class="section-icon">💡</span>
+                    <h2>Inspiration & Research Platforms</h2>
+                    <span class="section-count">2</span>
+                </div>
+
+                <div class="glossary-grid">
+                    <!-- Pinterest -->
+                    <div class="partner-card" data-category="software" data-name="pinterest visual discovery mood boards inspiration">
+                        <div class="card-header software">
+                            <span>📌 Pinterest</span>
+                            <span class="partner-type-badge">Visual Discovery</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Visual discovery and inspiration platform. Mood board creation, trend research, and creative ideation tool.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Mood Boards</span>
+                                <span class="tag">Inspiration</span>
+                                <span class="tag">Trends</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Browsing Mode -->
+                    <div class="partner-card" data-category="software" data-name="browsing mode research discovery">
+                        <div class="card-header software">
+                            <span>🔍 Browsing Mode</span>
+                            <span class="partner-type-badge">Research</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Creative research and discovery browsing methodology. Structured inspiration gathering workflow.</p>
+                            <div class="card-tags">
+                                <span class="tag">Research</span>
+                                <span class="tag">Discovery</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ JOB PLATFORMS ============ -->
+                <div class="section-header">
+                    <span class="section-icon">💼</span>
+                    <h2>Job & Talent Sourcing</h2>
+                    <span class="section-count">3</span>
+                </div>
+
+                <div class="glossary-grid">
+                    <!-- Brand Identity Jobs -->
+                    <div class="partner-card" data-category="talent" data-name="brand identity jobs graphic design careers">
+                        <div class="card-header talent">
+                            <span>📝 The Brand Identity Jobs</span>
+                            <span class="partner-type-badge">Job Board</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Specialized job board for brand identity and graphic design roles. Design asset resources and career opportunities.</p>
+                            <div class="card-tags">
+                                <span class="tag">Brand Identity</span>
+                                <span class="tag">Graphic Design</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Work With Us -->
+                    <div class="partner-card" data-category="talent" data-name="work with us creative jobs platform">
+                        <div class="card-header talent">
+                            <span>🤝 Work With Us</span>
+                            <span class="partner-type-badge">Platform</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Creative industry job and collaboration platform. Connecting creative professionals with opportunities.</p>
+                            <div class="card-tags">
+                                <span class="tag">Creative Jobs</span>
+                                <span class="tag">Collaboration</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Themed Careers -->
+                    <div class="partner-card" data-category="talent" data-name="themed careers theme park entertainment jobs">
+                        <div class="card-header talent">
+                            <span>🎢 ThemedCareers.com</span>
+                            <span class="partner-type-badge">Entertainment</span>
+                        </div>
+                        <div class="card-body">
+                            <p>Theme park and entertainment industry job board. Specialized talent sourcing for experiential careers.</p>
+                            <div class="card-tags">
+                                <span class="tag highlight">Theme Parks</span>
+                                <span class="tag">Entertainment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer-bar">
+                <div class="footer-item">
+                    <span class="status-indicator"></span>
+                    <span>Database Online | v2.0</span>
+                </div>
+                <div class="footer-item">
+                    100+ entries | aRtGaRDErN TECHNO-FABRIQUE | 333 Schnebly Hill Road, Sedona, AZ
+                </div>
+                <div class="footer-item">
+                    December 2025 | © AETHER PHYGITAVERSE
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const chars = 'AETHERΛ⚛🔮✨PXR♦◊∞αβγδεζηθ01';
+        const fontSize = 14;
+        const columns = Math.floor(canvas.width / fontSize);
+        const drops = Array(columns).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 128, 128, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#667eea';
+            ctx.font = `${fontSize}px monospace`;
+
+            for (let i = 0; i < drops.length; i++) {
+                const char = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 50);
+
+        function filterCards(category) {
+            const cards = document.querySelectorAll('.partner-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function searchCards() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.partner-card');
+            
+            cards.forEach(card => {
+                const name = card.dataset.name.toLowerCase();
+                const text = card.textContent.toLowerCase();
+                
+                if (name.includes(searchTerm) || text.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            if (searchTerm) {
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            }
+        }
+    </script>
+</body>
+</html>
