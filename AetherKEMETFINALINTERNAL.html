@@ -3043,7 +3043,7 @@
                         </div>
                     </div>
 
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
 
                         <!-- Original IP Section -->
                         <div style="background: #ffffff; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080; padding: 15px;">
@@ -3266,6 +3266,184 @@
     </style>
 
     <style>.relationship-score{position:absolute;top:12px;right:12px;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:16px;font-weight:700;color:white;box-shadow:0 2px 8px rgba(0,0,0,0.15);}.score-hot{background:linear-gradient(135deg,#e74c3c 0%,#c0392b 100%);}.score-warm{background:linear-gradient(135deg,#f39c12 0%,#e67e22 100%);}.score-cool{background:linear-gradient(135deg,#3498db 0%,#2980b9 100%);}.score-cold{background:linear-gradient(135deg,#95a5a6 0%,#7f8c8d 100%);}.saved-filter-badge{display:inline-block;padding:6px 12px;background:var(--aether-purple);color:white;border-radius:6px;font-family:var(--font-mono);font-size:11px;font-weight:600;cursor:pointer;transition:all 0.3s;margin-right:8px;margin-bottom:8px;}.saved-filter-badge:hover{background:var(--aether-purple-dark);transform:translateY(-2px);}.quick-action-btn{padding:10px 20px;background:white;border:2px solid var(--aether-blue);color:var(--aether-blue);border-radius:6px;font-family:var(--font-primary);font-size:13px;font-weight:600;cursor:pointer;transition:all 0.3s;margin-right:10px;}.quick-action-btn:hover{background:var(--aether-blue);color:white;transform:translateY(-2px);}</style>
+
+    <!-- Mobile Responsive Styles -->
+    <style>
+    /* Tablet breakpoint */
+    @media screen and (max-width: 1024px) {
+        .kemetic-glass-button {
+            width: 55px;
+            height: 55px;
+            right: 20px;
+        }
+        .kemetic-glyph {
+            font-size: 26px;
+        }
+        #portfolio-gallery > div,
+        #brands-ip-section > div {
+            max-width: 95%;
+            margin: 20px auto;
+            padding: 15px;
+        }
+    }
+
+    /* Mobile breakpoint */
+    @media screen and (max-width: 768px) {
+        .kemetic-glass-button {
+            width: 50px;
+            height: 50px;
+            right: 12px;
+        }
+        .kemetic-glyph {
+            font-size: 22px;
+        }
+        #portfolio-gallery > div,
+        #brands-ip-section > div {
+            max-width: 100%;
+            margin: 10px auto;
+            padding: 10px;
+        }
+        /* Carousel navigation buttons - larger touch targets */
+        #carousel-main button {
+            min-width: 48px !important;
+            min-height: 48px !important;
+            font-size: 20px !important;
+        }
+        /* Thumbnail strip adjustments */
+        #thumbnail-strip {
+            padding: 8px !important;
+        }
+        #thumbnail-strip > div {
+            min-width: 60px !important;
+            height: 50px !important;
+        }
+        /* Modal close buttons */
+        #portfolio-gallery button[style*="position: fixed"],
+        #brands-ip-section button[style*="position: fixed"] {
+            width: 44px !important;
+            height: 44px !important;
+            top: 15px !important;
+            right: 15px !important;
+            font-size: 20px !important;
+        }
+        /* CRM section adjustments */
+        .crm-container {
+            margin: 10px !important;
+        }
+        /* Quick action buttons */
+        .quick-action-btn {
+            padding: 12px 16px;
+            font-size: 12px;
+            margin-right: 6px;
+            margin-bottom: 8px;
+        }
+        /* Saved filter badges */
+        .saved-filter-badge {
+            padding: 8px 10px;
+            font-size: 10px;
+        }
+    }
+
+    /* Small mobile breakpoint */
+    @media screen and (max-width: 480px) {
+        .kemetic-glass-button {
+            width: 44px;
+            height: 44px;
+            right: 8px;
+        }
+        #partnerDatabaseFAB {
+            bottom: 70px !important;
+        }
+        .kemetic-glyph {
+            font-size: 18px;
+        }
+        /* Carousel main image */
+        #carousel-main {
+            min-height: 250px !important;
+        }
+        #carousel-main img {
+            max-height: 220px !important;
+        }
+        /* Carousel nav buttons - compact but still touchable */
+        #carousel-main button {
+            width: 44px !important;
+            height: 44px !important;
+            font-size: 16px !important;
+        }
+        /* Project info below carousel */
+        #gallery-grid h3 {
+            font-size: 14px !important;
+        }
+        #gallery-grid p {
+            font-size: 11px !important;
+        }
+        /* Thumbnail strip - smaller on mobile */
+        #thumbnail-strip > div {
+            min-width: 50px !important;
+            height: 40px !important;
+        }
+        /* Stats and tags */
+        #gallery-grid span[style*="background"] {
+            font-size: 9px !important;
+            padding: 2px 6px !important;
+        }
+        /* Search and filter inputs */
+        input[type="text"],
+        select {
+            font-size: 16px !important; /* Prevents iOS zoom */
+            padding: 10px 8px !important;
+        }
+        /* Modal titles */
+        #portfolio-gallery h2,
+        #brands-ip-section h2 {
+            font-size: 16px !important;
+        }
+        /* Category filter buttons */
+        button[onclick*="showGalleryCategory"],
+        button[onclick*="searchPortfolio"] {
+            min-height: 44px !important;
+            padding: 8px 12px !important;
+            font-size: 11px !important;
+        }
+    }
+
+    /* Touch device improvements */
+    @media (hover: none) and (pointer: coarse) {
+        .kemetic-glass-button:active {
+            transform: scale(0.95);
+            opacity: 0.8;
+        }
+        #carousel-main button:active {
+            background: #a0a0a0 !important;
+        }
+        #thumbnail-strip > div:active {
+            opacity: 0.7;
+        }
+    }
+
+    /* Landscape mobile adjustments */
+    @media screen and (max-width: 896px) and (orientation: landscape) {
+        #carousel-main {
+            min-height: 200px !important;
+        }
+        #carousel-main img {
+            max-height: 180px !important;
+        }
+        #portfolio-gallery > div,
+        #brands-ip-section > div {
+            margin: 10px auto;
+        }
+        /* Reduce floating button stack for landscape */
+        .kemetic-glass-button {
+            width: 40px;
+            height: 40px;
+        }
+        .kemetic-glyph {
+            font-size: 16px;
+        }
+    }
+    </style>
+
     <button id="partnerDatabaseFAB" onclick="openPartnerDatabase()" 
         class="kemetic-glass-button"
         style="bottom: 80px;"
@@ -3583,11 +3761,11 @@ function renderCarousel() {
             <!-- Main Carousel Display -->
             <div id="carousel-main" ontouchstart="handleTouchStart(event)" ontouchend="handleTouchEnd(event)" style="background: #000; border: 3px solid; border-color: #808080 #ffffff #ffffff #808080; position: relative; min-height: 350px; touch-action: pan-y;">
                 <!-- Carousel Navigation -->
-                <button onclick="prevCarouselSlide(); event.stopPropagation();" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: #c0c0c0; border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; cursor: pointer; font-size: 18px; z-index: 10;" title="Previous (← key)">◀</button>
-                <button onclick="nextCarouselSlide(); event.stopPropagation();" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: #c0c0c0; border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; cursor: pointer; font-size: 18px; z-index: 10;" title="Next (→ key)">▶</button>
+                <button onclick="prevCarouselSlide(); event.stopPropagation();" style="position: absolute; left: 8px; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; min-width: 44px; min-height: 44px; background: #c0c0c0; border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; cursor: pointer; font-size: 20px; z-index: 10; touch-action: manipulation;" title="Previous (← key)">◀</button>
+                <button onclick="nextCarouselSlide(); event.stopPropagation();" style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; min-width: 44px; min-height: 44px; background: #c0c0c0; border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; cursor: pointer; font-size: 20px; z-index: 10; touch-action: manipulation;" title="Next (→ key)">▶</button>
 
                 <!-- Auto-play Toggle -->
-                <button onclick="toggleAutoPlay(); event.stopPropagation();" style="position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; background: ${carouselAutoPlay ? '#27ae60' : '#c0c0c0'}; border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; cursor: pointer; font-size: 12px; z-index: 10;" title="${carouselAutoPlay ? 'Stop Auto-play' : 'Start Auto-play'}">${carouselAutoPlay ? '⏸' : '▶'}</button>
+                <button onclick="toggleAutoPlay(); event.stopPropagation();" style="position: absolute; top: 10px; right: 10px; width: 44px; height: 44px; min-width: 44px; min-height: 44px; background: ${carouselAutoPlay ? '#27ae60' : '#c0c0c0'}; border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; cursor: pointer; font-size: 16px; z-index: 10; touch-action: manipulation;" title="${carouselAutoPlay ? 'Stop Auto-play' : 'Start Auto-play'}">${carouselAutoPlay ? '⏸' : '▶'}</button>
 
                 <!-- Image Display -->
                 <div style="display: flex; justify-content: center; align-items: center; padding: 20px; min-height: 300px;">
