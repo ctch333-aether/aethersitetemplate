@@ -3485,6 +3485,60 @@
     let currentCarouselIndex = 0;
     let carouselProjects = [];
     let carouselInterval = null;
+    let carouselAutoPlay = false;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    // Auto-play functions
+    function startAutoPlay() {
+        if (carouselInterval) clearInterval(carouselInterval);
+        carouselAutoPlay = true;
+        carouselInterval = setInterval(() => {
+            if (carouselProjects.length > 0) {
+                currentCarouselIndex = (currentCarouselIndex + 1) % carouselProjects.length;
+                renderCarousel();
+            }
+        }, 4000);
+    }
+
+    function stopAutoPlay() {
+        carouselAutoPlay = false;
+        if (carouselInterval) {
+            clearInterval(carouselInterval);
+            carouselInterval = null;
+        }
+    }
+
+    function toggleAutoPlay() {
+        if (carouselAutoPlay) {
+            stopAutoPlay();
+        } else {
+            startAutoPlay();
+        }
+        renderCarousel();
+    }
+
+    // Touch/swipe handlers
+    function handleTouchStart(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    }
+
+    function handleTouchEnd(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                nextCarouselSlide();
+            } else {
+                prevCarouselSlide();
+            }
+        }
+    }
 function searchPortfolio(query) {
     const searchTerm = query.toLowerCase().trim();
     const activeCategory = document.querySelector('.retro-tab.active')?.dataset.category || 'all';
@@ -3527,14 +3581,17 @@ function renderCarousel() {
         <!-- Retro Image Carousel -->
         <div style="display: flex; flex-direction: column; gap: 16px; padding: 8px;">
             <!-- Main Carousel Display -->
-            <div style="background: #000; border: 3px solid; border-color: #808080 #ffffff #ffffff #808080; position: relative; min-height: 350px;">
+            <div id="carousel-main" ontouchstart="handleTouchStart(event)" ontouchend="handleTouchEnd(event)" style="background: #000; border: 3px solid; border-color: #808080 #ffffff #ffffff #808080; position: relative; min-height: 350px; touch-action: pan-y;">
                 <!-- Carousel Navigation -->
-                <button onclick="prevCarouselSlide(); event.stopPropagation();" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: #c0c0c0; border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; cursor: pointer; font-size: 18px; z-index: 10;">◀</button>
-                <button onclick="nextCarouselSlide(); event.stopPropagation();" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: #c0c0c0; border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; cursor: pointer; font-size: 18px; z-index: 10;">▶</button>
+                <button onclick="prevCarouselSlide(); event.stopPropagation();" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: #c0c0c0; border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; cursor: pointer; font-size: 18px; z-index: 10;" title="Previous (← key)">◀</button>
+                <button onclick="nextCarouselSlide(); event.stopPropagation();" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: #c0c0c0; border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; cursor: pointer; font-size: 18px; z-index: 10;" title="Next (→ key)">▶</button>
+
+                <!-- Auto-play Toggle -->
+                <button onclick="toggleAutoPlay(); event.stopPropagation();" style="position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; background: ${carouselAutoPlay ? '#27ae60' : '#c0c0c0'}; border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; cursor: pointer; font-size: 12px; z-index: 10;" title="${carouselAutoPlay ? 'Stop Auto-play' : 'Start Auto-play'}">${carouselAutoPlay ? '⏸' : '▶'}</button>
 
                 <!-- Image Display -->
                 <div style="display: flex; justify-content: center; align-items: center; padding: 20px; min-height: 300px;">
-                    <img src="${project.image}" alt="${project.title}" style="max-width: 100%; max-height: 300px; object-fit: contain; image-rendering: auto;" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22><rect fill=%22%23333%22 width=%22400%22 height=%22300%22/><text fill=%22%23888%22 x=%22200%22 y=%22150%22 text-anchor=%22middle%22 font-family=%22MS Sans Serif%22>Image Loading...</text></svg>'">
+                    <img src="${project.image}" alt="${project.title}" loading="eager" style="max-width: 100%; max-height: 300px; object-fit: contain; image-rendering: auto; transition: opacity 0.3s ease;" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22><rect fill=%22%23333%22 width=%22400%22 height=%22300%22/><text fill=%22%23888%22 x=%22200%22 y=%22150%22 text-anchor=%22middle%22 font-family=%22MS Sans Serif%22>Image Not Found</text></svg>'">
                 </div>
 
                 <!-- Slide Counter -->
@@ -3547,7 +3604,7 @@ function renderCarousel() {
             <div style="background: #c0c0c0; border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; padding: 12px;">
                 <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
                     <div style="font-size: 32px; width: 50px; height: 50px; background: linear-gradient(135deg, ${catColor}22, ${catColor}66); display: flex; align-items: center; justify-content: center; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080;">${project.icon}</div>
-                    <div>
+                    <div style="flex: 1;">
                         <div style="font-family: 'MS Sans Serif', sans-serif; font-size: 16px; font-weight: bold; color: #000080;">${project.title}</div>
                         <div style="font-family: 'MS Sans Serif', sans-serif; font-size: 11px; color: #808080; text-transform: uppercase;">${project.category}</div>
                     </div>
@@ -3562,17 +3619,25 @@ function renderCarousel() {
             </div>
 
             <!-- Thumbnail Strip -->
-            <div style="background: #808080; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080; padding: 8px; overflow-x: auto; white-space: nowrap;">
+            <div id="thumbnail-strip" style="background: #808080; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080; padding: 8px; overflow-x: auto; white-space: nowrap; scroll-behavior: smooth;">
                 <div style="display: flex; gap: 8px;">
                     ${carouselProjects.map((p, i) => `
-                        <div onclick="goToCarouselSlide(${i}); event.stopPropagation();" style="flex: 0 0 80px; height: 60px; background: #000; border: 2px solid ${i === currentCarouselIndex ? '#000080' : '#c0c0c0'}; cursor: pointer; overflow: hidden;">
-                            <img src="${p.image}" alt="${p.title}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+                        <div id="thumb-${i}" onclick="goToCarouselSlide(${i}); event.stopPropagation();" style="flex: 0 0 80px; height: 60px; background: #000; border: 3px solid ${i === currentCarouselIndex ? '#000080' : '#c0c0c0'}; cursor: pointer; overflow: hidden; ${i === currentCarouselIndex ? 'box-shadow: 0 0 8px rgba(0,0,128,0.5);' : ''}">
+                            <img src="${p.image}" alt="${p.title}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; opacity: ${i === currentCarouselIndex ? '1' : '0.7'};" onerror="this.parentElement.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;color:#666;font-size:20px;\\'>${p.icon}</div>'">
                         </div>
                     `).join('')}
                 </div>
             </div>
         </div>
     `;
+
+    // Scroll active thumbnail into view
+    setTimeout(() => {
+        const activeThumb = document.getElementById('thumb-' + currentCarouselIndex);
+        if (activeThumb) {
+            activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+    }, 50);
 }
 
 function nextCarouselSlide() {
