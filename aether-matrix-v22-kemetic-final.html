@@ -2819,7 +2819,7 @@
             <div style="background: linear-gradient(135deg, var(--aether-purple) 0%, #1084d0 50%, var(--aether-purple-dark) 100%); color: #ffffff; padding: 4px 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
                 <div style="display: flex; align-items: center; gap: 8px;">
                     <span style="font-size: 14px;">𓆣</span>
-                    <span style="font-family: 'MS Sans Serif', 'Segoe UI', sans-serif; font-size: 12px; font-weight: bold;">AETHER CRM v22 KEMETIC | 183 Investors + 163 Partners • 346 Contacts • Pipeline • Analytics</span>
+                    <span style="font-family: 'MS Sans Serif', 'Segoe UI', sans-serif; font-size: 12px; font-weight: bold;">AETHER CRM / Partners / Vendors | 183 Investors + 163 Partners • 346 Contacts • Pipeline • Analytics</span>
                 </div>
                 <div style="display: flex; gap: 4px; flex-wrap: wrap;">
                     <button onclick="exportInvestorData()" style="background: #c0c0c0; border: 1px solid; border-color: #ffffff #000000 #000000 #ffffff; padding: 2px 8px; font-size: 11px; font-weight: bold; cursor: pointer; font-family: 'MS Sans Serif', sans-serif;">⤴ Export</button>
@@ -3140,24 +3140,20 @@
 .win95-side-button .btn-icon{font-size:24px;line-height:1;margin-bottom:2px;}
 .win95-side-button .btn-label{font-size:8px;font-family:'Inter',sans-serif;font-weight:700;color:#1a1a2e;text-transform:uppercase;letter-spacing:0.5px;}
 @media(max-width:768px){.win95-side-button{right:10px;width:50px;height:50px;}.win95-side-button .btn-icon{font-size:20px;}.win95-side-button .btn-label{font-size:7px;}}
-@media(max-width:480px){.win95-side-button{right:8px;width:44px;height:44px;bottom-spacing:60px;}.win95-side-button .btn-icon{font-size:18px;}.win95-side-button .btn-label{font-size:6px;}#scrollTopBtn{bottom:60px!important;}button[onclick="openGallery()"]{bottom:112px!important;}button[onclick="openPlansAndBrands()"]{bottom:164px!important;}#partnerDatabaseFAB{bottom:216px!important;}}
+@media(max-width:480px){.win95-side-button{right:8px;width:44px;height:44px;}.win95-side-button .btn-icon{font-size:18px;}.win95-side-button .btn-label{font-size:6px;}button[onclick="openGallery()"]{bottom:80px!important;}button[onclick="openPlansAndBrands()"]{bottom:132px!important;}#partnerDatabaseFAB{bottom:184px!important;}}
 </style>
-    <!-- WIN95 KEMETIC SIDE BUTTONS - 4 Core Functions -->
-    <button onclick="scrollToTop()" class="win95-side-button" id="scrollTopBtn" style="bottom: 80px;" title="Scroll to Top">
-        <span class="btn-icon">𓂀</span>
-        <span class="btn-label">Top</span>
-    </button>
-    <button onclick="openGallery()" class="win95-side-button" style="bottom: 150px;" title="Portfolio Gallery">
+    <!-- WIN95 KEMETIC SIDE BUTTONS - 3 Core Functions -->
+    <button onclick="openGallery()" class="win95-side-button" style="bottom: 80px;" title="Portfolio Gallery">
         <span class="btn-icon">☥</span>
-        <span class="btn-label">Work</span>
+        <span class="btn-label">Portfolio</span>
     </button>
-    <button onclick="openPlansAndBrands()" class="win95-side-button" style="bottom: 220px;" title="Plans & Brands">
+    <button onclick="openPlansAndBrands()" class="win95-side-button" style="bottom: 150px;" title="Brands & IP">
         <span class="btn-icon">𓌀</span>
-        <span class="btn-label">Plans</span>
+        <span class="btn-label">Brands/IP</span>
     </button>
-    <button onclick="openPartnerDatabase()" class="win95-side-button" id="partnerDatabaseFAB" style="bottom: 290px;" title="AETHER CRM Database">
+    <button onclick="openPartnerDatabase()" class="win95-side-button" id="partnerDatabaseFAB" style="bottom: 220px;" title="CRM / Partners / Vendors">
         <span class="btn-icon">𓆣</span>
-        <span class="btn-label">CRM</span>
+        <span class="btn-label">CRM/P/V</span>
     </button>
     <script>
     // Scroll to Top Function - Always Available
@@ -3167,44 +3163,102 @@
     }
     </script>
     <script>function toggleKemeticMode(){document.body.classList.toggle("kemetic-enhanced-mode");const isKemetic=document.body.classList.contains("kemetic-enhanced-mode");console.log('%c𓂀 Kemetic Mode '+(isKemetic?'ACTIVATED':'DEACTIVATED')+' - May the wisdom of Thoth guide you','font-size:14px;color:#ffd700;font-weight:bold;');}function calculateRelationshipScore(partner){let score = 0;const tierScores ={'1': 35,'2': 23,'3': 12};score += tierScores[partner.tier]|| 10;const statusScores ={'active': 25,'meeting': 22,'responded': 20,'sent': 15,'pending': 12,'proposal': 8,'closed': 5};score += statusScores[partner.status]|| 5;const fitScores ={'high': 20,'medium': 12,'low': 5};score += fitScores[partner.strategicFit]|| 10;if(partner.status === 'active')score += 15;if(partner.strategicFit === 'high' && partner.tier === '1')score += 5;return Math.min(score,100);}function getScoreCategory(score){if(score >= 80)return 'hot';if(score >= 60)return 'warm';if(score >= 40)return 'cool';return 'cold';}function getScoreColor(score){if(score >= 80)return '#e74c3c';if(score >= 60)return '#f39c12';if(score >= 40)return '#3498db';return '#95a5a6';}function openAnalytics(){document.getElementById('analytics-dashboard').style.display = 'block';document.body.style.overflow = 'hidden';calculateAnalytics();}function closeAnalytics(){document.getElementById('analytics-dashboard').style.display = 'none';document.body.style.overflow = 'auto';}function calculateAnalytics(){const activeCount = AETHER_PARTNERS.filter(p => p.status === 'active').length;document.getElementById('activePartnersCount').textContent = activeCount;const highFit = AETHER_PARTNERS.filter(p => p.strategicFit === 'high').length;const mediumFit = AETHER_PARTNERS.filter(p => p.strategicFit === 'medium').length;const lowFit = AETHER_PARTNERS.filter(p => p.strategicFit === 'low').length;document.getElementById('highFitCount').textContent = highFit;document.getElementById('mediumFitCount').textContent = mediumFit;document.getElementById('lowFitCount').textContent = lowFit;const scoredPartners = AETHER_PARTNERS.map(p =>({...p,score: calculateRelationshipScore(p)})).sort((a,b)=> b.score - a.score);const topPartners = scoredPartners.slice(0,10);const recommendationsHTML = topPartners.map((p,index)=>{const scoreColor = getScoreColor(p.score);const rankBadge = index < 3 ? '⭐' :(index < 6 ? '✨' : '💫');return ` <div style="background: white;border-left: 4px solid ${scoreColor};padding: 15px;border-radius: 8px;box-shadow: 0 2px 8px rgba(0,0,0,0.08);"> <div style="display: flex;justify-content: space-between;align-items: center;"> <div style="flex: 1;"> <div style="font-family: var(--font-display);font-size: 16px;font-weight: 700;color: var(--text-primary);margin-bottom: 4px;"> ${rankBadge}#${index + 1}- ${p.name}</div> <div style="font-family: var(--font-primary);font-size: 12px;color: var(--text-secondary);margin-bottom: 8px;"> ${p.category}• ${p.subcategory}• Tier ${p.tier}</div> <div style="font-family: var(--font-primary);font-size: 13px;color: var(--text-primary);line-height: 1.4;"> ${p.description}</div> </div> <div style="text-align: right;margin-left: 20px;"> <div style="font-family: var(--font-mono);font-size: 24px;font-weight: 700;color: ${scoreColor};"> ${p.score}</div> <div style="font-family: var(--font-mono);font-size: 11px;color: var(--text-secondary);text-transform: uppercase;"> ${getScoreCategory(p.score)}</div> <div style="font-family: var(--font-mono);font-size: 11px;color: var(--aether-purple);text-transform: uppercase;margin-top: 8px;"> ${p.status}</div> </div> </div> </div> `;}).join('');document.getElementById('topRecommendations').innerHTML = recommendationsHTML;}function exportFilteredPartners(){const searchTerm = document.getElementById('partnerSearchInput')?.value.toLowerCase()|| '';const tierFilter = document.getElementById('tierFilter')?.value || 'all';const segmentFilter = document.getElementById('segmentFilter')?.value || 'all';const fitFilter = document.getElementById('strategicFitFilter')?.value || 'all';const filtered = AETHER_PARTNERS.filter(partner =>{const matchesSearch = partner.name.toLowerCase().includes(searchTerm)|| partner.category.toLowerCase().includes(searchTerm)|| partner.description.toLowerCase().includes(searchTerm);const matchesTier = tierFilter === 'all' || partner.tier === tierFilter;const matchesSegment = segmentFilter === 'all' || partner.segment === segmentFilter;const matchesFit = fitFilter === 'all' || partner.strategicFit === fitFilter;return matchesSearch && matchesTier && matchesSegment && matchesFit;});const scoredPartners = filtered.map(p =>({...p,relationshipScore: calculateRelationshipScore(p),scoreCategory: getScoreCategory(calculateRelationshipScore(p))}));const headers =['Name','Category','Subcategory','Tier','Segment','Strategic Fit','Status','Value','Relationship Score','Score Category','Contact','Email','Description'];const csvRows =[headers.join(','),...scoredPartners.map(p =>[`"${p.name}"`,`"${p.category}"`,`"${p.subcategory}"`,p.tier,p.segment,p.strategicFit,p.status,`"${p.value}"`,p.relationshipScore,p.scoreCategory,`"${p.contact}"`,`"${p.email}"`,`"${p.description.replace(/"/g,'""')}"`].join(','))];const csvContent = csvRows.join('\n');const blob = new Blob([csvContent],{type: 'text/csv'});const url = window.URL.createObjectURL(blob);const a = document.createElement('a');a.href = url;a.download = `aether-partners-export-${new Date().toISOString().split('T')[0]}.csv`;document.body.appendChild(a);a.click();document.body.removeChild(a);window.URL.revokeObjectURL(url);alert(`✅ Exported ${filtered.length}partners to CSV with relationship scores!`);}const SAVED_FILTERS ={tier1Investment:{name: 'Tier 1 Investment',tier: '1',segment: 'investment',fit: 'all',search: ''},bipocImpact:{name: 'BIPOC Impact VCs',tier: 'all',segment: 'investment',fit: 'high',search: 'BIPOC impact diverse'},highFitB2B:{name: 'High-Fit B2B',tier: 'all',segment: 'b2b',fit: 'high',search: ''},creativeStudios:{name: 'Creative Studios',tier: 'all',segment: 'creative',fit: 'all',search: ''},activePartners:{name: 'Active Partners',tier: 'all',segment: 'all',fit: 'all',search: 'active'}};function applySavedFilter(filterKey){const filter = SAVED_FILTERS[filterKey];if(!filter)return;if(document.getElementById('partner-database-section').style.display === 'block'){document.getElementById('partnerSearchInput').value = filter.search;document.getElementById('tierFilter').value = filter.tier;document.getElementById('segmentFilter').value = filter.segment;document.getElementById('strategicFitFilter').value = filter.fit;filterPartners();}else{openPartnerDatabase();setTimeout(()=>{document.getElementById('partnerSearchInput').value = filter.search;document.getElementById('tierFilter').value = filter.tier;document.getElementById('segmentFilter').value = filter.segment;document.getElementById('strategicFitFilter').value = filter.fit;filterPartners();},100);}}document.addEventListener('keydown',function(e){if((e.ctrlKey || e.metaKey)&& e.key === 'k'){e.preventDefault();openPartnerDatabase();}if((e.ctrlKey || e.metaKey)&& e.shiftKey && e.key === 'A'){e.preventDefault();openAnalytics();}if((e.ctrlKey || e.metaKey)&& e.key === 'e'){e.preventDefault();exportFilteredPartners();}if(e.key === 'Escape'){if(document.getElementById('analytics-dashboard').style.display === 'block'){closeAnalytics();}else if(document.getElementById('partner-database-section').style.display === 'block'){closePartnerDatabase();}}});setTimeout(()=>{console.log('%c𓂋☥ AETHER MATRIX v22 KEMETIC PRO - PXR Platform 𓆣𓂀','font-size: 16px;font-weight: bold;color: #667eea;');console.log('%cCtrl/Cmd + K: Open Partner Database','font-size: 12px;color: #764ba2;');console.log('%cCtrl/Cmd + Shift + A: Open Analytics Dashboard','font-size: 12px;color: #764ba2;');console.log('%cCtrl/Cmd + E: Export Filtered Partners','font-size: 12px;color: #764ba2;');console.log('%cEsc: Close Any Modal','font-size: 12px;color: #764ba2;');console.log('%c\n✨ Alchemical Symbols: ♃ Jupiter/Investment | ♂ Mars/B2B | ♀ Venus/Creative','font-size: 12px;color: #2ecc71;font-weight: bold;');console.log('%c ☉ Sol/Hot | ☿ Mercury/Warm | ☽ Luna/Cool | ♄ Saturn/Cold','font-size: 12px;color: #2ecc71;');},1000);</script>
-    <div id="portfolio-gallery" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 99999; overflow-y: auto; backdrop-filter: blur(12px); padding: 20px;">
-        <div class="win95-modal-frame" style="max-width: 1400px; margin: 20px auto; background: #c0c0c0; border: 2px solid; border-color: #ffffff #000000 #000000 #ffffff; box-shadow: 4px 4px 20px rgba(0,0,0,0.5);">
-            <div class="win95-modal-header" style="background: linear-gradient(135deg, var(--aether-purple) 0%, var(--aether-blue) 50%, var(--aether-purple-dark) 100%); color: white; padding: 4px 6px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 12px;">
+    <div id="portfolio-gallery" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 99999; overflow: hidden; backdrop-filter: blur(12px);">
+        <div class="win95-modal-frame" style="width: 100%; height: 100%; background: #c0c0c0; border: none; display: flex; flex-direction: column;">
+            <!-- WIN95 Title Bar -->
+            <div class="win95-modal-header" style="background: linear-gradient(90deg, #000080 0%, #1084d0 100%); color: white; padding: 3px 6px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 12px; flex-shrink: 0;">
                 <div style="display: flex; align-items: center; gap: 6px;">
                     <span>☥</span>
-                    <span>AETHER Portfolio Gallery - Phygital Experience Showcase</span>
+                    <span>portfolio.exe - AETHER Phygital Experience Showcase</span>
                 </div>
                 <div style="display: flex; gap: 2px;">
                     <button onclick="closeGallery()" style="width: 16px; height: 14px; background: #c0c0c0; border: 1px solid; border-color: #ffffff #000000 #000000 #ffffff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: bold;">✕</button>
                 </div>
             </div>
-            <div class="win95-modal-content" style="padding: 24px; background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(248,250,255,0.97) 50%, rgba(255,255,255,0.95) 100%); max-height: calc(100vh - 100px); overflow-y: auto;">
-                <div style="text-align: center; margin-bottom: 30px; padding: 20px; background: linear-gradient(135deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1)); border-radius: 12px; border: 1px solid rgba(102,126,234,0.2);">
-                    <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: 36px; margin: 0; background: linear-gradient(135deg, #667eea, #764ba2, #f093fb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-                        ⚗️ AETHER Portfolio
+            <!-- Menu Bar -->
+            <div style="background: #c0c0c0; padding: 2px 4px; border-bottom: 1px solid #808080; font-size: 12px; flex-shrink: 0;">
+                <span style="padding: 2px 8px; cursor: pointer;">File</span>
+                <span style="padding: 2px 8px; cursor: pointer;">View</span>
+                <span style="padding: 2px 8px; cursor: pointer;">Help</span>
+            </div>
+            <!-- Category Toolbar -->
+            <div id="gallery-tabs" style="display: flex; gap: 4px; padding: 8px; background: #c0c0c0; border-bottom: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; flex-wrap: wrap; flex-shrink: 0;">
+                <button onclick="showGalleryCategory('all')" class="gallery-tab active" data-category="all">🌌 All</button>
+                <button onclick="showGalleryCategory('portals')" class="gallery-tab" data-category="portals">🎪 Portals</button>
+                <button onclick="showGalleryCategory('quests')" class="gallery-tab" data-category="quests">🎭 Quests</button>
+                <button onclick="showGalleryCategory('lucidia')" class="gallery-tab" data-category="lucidia">👑 Lucidia</button>
+                <button onclick="showGalleryCategory('hospitality')" class="gallery-tab" data-category="hospitality">🍽️ Hospitality</button>
+                <button onclick="showGalleryCategory('facility')" class="gallery-tab" data-category="facility">🏭 Facility</button>
+                <button onclick="showGalleryCategory('projection')" class="gallery-tab" data-category="projection">🎥 Projection</button>
+                <button onclick="showGalleryCategory('theatrical')" class="gallery-tab" data-category="theatrical">🎬 Theatrical</button>
+            </div>
+            <!-- Main Content Area with Retro Scroll -->
+            <div class="win95-modal-content" style="flex: 1; background: #008080; padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                <!-- Header Info Panel -->
+                <div style="background: linear-gradient(180deg, #000080 0%, #000050 100%); color: white; padding: 15px 20px; text-align: center; border-bottom: 2px solid #c0c0c0; flex-shrink: 0;">
+                    <h1 style="font-family: 'MS Sans Serif', 'Segoe UI', sans-serif; font-size: 28px; margin: 0; text-shadow: 2px 2px 0 #000;">
+                        ⚗️ AETHER Portfolio Gallery
                     </h1>
-                    <p style="font-family: 'Inter', sans-serif; font-size: 16px; margin-top: 8px; color: var(--text-secondary);">
-                        Transforming Reality Through Phygital Experiences
+                    <p style="font-family: 'MS Sans Serif', sans-serif; font-size: 14px; margin-top: 5px; color: #c0c0c0;">
+                        Transforming Reality Through Phygital Experiences | Use ← → arrow keys or scroll to navigate
                     </p>
                 </div>
-                <div id="gallery-tabs" style="display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; justify-content: center; padding: 15px; background: rgba(192,192,192,0.3); border: 1px inset #808080; border-radius: 4px;">
-                    <button onclick="showGalleryCategory('all')" class="gallery-tab active" data-category="all">🌌 All</button>
-                    <button onclick="showGalleryCategory('portals')" class="gallery-tab" data-category="portals">🎪 Portals</button>
-                    <button onclick="showGalleryCategory('quests')" class="gallery-tab" data-category="quests">🎭 Quests</button>
-                    <button onclick="showGalleryCategory('lucidia')" class="gallery-tab" data-category="lucidia">👑 Lucidia</button>
-                    <button onclick="showGalleryCategory('hospitality')" class="gallery-tab" data-category="hospitality">🍽️ Hospitality</button>
-                    <button onclick="showGalleryCategory('facility')" class="gallery-tab" data-category="facility">🏭 Facility</button>
-                    <button onclick="showGalleryCategory('projection')" class="gallery-tab" data-category="projection">🎥 Projection</button>
-                    <button onclick="showGalleryCategory('theatrical')" class="gallery-tab" data-category="theatrical">🎬 Theatrical</button>
+                <!-- Horizontal Scroll Gallery Container -->
+                <div id="retro-scroll-container" style="flex: 1; overflow-x: auto; overflow-y: hidden; padding: 20px; display: flex; align-items: center; background: linear-gradient(180deg, #008080 0%, #004040 100%); scroll-behavior: smooth;">
+                    <div id="gallery-grid" style="display: flex; gap: 20px; padding: 10px; min-height: 400px; align-items: stretch;"></div>
                 </div>
-                <div id="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; padding: 10px 0;"></div>
+                <!-- Navigation Controls -->
+                <div style="background: #c0c0c0; padding: 8px 15px; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; flex-shrink: 0;">
+                    <button onclick="scrollGalleryLeft()" style="padding: 6px 20px; background: #c0c0c0; border: 2px solid; border-color: #ffffff #000000 #000000 #ffffff; cursor: pointer; font-weight: bold; font-size: 14px;">◀ Previous</button>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <span id="gallery-counter" style="font-family: 'MS Sans Serif', sans-serif; font-size: 12px; color: #000;">Showing: All Items</span>
+                    </div>
+                    <button onclick="scrollGalleryRight()" style="padding: 6px 20px; background: #c0c0c0; border: 2px solid; border-color: #ffffff #000000 #000000 #ffffff; cursor: pointer; font-weight: bold; font-size: 14px;">Next ▶</button>
+                </div>
+                <!-- Status Bar -->
+                <div style="background: #c0c0c0; padding: 3px 8px; border-top: 1px solid #808080; font-size: 11px; display: flex; gap: 10px; flex-shrink: 0;">
+                    <span style="flex: 1; padding: 2px 6px; background: #ffffff; border: 1px inset #808080;">Ready</span>
+                    <span style="width: 100px; padding: 2px 6px; background: #ffffff; border: 1px inset #808080; text-align: center;" id="gallery-item-count">0 items</span>
+                </div>
             </div>
         </div>
     </div>
-    <style>.gallery-tab{padding:12px 24px;border-radius:8px;border:2px solid;border-color:#ffffff #808080 #808080 #ffffff;background:linear-gradient(180deg,#e0e0e0 0%,#c0c0c0 100%);color:#1a1a2e;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;}.gallery-tab:hover{background:linear-gradient(180deg,#f0f0f0 0%,#d0d0d0 100%);transform:translateY(-2px);}.gallery-tab:active{border-color:#808080 #ffffff #ffffff #808080;}.gallery-tab.active{background:linear-gradient(135deg,#667eea,#764ba2);border-color:#667eea;color:white;box-shadow:0 4px 16px rgba(102,126,234,0.5);}.gallery-item{background:linear-gradient(180deg,#ffffff 0%,#f0f0f0 100%);border:2px solid;border-color:#ffffff #808080 #808080 #ffffff;border-radius:8px;padding:20px;transition:all 0.3s;cursor:pointer;overflow:hidden;box-shadow:2px 2px 8px rgba(0,0,0,0.1);}.gallery-item:hover{transform:translateY(-8px);box-shadow:4px 8px 24px rgba(102,126,234,0.3);border-color:#667eea;background:linear-gradient(180deg,#ffffff 0%,#f8f0ff 100%);}.gallery-item-image{width:calc(100% + 40px);margin:-20px -20px 15px -20px;height:200px;overflow:hidden;border-radius:6px 6px 0 0;background:linear-gradient(135deg,rgba(102,126,234,0.15),rgba(118,75,162,0.15));border-bottom:2px solid #808080;}.gallery-item-image img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;}.gallery-item:hover .gallery-item-image img{transform:scale(1.08);}.gallery-item-header{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:#1a1a2e;margin-bottom:12px;display:flex;align-items:center;gap:10px;}.gallery-item-description{font-family:'Inter',sans-serif;font-size:14px;color:#4a4a6a;line-height:1.6;margin-bottom:15px;}.gallery-item-stats{display:flex;gap:15px;flex-wrap:wrap;margin-top:15px;}.gallery-stat{padding:6px 12px;background:linear-gradient(135deg,rgba(102,126,234,0.2),rgba(118,75,162,0.2));border:1px solid;border-color:#ffffff #808080 #808080 #ffffff;border-radius:4px;font-size:12px;color:#3a3a5e;font-family:'JetBrains Mono',monospace;font-weight:600;}.gallery-tag{display:inline-block;padding:4px 10px;background:linear-gradient(135deg,rgba(240,147,251,0.25),rgba(102,126,234,0.25));border:1px solid rgba(118,75,162,0.4);border-radius:12px;font-size:11px;color:#5a3a8a;margin-right:6px;margin-top:6px;font-family:'Inter',sans-serif;font-weight:500;}
-/* Mobile Responsive Styles for Gallery */
-@media(max-width:768px){#portfolio-gallery>div{padding:15px;margin:20px auto;}#gallery-grid{grid-template-columns:1fr!important;gap:15px!important;}.gallery-item{padding:15px;}.gallery-item-image{height:160px;margin:-15px -15px 12px -15px;width:calc(100% + 30px);}.gallery-item-header{font-size:18px;}.gallery-item-description{font-size:13px;}.gallery-tab{padding:8px 16px;font-size:12px;}.gallery-stat{padding:4px 8px;font-size:11px;}}
-@media(max-width:480px){#portfolio-gallery>div{padding:10px;}#gallery-grid{gap:12px!important;}.gallery-item-image{height:140px;}.gallery-item-header{font-size:16px;flex-wrap:wrap;}.gallery-item-stats{gap:8px;}.gallery-tab{padding:6px 12px;font-size:11px;}}</style>
+    <style>
+/* Retro Gallery Tabs */
+.gallery-tab{padding:8px 16px;border-radius:0;border:2px solid;border-color:#ffffff #808080 #808080 #ffffff;background:linear-gradient(180deg,#dfdfdf 0%,#c0c0c0 100%);color:#000;font-family:'MS Sans Serif','Segoe UI',sans-serif;font-size:12px;font-weight:400;cursor:pointer;transition:all 0.1s;}
+.gallery-tab:hover{background:linear-gradient(180deg,#e8e8e8 0%,#d0d0d0 100%);}
+.gallery-tab:active{border-color:#808080 #ffffff #ffffff #808080;}
+.gallery-tab.active{background:linear-gradient(180deg,#000080 0%,#0000a0 100%);border-color:#000080;color:white;}
+/* Retro Gallery Items - Horizontal Cards */
+.gallery-item{min-width:350px;max-width:380px;height:auto;background:#c0c0c0;border:2px solid;border-color:#ffffff #000000 #000000 #ffffff;padding:0;transition:all 0.2s;cursor:pointer;overflow:hidden;box-shadow:3px 3px 0 #000;flex-shrink:0;display:flex;flex-direction:column;}
+.gallery-item:hover{transform:translateY(-4px);box-shadow:5px 5px 0 #000;}
+.gallery-item:active{border-color:#000000 #ffffff #ffffff #000000;transform:translateY(0);box-shadow:1px 1px 0 #000;}
+.gallery-item-image{width:100%;margin:0;height:180px;overflow:hidden;background:#008080;border-bottom:2px solid #808080;}
+.gallery-item-image img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s ease;}
+.gallery-item:hover .gallery-item-image img{transform:scale(1.05);}
+.gallery-item-content{padding:12px;background:#c0c0c0;flex:1;display:flex;flex-direction:column;}
+.gallery-item-header{font-family:'MS Sans Serif','Segoe UI',sans-serif;font-size:14px;font-weight:700;color:#000;margin-bottom:8px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #808080;padding-bottom:6px;}
+.gallery-item-description{font-family:'MS Sans Serif',sans-serif;font-size:11px;color:#000;line-height:1.5;margin-bottom:10px;flex:1;}
+.gallery-item-stats{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;}
+.gallery-stat{padding:3px 8px;background:#ffffff;border:1px solid;border-color:#808080 #ffffff #ffffff #808080;font-size:10px;color:#000;font-family:'MS Sans Serif',monospace;font-weight:400;}
+.gallery-tag{display:inline-block;padding:2px 6px;background:#000080;border:1px solid #000;font-size:9px;color:#fff;margin-right:4px;margin-top:4px;font-family:'MS Sans Serif',sans-serif;}
+/* Retro Scrollbar */
+#retro-scroll-container::-webkit-scrollbar{height:16px;background:#c0c0c0;}
+#retro-scroll-container::-webkit-scrollbar-track{background:#c0c0c0;border:1px inset #808080;}
+#retro-scroll-container::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#dfdfdf 0%,#c0c0c0 100%);border:2px solid;border-color:#ffffff #000000 #000000 #ffffff;}
+#retro-scroll-container::-webkit-scrollbar-thumb:hover{background:#d0d0d0;}
+#retro-scroll-container::-webkit-scrollbar-button{width:16px;height:16px;background:#c0c0c0;border:2px solid;border-color:#ffffff #000000 #000000 #ffffff;}
+/* Mobile Responsive Styles for Retro Gallery */
+@media(max-width:768px){#portfolio-gallery .win95-modal-frame{border:none;}.gallery-item{min-width:280px;max-width:300px;}.gallery-item-image{height:150px;}.gallery-item-header{font-size:13px;}.gallery-item-description{font-size:10px;}.gallery-tab{padding:6px 12px;font-size:11px;}}
+@media(max-width:480px){.gallery-item{min-width:250px;max-width:270px;}.gallery-item-image{height:130px;}.gallery-item-header{font-size:12px;}.gallery-tab{padding:4px 8px;font-size:10px;}#gallery-tabs{gap:2px;padding:4px;}}
+</style>
+<script>
+// Gallery Navigation Functions
+function scrollGalleryLeft(){const container=document.getElementById('retro-scroll-container');container.scrollBy({left:-400,behavior:'smooth'});}
+function scrollGalleryRight(){const container=document.getElementById('retro-scroll-container');container.scrollBy({left:400,behavior:'smooth'});}
+// Keyboard navigation for gallery
+document.addEventListener('keydown',function(e){if(document.getElementById('portfolio-gallery').style.display!=='none'){if(e.key==='ArrowLeft')scrollGalleryLeft();if(e.key==='ArrowRight')scrollGalleryRight();if(e.key==='Escape')closeGallery();}});
+</script>
     <script>const GALLERY_PROJECTS =[
 /* === PROJECTION MAPPING ARTWORK === */
 {category:'projection',icon:'🧠',title:'Projection Mapping: Circuit Neuron',description:'Neural circuit-inspired projection artwork featuring intricate bio-digital patterns. Transforms architectural surfaces into living neural networks pulsing with data streams.',stats:['8K Resolution','Real-time Reactive','Biomorphic Design'],tags:['Projection Art','Neural Networks','Immersive']},
@@ -3319,7 +3373,7 @@ GALLERY_PROJECTS[20].image='lucidia-wpoz-crystal';GALLERY_PROJECTS[28].image='po
 
 
 
-function openGallery(){document.getElementById('portfolio-gallery').style.display = 'block';document.body.style.overflow = 'hidden';showGalleryCategory('all');}function closeGallery(){document.getElementById('portfolio-gallery').style.display = 'none';document.body.style.overflow = 'auto';}function showGalleryCategory(category){document.querySelectorAll('.gallery-tab').forEach(tab =>{tab.classList.remove('active');});const activeTab=document.querySelector(`[data-category="${category}"]`);if(activeTab)activeTab.classList.add('active');const filteredProjects = category === 'all' ? GALLERY_PROJECTS : GALLERY_PROJECTS.filter(p => p.category === category);const galleryGrid = document.getElementById('gallery-grid');if(!galleryGrid)return;galleryGrid.innerHTML = filteredProjects.map(project => {const imgSrc=project.image&&PORTFOLIO_IMAGES[project.image]?PORTFOLIO_IMAGES[project.image]:'';const imgHtml=imgSrc?`<div class="gallery-item-image"><img src="${imgSrc}" alt="${project.title}" loading="lazy" onerror="this.parentElement.style.display='none'"/></div>`:'';return ` <div class="gallery-item" data-category="${project.category}"> ${imgHtml}<div class="gallery-item-header"> <span>${project.icon}</span> <span>${project.title}</span> </div> <div class="gallery-item-description"> ${project.description}</div> <div class="gallery-item-stats"> ${project.stats.map(stat => `<div class="gallery-stat">${stat}</div>`).join('')}</div> <div style="margin-top: 12px;"> ${project.tags.map(tag => `<span class="gallery-tag">${tag}</span>`).join('')}</div> </div> `;}).join('');}document.addEventListener('keydown',function(e){if(e.key === 'Escape'){if(document.getElementById('portfolio-gallery').style.display === 'block'){closeGallery();}if(document.getElementById('plans-brands-modal').style.display === 'block'){closePlansAndBrands();}}});function openSoftwareModal(num){document.getElementById('software-modal-' + num).style.display = 'block';document.body.style.overflow = 'hidden';}function closeSoftwareModal(num){document.getElementById('software-modal-' + num).style.display = 'none';document.body.style.overflow = 'auto';}function openPlansAndBrands(){document.getElementById('plans-brands-modal').style.display = 'block';document.body.style.overflow = 'hidden';showBrandCategory('all');}function closePlansAndBrands(){document.getElementById('plans-brands-modal').style.display = 'none';document.body.style.overflow = 'auto';}const AETHER_BRANDS=[
+function openGallery(){document.getElementById('portfolio-gallery').style.display = 'block';document.body.style.overflow = 'hidden';showGalleryCategory('all');}function closeGallery(){document.getElementById('portfolio-gallery').style.display = 'none';document.body.style.overflow = 'auto';}function showGalleryCategory(category){document.querySelectorAll('.gallery-tab').forEach(tab =>{tab.classList.remove('active');});const activeTab=document.querySelector(`[data-category="${category}"]`);if(activeTab)activeTab.classList.add('active');const filteredProjects = category === 'all' ? GALLERY_PROJECTS : GALLERY_PROJECTS.filter(p => p.category === category);const galleryGrid = document.getElementById('gallery-grid');if(!galleryGrid)return;const categoryNames={'all':'All Items','portals':'Portals','quests':'Quests','lucidia':'Lucidia','hospitality':'Hospitality','facility':'Facility','projection':'Projection','theatrical':'Theatrical'};document.getElementById('gallery-counter').textContent='Showing: '+(categoryNames[category]||category);document.getElementById('gallery-item-count').textContent=filteredProjects.length+' items';galleryGrid.innerHTML = filteredProjects.map(project => {const imgSrc=project.image&&PORTFOLIO_IMAGES[project.image]?PORTFOLIO_IMAGES[project.image]:'';const imgHtml=imgSrc?`<div class="gallery-item-image"><img src="${imgSrc}" alt="${project.title}" loading="lazy" onerror="this.parentElement.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;font-size:48px;background:#008080;\\'>${project.icon}</div>'"/></div>`:`<div class="gallery-item-image"><div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:48px;background:#008080;">${project.icon}</div></div>`;return `<div class="gallery-item" data-category="${project.category}">${imgHtml}<div class="gallery-item-content"><div class="gallery-item-header"><span>${project.icon}</span><span>${project.title}</span></div><div class="gallery-item-description">${project.description}</div><div class="gallery-item-stats">${project.stats.map(stat => `<div class="gallery-stat">${stat}</div>`).join('')}</div><div style="margin-top:8px;">${project.tags.map(tag => `<span class="gallery-tag">${tag}</span>`).join('')}</div></div></div>`;}).join('');document.getElementById('retro-scroll-container').scrollLeft=0;}document.addEventListener('keydown',function(e){if(e.key === 'Escape'){if(document.getElementById('portfolio-gallery').style.display === 'block'){closeGallery();}if(document.getElementById('plans-brands-modal').style.display === 'block'){closePlansAndBrands();}}});function openSoftwareModal(num){document.getElementById('software-modal-' + num).style.display = 'block';document.body.style.overflow = 'hidden';}function closeSoftwareModal(num){document.getElementById('software-modal-' + num).style.display = 'none';document.body.style.overflow = 'auto';}function openPlansAndBrands(){document.getElementById('plans-brands-modal').style.display = 'block';document.body.style.overflow = 'hidden';showBrandCategory('all');}function closePlansAndBrands(){document.getElementById('plans-brands-modal').style.display = 'none';document.body.style.overflow = 'auto';}const AETHER_BRANDS=[
 /* === FLAGSHIP IPs === */
 {category:'flagship',icon:'👑',name:'Tales of Lucidia',tagline:'Transmedia Fantasy Universe',description:'Original IP featuring three Warrior Princesses defending reality across physical experiences, streaming, gaming, and publishing. A multi-platform franchise designed from inception for 360° storytelling.',stats:['$76.7-189M Revenue','3 Media Platforms','45% Return Rate'],tags:['Original IP','Transmedia','Fantasy']},
 {category:'flagship',icon:'🏰',name:'SIXXTHRILL',tagline:'Theme Park Transformation Framework',description:'Systematic methodology for acquiring and transforming distressed theme park assets into premium phygital destinations. The playbook for unlocking $12-18B enterprise value from underperforming properties.',stats:['Six Flags Target','$12-18B Value','6 Parks Phase 1'],tags:['Acquisitions','Theme Parks','Transformation']},
@@ -3348,89 +3402,87 @@ function openGallery(){document.getElementById('portfolio-gallery').style.displa
 {category:'partnerships',icon:'🧜',name:'Little Mermaid: Under the Sea',tagline:'Underwater Technology Showcase',description:'Underwater technology showcase bringing Ariel\'s world to life. Immersive ocean environments with haptic feedback and fluid dynamics.',stats:['Underwater Tech','Haptic Feedback','Ocean Simulation'],tags:['Disney','Underwater','Tech Demo']},
 {category:'partnerships',icon:'⚔️',name:'Alchemical Artisans',tagline:'Master Craftsmen Network',description:'Elite network of master craftsmen and theatrical fabricators creating bespoke elements for AETHER experiences. Premium quality assured.',stats:['Elite Craftsmen','Bespoke Design','Premium Quality'],tags:['Artisans','Fabrication','Network']}
 ];function showBrandCategory(category){document.querySelectorAll('.brand-filter-tab').forEach(tab=>{tab.classList.remove('active');});document.querySelector(`[data-brand-category="${category}"]`).classList.add('active');const filtered=category==='all'?AETHER_BRANDS:AETHER_BRANDS.filter(b=>b.category===category);document.getElementById('brands-grid').innerHTML=filtered.map(brand=>`<div class="brand-card"><div class="brand-card-header"><span class="brand-icon">${brand.icon}</span><div><div class="brand-name">${brand.name}</div><div class="brand-tagline">${brand.tagline}</div></div></div><div class="brand-description">${brand.description}</div><div class="brand-stats">${brand.stats.map(s=>`<span class="brand-stat">${s}</span>`).join('')}</div><div class="brand-tags">${brand.tags.map(t=>`<span class="brand-tag">${t}</span>`).join('')}</div></div>`).join('');}</script>
-    <!-- PLANS & BRANDS MODAL -->
-    <div id="plans-brands-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 99999; overflow-y: auto; backdrop-filter: blur(12px); padding: 20px;">
-        <div class="win95-modal-frame" style="max-width: 1400px; margin: 20px auto; background: #c0c0c0; border: 2px solid; border-color: #ffffff #000000 #000000 #ffffff; box-shadow: 4px 4px 20px rgba(0,0,0,0.5);">
-            <div class="win95-modal-header" style="background: linear-gradient(135deg, #ffd700 0%, var(--aether-purple) 50%, #f093fb 100%); color: white; padding: 4px 6px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 12px;">
-                <div style="display: flex; align-items: center; gap: 6px;">
-                    <span>𓌀</span>
-                    <span>AETHER Plans & Brands - Strategic Portfolio</span>
-                </div>
-                <div style="display: flex; gap: 2px;">
-                    <button onclick="closePlansAndBrands()" style="width: 16px; height: 14px; background: #c0c0c0; border: 1px solid; border-color: #ffffff #000000 #000000 #ffffff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: bold;">✕</button>
-                </div>
+    <!-- BRANDS & IP MODAL - Software Popup Style -->
+    <div id="plans-brands-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 99999; overflow: auto; backdrop-filter: blur(10px);" onclick="closePlansAndBrands()">
+        <div style="max-width: 95%; max-height: 95%; margin: 30px auto; position: relative;" onclick="event.stopPropagation()">
+            <!-- Close Button - Software Popup Style -->
+            <button onclick="closePlansAndBrands(); event.stopPropagation();" style="position: fixed; top: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #667eea, #764ba2); border: none; color: white; font-size: 24px; cursor: pointer; z-index: 1000000; box-shadow: 0 8px 24px rgba(102, 126, 234, 0.6);">✕</button>
+
+            <!-- Header Section -->
+            <div style="text-align: center; margin-bottom: 30px; padding: 40px 20px; background: linear-gradient(135deg, rgba(102,126,234,0.15), rgba(118,75,162,0.15), rgba(240,147,251,0.1)); border-radius: 20px; border: 1px solid rgba(102,126,234,0.3);">
+                <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: 42px; margin: 0; background: linear-gradient(135deg, #667eea, #764ba2, #f093fb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 60px rgba(102,126,234,0.5);">
+                    𓌀 AETHER Brands & IP
+                </h1>
+                <p style="font-family: 'Inter', sans-serif; font-size: 18px; margin-top: 12px; color: rgba(255,255,255,0.8);">
+                    Intellectual Property Portfolio & Strategic Brand Initiatives
+                </p>
             </div>
-            <div class="win95-modal-content" style="padding: 24px; background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,250,240,0.97) 50%, rgba(255,255,255,0.95) 100%); max-height: calc(100vh - 100px); overflow-y: auto;">
-                <div style="text-align: center; margin-bottom: 25px; padding: 20px; background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(240,147,251,0.1)); border-radius: 12px; border: 1px solid rgba(255,215,0,0.3);">
-                    <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: 32px; margin: 0; background: linear-gradient(135deg, #ffd700, #f093fb, #667eea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-                        𓌀 AETHER Plans & Brands
-                    </h1>
-                    <p style="font-family: 'Inter', sans-serif; font-size: 15px; margin-top: 8px; color: var(--text-secondary);">
-                        Our Portfolio of Transformative Experiences & Strategic Initiatives
-                    </p>
-                </div>
-                <!-- Brand Filter Tabs -->
-                <div style="display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; justify-content: center; padding: 15px; background: rgba(192,192,192,0.3); border: 1px inset #808080; border-radius: 4px;">
-                    <button onclick="showBrandCategory('all')" class="brand-filter-tab active" data-brand-category="all">🌌 All</button>
-                    <button onclick="showBrandCategory('flagship')" class="brand-filter-tab" data-brand-category="flagship">👑 Flagship</button>
-                    <button onclick="showBrandCategory('experiences')" class="brand-filter-tab" data-brand-category="experiences">🎭 Experiences</button>
-                    <button onclick="showBrandCategory('technology')" class="brand-filter-tab" data-brand-category="technology">⚡ Tech</button>
-                    <button onclick="showBrandCategory('partnerships')" class="brand-filter-tab" data-brand-category="partnerships">🤝 Partners</button>
-                </div>
-                <!-- Strategic Roadmap Section -->
-                <div style="background: linear-gradient(135deg, rgba(102,126,234,0.08), rgba(255,215,0,0.08)); border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; padding: 20px; margin-bottom: 24px;">
-                    <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; color: var(--aether-purple); margin: 0 0 15px 0; text-align: center;">📜 Strategic Roadmap to $75B</h2>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px;">
-                        <div style="background: white; border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; padding: 15px; border-left: 4px solid #ffd700;">
-                            <h3 style="color: #b8860b; margin: 0 0 10px 0; font-family: 'Space Grotesk', sans-serif; font-size: 15px;">Phase 1: Foundation (Y1-2)</h3>
-                            <ul style="color: var(--text-primary); font-size: 13px; line-height: 1.7; margin: 0; padding-left: 18px;">
-                                <li>Seed Round: $3-5M for MVP</li>
-                                <li>Tales of Lucidia Book 1</li>
-                                <li>First Portal Pop-Up</li>
-                                <li>AetherPay Beta Launch</li>
-                            </ul>
-                        </div>
-                        <div style="background: white; border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; padding: 15px; border-left: 4px solid #f093fb;">
-                            <h3 style="color: #c71585; margin: 0 0 10px 0; font-family: 'Space Grotesk', sans-serif; font-size: 15px;">Phase 2: Scaling (Y3-5)</h3>
-                            <ul style="color: var(--text-primary); font-size: 13px; line-height: 1.7; margin: 0; padding-left: 18px;">
-                                <li>Series A: $50-75M</li>
-                                <li>Lucidia Streaming Series</li>
-                                <li>SIXXTHRILL Wave 1</li>
-                                <li>B2B Revenue $100M+</li>
-                            </ul>
-                        </div>
-                        <div style="background: white; border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; padding: 15px; border-left: 4px solid #667eea;">
-                            <h3 style="color: var(--aether-purple); margin: 0 0 10px 0; font-family: 'Space Grotesk', sans-serif; font-size: 15px;">Phase 3: Dominance (Y6-10)</h3>
-                            <ul style="color: var(--text-primary); font-size: 13px; line-height: 1.7; margin: 0; padding-left: 18px;">
-                                <li>Multiple IP Franchises</li>
-                                <li>SIXXTHRILL: $12-18B</li>
-                                <li>Global Platform Effects</li>
-                                <li>$75B Valuation</li>
-                            </ul>
-                        </div>
+
+            <!-- Brand Filter Tabs -->
+            <div style="display: flex; gap: 12px; margin-bottom: 30px; flex-wrap: wrap; justify-content: center; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                <button onclick="showBrandCategory('all')" class="brand-filter-tab active" data-brand-category="all">🌌 All</button>
+                <button onclick="showBrandCategory('flagship')" class="brand-filter-tab" data-brand-category="flagship">👑 Flagship IP</button>
+                <button onclick="showBrandCategory('experiences')" class="brand-filter-tab" data-brand-category="experiences">🎭 Experiences</button>
+                <button onclick="showBrandCategory('technology')" class="brand-filter-tab" data-brand-category="technology">⚡ Technology</button>
+                <button onclick="showBrandCategory('partnerships')" class="brand-filter-tab" data-brand-category="partnerships">🤝 Licensed IP</button>
+            </div>
+
+            <!-- Strategic Roadmap Section -->
+            <div style="background: rgba(255,255,255,0.05); border-radius: 16px; padding: 30px; margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.1);">
+                <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 26px; color: #f093fb; margin: 0 0 20px 0; text-align: center;">📜 IP Development Roadmap</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                    <div style="background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,215,0,0.05)); border-radius: 12px; padding: 20px; border-left: 4px solid #ffd700;">
+                        <h3 style="color: #ffd700; margin: 0 0 12px 0; font-family: 'Space Grotesk', sans-serif; font-size: 16px;">Phase 1: Foundation (Y1-2)</h3>
+                        <ul style="color: rgba(255,255,255,0.85); font-size: 14px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                            <li>Seed Round: $3-5M for MVP</li>
+                            <li>Tales of Lucidia Book 1</li>
+                            <li>First Portal Pop-Up</li>
+                            <li>AetherPay Beta Launch</li>
+                        </ul>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(240,147,251,0.1), rgba(240,147,251,0.05)); border-radius: 12px; padding: 20px; border-left: 4px solid #f093fb;">
+                        <h3 style="color: #f093fb; margin: 0 0 12px 0; font-family: 'Space Grotesk', sans-serif; font-size: 16px;">Phase 2: Scaling (Y3-5)</h3>
+                        <ul style="color: rgba(255,255,255,0.85); font-size: 14px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                            <li>Series A: $50-75M</li>
+                            <li>Lucidia Streaming Series</li>
+                            <li>SIXXTHRILL Wave 1</li>
+                            <li>B2B Revenue $100M+</li>
+                        </ul>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(102,126,234,0.1), rgba(102,126,234,0.05)); border-radius: 12px; padding: 20px; border-left: 4px solid #667eea;">
+                        <h3 style="color: #667eea; margin: 0 0 12px 0; font-family: 'Space Grotesk', sans-serif; font-size: 16px;">Phase 3: Dominance (Y6-10)</h3>
+                        <ul style="color: rgba(255,255,255,0.85); font-size: 14px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                            <li>Multiple IP Franchises</li>
+                            <li>SIXXTHRILL: $12-18B</li>
+                            <li>Global Platform Effects</li>
+                            <li>$75B Valuation</li>
+                        </ul>
                     </div>
                 </div>
-                <!-- Brands Grid -->
-                <div id="brands-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px;"></div>
             </div>
+
+            <!-- Brands Grid -->
+            <div id="brands-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px;"></div>
         </div>
     </div>
     <style>
-    .brand-filter-tab{padding:12px 24px;border-radius:8px;border:2px solid;border-color:#ffffff #808080 #808080 #ffffff;background:linear-gradient(180deg,#e0e0e0 0%,#c0c0c0 100%);color:#1a1a2e;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;}
-    .brand-filter-tab:hover{background:linear-gradient(180deg,#f0f0f0 0%,#d0d0d0 100%);transform:translateY(-2px);}
-    .brand-filter-tab:active{border-color:#808080 #ffffff #ffffff #808080;}
-    .brand-filter-tab.active{background:linear-gradient(135deg,#ffd700,#f093fb);border-color:#c9a227;color:#1a1a2e;box-shadow:0 4px 16px rgba(255,215,0,0.5);}
-    .brand-card{background:linear-gradient(180deg,#ffffff 0%,#f0f0f0 100%);border:2px solid;border-color:#ffffff #808080 #808080 #ffffff;border-radius:8px;padding:25px;transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);box-shadow:2px 2px 8px rgba(0,0,0,0.1);}
-    .brand-card:hover{transform:translateY(-10px);box-shadow:4px 8px 24px rgba(255,215,0,0.25);border-color:#c9a227;background:linear-gradient(180deg,#fffef5 0%,#fff8e0 100%);}
-    .brand-card-header{display:flex;align-items:center;gap:15px;margin-bottom:15px;border-bottom:1px solid #c0c0c0;padding-bottom:12px;}
-    .brand-icon{font-size:42px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.2));}
-    .brand-name{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:#1a1a2e;}
-    .brand-tagline{font-family:'Inter',sans-serif;font-size:13px;color:#996515;font-weight:600;margin-top:2px;}
-    .brand-description{font-family:'Inter',sans-serif;font-size:14px;color:#4a4a6a;line-height:1.7;margin-bottom:18px;}
+    /* Brand Filter Tabs - Software Popup Style */
+    .brand-filter-tab{padding:12px 24px;border-radius:25px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.8);font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.3s;backdrop-filter:blur(4px);}
+    .brand-filter-tab:hover{background:rgba(255,255,255,0.15);color:white;transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.3);}
+    .brand-filter-tab:active{transform:translateY(0);}
+    .brand-filter-tab.active{background:linear-gradient(135deg,#667eea,#764ba2);border-color:#667eea;color:white;box-shadow:0 6px 20px rgba(102,126,234,0.5);}
+    /* Brand Cards - Software Popup Style */
+    .brand-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:28px;transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);backdrop-filter:blur(8px);}
+    .brand-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 12px 40px rgba(102,126,234,0.3);border-color:rgba(102,126,234,0.5);background:rgba(255,255,255,0.12);}
+    .brand-card-header{display:flex;align-items:center;gap:18px;margin-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:15px;}
+    .brand-icon{font-size:48px;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.4));}
+    .brand-name{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:white;}
+    .brand-tagline{font-family:'Inter',sans-serif;font-size:13px;color:#f093fb;font-weight:600;margin-top:4px;}
+    .brand-description{font-family:'Inter',sans-serif;font-size:14px;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:18px;}
     .brand-stats{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:15px;}
-    .brand-stat{padding:8px 14px;background:linear-gradient(135deg,rgba(102,126,234,0.15),rgba(118,75,162,0.15));border:1px solid;border-color:#ffffff #808080 #808080 #ffffff;border-radius:4px;font-size:12px;color:#3a3a5e;font-family:'JetBrains Mono',monospace;font-weight:600;}
+    .brand-stat{padding:8px 14px;background:rgba(102,126,234,0.2);border:1px solid rgba(102,126,234,0.3);border-radius:8px;font-size:12px;color:#a8b5ff;font-family:'JetBrains Mono',monospace;font-weight:600;}
     .brand-tags{display:flex;flex-wrap:wrap;gap:8px;}
-    .brand-tag{padding:5px 12px;background:linear-gradient(135deg,rgba(255,215,0,0.2),rgba(255,180,0,0.15));border:1px solid rgba(153,101,21,0.4);border-radius:12px;font-size:11px;color:#7a5010;font-family:'Inter',sans-serif;font-weight:600;}
+    .brand-tag{padding:5px 12px;background:rgba(240,147,251,0.2);border:1px solid rgba(240,147,251,0.3);border-radius:20px;font-size:11px;color:#f093fb;font-family:'Inter',sans-serif;font-weight:600;}
     /* Brand Card Mobile Responsive */
     @media(max-width:768px){.brand-card{padding:18px;}.brand-icon{font-size:36px;}.brand-name{font-size:18px;}.brand-description{font-size:13px;}.brand-filter-tab{padding:8px 16px;font-size:12px;}}
     @media(max-width:480px){.brand-card{padding:15px;}.brand-card-header{gap:10px;padding-bottom:10px;}.brand-icon{font-size:30px;}.brand-name{font-size:16px;}.brand-tagline{font-size:11px;}.brand-description{font-size:12px;}.brand-stat{padding:5px 10px;font-size:10px;}.brand-filter-tab{padding:6px 12px;font-size:11px;}}
