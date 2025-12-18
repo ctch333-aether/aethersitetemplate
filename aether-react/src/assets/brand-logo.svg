@@ -1,0 +1,31 @@
+<svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#667eea"/>
+      <stop offset="50%" stop-color="#764ba2"/>
+      <stop offset="100%" stop-color="#f093fb"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Decorative Elements Left -->
+  <circle cx="40" cy="60" r="35" fill="none" stroke="url(#logoGradient)" stroke-width="2" opacity="0.6"/>
+  <polygon points="40,30 65,75 15,75" fill="none" stroke="url(#logoGradient)" stroke-width="2" opacity="0.8"/>
+  <polygon points="40,75 55,45 25,45" fill="none" stroke="url(#logoGradient)" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- AETHER Text -->
+  <text x="200" y="75" text-anchor="middle" fill="url(#logoGradient)" font-size="60" font-family="'MS Sans Serif', Arial, sans-serif" font-weight="bold" filter="url(#glow)">AETHER</text>
+
+  <!-- Tagline -->
+  <text x="200" y="105" text-anchor="middle" fill="white" font-size="14" font-family="'MS Sans Serif', sans-serif" opacity="0.9">Phygital Experience Platform</text>
+
+  <!-- Decorative Elements Right -->
+  <circle cx="360" cy="60" r="35" fill="none" stroke="url(#logoGradient)" stroke-width="2" opacity="0.6"/>
+  <polygon points="360,30 385,75 335,75" fill="none" stroke="url(#logoGradient)" stroke-width="2" opacity="0.8"/>
+</svg>

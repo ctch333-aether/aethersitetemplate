@@ -1,0 +1,14 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="aetherGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#667eea"/>
+      <stop offset="50%" stop-color="#764ba2"/>
+      <stop offset="100%" stop-color="#f093fb"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="30" fill="url(#aetherGrad)"/>
+  <polygon points="32,12 52,46 12,46" fill="none" stroke="white" stroke-width="2"/>
+  <polygon points="32,46 44,24 20,24" fill="none" stroke="white" stroke-width="1.5" opacity="0.7"/>
+  <circle cx="32" cy="32" r="8" fill="none" stroke="white" stroke-width="2"/>
+  <text x="32" y="36" text-anchor="middle" fill="white" font-size="8" font-family="sans-serif" font-weight="bold">AE</text>
+</svg>
