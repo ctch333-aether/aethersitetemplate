@@ -11,6 +11,7 @@ function PortfolioContent() {
       category: 'Immersive Installation',
       description: 'World\'s largest Christmas light maze and village, featuring our projection mapping and interactive elements.',
       stats: { visitors: '6M+', locations: '5 Cities', years: '8 Seasons' },
+      image: '/images/BRANDwork-EnchantSite-Collage7.webp',
     },
     {
       id: 2,
@@ -18,6 +19,7 @@ function PortfolioContent() {
       category: 'Theatrical Production',
       description: 'Award-winning theatrical production with innovative projection design and spatial audio.',
       stats: { shows: '100+', critics: '5 Stars', awards: 'Regional Excellence' },
+      image: '/images/Collage1KMP1_1_-_1.webp',
     },
     {
       id: 3,
@@ -25,13 +27,15 @@ function PortfolioContent() {
       category: 'Scenic Design',
       description: 'Professional theater production with enchanted castle projection mapping and practical effects.',
       stats: { attendance: '50K+', runs: 'Sold Out', reviews: 'Standing Ovations' },
+      image: '/images/B_BSetDesign__2_.webp',
     },
     {
       id: 4,
-      title: 'Corporate Activations',
-      category: 'Brand Experience',
-      description: 'Fortune 500 brand activations featuring interactive installations and data visualization.',
-      stats: { clients: '25+', engagement: '300%', roi: 'Documented' },
+      title: 'Projection Mapping',
+      category: 'Visual Technology',
+      description: 'Custom projection mapping solutions for corporate events, concerts, and immersive installations.',
+      stats: { projects: '50+', venues: 'Worldwide', scale: 'Any Size' },
+      image: '/images/BRANDwork-ProjectionMapping-OceanForge.webp',
     },
     {
       id: 5,
@@ -39,6 +43,7 @@ function PortfolioContent() {
       category: 'Arena Production',
       description: 'Large-scale arena show concept combining theatrical narrative with immersive technology.',
       stats: { capacity: '15K', tech: 'Cutting Edge', concept: 'Development' },
+      image: '/images/BRANDAsset-WarriorPrincess-CharacterConcept.webp',
     },
     {
       id: 6,
@@ -46,6 +51,7 @@ function PortfolioContent() {
       category: 'Transmedia IP',
       description: 'Original intellectual property spanning interactive theater, gaming, and collectibles.',
       stats: { formats: '5+', characters: '50+', worlds: '3 Realms' },
+      image: '/images/Cloudtext__2_.webp',
     },
   ];
 
@@ -62,26 +68,108 @@ function PortfolioContent() {
 
       <div className="content-separator"></div>
 
-      {projects.map((project, index) => (
-        <div key={project.id}>
-          <div className="leadership-card">
-            <h3>{project.title}</h3>
-            <span className="title">{project.category}</span>
-            <p>{project.description}</p>
-            <div className="stats-row">
-              {Object.entries(project.stats).map(([key, value]) => (
-                <div className="stat-item" key={key}>
-                  <span className="stat-number">{value}</span>
-                  <span className="stat-label" style={{ textTransform: 'capitalize' }}>
-                    {key}
-                  </span>
-                </div>
-              ))}
+      {/* Portfolio Grid */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+        gap: '20px',
+        marginBottom: '30px',
+      }}>
+        {projects.map((project) => (
+          <div
+            key={project.id}
+            style={{
+              background: 'white',
+              border: '2px solid var(--aether-purple)',
+              borderRadius: '8px',
+              overflow: 'hidden',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+            }}
+          >
+            {/* Project Image */}
+            <div style={{
+              width: '100%',
+              height: '180px',
+              overflow: 'hidden',
+              borderBottom: '2px solid var(--aether-purple)',
+            }}>
+              <img
+                src={project.image}
+                alt={project.title}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
+                loading="lazy"
+              />
+            </div>
+
+            {/* Project Info */}
+            <div style={{ padding: '15px' }}>
+              <h3 style={{
+                color: 'var(--aether-purple-dark)',
+                marginBottom: '5px',
+                fontSize: '14px',
+              }}>
+                {project.title}
+              </h3>
+              <span style={{
+                color: 'var(--aether-purple)',
+                fontSize: '11px',
+                fontWeight: 'bold',
+                display: 'block',
+                marginBottom: '10px',
+              }}>
+                {project.category}
+              </span>
+              <p style={{
+                fontSize: '12px',
+                color: '#333',
+                lineHeight: '1.5',
+                marginBottom: '12px',
+              }}>
+                {project.description}
+              </p>
+
+              {/* Stats */}
+              <div style={{
+                display: 'flex',
+                gap: '10px',
+                flexWrap: 'wrap',
+              }}>
+                {Object.entries(project.stats).map(([key, value]) => (
+                  <div
+                    key={key}
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1))',
+                      padding: '5px 10px',
+                      borderRadius: '4px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    <span style={{
+                      display: 'block',
+                      fontSize: '14px',
+                      fontWeight: 'bold',
+                      color: 'var(--aether-purple)',
+                    }}>
+                      {value}
+                    </span>
+                    <span style={{
+                      fontSize: '9px',
+                      color: '#666',
+                      textTransform: 'capitalize',
+                    }}>
+                      {key}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-          {index < projects.length - 1 && <div className="content-separator"></div>}
-        </div>
-      ))}
+        ))}
+      </div>
 
       <div className="takeaway-box">
         <strong>Ready to Create Something Extraordinary?</strong> Contact us to discuss

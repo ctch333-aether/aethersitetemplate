@@ -8,6 +8,23 @@ function EthosContent() {
     <div className="ethos-content">
       <h1>ETHOS - The AETHER Vision: Credibility & Authority</h1>
 
+      {/* Hero Image */}
+      <div style={{
+        width: '100%',
+        height: '200px',
+        borderRadius: '12px',
+        overflow: 'hidden',
+        marginBottom: '20px',
+        border: '2px solid var(--aether-purple)',
+      }}>
+        <img
+          src="/images/Skills2_2_-_1.webp"
+          alt="AETHER Vision"
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          loading="lazy"
+        />
+      </div>
+
       <div className="highlight-box">
         <p>
           <strong>AETHER</strong> represents a paradigm shift in entertainment technology -
@@ -61,6 +78,41 @@ function EthosContent() {
 
       <div className="major-section-header">
         <span>Our Creative Philosophy</span>
+      </div>
+
+      {/* Creative Philosophy Image */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: '15px',
+        marginBottom: '20px',
+      }}>
+        <div style={{
+          height: '150px',
+          borderRadius: '8px',
+          overflow: 'hidden',
+          border: '2px solid var(--aether-purple)',
+        }}>
+          <img
+            src="/images/BRANDwork-ProjectionMapping-CosmicEye.webp"
+            alt="Cosmic Eye Projection"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            loading="lazy"
+          />
+        </div>
+        <div style={{
+          height: '150px',
+          borderRadius: '8px',
+          overflow: 'hidden',
+          border: '2px solid var(--aether-purple)',
+        }}>
+          <img
+            src="/images/BRANDwork-ProjectionMapping-GridMatrix.webp"
+            alt="Grid Matrix Projection"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            loading="lazy"
+          />
+        </div>
       </div>
 
       <div className="brand-showcase">

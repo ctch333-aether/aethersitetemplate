@@ -8,6 +8,23 @@ function PathosContent() {
     <div className="pathos-content">
       <h1>PATHOS - Emotional Connection & Human Impact</h1>
 
+      {/* Hero Image */}
+      <div style={{
+        width: '100%',
+        height: '200px',
+        borderRadius: '12px',
+        overflow: 'hidden',
+        marginBottom: '20px',
+        border: '2px solid var(--aether-pink)',
+      }}>
+        <img
+          src="/images/BRANDwork-EnchantSite-Collage7.webp"
+          alt="Enchant Christmas"
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          loading="lazy"
+        />
+      </div>
+
       <div className="highlight-box">
         <p>
           At the heart of every AETHER experience is a simple truth:
@@ -25,6 +42,23 @@ function PathosContent() {
 
       <div className="major-section-header">
         <span>Tales of Lucidia - Our Flagship IP</span>
+      </div>
+
+      {/* Tales of Lucidia Image */}
+      <div style={{
+        width: '100%',
+        height: '180px',
+        borderRadius: '10px',
+        overflow: 'hidden',
+        marginBottom: '20px',
+        border: '2px solid var(--aether-pink)',
+      }}>
+        <img
+          src="/images/Cloudtext__2_.webp"
+          alt="Tales of Lucidia"
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          loading="lazy"
+        />
       </div>
 
       <div className="brand-showcase">
@@ -65,14 +99,36 @@ function PathosContent() {
         <span>Project Showcase: Human Impact Stories</span>
       </div>
 
+      {/* Enchant Christmas with Image */}
       <div className="leadership-card">
-        <h3>Enchant Christmas - Transforming Holiday Magic</h3>
-        <span className="title">Arlington, Texas | 6M+ Visitors</span>
-        <p>
-          Our projection mapping and interactive installations transformed a traditional
-          holiday light display into an immersive journey. Families reported:
-        </p>
-        <div className="metrics-grid">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '150px 1fr',
+          gap: '15px',
+        }}>
+          <div style={{
+            height: '120px',
+            borderRadius: '8px',
+            overflow: 'hidden',
+            border: '2px solid var(--aether-purple)',
+          }}>
+            <img
+              src="/images/BRANDwork-EnchantSite-Collage4.webp"
+              alt="Enchant Christmas"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <h3>Enchant Christmas - Transforming Holiday Magic</h3>
+            <span className="title">Arlington, Texas | 6M+ Visitors</span>
+            <p>
+              Our projection mapping and interactive installations transformed a traditional
+              holiday light display into an immersive journey.
+            </p>
+          </div>
+        </div>
+        <div className="metrics-grid" style={{ marginTop: '15px' }}>
           <div className="metric-card">
             <span className="number">94%</span>
             <span className="label">Would Recommend</span>
@@ -88,24 +144,68 @@ function PathosContent() {
         </div>
       </div>
 
+      {/* Kill Move Paradise with Image */}
       <div className="leadership-card">
-        <h3>Kill Move Paradise - Theatrical Innovation</h3>
-        <span className="title">Regional Theater Circuit | Critical Acclaim</span>
-        <p>
-          Our work on this powerful theatrical production used projection mapping and
-          spatial audio to create an emotionally devastating examination of racial
-          violence and its aftermath. Critics called it "a transformative theatrical experience."
-        </p>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '150px 1fr',
+          gap: '15px',
+        }}>
+          <div style={{
+            height: '120px',
+            borderRadius: '8px',
+            overflow: 'hidden',
+            border: '2px solid var(--aether-purple)',
+          }}>
+            <img
+              src="/images/Collage1KMP1_1_-_1.webp"
+              alt="Kill Move Paradise"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <h3>Kill Move Paradise - Theatrical Innovation</h3>
+            <span className="title">Regional Theater Circuit | Critical Acclaim</span>
+            <p>
+              Our work on this powerful theatrical production used projection mapping and
+              spatial audio to create an emotionally devastating examination of racial
+              violence and its aftermath.
+            </p>
+          </div>
+        </div>
       </div>
 
+      {/* Beauty & The Beast with Image */}
       <div className="leadership-card">
-        <h3>Beauty & The Beast - Live Production Design</h3>
-        <span className="title">Professional Theater | Sold-Out Runs</span>
-        <p>
-          Our scenic and projection design brought the enchanted castle to life,
-          creating a sense of wonder that made audiences forget they were watching
-          a stage production.
-        </p>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '150px 1fr',
+          gap: '15px',
+        }}>
+          <div style={{
+            height: '120px',
+            borderRadius: '8px',
+            overflow: 'hidden',
+            border: '2px solid var(--aether-purple)',
+          }}>
+            <img
+              src="/images/B_BSetDesign__2_.webp"
+              alt="Beauty & The Beast"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <h3>Beauty & The Beast - Live Production Design</h3>
+            <span className="title">Professional Theater | Sold-Out Runs</span>
+            <p>
+              Our scenic and projection design brought the enchanted castle to life,
+              creating a sense of wonder that made audiences forget they were watching
+              a stage production.
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="content-separator"></div>
