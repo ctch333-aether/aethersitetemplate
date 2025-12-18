@@ -38,7 +38,7 @@ function AboutContent() {
       </div>
 
       <div className="leadership-card">
-        <h3>Founder & CEO</h3>
+        <h3>Founder &amp; CEO</h3>
         <p>
           With over 15 years of experience in immersive entertainment, theatrical production,
           and technology development, our founder has led teams at major theme parks,
@@ -48,15 +48,15 @@ function AboutContent() {
       </div>
 
       <div className="leadership-card">
-        <h3>Co-Founders & Advisory Board</h3>
+        <h3>Co-Founders &amp; Advisory Board</h3>
         <p>
           Our leadership team includes experts in:
         </p>
         <ul className="feature-list">
-          <li>Experiential Design & Architecture</li>
-          <li>Artificial Intelligence & Machine Learning</li>
-          <li>Theatrical Production & Narrative Design</li>
-          <li>Business Development & Strategic Partnerships</li>
+          <li>Experiential Design &amp; Architecture</li>
+          <li>Artificial Intelligence &amp; Machine Learning</li>
+          <li>Theatrical Production &amp; Narrative Design</li>
+          <li>Business Development &amp; Strategic Partnerships</li>
         </ul>
       </div>
 

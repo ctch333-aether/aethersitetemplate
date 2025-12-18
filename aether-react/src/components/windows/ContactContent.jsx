@@ -51,9 +51,9 @@ function ContactContent() {
             <span>Get in Touch</span>
           </div>
 
-          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-              <label htmlFor="name" style={{ fontWeight: 'bold', fontSize: '12px' }}>Name *</label>
+          <form onSubmit={handleSubmit} className="win95-form">
+            <div className="form-field">
+              <label htmlFor="name" className="form-label">Name *</label>
               <input
                 type="text"
                 id="name"
@@ -61,18 +61,12 @@ function ContactContent() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                style={{
-                  padding: '8px',
-                  border: '2px solid',
-                  borderColor: '#808080 #ffffff #ffffff #808080',
-                  background: 'white',
-                  fontFamily: 'inherit',
-                }}
+                className="form-input"
               />
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-              <label htmlFor="email" style={{ fontWeight: 'bold', fontSize: '12px' }}>Email *</label>
+            <div className="form-field">
+              <label htmlFor="email" className="form-label">Email *</label>
               <input
                 type="email"
                 id="email"
@@ -80,49 +74,31 @@ function ContactContent() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                style={{
-                  padding: '8px',
-                  border: '2px solid',
-                  borderColor: '#808080 #ffffff #ffffff #808080',
-                  background: 'white',
-                  fontFamily: 'inherit',
-                }}
+                className="form-input"
               />
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-              <label htmlFor="company" style={{ fontWeight: 'bold', fontSize: '12px' }}>Company</label>
+            <div className="form-field">
+              <label htmlFor="company" className="form-label">Company</label>
               <input
                 type="text"
                 id="company"
                 name="company"
                 value={formData.company}
                 onChange={handleChange}
-                style={{
-                  padding: '8px',
-                  border: '2px solid',
-                  borderColor: '#808080 #ffffff #ffffff #808080',
-                  background: 'white',
-                  fontFamily: 'inherit',
-                }}
+                className="form-input"
               />
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-              <label htmlFor="subject" style={{ fontWeight: 'bold', fontSize: '12px' }}>Subject *</label>
+            <div className="form-field">
+              <label htmlFor="subject" className="form-label">Subject *</label>
               <select
                 id="subject"
                 name="subject"
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                style={{
-                  padding: '8px',
-                  border: '2px solid',
-                  borderColor: '#808080 #ffffff #ffffff #808080',
-                  background: 'white',
-                  fontFamily: 'inherit',
-                }}
+                className="form-select"
               >
                 <option value="">Select a topic...</option>
                 <option value="partnership">Partnership Inquiry</option>
@@ -134,8 +110,8 @@ function ContactContent() {
               </select>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-              <label htmlFor="message" style={{ fontWeight: 'bold', fontSize: '12px' }}>Message *</label>
+            <div className="form-field">
+              <label htmlFor="message" className="form-label">Message *</label>
               <textarea
                 id="message"
                 name="message"
@@ -143,30 +119,11 @@ function ContactContent() {
                 onChange={handleChange}
                 required
                 rows={5}
-                style={{
-                  padding: '8px',
-                  border: '2px solid',
-                  borderColor: '#808080 #ffffff #ffffff #808080',
-                  background: 'white',
-                  fontFamily: 'inherit',
-                  resize: 'vertical',
-                }}
+                className="form-textarea"
               />
             </div>
 
-            <button
-              type="submit"
-              style={{
-                padding: '10px 20px',
-                background: '#c0c0c0',
-                border: '2px solid',
-                borderColor: '#ffffff #000000 #000000 #ffffff',
-                fontFamily: 'inherit',
-                fontWeight: 'bold',
-                cursor: 'pointer',
-                alignSelf: 'flex-start',
-              }}
-            >
+            <button type="submit" className="form-button">
               Send Message
             </button>
           </form>
@@ -188,7 +145,7 @@ function ContactContent() {
           </div>
 
           <div className="key-summary" style={{ marginBottom: '20px' }}>
-            <div className="key-summary-title">Press & Media</div>
+            <div className="key-summary-title">Press &amp; Media</div>
             <p>press@aetherphygital.com</p>
           </div>
 

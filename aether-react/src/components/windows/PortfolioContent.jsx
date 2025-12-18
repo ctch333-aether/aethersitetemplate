@@ -69,100 +69,30 @@ function PortfolioContent() {
       <div className="content-separator"></div>
 
       {/* Portfolio Grid */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: '20px',
-        marginBottom: '30px',
-      }}>
+      <div className="portfolio-grid">
         {projects.map((project) => (
-          <div
-            key={project.id}
-            style={{
-              background: 'white',
-              border: '2px solid var(--aether-purple)',
-              borderRadius: '8px',
-              overflow: 'hidden',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-            }}
-          >
+          <div key={project.id} className="portfolio-card">
             {/* Project Image */}
-            <div style={{
-              width: '100%',
-              height: '180px',
-              overflow: 'hidden',
-              borderBottom: '2px solid var(--aether-purple)',
-            }}>
+            <div className="portfolio-card-image">
               <img
                 src={project.image}
                 alt={project.title}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                }}
                 loading="lazy"
               />
             </div>
 
             {/* Project Info */}
-            <div style={{ padding: '15px' }}>
-              <h3 style={{
-                color: 'var(--aether-purple-dark)',
-                marginBottom: '5px',
-                fontSize: '14px',
-              }}>
-                {project.title}
-              </h3>
-              <span style={{
-                color: 'var(--aether-purple)',
-                fontSize: '11px',
-                fontWeight: 'bold',
-                display: 'block',
-                marginBottom: '10px',
-              }}>
-                {project.category}
-              </span>
-              <p style={{
-                fontSize: '12px',
-                color: '#333',
-                lineHeight: '1.5',
-                marginBottom: '12px',
-              }}>
-                {project.description}
-              </p>
+            <div className="portfolio-card-content">
+              <h3 className="portfolio-card-title">{project.title}</h3>
+              <span className="portfolio-card-category">{project.category}</span>
+              <p className="portfolio-card-description">{project.description}</p>
 
               {/* Stats */}
-              <div style={{
-                display: 'flex',
-                gap: '10px',
-                flexWrap: 'wrap',
-              }}>
+              <div className="portfolio-card-stats">
                 {Object.entries(project.stats).map(([key, value]) => (
-                  <div
-                    key={key}
-                    style={{
-                      background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1))',
-                      padding: '5px 10px',
-                      borderRadius: '4px',
-                      textAlign: 'center',
-                    }}
-                  >
-                    <span style={{
-                      display: 'block',
-                      fontSize: '14px',
-                      fontWeight: 'bold',
-                      color: 'var(--aether-purple)',
-                    }}>
-                      {value}
-                    </span>
-                    <span style={{
-                      fontSize: '9px',
-                      color: '#666',
-                      textTransform: 'capitalize',
-                    }}>
-                      {key}
-                    </span>
+                  <div key={key} className="portfolio-stat">
+                    <span className="portfolio-stat-value">{value}</span>
+                    <span className="portfolio-stat-label">{key}</span>
                   </div>
                 ))}
               </div>
