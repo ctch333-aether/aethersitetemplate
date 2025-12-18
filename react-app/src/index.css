@@ -1,0 +1,134 @@
+/* AETHER Website - Global Styles v2.0 - React Port */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+@font-face {
+  font-family: 'MS Sans Serif';
+  src: local('MS Sans Serif'), local('Microsoft Sans Serif'), local('sans-serif');
+}
+
+:root {
+  --aether-purple: #667eea;
+  --aether-purple-dark: #764ba2;
+  --aether-blue: #4a90e2;
+  --aether-pink: #f093fb;
+  --white: #ffffff;
+  --black: #2c3e50;
+  --win95-gray: #c0c0c0;
+  --win95-dark: #808080;
+  --win95-bg: #008080;
+  --win95-window: #c0c0c0;
+  --win95-border-light: #ffffff;
+  --win95-border-dark: #808080;
+  --win95-border-darker: #404040;
+  --win95-title: #000080;
+  --win95-title-active: linear-gradient(90deg, #000080, #1084d0);
+  --win95-button: #c0c0c0;
+  --win95-text: #000000;
+  --win95-link: #0000ff;
+  --aether-primary: #6b5ce7;
+  --aether-secondary: #00d4aa;
+  --aether-accent: #ff6b9d;
+  --aether-dark: #1a1a2e;
+  --aether-light: #eaeaea;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+}
+
+body {
+  font-size: 13px;
+  font-family: 'MS Sans Serif', 'Microsoft Sans Serif', sans-serif;
+  background: #008080;
+  color: #000;
+  overflow: hidden;
+  min-height: 100vh;
+  position: relative;
+  cursor: default;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Base Image Styles */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+img[loading="lazy"].loaded,
+img.loaded {
+  opacity: 1;
+}
+
+/* Aspect ratio containers */
+.aspect-16-9 { aspect-ratio: 16 / 9; }
+.aspect-4-3 { aspect-ratio: 4 / 3; }
+.aspect-1-1 { aspect-ratio: 1 / 1; }
+.aspect-3-4 { aspect-ratio: 3 / 4; }
+.aspect-9-16 { aspect-ratio: 9 / 16; }
+
+/* Object fit utilities */
+.img-cover { object-fit: cover; }
+.img-contain { object-fit: contain; }
+.img-fill { object-fit: fill; }
+.img-scale-down { object-fit: scale-down; }
+
+/* Focus states for accessibility */
+:focus-visible {
+  outline: 2px dashed var(--aether-primary);
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: #c0c0c0;
+  border: 1px solid #808080;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #000000 #000000 #ffffff;
+}
+
+::-webkit-scrollbar-thumb:active {
+  border-color: #000000 #ffffff #ffffff #000000;
+}
