@@ -22,6 +22,7 @@ import {
   AboutContent,
   PortfolioContent,
   ContactContent,
+  CRMContent,
 } from './components/windows';
 
 // Hooks
@@ -70,6 +71,13 @@ const WINDOW_CONFIG = {
     initialPosition: { top: 90, left: 200 },
     width: 800,
     component: ContactContent,
+  },
+  crm: {
+    title: 'AETHER CRM - Investor & Partner Database',
+    icon: 'C',
+    initialPosition: { top: 40, left: 80 },
+    width: 950,
+    component: CRMContent,
   },
 };
 

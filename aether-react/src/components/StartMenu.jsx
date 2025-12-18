@@ -11,6 +11,7 @@ function StartMenu({ isOpen, onItemClick, onClose }) {
     { id: 'pathos', icon: 'P', label: 'PATHOS - Emotional Impact' },
     { id: 'logos', icon: 'L', label: 'LOGOS - Technical Systems' },
     { id: 'divider', divider: true },
+    { id: 'crm', icon: 'C', label: 'CRM - Investor Database' },
     { id: 'about', icon: 'i', label: 'About AETHER' },
     { id: 'portfolio', icon: 'W', label: 'Portfolio' },
     { id: 'contact', icon: '@', label: 'Contact Us' },
