@@ -6,21 +6,13 @@
 function EthosContent() {
   return (
     <div className="ethos-content">
-      <h1>ETHOS - The AETHER Vision: Credibility & Authority</h1>
+      <h1>ETHOS - The AETHER Vision: Credibility &amp; Authority</h1>
 
       {/* Hero Image */}
-      <div style={{
-        width: '100%',
-        height: '200px',
-        borderRadius: '12px',
-        overflow: 'hidden',
-        marginBottom: '20px',
-        border: '2px solid var(--aether-purple)',
-      }}>
+      <div className="hero-image-container purple-border">
         <img
           src="/images/Skills2_2_-_1.webp"
           alt="AETHER Vision"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           loading="lazy"
         />
       </div>
@@ -34,8 +26,8 @@ function EthosContent() {
       </div>
 
       <div className="pull-quote">
-        "We don't just create experiences - we architect emotional journeys that transform
-        how people connect with entertainment, brands, and each other."
+        &quot;We don&apos;t just create experiences - we architect emotional journeys that transform
+        how people connect with entertainment, brands, and each other.&quot;
       </div>
 
       <div className="takeaway-box">
@@ -81,35 +73,18 @@ function EthosContent() {
       </div>
 
       {/* Creative Philosophy Image */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: '15px',
-        marginBottom: '20px',
-      }}>
-        <div style={{
-          height: '150px',
-          borderRadius: '8px',
-          overflow: 'hidden',
-          border: '2px solid var(--aether-purple)',
-        }}>
+      <div className="image-grid-two">
+        <div className="image-grid-item">
           <img
             src="/images/BRANDwork-ProjectionMapping-CosmicEye.webp"
             alt="Cosmic Eye Projection"
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             loading="lazy"
           />
         </div>
-        <div style={{
-          height: '150px',
-          borderRadius: '8px',
-          overflow: 'hidden',
-          border: '2px solid var(--aether-purple)',
-        }}>
+        <div className="image-grid-item">
           <img
             src="/images/BRANDwork-ProjectionMapping-GridMatrix.webp"
             alt="Grid Matrix Projection"
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             loading="lazy"
           />
         </div>
@@ -137,16 +112,8 @@ function EthosContent() {
         </ul>
       </div>
 
-      <div className="founder-origin-card" style={{
-        margin: '30px 0',
-        padding: '25px',
-        background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1))',
-        border: '2px solid rgba(102, 126, 234, 0.3)',
-        borderRadius: '15px',
-      }}>
-        <h3 style={{ color: 'var(--aether-purple-dark)', marginBottom: '15px' }}>
-          Founder's Vision
-        </h3>
+      <div className="founder-card">
+        <h3>Founder&apos;s Vision</h3>
         <p>
           AETHER was born from a simple observation: the most memorable experiences in our lives
           happen when the boundary between imagination and reality dissolves. Our mission is to
@@ -197,7 +164,7 @@ function EthosContent() {
         </div>
         <div className="metric-card">
           <span className="number">50+</span>
-          <span className="label">Patents & IP</span>
+          <span className="label">Patents &amp; IP</span>
         </div>
         <div className="metric-card">
           <span className="number">100+</span>

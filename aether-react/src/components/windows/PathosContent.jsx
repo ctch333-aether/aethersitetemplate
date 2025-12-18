@@ -9,18 +9,10 @@ function PathosContent() {
       <h1>PATHOS - Emotional Connection & Human Impact</h1>
 
       {/* Hero Image */}
-      <div style={{
-        width: '100%',
-        height: '200px',
-        borderRadius: '12px',
-        overflow: 'hidden',
-        marginBottom: '20px',
-        border: '2px solid var(--aether-pink)',
-      }}>
+      <div className="hero-image-container">
         <img
           src="/images/BRANDwork-EnchantSite-Collage7.webp"
           alt="Enchant Christmas"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           loading="lazy"
         />
       </div>
@@ -34,8 +26,8 @@ function PathosContent() {
       </div>
 
       <div className="pull-quote">
-        "The best technology is invisible - what remains is pure emotion, shared between strangers
-        who become community, audiences who become participants, spectators who become protagonists."
+        &quot;The best technology is invisible - what remains is pure emotion, shared between strangers
+        who become community, audiences who become participants, spectators who become protagonists.&quot;
       </div>
 
       <div className="content-separator"></div>
@@ -45,18 +37,10 @@ function PathosContent() {
       </div>
 
       {/* Tales of Lucidia Image */}
-      <div style={{
-        width: '100%',
-        height: '180px',
-        borderRadius: '10px',
-        overflow: 'hidden',
-        marginBottom: '20px',
-        border: '2px solid var(--aether-pink)',
-      }}>
+      <div className="section-image-container">
         <img
           src="/images/Cloudtext__2_.webp"
           alt="Tales of Lucidia"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           loading="lazy"
         />
       </div>
@@ -101,21 +85,11 @@ function PathosContent() {
 
       {/* Enchant Christmas with Image */}
       <div className="leadership-card">
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '150px 1fr',
-          gap: '15px',
-        }}>
-          <div style={{
-            height: '120px',
-            borderRadius: '8px',
-            overflow: 'hidden',
-            border: '2px solid var(--aether-purple)',
-          }}>
+        <div className="project-card-layout">
+          <div className="project-card-image">
             <img
               src="/images/BRANDwork-EnchantSite-Collage4.webp"
               alt="Enchant Christmas"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               loading="lazy"
             />
           </div>
@@ -128,7 +102,7 @@ function PathosContent() {
             </p>
           </div>
         </div>
-        <div className="metrics-grid" style={{ marginTop: '15px' }}>
+        <div className="metrics-grid">
           <div className="metric-card">
             <span className="number">94%</span>
             <span className="label">Would Recommend</span>
@@ -146,21 +120,11 @@ function PathosContent() {
 
       {/* Kill Move Paradise with Image */}
       <div className="leadership-card">
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '150px 1fr',
-          gap: '15px',
-        }}>
-          <div style={{
-            height: '120px',
-            borderRadius: '8px',
-            overflow: 'hidden',
-            border: '2px solid var(--aether-purple)',
-          }}>
+        <div className="project-card-layout">
+          <div className="project-card-image">
             <img
               src="/images/Collage1KMP1_1_-_1.webp"
               alt="Kill Move Paradise"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               loading="lazy"
             />
           </div>
@@ -178,26 +142,16 @@ function PathosContent() {
 
       {/* Beauty & The Beast with Image */}
       <div className="leadership-card">
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '150px 1fr',
-          gap: '15px',
-        }}>
-          <div style={{
-            height: '120px',
-            borderRadius: '8px',
-            overflow: 'hidden',
-            border: '2px solid var(--aether-purple)',
-          }}>
+        <div className="project-card-layout">
+          <div className="project-card-image">
             <img
               src="/images/B_BSetDesign__2_.webp"
               alt="Beauty & The Beast"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               loading="lazy"
             />
           </div>
           <div>
-            <h3>Beauty & The Beast - Live Production Design</h3>
+            <h3>Beauty &amp; The Beast - Live Production Design</h3>
             <span className="title">Professional Theater | Sold-Out Runs</span>
             <p>
               Our scenic and projection design brought the enchanted castle to life,
